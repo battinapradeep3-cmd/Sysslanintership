@@ -1,1 +1,369 @@
 
+/* =========================================
+   PARTY VIBES - JAVASCRIPT
+   ========================================= */
+
+
+/* =========================================
+   1. OTP VERIFICATION
+   ========================================= */
+
+const sendOtpButton = document.getElementById("sendOtp");
+const verifyOtpButton = document.getElementById("verifyOtp");
+
+const otpSection = document.getElementById("otpSection");
+
+otpSection.style.display = "none";
+
+let generatedOTP = null;
+
+
+// Send OTP
+sendOtpButton.addEventListener("click", function () {
+
+    const mobile = document.getElementById("mobile").value.trim();
+
+    // Check mobile number
+    if (!/^[0-9]{10}$/.test(mobile)) {
+
+        alert("Please enter a valid 10-digit mobile number.");
+
+        return;
+    }
+
+    // Generate demo OTP
+    generatedOTP = Math.floor(100000 + Math.random() * 900000);
+
+    otpSection.style.display = "block";
+
+    alert("Your demo OTP is: " + generatedOTP);
+
+});
+
+
+// Verify OTP
+verifyOtpButton.addEventListener("click", function () {
+
+    const enteredOTP = document.getElementById("otp").value.trim();
+
+    if (enteredOTP === "") {
+
+        alert("Please enter the OTP.");
+
+        return;
+    }
+
+    if (enteredOTP == generatedOTP) {
+
+        alert("✅ OTP verified successfully!");
+
+    } else {
+
+        alert("❌ Incorrect OTP. Please try again.");
+
+    }
+
+});
+
+
+/* =========================================
+   2. EVENT SELECTION
+   ========================================= */
+
+function openEvent(eventName) {
+
+    const selectedEvent =
+        document.getElementById("selected-event");
+
+    selectedEvent.innerText =
+        "🎉 " + eventName;
+
+    // Put selected event into booking form
+    const eventSelect =
+        document.getElementById("event");
+
+    eventSelect.value = eventName;
+
+    // Scroll to event details
+    document
+        .getElementById("event-details")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================
+   3. TICKET SELECTION
+   ========================================= */
+
+let selectedTicket = "";
+let ticketPrice = 0;
+
+
+function selectTicket(type, price) {
+
+    selectedTicket = type;
+    ticketPrice = price;
+
+    alert(
+        "🎟️ " + type +
+        " Ticket selected!\nPrice: ₹" + price
+    );
+
+    // Scroll to booking section
+    document
+        .getElementById("booking")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================
+   4. BOOKING FORM
+   ========================================= */
+
+const bookingForm =
+    document.getElementById("bookingForm");
+
+bookingForm.addEventListener("submit", function (event) {
+
+    // Stop page refresh
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const eventName =
+        document.getElementById("event").value;
+
+    const ticketCount =
+        parseInt(
+            document.getElementById("ticketCount").value
+        );
+
+
+    // Validate name
+    if (name === "") {
+
+        alert("Please enter your name.");
+
+        return;
+    }
+
+
+    // Validate email
+    if (!email.includes("@")) {
+
+        alert("Please enter a valid email address.");
+
+        return;
+    }
+
+
+    // Validate event
+    if (eventName === "") {
+
+        alert("Please select an event.");
+
+        return;
+    }
+
+
+    // Validate ticket count
+    if (ticketCount < 1 || ticketCount > 10) {
+
+        alert("Please select between 1 and 10 tickets.");
+
+        return;
+    }
+
+
+    // Calculate total price
+    let totalPrice = 0;
+
+    if (ticketPrice > 0) {
+
+        totalPrice =
+            ticketPrice * ticketCount;
+
+    } else {
+
+        // Default price
+        totalPrice =
+            500 * ticketCount;
+
+    }
+
+
+    // Display booking message
+    const bookingMessage =
+        document.getElementById("bookingMessage");
+
+    bookingMessage.innerHTML =
+        "🎉 Booking Successful!<br><br>" +
+        "Name: " + name + "<br>" +
+        "Event: " + eventName + "<br>" +
+        "Tickets: " + ticketCount + "<br>" +
+        "Total Price: ₹" + totalPrice;
+
+
+    // Show confirmation
+    alert(
+        "🎟️ Booking Confirmed!\n\n" +
+        "Event: " + eventName + "\n" +
+        "Tickets: " + ticketCount + "\n" +
+        "Total: ₹" + totalPrice
+    );
+
+});
+
+
+/* =========================================
+   5. LOGIN
+   ========================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+
+loginForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+
+    const mobile =
+        document.getElementById("loginMobile")
+            .value.trim();
+
+    const password =
+        document.getElementById("loginOtp")
+            .value.trim();
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+
+    // Mobile validation
+    if (!/^[0-9]{10}$/.test(mobile)) {
+
+        loginMessage.innerText =
+            "❌ Please enter a valid 10-digit mobile number.";
+
+        return;
+    }
+
+
+    // Password / OTP validation
+    if (password === "") {
+
+        loginMessage.innerText =
+            "❌ Please enter OTP or password.";
+
+        return;
+    }
+
+
+    // Successful login
+    loginMessage.innerText =
+        "✅ Login successful! Welcome to Party Vibes.";
+
+});
+
+
+/* =========================================
+   6. SIGN UP
+   ========================================= */
+
+function signUp() {
+
+    alert(
+        "🎉 Welcome to Party Vibes!\n\n" +
+        "Sign-up feature is ready for integration."
+    );
+
+}
+
+
+/* =========================================
+   7. BOOK TICKET BUTTON EFFECT
+   ========================================= */
+
+const eventButtons =
+    document.querySelectorAll(".event-btn");
+
+
+eventButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        button.innerText = "Selected ✓";
+
+    });
+
+});
+
+
+/* =========================================
+   8. TICKET COUNT LIMIT
+   ========================================= */
+
+const ticketCount =
+    document.getElementById("ticketCount");
+
+
+ticketCount.addEventListener("change", function () {
+
+    if (this.value < 1) {
+
+        this.value = 1;
+
+    }
+
+    if (this.value > 10) {
+
+        this.value = 10;
+
+    }
+
+});
+
+📂 Final project structure
+
+Party-Vibes/
+│
+├── index.html
+├── style.css
+├── script.js
+│
+└── images/
+    ├── dj.jpg
+    ├── event1.jpg
+    ├── event2.jpg
+    └── event3.jpg
+
+✅ What your JavaScript now does
+
+Feature| JavaScript
+📱 Mobile validation| ✅
+🔢 Demo OTP generation| ✅
+🔐 OTP verification| ✅
+🎉 Event selection| ✅
+🎟️ Ticket selection| ✅
+💰 Price calculation| ✅
+📝 Booking form| ✅
+❌ Form validation| ✅
+🔐 Login validation| ✅
+📱 Responsive behavior| CSS
+🎨 Website design| CSS
+
+This covers the internship's Level 4 requirements for JavaScript interaction, DOM manipulation, event handling, and basic form validation.
+
+Important: The OTP and login above are demo front-end functionality. A real OTP system requires a backend/SMS service; don't present this demo as real SMS authentication.
