@@ -1,7 +1,7 @@
 🎉 Party Vibes – Event Ticket Booking System
 
 📌 Project Overview
-
+https://battinapradeep3-cmd.github.io/Sysslanintership/
 Party Vibes is a front-end event ticket booking website designed for users to discover and book tickets for exciting events such as DJ nights, live concerts, and music festivals.
 
 The website is developed using HTML, CSS, and JavaScript. It provides an attractive, responsive, and interactive user interface for browsing events, selecting tickets, and completing a demo booking process.
