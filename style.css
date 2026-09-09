@@ -1,402 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 
-/* =========================================
-   PARTY VIBES - MAIN STYLES
-   ========================================= */
+:root {
+    --black: #050505;
+    --white: #ffffff;
+    --gray: #6f6f6f;
+    --light: #f5f3ef;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0b0014;
-    color: white;
-    line-height: 1.6;
+    font-family: "Inter", sans-serif;
+    background: var(--white);
+    color: var(--black);
 }
 
 
-/* =========================================
-   HEADER
-   ========================================= */
+/* ================= NAVBAR ================= */
 
-header {
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 18px 7%;
+
+    z-index: 20;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background: #150021;
-
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    border-bottom: 1px solid #8b2cff;
+    padding: 24px 7%;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #ff3cac;
-
-    text-shadow:
-        0 0 10px #ff3cac,
-        0 0 20px #ff3cac;
-}
-
-nav {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: white;
+.logo,
+.footer-logo {
+    font-family: "Instrument Serif", serif;
+    font-size: 34px;
+    color: black;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.logo sup,
+.footer-logo sup {
+    font-size: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: black;
+}
+
+.nav-button,
+.main-button {
+    background: black;
+    color: white;
+
+    padding: 13px 25px;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-size: 14px;
 
     transition: 0.3s;
 }
 
-nav a:hover {
-    color: #ff3cac;
+.nav-button:hover,
+.main-button:hover {
+    transform: scale(1.04);
 }
 
 
-/* =========================================
-   HERO SECTION
-   ========================================= */
+/* ================= HERO ================= */
 
 .hero {
+    position: relative;
+
     min-height: 100vh;
+
+    overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     text-align: center;
+}
 
-    padding: 80px 20px;
+.hero-video {
+    position: absolute;
+
+    top: 300px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: calc(100% - 300px);
+
+    object-fit: cover;
+
+    z-index: 0;
+
+    opacity: 0;
+
+    transition: opacity 0.05s linear;
+}
+
+.video-overlay {
+    position: absolute;
+
+    inset: 0;
 
     background:
         linear-gradient(
-            rgba(11, 0, 20, 0.75),
-            rgba(11, 0, 20, 0.95)
-        ),
-        url("images/dj.jpg");
+            to bottom,
+            white 0%,
+            rgba(255,255,255,0.25) 30%,
+            rgba(255,255,255,0.15) 60%,
+            white 100%
+        );
 
-    background-size: cover;
-    background-position: center;
-
-    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
-    max-width: 900px;
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1200px;
+
+    padding:
+        calc(8rem - 75px)
+        25px
+        160px;
+}
+
+.hero-tag,
+.section-tag {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: var(--gray);
+
+    margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-size: 55px;
-    margin-bottom: 15px;
+    font-family: "Instrument Serif", serif;
 
-    color: #ff3cac;
+    font-size: clamp(60px, 9vw, 130px);
 
-    text-shadow:
-        0 0 10px #ff3cac,
-        0 0 30px #8b2cff;
+    line-height: 0.92;
+
+    font-weight: normal;
+
+    letter-spacing: -3px;
 }
 
-.hero p {
-    font-size: 19px;
-    margin-bottom: 30px;
-    color: #eeeeee;
+.hero h1 span,
+.hero h1 i {
+    color: var(--gray);
 }
 
-.dj-image {
-    width: 420px;
-    max-width: 90%;
+.hero-description {
+    max-width: 620px;
 
-    border-radius: 20px;
+    margin: 30px auto;
 
-    box-shadow:
-        0 0 20px #ff3cac,
-        0 0 50px #8b2cff;
+    color: var(--gray);
 
-    margin-bottom: 30px;
+    line-height: 1.7;
+
+    font-size: 16px;
 }
 
+.hero-buttons {
+    margin-top: 40px;
 
-/* =========================================
-   OTP BOX
-   ========================================= */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.otp-box {
-    width: 400px;
-    max-width: 90%;
-
-    margin: auto;
-
-    padding: 25px;
-
-    background: rgba(20, 0, 35, 0.9);
-
-    border-radius: 15px;
-
-    border: 1px solid #8b2cff;
-
-    box-shadow: 0 0 25px rgba(255, 60, 172, 0.4);
+    gap: 15px;
 }
 
-.otp-box h2 {
-    color: #ff3cac;
-    margin-bottom: 15px;
+.main-button {
+    padding: 17px 40px;
 }
 
-label {
-    display: block;
-    text-align: left;
+.play-button {
+    width: 55px;
+    height: 55px;
 
-    margin: 10px 0 5px;
+    border-radius: 50%;
 
-    font-weight: bold;
-}
+    border: 1px solid black;
 
-input,
-select {
-    width: 100%;
+    background: transparent;
 
-    padding: 13px;
-
-    border: none;
-    outline: none;
-
-    border-radius: 8px;
-
-    background: #25003b;
-
-    color: white;
-
-    margin-bottom: 10px;
-}
-
-input::placeholder {
-    color: #bbb;
-}
-
-
-/* =========================================
-   BUTTONS
-   ========================================= */
-
-button {
-    border: none;
-
-    padding: 12px 22px;
-
-    border-radius: 25px;
-
-    background: linear-gradient(
-        90deg,
-        #ff3cac,
-        #8b2cff
-    );
-
-    color: white;
-
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 22px;
 
     cursor: pointer;
 
     transition: 0.3s;
-
-    margin-top: 8px;
 }
 
-button:hover {
-    transform: scale(1.05);
-
-    box-shadow:
-        0 0 15px #ff3cac,
-        0 0 25px #8b2cff;
-}
-
-
-/* =========================================
-   SCROLL DOWN
-   ========================================= */
-
-.scroll-down {
-    position: absolute;
-
-    bottom: 25px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
+.play-button:hover {
+    background: black;
     color: white;
-
-    text-decoration: none;
-
-    font-weight: bold;
-
-    animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translate(-50%, 0);
-    }
-
-    50% {
-        transform: translate(-50%, -10px);
-    }
 }
 
 
-/* =========================================
-   EVENTS SECTION
-   ========================================= */
+/* ================= PHONE / OTP ================= */
 
-.events-section {
-    padding: 80px 7%;
-
-    text-align: center;
-
-    background: #10001c;
+.phone-section {
+    padding: 120px 8%;
+    background: var(--light);
 }
 
-.events-section h2,
-.event-details h2,
-.booking-section h2,
-.login-section h2 {
-    font-size: 35px;
-
-    color: #ff3cac;
-
-    margin-bottom: 10px;
-
-    text-shadow: 0 0 15px #ff3cac;
-}
-
-.section-description {
-    color: #cccccc;
-    margin-bottom: 40px;
-}
-
-
-/* =========================================
-   EVENT CARDS
-   ========================================= */
-
-.event-container {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 30px;
-
+.phone-content {
     max-width: 1100px;
 
     margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
 }
 
-.event-card {
-    background: #1c002b;
+h2 {
+    font-family: "Instrument Serif", serif;
 
-    border-radius: 18px;
+    font-size: clamp(45px, 6vw, 85px);
 
-    overflow: hidden;
+    font-weight: normal;
 
-    border: 1px solid #8b2cff;
+    line-height: 0.95;
 
-    transition: 0.4s;
-
-    box-shadow:
-        0 0 15px rgba(139, 44, 255, 0.2);
+    letter-spacing: -2px;
 }
 
-.event-card:hover {
-    transform: translateY(-10px);
-
-    box-shadow:
-        0 0 25px #ff3cac;
+h2 i {
+    color: var(--gray);
 }
 
-.event-card img {
+.otp-box {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+
+.otp-box input,
+.booking-form input,
+.booking-form select,
+.login-box input {
     width: 100%;
 
-    height: 210px;
+    padding: 16px;
 
-    object-fit: cover;
+    margin-bottom: 12px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 10px;
+
+    font-family: "Inter", sans-serif;
+
+    outline: none;
 }
 
-.event-card h3 {
-    color: #ff3cac;
+.otp-box button,
+.booking-form button,
+.login-box button {
+    width: 100%;
 
-    font-size: 23px;
+    padding: 16px;
 
-    margin: 15px 0 8px;
+    border: none;
+
+    border-radius: 50px;
+
+    background: black;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
 }
 
-.event-card p {
-    color: #cccccc;
-
-    margin: 5px 0;
+button:hover {
+    transform: scale(1.02);
 }
 
-.event-btn {
-    margin: 15px 0 25px;
+.otp-area {
+    display: none;
+
+    margin-top: 15px;
 }
 
-
-/* =========================================
-   EVENT DETAILS
-   ========================================= */
-
-.event-details {
-    padding: 80px 7%;
+#otpMessage,
+#bookingMessage,
+#loginMessage {
+    margin-top: 15px;
 
     text-align: center;
 
-    background: #0b0014;
-}
-
-.details-box {
-    max-width: 700px;
-
-    margin: 25px auto 45px;
-
-    padding: 30px;
-
-    background: #1c002b;
-
-    border-radius: 15px;
-
-    border: 1px solid #8b2cff;
-}
-
-.details-box p {
-    margin: 8px 0;
-    color: #dddddd;
+    font-size: 14px;
 }
 
 
-/* =========================================
-   TICKET SECTION
-   ========================================= */
+/* ================= EVENTS ================= */
 
-.ticket-container {
-    max-width: 1000px;
+.events-section {
+    padding: 140px 7%;
 
-    margin: 30px auto;
+    text-align: center;
+}
+
+.events-section h2,
+.tickets-section h2 {
+    margin-bottom: 70px;
+}
+
+.events-grid {
+    max-width: 1300px;
+
+    margin: auto;
 
     display: grid;
 
@@ -406,259 +372,401 @@ button:hover {
     gap: 25px;
 }
 
+.event-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #f5f5f5;
+
+    transition: 0.4s;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+}
+
+.event-number {
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    z-index: 2;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: white;
+
+    font-size: 12px;
+}
+
+.event-card img {
+    width: 100%;
+
+    height: 380px;
+
+    object-fit: cover;
+
+    transition: 0.6s;
+}
+
+.event-card:hover img {
+    transform: scale(1.06);
+}
+
+.event-details {
+    padding: 25px;
+
+    text-align: left;
+}
+
+.event-date {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: var(--gray);
+}
+
+.event-details h3 {
+    font-family: "Instrument Serif", serif;
+
+    font-size: 42px;
+
+    font-weight: normal;
+
+    margin: 12px 0;
+}
+
+.event-location {
+    color: var(--gray);
+
+    font-size: 14px;
+}
+
+.event-details button {
+    border: none;
+
+    background: none;
+
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    border-bottom: 1px solid black;
+
+    padding-bottom: 5px;
+}
+
+
+/* ================= TICKETS ================= */
+
+.tickets-section {
+    padding: 140px 7%;
+
+    background: #0a0a0a;
+
+    color: white;
+
+    text-align: center;
+}
+
+.tickets-section .section-tag {
+    color: #888;
+}
+
+.tickets-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    text-align: left;
+}
+
 .ticket-card {
-    padding: 30px 20px;
+    position: relative;
 
-    background: #1c002b;
+    padding: 40px;
 
-    border: 1px solid #8b2cff;
+    border: 1px solid #2c2c2c;
 
-    border-radius: 15px;
+    border-radius: 22px;
+
+    background: #111;
 
     transition: 0.3s;
 }
 
 .ticket-card:hover {
     transform: translateY(-8px);
+}
 
-    box-shadow: 0 0 25px #ff3cac;
+.ticket-card.featured {
+    background: #f2f0eb;
+
+    color: black;
+}
+
+.popular {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.ticket-type {
+    color: #999;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
 }
 
 .ticket-card h3 {
-    font-size: 25px;
-    color: #ff3cac;
+    font-family: "Instrument Serif", serif;
+
+    font-size: 60px;
+
+    font-weight: normal;
+
+    margin: 25px 0;
 }
 
-.price {
-    font-size: 32px;
+.ticket-description {
+    color: #aaa;
 
-    font-weight: bold;
+    line-height: 1.6;
 
-    margin: 15px 0;
+    margin-bottom: 25px;
+}
+
+.featured .ticket-description {
+    color: #666;
+}
+
+.ticket-card ul {
+    list-style: none;
+
+    margin-bottom: 30px;
+}
+
+.ticket-card li {
+    margin: 12px 0;
+
+    font-size: 14px;
+}
+
+.ticket-card button {
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 50px;
+
+    border: none;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: black;
+
+    font-weight: 600;
+}
+
+.featured button {
+    background: black;
 
     color: white;
 }
 
-.ticket-card p {
-    color: #cccccc;
-}
 
-
-/* =========================================
-   BOOKING SECTION
-   ========================================= */
+/* ================= BOOKING ================= */
 
 .booking-section {
-    padding: 80px 20px;
+    padding: 140px 8%;
 
-    background: #10001c;
-
-    text-align: center;
+    background: #f3f1ed;
 }
 
-#bookingForm {
-    max-width: 550px;
+.booking-content {
+    max-width: 1150px;
 
-    margin: 30px auto 0;
+    margin: auto;
 
-    padding: 30px;
+    display: grid;
 
-    background: #1c002b;
+    grid-template-columns: 1fr 1fr;
 
-    border-radius: 15px;
+    gap: 100px;
 
-    border: 1px solid #8b2cff;
-
-    text-align: left;
+    align-items: center;
 }
 
-#bookingForm button {
-    display: block;
-
-    margin: 20px auto 0;
-}
-
-#bookingMessage {
-    margin-top: 20px;
-
-    color: #ff3cac;
-
-    font-weight: bold;
-}
-
-
-/* =========================================
-   LOGIN SECTION
-   ========================================= */
-
-.login-section {
-    padding: 80px 20px;
-
-    text-align: center;
-
-    background: #0b0014;
-}
-
-#loginForm {
+.booking-text > p:last-child {
     max-width: 450px;
 
-    margin: 30px auto 20px;
+    margin-top: 30px;
 
-    padding: 30px;
+    color: var(--gray);
 
-    background: #1c002b;
-
-    border-radius: 15px;
-
-    border: 1px solid #8b2cff;
-
-    text-align: left;
+    line-height: 1.7;
 }
 
-#loginForm button {
-    display: block;
+.booking-form {
+    background: white;
 
-    margin: 20px auto 0;
-}
+    padding: 40px;
 
-#loginMessage {
-    color: #ff3cac;
+    border-radius: 25px;
 
-    font-weight: bold;
+    box-shadow: 0 20px 70px rgba(0,0,0,0.08);
 }
 
 
-/* =========================================
-   FOOTER
-   ========================================= */
+/* ================= LOGIN ================= */
 
-footer {
-    padding: 40px 20px;
+.login-section {
+    padding: 140px 20px;
+
+    background: white;
+
+    display: flex;
+
+    justify-content: center;
 
     text-align: center;
-
-    background: #150021;
-
-    border-top: 1px solid #8b2cff;
 }
 
-footer h3 {
-    color: #ff3cac;
+.login-box {
+    width: 100%;
 
-    font-size: 25px;
-
-    margin-bottom: 10px;
+    max-width: 500px;
 }
 
-footer p {
-    color: #bbbbbb;
+.login-box h2 {
+    margin-bottom: 40px;
+}
 
-    margin: 5px 0;
+.signup-button {
+    margin-top: 15px;
+
+    background: transparent !important;
+
+    color: black !important;
+
+    border: 1px solid black !important;
 }
 
 
-/* =========================================
-   RESPONSIVE DESIGN - TABLET
-   ========================================= */
+/* ================= FOOTER ================= */
 
-@media (max-width: 900px) {
+footer {
+    padding: 70px 7%;
 
-    .event-container,
-    .ticket-container {
-        grid-template-columns:
-            repeat(2, 1fr);
+    background: #050505;
+
+    color: white;
+
+    text-align: center;
+}
+
+.footer-logo {
+    color: white;
+
+    margin-bottom: 20px;
+}
+
+footer > p {
+    color: #888;
+
+    margin-bottom: 45px;
+}
+
+.footer-info {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+
+    .nav-links {
+        display: none;
     }
 
-    .hero h1 {
-        font-size: 45px;
+    .navbar {
+        padding: 20px;
     }
-}
 
+    .nav-button {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
 
-/* =========================================
-   RESPONSIVE DESIGN - MOBILE
-   ========================================= */
+    .hero-video {
+        top: 250px;
+        height: calc(100% - 250px);
+    }
 
-@media (max-width: 600px) {
+    .phone-content,
+    .booking-content {
+        grid-template-columns: 1fr;
 
-    header {
-        padding: 15px 5%;
+        gap: 50px;
+    }
 
+    .events-grid,
+    .tickets-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .events-section,
+    .tickets-section,
+    .booking-section {
+        padding: 90px 20px;
+    }
+
+    .phone-section {
+        padding: 90px 20px;
+    }
+
+    .footer-info {
         flex-direction: column;
 
         gap: 12px;
     }
 
-    nav {
-        gap: 12px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-    }
-
-    nav a {
-        font-size: 14px;
-    }
-
-    .hero {
-        padding: 60px 15px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .dj-image {
-        width: 330px;
-    }
-
-    .event-container,
-    .ticket-container {
-        grid-template-columns: 1fr;
-    }
-
-    .events-section h2,
-    .event-details h2,
-    .booking-section h2,
-    .login-section h2 {
-        font-size: 28px;
-    }
-
-    .otp-box,
-    #bookingForm,
-    #loginForm {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .event-card img {
-        height: 200px;
-    }
 }
-
-📂 Your project should now look like this
-
-Party-Vibes/
-│
-├── index.html
-├── style.css
-├── script.js
-│
-└── images/
-    ├── dj.jpg
-    ├── event1.jpg
-    ├── event2.jpg
-    └── event3.jpg
-
-Your "index.html" already contains:
-
-<link rel="stylesheet" href="style.css">
-
-so the CSS will automatically be connected when both files are in the same folder.
-
-Next step: the important part is "script.js" — I'll make the OTP demo, event selection, ticket-price calculation, Book Ticket interaction, booking validation, and Login validation work with your HTML.
