@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             calculateTotal
         );
 ticketQuantity.addEventListener(
-            "input",
+            "change",
             calculateTotal
         );
 
