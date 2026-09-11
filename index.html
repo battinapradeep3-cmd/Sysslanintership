@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EVENTORA | Discover. Book. Experience.</title>
+    <title>NEXORA | Discover. Book. Experience.</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -18,19 +19,22 @@
 <!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
-    <div class="logo">
-        <span>EVENT</span>ORA
-    </div>
+
+    <a href="#home" class="logo">
+        <span>NEX</span>ORA
+    </a>
 
     <nav>
         <a href="#home">Home</a>
         <a href="#events">Events</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="tickets.html">My Tickets</a>
     </nav>
 
-    <a href="login.html" class="login-btn">Sign In</a>
+    <button class="login-btn" onclick="openLogin()">
+        Sign In
+    </button>
+
 </header>
 
 
@@ -38,9 +42,13 @@
 
 <section class="hero" id="home">
 
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
 
-        <p class="hero-tag">YOUR NEXT EXPERIENCE STARTS HERE</p>
+        <p class="hero-tag">
+            ✦ YOUR NEXT EXPERIENCE STARTS HERE
+        </p>
 
         <h1>
             Discover Events.<br>
@@ -48,15 +56,25 @@
         </h1>
 
         <p class="hero-description">
-            Discover unforgettable concerts, music nights and live experiences
-            happening across India.
+            Discover extraordinary concerts, festivals, music nights
+            and unforgettable experiences happening across India.
         </p>
 
         <div class="hero-buttons">
-            <a href="#events" class="primary-btn">Explore Events</a>
-            <a href="#about" class="secondary-btn">Discover More</a>
+            <a href="#events" class="primary-btn">
+                Explore Events
+            </a>
+
+            <a href="#about" class="secondary-btn">
+                Discover More
+            </a>
         </div>
 
+    </div>
+
+    <div class="hero-scroll">
+        SCROLL TO EXPLORE
+        <span>↓</span>
     </div>
 
 </section>
@@ -67,7 +85,10 @@
 <section class="events-section" id="events">
 
     <div class="section-heading">
-        <p class="small-title">UPCOMING EXPERIENCES</p>
+
+        <p class="small-title">
+            UPCOMING EXPERIENCES
+        </p>
 
         <h2>
             Find Your Next
@@ -76,12 +97,14 @@
 
         <p>
             Choose an experience that matches your vibe.
-            From live music to high-energy festivals.
+            Every event offers something unique.
         </p>
+
     </div>
 
 
     <div class="events-grid">
+
 
         <!-- EVENT 1 -->
 
@@ -100,8 +123,8 @@
                 <h3>Euphoria Royale</h3>
 
                 <p class="event-description">
-                    An electrifying night filled with music,
-                    lights and unforgettable performances.
+                    An electrifying celebration of music, lights,
+                    live performances and unforgettable energy.
                 </p>
 
                 <div class="event-info">
@@ -117,12 +140,13 @@
 
                     <div class="price">
                         <small>FROM</small>
-                        <strong>₹499</strong>
+                        <strong>₹799</strong>
                     </div>
 
-                    <a href="booking.html?event=euphoria" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('euphoria')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -148,8 +172,8 @@
                 <h3>Lunaris</h3>
 
                 <p class="event-description">
-                    A magical moonlit music experience featuring
-                    soulful performances.
+                    A moonlit musical experience featuring soulful
+                    performances and atmospheric visuals.
                 </p>
 
                 <div class="event-info">
@@ -165,12 +189,13 @@
 
                     <div class="price">
                         <small>FROM</small>
-                        <strong>₹599</strong>
+                        <strong>₹649</strong>
                     </div>
 
-                    <a href="booking.html?event=lunaris" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('lunaris')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -196,8 +221,8 @@
                 <h3>Veloura</h3>
 
                 <p class="event-description">
-                    Experience a vibrant pop night with
-                    energetic artists and spectacular visuals.
+                    A vibrant pop experience featuring energetic
+                    artists, immersive visuals and live entertainment.
                 </p>
 
                 <div class="event-info">
@@ -213,12 +238,13 @@
 
                     <div class="price">
                         <small>FROM</small>
-                        <strong>₹699</strong>
+                        <strong>₹899</strong>
                     </div>
 
-                    <a href="booking.html?event=veloura" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('veloura')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -245,7 +271,7 @@
 
                 <p class="event-description">
                     Slow down and enjoy an intimate evening
-                    of acoustic music and beautiful melodies.
+                    filled with acoustic music and beautiful melodies.
                 </p>
 
                 <div class="event-info">
@@ -264,9 +290,10 @@
                         <strong>₹749</strong>
                     </div>
 
-                    <a href="booking.html?event=moonveil" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('moonveil')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -292,7 +319,7 @@
                 <h3>Aurevia</h3>
 
                 <p class="event-description">
-                    A high-energy urban festival bringing
+                    A high-energy urban celebration bringing
                     music, culture and entertainment together.
                 </p>
 
@@ -309,12 +336,13 @@
 
                     <div class="price">
                         <small>FROM</small>
-                        <strong>₹899</strong>
+                        <strong>₹999</strong>
                     </div>
 
-                    <a href="booking.html?event=aurevia" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('aurevia')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -340,8 +368,8 @@
                 <h3>Neon Nights</h3>
 
                 <p class="event-description">
-                    Lose yourself in powerful beats,
-                    neon lights and an unforgettable EDM night.
+                    Lose yourself in powerful beats, neon lights
+                    and an unforgettable EDM experience.
                 </p>
 
                 <div class="event-info">
@@ -357,12 +385,13 @@
 
                     <div class="price">
                         <small>FROM</small>
-                        <strong>₹999</strong>
+                        <strong>₹1,099</strong>
                     </div>
 
-                    <a href="booking.html?event=neon-nights" class="book-btn">
-                        Book Now
-                    </a>
+                    <button class="book-btn"
+                        onclick="showEvent('neon')">
+                        View Experience
+                    </button>
 
                 </div>
 
@@ -375,21 +404,22 @@
 </section>
 
 
-<!-- ================= ACCESS PASSES ================= -->
+<!-- ================= EXPERIENCE PASSES ================= -->
 
 <section class="passes-section">
 
     <div class="section-heading">
 
-        <p class="small-title">CHOOSE YOUR EXPERIENCE</p>
+        <p class="small-title">
+            TICKET CATEGORIES
+        </p>
 
         <h2>
-            Access That
-            <span>Matches Your Vibe</span>
+            Choose Your
+            <span>Experience Level</span>
         </h2>
 
     </div>
-
 
     <div class="passes-grid">
 
@@ -397,9 +427,12 @@
 
             <p class="pass-label">ESSENTIAL</p>
 
-            <h3>₹499</h3>
+            <h3>₹799+</h3>
 
-            <p>Perfect for experiencing the event without the extras.</p>
+            <p>
+                Perfect for enjoying the event with
+                standard access.
+            </p>
 
             <ul>
                 <li>✓ Event Entry</li>
@@ -407,20 +440,29 @@
                 <li>✓ Digital Ticket</li>
             </ul>
 
-            <a href="#events">Choose Pass</a>
+            <a href="#events">
+                Explore Events
+            </a>
 
         </div>
 
 
         <div class="pass-card featured">
 
-            <span class="popular">MOST POPULAR</span>
+            <span class="popular">
+                MOST POPULAR
+            </span>
 
-            <p class="pass-label">VIBE PASS</p>
+            <p class="pass-label">
+                VIBE
+            </p>
 
-            <h3>₹999</h3>
+            <h3>₹1,499+</h3>
 
-            <p>For people who want more than just a standard experience.</p>
+            <p>
+                Upgrade your night with priority
+                access and premium zones.
+            </p>
 
             <ul>
                 <li>✓ Priority Entry</li>
@@ -428,26 +470,35 @@
                 <li>✓ Digital Ticket</li>
             </ul>
 
-            <a href="#events">Choose Pass</a>
+            <a href="#events">
+                Explore Events
+            </a>
 
         </div>
 
 
         <div class="pass-card">
 
-            <p class="pass-label">LEGEND</p>
+            <p class="pass-label">
+                LEGEND
+            </p>
 
-            <h3>₹1,999</h3>
+            <h3>₹2,499+</h3>
 
-            <p>The ultimate experience for those who want it all.</p>
+            <p>
+                The ultimate experience for those
+                who want exclusive benefits.
+            </p>
 
             <ul>
                 <li>✓ VIP Entry</li>
-                <li>✓ Premium Zone</li>
+                <li>✓ VIP Zone</li>
                 <li>✓ Exclusive Benefits</li>
             </ul>
 
-            <a href="#events">Choose Pass</a>
+            <a href="#events">
+                Explore Events
+            </a>
 
         </div>
 
@@ -462,7 +513,9 @@
 
     <div class="about-content">
 
-        <p class="small-title">ABOUT EVENTORA</p>
+        <p class="small-title">
+            ABOUT NEXORA
+        </p>
 
         <h2>
             More Than A Ticket.
@@ -470,14 +523,15 @@
         </h2>
 
         <p>
-            EVENTORA is designed to make discovering and booking
-            live experiences simple, exciting and memorable.
+            NEXORA is a premium event discovery and booking
+            platform created to make finding extraordinary
+            experiences simple and exciting.
         </p>
 
         <p>
-            Whether you love concerts, festivals, acoustic evenings
-            or energetic EDM nights, find your next unforgettable
-            moment in one place.
+            From concerts and festivals to acoustic evenings
+            and high-energy EDM nights, discover your next
+            unforgettable moment in one place.
         </p>
 
         <a href="#events" class="primary-btn">
@@ -495,7 +549,9 @@
 
     <div class="section-heading">
 
-        <p class="small-title">GET IN TOUCH</p>
+        <p class="small-title">
+            GET IN TOUCH
+        </p>
 
         <h2>
             Have A Question?
@@ -503,14 +559,14 @@
         </h2>
 
         <p>
-            Need help with your booking or want to partner with EVENTORA?
-            We'd love to hear from you.
+            Need help with your booking?
+            Send us a message.
         </p>
 
     </div>
 
 
-    <form class="contact-form">
+    <form class="contact-form" onsubmit="sendMessage(event)">
 
         <div class="form-row">
 
@@ -548,7 +604,7 @@
 <footer>
 
     <div class="footer-logo">
-        EVENTORA
+        NEXORA
     </div>
 
     <p>
@@ -556,18 +612,216 @@
     </p>
 
     <div class="footer-links">
+
         <a href="#home">Home</a>
         <a href="#events">Events</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="tickets.html">My Tickets</a>
+
     </div>
 
     <div class="footer-bottom">
-        © 2026 EVENTORA. All rights reserved.
+        © 2026 NEXORA. All rights reserved.
     </div>
 
 </footer>
+
+
+<!-- ================= EVENT DETAILS MODAL ================= -->
+
+<div class="modal" id="eventModal">
+
+    <div class="modal-box">
+
+        <button class="close-btn"
+            onclick="closeModal('eventModal')">
+            ×
+        </button>
+
+        <div id="eventDetails"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div class="modal" id="loginModal">
+
+    <div class="login-box">
+
+        <button class="close-btn"
+            onclick="closeModal('loginModal')">
+            ×
+        </button>
+
+        <div class="login-header">
+
+            <p class="small-title">
+                WELCOME TO NEXORA
+            </p>
+
+            <h2>
+                Sign <span>In</span>
+            </h2>
+
+            <p>
+                Access your bookings and experiences.
+            </p>
+
+        </div>
+
+        <form onsubmit="loginUser(event)">
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit" class="login-submit">
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="signup-text">
+            Don't have an account?
+            <button onclick="showSignup()">
+                Create Account
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SIGNUP MODAL ================= -->
+
+<div class="modal" id="signupModal">
+
+    <div class="login-box">
+
+        <button class="close-btn"
+            onclick="closeModal('signupModal')">
+            ×
+        </button>
+
+        <div class="login-header">
+
+            <p class="small-title">
+                JOIN NEXORA
+            </p>
+
+            <h2>
+                Create <span>Account</span>
+            </h2>
+
+        </div>
+
+        <form onsubmit="signupUser(event)">
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create Password"
+                required
+            >
+
+            <button type="submit" class="login-submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="signup-text">
+            Already have an account?
+            <button onclick="backToLogin()">
+                Sign In
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= BOOKING MODAL ================= -->
+
+<div class="modal" id="bookingModal">
+
+    <div class="login-box booking-box">
+
+        <button class="close-btn"
+            onclick="closeModal('bookingModal')">
+            ×
+        </button>
+
+        <p class="small-title">
+            RESERVE YOUR EXPERIENCE
+        </p>
+
+        <h2 id="bookingTitle">
+            Book Event
+        </h2>
+
+        <label>Select Ticket</label>
+
+        <select id="ticketType">
+            <option value="general">General Access</option>
+            <option value="vip">VIP Access</option>
+            <option value="vvip">VVIP Access</option>
+        </select>
+
+        <label>Number of Tickets</label>
+
+        <input
+            type="number"
+            id="ticketCount"
+            value="1"
+            min="1"
+            max="10"
+            onchange="updateTotal()"
+        >
+
+        <div class="total-box">
+            Total:
+            <strong id="totalPrice">₹0</strong>
+        </div>
+
+        <button
+            class="login-submit"
+            onclick="confirmBooking()">
+            Confirm Booking
+        </button>
+
+    </div>
+
+</div>
 
 
 <script src="script.js"></script>
