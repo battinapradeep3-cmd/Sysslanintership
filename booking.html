@@ -1,1 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Book Your Experience | EVENTORA</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =================================
+           BOOKING PAGE
+        ================================= */
+
+        .booking-page {
+            min-height: 100vh;
+            padding: 130px 6% 80px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(130, 88, 220, 0.18),
+                    transparent 35%
+                ),
+                #08070d;
+        }
+
+
+        .booking-wrapper {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 30px;
+        }
+
+
+        /* =================================
+           EVENT SUMMARY
+        ================================= */
+
+        .booking-summary {
+            padding: 32px;
+
+            border-radius: 24px;
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            height: fit-content;
+        }
+
+
+        .booking-summary .label {
+            color: #bda8ff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .booking-summary h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            margin-bottom: 25px;
+        }
+
+
+        .summary-item {
+            padding: 15px 0;
+
+            border-bottom: 1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .summary-item small {
+            display: block;
+
+            color: #777480;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .summary-item strong {
+            font-size: 14px;
+
+            color: #ddd9e4;
+        }
+
+
+        /* =================================
+           BOOKING FORM CARD
+        ================================= */
+
+        .booking-form-card {
+            padding: 32px;
+
+            border-radius: 24px;
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+
+        .booking-form-card h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 34px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .booking-form-card > p {
+            color: #898692;
+
+            font-size: 13px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .booking-form {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .form-group label {
+            color: #bdb9c5;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border-radius: 11px;
+
+            border: 1px solid
+                rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.04);
+
+            color: #ffffff;
+
+            outline: none;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #bda8ff;
+        }
+
+
+        .form-group select option {
+            background: #15121d;
+
+            color: #ffffff;
+        }
+
+
+        /* =================================
+           TOTAL
+        ================================= */
+
+        .booking-total {
+            margin-top: 5px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: rgba(189,168,255,0.08);
+
+            border: 1px solid
+                rgba(189,168,255,0.2);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .booking-total span {
+            color: #aaa6b3;
+
+            font-size: 12px;
+        }
+
+
+        .booking-total strong {
+            font-size: 26px;
+
+            color: #ffffff;
+        }
+
+
+        /* =================================
+           CONFIRM BUTTON
+        ================================= */
+
+        .confirm-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            color: #09080e;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .confirm-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(255,255,255,0.15);
+        }
+
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #85818e;
+
+            font-size: 12px;
+        }
+
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            .booking-page {
+                padding: 130px 5% 60px;
+            }
+
+
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+
+            .booking-summary h1 {
+                font-size: 35px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .booking-summary,
+            .booking-form-card {
+                padding: 24px;
+            }
+
+            .booking-form-card h2 {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     NAVBAR
+===================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>EVENT</span>ORA
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">Home</a>
+
+        <a href="index.html#events">Events</a>
+
+        <a href="index.html#about">About</a>
+
+        <a href="index.html#contact">Contact</a>
+
+        <a href="tickets.html">My Tickets</a>
+
+    </nav>
+
+
+    <a href="login.html" class="login-btn">
+        Sign In
+    </a>
+
+</header>
+
+
+
+<!-- =====================================
+     BOOKING
+===================================== -->
+
+<main class="booking-page">
+
+
+    <div class="booking-wrapper">
+
+
+        <!-- EVENT SUMMARY -->
+
+        <section class="booking-summary">
+
+            <p class="label">
+                YOUR EXPERIENCE
+            </p>
+
+
+            <h1 id="eventName">
+                Select an Event
+            </h1>
+
+
+            <div class="summary-item">
+
+                <small>
+                    Date
+                </small>
+
+                <strong id="eventDate">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <small>
+                    Time
+                </small>
+
+                <strong id="eventTime">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <small>
+                    Location
+                </small>
+
+                <strong id="eventLocation">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <small>
+                    Price Per Ticket
+                </small>
+
+                <strong id="ticketPrice">
+                    —
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BOOKING FORM -->
+
+        <section class="booking-form-card">
+
+            <h2>
+                Complete Your Booking
+            </h2>
+
+            <p>
+                Enter your details to reserve your tickets.
+            </p>
+
+
+            <form
+                id="bookingForm"
+                class="booking-form"
+            >
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="customerName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="customerEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="customerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="customerPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        placeholder="Enter your phone number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- QUANTITY -->
+
+                <div class="form-group">
+
+                    <label for="ticketQuantity">
+                        Number of Tickets
+                    </label>
+
+                    <select
+                        id="ticketQuantity"
+                        required
+                    >
+
+                        <option value="1">
+                            1 Ticket
+                        </option>
+
+                        <option value="2">
+                            2 Tickets
+                        </option>
+
+                        <option value="3">
+                            3 Tickets
+                        </option>
+
+                        <option value="4">
+                            4 Tickets
+                        </option>
+
+                        <option value="5">
+                            5 Tickets
+                        </option>
+
+                        <option value="6">
+                            6 Tickets
+                        </option>
+
+                        <option value="7">
+                            7 Tickets
+                        </option>
+
+                        <option value="8">
+                            8 Tickets
+                        </option>
+
+                        <option value="9">
+                            9 Tickets
+                        </option>
+
+                        <option value="10">
+                            10 Tickets
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="booking-total">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="totalPrice">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- CONFIRM -->
+
+                <button
+                    type="submit"
+                    class="confirm-btn"
+                >
+                    Confirm Booking
+                </button>
+
+
+            </form>
+
+
+            <a
+                href="index.html#events"
+                class="back-link"
+            >
+                ← Back to Events
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================
+     SCRIPT
+===================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
