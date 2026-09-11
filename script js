@@ -1,714 +1,477 @@
-/* =========================================
-   EVENTORA — SCRIPT
-========================================= */
+/* ================= EVENT DATA ================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const events = {
 
-    /* =====================================
-       EVENT DATA
-    ===================================== */
+    euphoria: {
+        name: "Euphoria Royale",
+        category: "MUSIC FESTIVAL",
+        date: "20 September 2026",
+        time: "7:00 PM",
+        location: "Vijayawada",
+        venue: "Riviera Convention Grounds",
+        type: "EDM & Live Music",
+        description:
+            "An electrifying celebration of music, lights and live performances. Euphoria Royale brings together powerful beats, spectacular visuals and an energetic crowd for one unforgettable night.",
+        general: 799,
+        vip: 1499,
+        vvip: 2499
+    },
 
-    const events = {
-        euphoria: {
-            name: "Euphoria Royale",
-            date: "20 Sep 2026",
-            time: "7:00 PM",
-            location: "Vijayawada",
-            price: 499
-        },
+    lunaris: {
+        name: "Lunaris",
+        category: "LIVE MUSIC",
+        date: "25 September 2026",
+        time: "6:30 PM",
+        location: "Visakhapatnam",
+        venue: "Bay Arena",
+        type: "Soulful Live Music",
+        description:
+            "Experience music under the moonlight with soulful performances, beautiful melodies and an immersive atmosphere designed for music lovers.",
+        general: 649,
+        vip: 1299,
+        vvip: 2199
+    },
 
-        lunaris: {
-            name: "Lunaris",
-            date: "25 Sep 2026",
-            time: "6:30 PM",
-            location: "Visakhapatnam",
-            price: 599
-        },
+    veloura: {
+        name: "Veloura",
+        category: "POP NIGHT",
+        date: "02 October 2026",
+        time: "7:30 PM",
+        location: "Hyderabad",
+        venue: "Skyline Grounds",
+        type: "Pop & Entertainment",
+        description:
+            "A vibrant pop night packed with energetic artists, spectacular stage visuals and an atmosphere designed for people who love modern music and entertainment.",
+        general: 899,
+        vip: 1699,
+        vvip: 2799
+    },
 
-        veloura: {
-            name: "Veloura",
-            date: "02 Oct 2026",
-            time: "7:30 PM",
-            location: "Hyderabad",
-            price: 699
-        },
+    moonveil: {
+        name: "Moonveil",
+        category: "ACOUSTIC",
+        date: "05 October 2026",
+        time: "7:00 PM",
+        location: "Bengaluru",
+        venue: "The Garden Stage",
+        type: "Acoustic Evening",
+        description:
+            "Slow down and enjoy an intimate evening of acoustic music, beautiful melodies and soulful performances in an elegant setting.",
+        general: 749,
+        vip: 1399,
+        vvip: 2299
+    },
 
-        moonveil: {
-            name: "Moonveil",
-            date: "05 Oct 2026",
-            time: "7:00 PM",
-            location: "Bengaluru",
-            price: 749
-        },
+    aurevia: {
+        name: "Aurevia",
+        category: "URBAN FEST",
+        date: "18 October 2026",
+        time: "8:00 PM",
+        location: "Mumbai",
+        venue: "Urban Arena",
+        type: "Urban Music Festival",
+        description:
+            "A high-energy urban festival bringing music, culture, dance and entertainment together for an unforgettable metropolitan experience.",
+        general: 999,
+        vip: 1899,
+        vvip: 2999
+    },
 
-        aurevia: {
-            name: "Aurevia",
-            date: "18 Oct 2026",
-            time: "8:00 PM",
-            location: "Mumbai",
-            price: 899
-        },
-
-        "neon-nights": {
-            name: "Neon Nights",
-            date: "31 Oct 2026",
-            time: "6:00 PM",
-            location: "Goa",
-            price: 999
-        }
-    };
-
-
-    /* =====================================
-       BOOKING BUTTONS
-    ===================================== */
-
-    const bookingButtons =
-        document.querySelectorAll(".book-btn");
-
-    bookingButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const link = button.getAttribute("href");
-
-            if (!link) return;
-
-            const params =
-                new URLSearchParams(link.split("?")[1]);
-
-            const eventId =
-                params.get("event");
-
-            if (!eventId || !events[eventId]) return;
-
-            /*
-             * Store selected event temporarily.
-             */
-
-            localStorage.setItem(
-                "selectedEvent",
-                JSON.stringify(events[eventId])
-            );
-
-        });
-
-    });
-
-
-    /* =====================================
-       BOOKING PAGE
-    ===================================== */
-
-    const selectedEvent =
-        JSON.parse(
-            localStorage.getItem("selectedEvent")
-        );
-
-
-    const eventNameElement =
-        document.getElementById("eventName");
-
-    const eventDateElement =
-        document.getElementById("eventDate");
-
-    const eventTimeElement =
-        document.getElementById("eventTime");
-
-    const eventLocationElement =
-        document.getElementById("eventLocation");
-
-    const ticketPriceElement =
-        document.getElementById("ticketPrice");
-
-    const ticketQuantity =
-        document.getElementById("ticketQuantity");
-
-    const totalPriceElement =
-        document.getElementById("totalPrice");
-
-
-    if (
-        selectedEvent &&
-        eventNameElement
-    ) {
-
-        eventNameElement.textContent =
-            selectedEvent.name;
-
-        if (eventDateElement) {
-            eventDateElement.textContent =
-                selectedEvent.date;
-        }
-
-        if (eventTimeElement) {
-            eventTimeElement.textContent =
-                selectedEvent.time;
-        }
-
-        if (eventLocationElement) {
-            eventLocationElement.textContent =
-                selectedEvent.location;
-        }
-
-        if (ticketPriceElement) {
-            ticketPriceElement.textContent =
-                `₹${selectedEvent.price}`;
-        }
-
-        calculateTotal();
-
+    neon: {
+        name: "Neon Nights",
+        category: "EDM NIGHT",
+        date: "31 October 2026",
+        time: "6:00 PM",
+        location: "Goa",
+        venue: "Neon Beach Arena",
+        type: "EDM & DJ Night",
+        description:
+            "Lose yourself in powerful beats, neon lights and incredible DJ performances. Neon Nights is designed for those who want to dance until the night ends.",
+        general: 1099,
+        vip: 1999,
+        vvip: 3499
     }
 
+};
 
-    /* =====================================
-       TICKET QUANTITY
-    ===================================== */
 
-    if (ticketQuantity) {
+/* ================= EVENT DETAILS ================= */
 
-        ticketQuantity.addEventListener(
-            "input",
-            calculateTotal
-        );
-ticketQuantity.addEventListener(
-            "change",
-            calculateTotal
-        );
+let selectedEvent = null;
 
-    }
+function showEvent(eventId) {
 
-    function calculateTotal() {
+    const event = events[eventId];
 
-        if (
-            !selectedEvent ||
-            !ticketQuantity ||
-            !totalPriceElement
-        ) {
-            return;
-        }
+    if (!event) return;
 
-        let quantity =
-            parseInt(ticketQuantity.value);
+    selectedEvent = eventId;
 
-        if (isNaN(quantity) || quantity < 1) {
-            quantity = 1;
-            ticketQuantity.value = 1;
-        }
+    const details = document.getElementById("eventDetails");
 
-        if (quantity > 10) {
-            quantity = 10;
-            ticketQuantity.value = 10;
-        }
+    details.innerHTML = `
 
-        const total =
-            selectedEvent.price * quantity;
+        <div class="details-category">
+            ${event.category}
+        </div>
 
-        totalPriceElement.textContent =
-            `₹${total.toLocaleString("en-IN")}`;
+        <h2 class="details-title">
+            ${event.name}
+        </h2>
 
-    }
+        <p class="details-description">
+            ${event.description}
+        </p>
 
+        <div class="details-grid">
 
-    /* =====================================
-       BOOKING FORM
-    ===================================== */
+            <div class="detail-item">
+                <small>DATE</small>
+                <strong>📅 ${event.date}</strong>
+            </div>
 
-    const bookingForm =
-        document.getElementById("bookingForm");
+            <div class="detail-item">
+                <small>TIME</small>
+                <strong>🕖 ${event.time}</strong>
+            </div>
 
+            <div class="detail-item">
+                <small>LOCATION</small>
+                <strong>📍 ${event.location}</strong>
+            </div>
 
-    if (bookingForm) {
+            <div class="detail-item">
+                <small>VENUE</small>
+                <strong>${event.venue}</strong>
+            </div>
 
-        bookingForm.addEventListener(
-            "submit",
-            function(event) {
+            <div class="detail-item">
+                <small>EVENT TYPE</small>
+                <strong>${event.type}</strong>
+            </div>
 
-                event.preventDefault();
+            <div class="detail-item">
+                <small>STATUS</small>
+                <strong>✓ Booking Open</strong>
+            </div>
 
-                if (!selectedEvent) {
+        </div>
 
-                    alert(
-                        "Please select an event first."
-                    );
+        <h3 class="ticket-title">
+            Ticket Categories
+        </h3>
 
-                    return;
-                }
+        <div class="ticket-options">
 
+            <div class="ticket-option">
+                General
+                <strong>₹${event.general}</strong>
+            </div>
 
-                const nameInput =
-                    document.getElementById("customerName");
+            <div class="ticket-option">
+                VIP
+                <strong>₹${event.vip}</strong>
+            </div>
 
-                const emailInput =
-                    document.getElementById("customerEmail");
+            <div class="ticket-option">
+                VVIP
+                <strong>₹${event.vvip}</strong>
+            </div>
 
-                const phoneInput =
-                    document.getElementById("customerPhone");
+        </div>
 
+        <button
+            class="details-book"
+            onclick="openBooking('${eventId}')">
 
-                const customerName =
-                    nameInput
-                        ? nameInput.value.trim()
-                        : "";
+            Book Your Experience
 
-                const customerEmail =
-                    emailInput
-                        ? emailInput.value.trim()
-                        : "";
-
-                const customerPhone =
-                    phoneInput
-                        ? phoneInput.value.trim()
-                        : "";
-
-
-                if (!customerName) {
-
-                    alert(
-                        "Please enter your name."
-                    );
-
-                    return;
-                }
-
-
-                if (!customerEmail) {
-
-                    alert(
-                        "Please enter your email."
-                    );
-
-                    return;
-                }
-
-
-                if (!customerPhone) {
-
-                    alert(
-                        "Please enter your phone number."
-                    );
-
-                    return;
-                }
-
-
-                const quantity =
-                    ticketQuantity
-                        ? parseInt(ticketQuantity.value) || 1
-                        : 1;
-
-
-                const total =
-                    selectedEvent.price * quantity;
-
-
-                /* Generate booking ID */
-
-                const bookingId =
-                    "EVT-" +
-                    Date.now()
-                        .toString()
-                        .slice(-8);
-
-
-                /* Create ticket object */
-
-                const ticket = {
-
-                    bookingId: bookingId,
-
-                    eventName:
-                        selectedEvent.name,
-
-                    date:
-                        selectedEvent.date,
-
-                    time:
-                        selectedEvent.time,
-
-                    location:
-                        selectedEvent.location,
-
-                    price:
-                        selectedEvent.price,
-
-                    quantity:
-                        quantity,
-
-                    total:
-                        total,
-
-                    customerName:
-                        customerName,
-
-                    customerEmail:
-                        customerEmail,
-
-                    customerPhone:
-                        customerPhone
-
-                };
-
-
-                /* Get existing tickets */
-
-                let tickets =
-                    JSON.parse(
-                        localStorage.getItem("myTickets")
-                    ) || [];
-
-
-                /* Add new ticket */
-
-                tickets.push(ticket);
-
-
-                /* Save */
-
-                localStorage.setItem(
-                    "myTickets",
-                    JSON.stringify(tickets)
-                );
-
-
-                /* Save latest booking */
-
-                localStorage.setItem(
-                    "latestBooking",
-                    JSON.stringify(ticket)
-                );
-
-
-                /* Redirect */
-
-                window.location.href =
-                    "confirmation.html";
-
-            }
-        );
-
-    }
-
-
-    /* =====================================
-       CONFIRMATION PAGE
-    ===================================== */
-
-    const latestBooking =
-        JSON.parse(
-            localStorage.getItem("latestBooking")
-        );
-
-
-    const confirmationEvent =
-        document.getElementById(
-            "confirmationEvent"
-        );
-
-    const confirmationName =
-        document.getElementById(
-            "confirmationName"
-        );
-
-    const confirmationDate =
-        document.getElementById(
-            "confirmationDate"
-        );
-
-    const confirmationLocation =
-        document.getElementById(
-            "confirmationLocation"
-        );
-
-    const confirmationTickets =
-        document.getElementById(
-            "confirmationTickets"
-        );
-
-    const confirmationTotal =
-        document.getElementById(
-            "confirmationTotal"
-        );
-
-    const confirmationId =
-        document.getElementById(
-            "confirmationId"
-        );
-
-
-    if (
-        latestBooking &&
-        confirmationEvent
-    ) {
-
-        confirmationEvent.textContent =
-            latestBooking.eventName;
-
-        if (confirmationName) {
-            confirmationName.textContent =
-                latestBooking.customerName;
-        }
-
-        if (confirmationDate) {
-            confirmationDate.textContent =
-                `${latestBooking.date} • ${latestBooking.time}`;
-        }
-
-        if (confirmationLocation) {
-            confirmationLocation.textContent =
-                latestBooking.location;
-        }
-
-        if (confirmationTickets) {
-            confirmationTickets.textContent =
-                latestBooking.quantity;
-        }
-
-        if (confirmationTotal) {
-            confirmationTotal.textContent =
-                `₹${latestBooking.total.toLocaleString("en-IN")}`;
-        }
-
-        if (confirmationId) {
-            confirmationId.textContent =
-                latestBooking.bookingId;
-        }
-
-    }
-
-
-    /* =====================================
-       MY TICKETS PAGE
-    ===================================== */
-
-    const ticketsContainer =
-        document.getElementById(
-            "ticketsContainer"
-        );
-
-
-    if (ticketsContainer) {
-
-        const tickets =
-            JSON.parse(
-                localStorage.getItem("myTickets")
-            ) || [];
-
-
-        if (tickets.length === 0) {
-
-            ticketsContainer.innerHTML = `
-                <div class="empty-tickets">
-                    <div class="empty-icon">🎟️</div>
-
-                    <h3>No Tickets Yet</h3>
-
-                    <p>
-                        You haven't booked any events yet.
-                        Discover an experience and book your first ticket.
-                    </p>
-
-                    <a href="index.html#events">
-                        Explore Events
-                    </a>
-                </div>
-            `;
-
-        } else {
-
-            ticketsContainer.innerHTML =
-                tickets
-                    .map(ticket => {
-
-                        return `
-                            <div class="ticket-card">
-
-                                <div class="ticket-main">
-
-                                    <span class="ticket-label">
-                                        EVENTORA TICKET
-                                    </span>
-
-                                    <h3>
-                                        ${ticket.eventName}
-                                    </h3>
-
-                                    <p>
-                                        📅 ${ticket.date}
-                                    </p>
-
-                                    <p>
-                                        🕒 ${ticket.time}
-                                    </p>
-
-                                    <p>
-                                        📍 ${ticket.location}
-                                    </p>
-
-                                </div>
-
-
-                                <div class="ticket-side">
-
-                                    <p>
-                                        <strong>
-                                            ${ticket.quantity}
-                                        </strong>
-                                        Ticket${ticket.quantity > 1 ? "s" : ""}
-                                    </p>
-
-                                    <p class="ticket-total">
-                                        ₹${ticket.total.toLocaleString("en-IN")}
-                                    </p>
-
-                                    <small>
-                                        ${ticket.bookingId}
-                                    </small>
-
-                                </div>
-
-                            </div>
-                        `;
-
-                    })
-                    .join("");
-
-        }
-
-    }
-
-
-    /* =====================================
-       CONTACT FORM
-    ===================================== */
-
-    const contactForm =
-        document.querySelector(".contact-form");
-
-
-    if (contactForm) {
-
-        contactForm.addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-                alert(
-                    "Thank you! Your message has been received."
-                );
-
-                contactForm.reset();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================
-       SMOOTH NAVIGATION
-    ===================================== */
+        </button>
+    `;
 
     document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(anchor => {
-
-            anchor.addEventListener(
-                "click",
-                function(event) {
-
-                    const targetId =
-                        this.getAttribute("href");
-
-                    if (
-                        targetId === "#" ||
-                        !targetId
-                    ) {
-                        return;
-                    }
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-                    if (target) {
-
-                        event.preventDefault();
-
-                        target.scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                    }
-
-                }
-            );
-
-        });
+        .getElementById("eventModal")
+        .classList.add("active");
+}
 
 
-    /* =====================================
-       SCROLL NAVBAR EFFECT
-    ===================================== */
+/* ================= MODAL ================= */
 
-    const navbar =
-        document.querySelector(".navbar");
+function closeModal(id) {
+
+    document
+        .getElementById(id)
+        .classList.remove("active");
+}
 
 
-    window.addEventListener(
-        "scroll",
-        () => {
+/* ================= LOGIN ================= */
 
-            if (!navbar) return;
+function openLogin() {
 
-            if (window.scrollY > 50) {
+    document
+        .getElementById("loginModal")
+        .classList.add("active");
+}
 
-                navbar.classList.add(
-                    "navbar-scrolled"
-                );
 
-            } else {
+function loginUser(event) {
 
-                navbar.classList.remove(
-                    "navbar-scrolled"
-                );
+    event.preventDefault();
 
-            }
+    const email =
+        document.getElementById("loginEmail").value;
 
-        }
+    localStorage.setItem(
+        "nexoraUser",
+        email
     );
 
+    alert(
+        "Welcome to NEXORA! Login successful."
+    );
 
-    /* =====================================
-       IMAGE FALLBACK
-    ===================================== */
+    closeModal("loginModal");
+}
+
+
+/* ================= SIGN UP ================= */
+
+function showSignup() {
+
+    closeModal("loginModal");
 
     document
-        .querySelectorAll("img")
-        .forEach(img => {
+        .getElementById("signupModal")
+        .classList.add("active");
+}
 
-            img.addEventListener(
-                "error",
-                function() {
 
-                    this.style.display = "none";
+function backToLogin() {
 
-                    const parent =
-                        this.parentElement;
+    closeModal("signupModal");
 
-                    if (parent) {
+    openLogin();
+}
 
-                        parent.classList.add(
-                            "image-error"
-                        );
 
-                    }
+function signupUser(event) {
 
-                }
+    event.preventDefault();
+
+    const name =
+        document.getElementById("signupName").value;
+
+    const email =
+        document.getElementById("signupEmail").value;
+
+    localStorage.setItem(
+        "nexoraUser",
+        JSON.stringify({
+            name: name,
+            email: email
+        })
+    );
+
+    alert(
+        "Account created successfully! Welcome to NEXORA."
+    );
+
+    closeModal("signupModal");
+
+}
+
+
+/* ================= BOOKING ================= */
+
+function openBooking(eventId) {
+
+    selectedEvent = eventId;
+
+    const event = events[eventId];
+
+    closeModal("eventModal");
+
+    document.getElementById(
+        "bookingTitle"
+    ).innerText =
+        event.name;
+
+    document.getElementById(
+        "ticketType"
+    ).value = "general";
+
+    document.getElementById(
+        "ticketCount"
+    ).value = 1;
+
+    updateTotal();
+
+    document
+        .getElementById("bookingModal")
+        .classList.add("active");
+}
+
+
+/* ================= PRICE CALCULATION ================= */
+
+function updateTotal() {
+
+    if (!selectedEvent) return;
+
+    const event =
+        events[selectedEvent];
+
+    const type =
+        document.getElementById(
+            "ticketType"
+        ).value;
+
+    const count =
+        Number(
+            document.getElementById(
+                "ticketCount"
+            ).value
+        );
+
+    let price = event.general;
+
+    if (type === "vip") {
+        price = event.vip;
+    }
+
+    if (type === "vvip") {
+        price = event.vvip;
+    }
+
+    const total =
+        price * count;
+
+    document.getElementById(
+        "totalPrice"
+    ).innerText =
+        "₹" + total.toLocaleString("en-IN");
+}
+
+
+/* ================= CONFIRM BOOKING ================= */
+
+function confirmBooking() {
+
+    if (!selectedEvent) return;
+
+    const event =
+        events[selectedEvent];
+
+    const type =
+        document.getElementById(
+            "ticketType"
+        ).value;
+
+    const count =
+        Number(
+            document.getElementById(
+                "ticketCount"
+            ).value
+        );
+
+    let ticketName = "General";
+
+    if (type === "vip") {
+        ticketName = "VIP";
+    }
+
+    if (type === "vvip") {
+        ticketName = "VVIP";
+    }
+
+    const booking = {
+
+        event: event.name,
+
+        date: event.date,
+
+        location: event.location,
+
+        ticket: ticketName,
+
+        quantity: count,
+
+        bookingId:
+            "NX" +
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            )
+
+    };
+
+    localStorage.setItem(
+        "nexoraBooking",
+        JSON.stringify(booking)
+    );
+
+    closeModal("bookingModal");
+
+    alert(
+        "🎉 Booking Confirmed!\n\n" +
+        "Event: " + event.name +
+        "\nTicket: " + ticketName +
+        "\nQuantity: " + count +
+        "\nBooking ID: " +
+        booking.bookingId
+    );
+
+}
+
+
+/* ================= CONTACT FORM ================= */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Thank you! Your message has been received."
+    );
+
+    event.target.reset();
+}
+
+
+/* ================= OUTSIDE CLICK ================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target.classList.contains("modal")
+        ) {
+
+            event.target.classList.remove(
+                "active"
             );
 
-        });
+        }
 
-});
+    }
+);
+
+
+/* ================= TICKET TYPE CHANGE ================= */
+
+document.addEventListener(
+    "change",
+    function(event) {
+
+        if (
+            event.target.id === "ticketType"
+        ) {
+
+            updateTotal();
+
+        }
+
+    }
+);
