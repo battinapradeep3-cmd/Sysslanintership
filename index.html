@@ -1,612 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NEXORA | Discover. Book. Experience.</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+    <title>AURELIA | Discover. Book. Experience.</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+
+<!-- =========================================================
+     NAVIGATION BAR
+========================================================= -->
 
 <header class="navbar">
 
-    <a href="#home" class="logo">
-        <span>NEX</span>ORA
-    </a>
+    <div class="logo">
+        AURELIA
+    </div>
+
 
     <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#events">Events</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#tickets">My Tickets</a>
-    </nav>
 
-    <button class="login-btn" onclick="openLogin()">
-        Sign In
-    </button>
-
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <p class="hero-tag">
-            YOUR NEXT EXPERIENCE STARTS HERE
-        </p>
-
-        <h1>
-            Discover Events.<br>
-            <span>Live The Moment.</span>
-        </h1>
-
-        <p class="hero-description">
-            Discover concerts, music festivals, nightlife and
-            unforgettable experiences happening across India.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#events" class="primary-btn">
-                Explore Events
-            </a>
-
-            <a href="#about" class="secondary-btn">
-                Discover More
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="hero-scroll">
-        SCROLL TO EXPLORE ↓
-    </div>
-
-</section>
-
-
-<!-- ================= STATS ================= -->
-
-<section class="stats-section">
-
-    <div class="stat">
-        <strong>50+</strong>
-        <span>LIVE EVENTS</span>
-    </div>
-
-    <div class="stat">
-        <strong>15+</strong>
-        <span>CITIES</span>
-    </div>
-
-    <div class="stat">
-        <strong>10K+</strong>
-        <span>HAPPY GUESTS</span>
-    </div>
-
-    <div class="stat">
-        <strong>24/7</strong>
-        <span>SUPPORT</span>
-    </div>
-
-</section>
-
-
-<!-- ================= EVENTS ================= -->
-
-<section class="events-section" id="events">
-
-    <div class="section-heading">
-
-        <p class="small-title">
-            UPCOMING EXPERIENCES
-        </p>
-
-        <h2>
-            Choose Your
-            <span>Next Experience</span>
-        </h2>
-
-        <p>
-            Explore premium events and reserve your tickets
-            before the seats disappear.
-        </p>
-
-    </div>
-
-
-    <div class="events-grid">
-
-
-        <!-- EVENT 1 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-one">
-
-                <div class="event-number">
-                    01
-                </div>
-
-                <span class="event-category">
-                    MUSIC FESTIVAL
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    20 SEP 2026 · 7:00 PM
-                </div>
-
-                <h3>
-                    Euphoria Royale
-                </h3>
-
-                <p>
-                    An electrifying night of live music,
-                    powerful performances and spectacular lights.
-                </p>
-
-                <div class="event-location">
-                    📍 Vijayawada
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹799</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('euphoria')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- EVENT 2 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-two">
-
-                <div class="event-number">
-                    02
-                </div>
-
-                <span class="event-category">
-                    LIVE MUSIC
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    25 SEP 2026 · 6:30 PM
-                </div>
-
-                <h3>
-                    Lunaris
-                </h3>
-
-                <p>
-                    A moonlit musical experience filled with
-                    soulful performances and atmospheric visuals.
-                </p>
-
-                <div class="event-location">
-                    📍 Visakhapatnam
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹649</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('lunaris')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- EVENT 3 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-three">
-
-                <div class="event-number">
-                    03
-                </div>
-
-                <span class="event-category">
-                    POP NIGHT
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    02 OCT 2026 · 7:30 PM
-                </div>
-
-                <h3>
-                    Veloura
-                </h3>
-
-                <p>
-                    A vibrant pop experience featuring energetic
-                    artists, music and immersive visuals.
-                </p>
-
-                <div class="event-location">
-                    📍 Hyderabad
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹899</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('veloura')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- EVENT 4 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-four">
-
-                <div class="event-number">
-                    04
-                </div>
-
-                <span class="event-category">
-                    ACOUSTIC
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    05 OCT 2026 · 7:00 PM
-                </div>
-
-                <h3>
-                    Moonveil
-                </h3>
-
-                <p>
-                    An intimate acoustic evening with beautiful
-                    melodies and unforgettable performances.
-                </p>
-
-                <div class="event-location">
-                    📍 Bengaluru
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹749</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('moonveil')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- EVENT 5 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-five">
-
-                <div class="event-number">
-                    05
-                </div>
-
-                <span class="event-category">
-                    URBAN FEST
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    18 OCT 2026 · 8:00 PM
-                </div>
-
-                <h3>
-                    Aurevia
-                </h3>
-
-                <p>
-                    A high-energy urban festival combining
-                    music, culture and entertainment.
-                </p>
-
-                <div class="event-location">
-                    📍 Mumbai
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹999</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('aurevia')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- EVENT 6 -->
-
-        <article class="event-card">
-
-            <div class="event-image event-six">
-
-                <div class="event-number">
-                    06
-                </div>
-
-                <span class="event-category">
-                    EDM NIGHT
-                </span>
-
-            </div>
-
-            <div class="event-content">
-
-                <div class="event-date">
-                    31 OCT 2026 · 6:00 PM
-                </div>
-
-                <h3>
-                    Neon Nights
-                </h3>
-
-                <p>
-                    Lose yourself in powerful beats,
-                    neon lights and an unforgettable EDM night.
-                </p>
-
-                <div class="event-location">
-                    📍 Goa
-                </div>
-
-                <div class="event-bottom">
-
-                    <div class="price">
-                        <small>FROM</small>
-                        <strong>₹1,099</strong>
-                    </div>
-
-                    <button
-                        class="book-btn"
-                        onclick="showEvent('neon')">
-                        View Event →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WHY NEXORA ================= -->
-
-<section class="features-section">
-
-    <div class="section-heading">
-
-        <p class="small-title">
-            WHY NEXORA
-        </p>
-
-        <h2>
-            More Than
-            <span>Just A Ticket</span>
-        </h2>
-
-    </div>
-
-
-    <div class="features-grid">
-
-        <div class="feature-card">
-
-            <div class="feature-icon">✦</div>
-
-            <h3>
-                Curated Events
-            </h3>
-
-            <p>
-                Discover carefully selected concerts,
-                festivals and entertainment experiences.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">◈</div>
-
-            <h3>
-                Easy Booking
-            </h3>
-
-            <p>
-                Select your event, choose your ticket
-                and complete your booking in seconds.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">♢</div>
-
-            <h3>
-                Digital Tickets
-            </h3>
-
-            <p>
-                Keep your booking details digitally
-                and access your tickets whenever you need.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">∞</div>
-
-            <h3>
-                Memorable Moments
-            </h3>
-
-            <p>
-                We connect you with experiences
-                designed to create lasting memories.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section class="about-section" id="about">
-
-    <div class="about-content">
-
-        <p class="small-title">
-            ABOUT NEXORA
-        </p>
-
-        <h2>
-            Your Gateway To
-            <span>Unforgettable Experiences.</span>
-        </h2>
-
-        <p>
-            NEXORA is an event discovery and booking platform
-            created to make finding your next experience simple,
-            fast and exciting.
-        </p>
-
-        <p>
-            From concerts and festivals to exclusive nightlife
-            experiences, discover events and book your tickets
-            from one place.
-        </p>
-
-        <a href="#events" class="primary-btn">
-            Explore Events
+        <a href="#home">
+            Home
         </a>
 
+        <a href="#events">
+            Events
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+        <a href="#tickets">
+            My Tickets
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <!-- Logged-in user name -->
+        <span
+            id="userStatus"
+            class="user-status">
+        </span>
+
+
+        <!-- Sign In / Sign Out -->
+        <button
+            id="authButton"
+            class="btn btn-outline"
+            onclick="openLogin()">
+
+            Sign In
+
+        </button>
+
     </div>
 
-</section>
-
-
-<!-- ================= TICKETS ================= -->
-
-<section class="tickets-section" id="tickets">
-
-    <div class="section-heading">
-
-        <p class="small-title">
-            YOUR BOOKINGS
-        </p>
-
-        <h2>
-            My
-            <span>Tickets</span>
-        </h2>
-
-        <p>
-            Your
+</header>
