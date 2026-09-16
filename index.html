@@ -1,137 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AURELIA | Discover. Book. Experience.</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
-     NAVIGATION BAR
-========================================================= -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
-    <div class="logo">
-        AURELIA
-    </div>
-
+    <div class="logo">AURELIA</div>
 
     <nav class="nav-links">
-
-        <a href="#home">
-            Home
-        </a>
-
-        <a href="#events">
-            Events
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
-        <a href="#contact">
-            Contact
-        </a>
-
-        <a href="#tickets">
-            My Tickets
-        </a>
-
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#tickets">My Tickets</a>
     </nav>
 
-
     <div class="nav-actions">
+        <span id="userStatus" class="user-status"></span>
 
-        <!-- Logged-in user name -->
-        <span
-            id="userStatus"
-            class="user-status">
-        </span>
-
-
-        <!-- Sign In / Sign Out -->
         <button
             id="authButton"
             class="btn btn-outline"
             onclick="openLogin()">
-
             Sign In
-
         </button>
-        <section id="events" class="section events-section">
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <p class="hero-label">CURATED EXPERIENCES</p>
+
+        <h1>
+            Discover.<br>
+            <span>Experience.</span><br>
+            Remember.
+        </h1>
+
+        <p class="hero-description">
+            Enter a world of extraordinary events, refined experiences
+            and unforgettable moments.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#events" class="btn btn-primary">
+                Explore Events
+            </a>
+
+            <a href="#about" class="btn btn-outline">
+                Discover AURELIA
+            </a>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>10+</strong>
+                <span>CURATED EVENTS</span>
+            </div>
+
+            <div>
+                <strong>6</strong>
+                <span>CITIES</span>
+            </div>
+
+            <div>
+                <strong>1000+</strong>
+                <span>EXPERIENCES</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EVENTS ================= -->
+
+<section id="events" class="section events-section">
 
     <div class="section-heading">
-        <p class="eyebrow">CURATED EXPERIENCES</p>
 
-        <h2>Upcoming Events</h2>
+        <div>
+            <p class="section-label">WHAT'S HAPPENING</p>
+
+            <h2>
+                Exceptional
+                <span>Events</span>
+            </h2>
+        </div>
 
         <p>
-            Step into extraordinary experiences crafted for unforgettable moments.
+            Explore carefully curated experiences designed
+            for those who appreciate extraordinary moments.
         </p>
+
     </div>
 
 
     <div class="event-grid">
 
-        <!-- VELVET SYMPHONY -->
+
+        <!-- EVENT 1 -->
+
         <article class="event-card">
 
-            <img
-                src="images/velvet-symphony.jpg"
-                alt="Velvet Symphony">
-
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+            <div class="event-image">
+                <img src="images/velvet-symphony.jpg"
+                     alt="Velvet Symphony">
 
                 <span class="event-category">
                     CLASSICAL NIGHT
                 </span>
+            </div>
 
-                <h3>
-                    Velvet Symphony
-                </h3>
+            <div class="event-content">
+
+                <h3>Velvet Symphony</h3>
+
+                <div class="event-info">
+                    <span>20 SEP 2026</span>
+                    <span>7:00 PM</span>
+                </div>
 
                 <p>
-                    20 SEP 2026 · 7:00 PM
-                </p>
-
-                <p class="event-location">
-                    Vijayawada
+                    Vijayawada · The Grand Arena
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹799
+                        From <strong>₹799</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('velvet')">
-                        Explore →
+                        View Event
                     </button>
 
                 </div>
@@ -141,43 +172,44 @@
         </article>
 
 
-        <!-- MIDNIGHT NOIR -->
+        <!-- EVENT 2 -->
+
         <article class="event-card">
 
-            <img
-                src="images/midnight-noir.jpg"
-                alt="Midnight Noir">
+            <div class="event-image">
 
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+                <img src="images/midnight-noir.jpg"
+                     alt="Midnight Noir">
 
                 <span class="event-category">
                     NIGHT EXPERIENCE
                 </span>
 
-                <h3>
-                    Midnight Noir
-                </h3>
+            </div>
+
+            <div class="event-content">
+
+                <h3>Midnight Noir</h3>
+
+                <div class="event-info">
+                    <span>25 SEP 2026</span>
+                    <span>6:30 PM</span>
+                </div>
 
                 <p>
-                    25 SEP 2026 · 6:30 PM
-                </p>
-
-                <p class="event-location">
-                    Visakhapatnam
+                    Visakhapatnam · Harbour Convention Centre
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹649
+                        From <strong>₹649</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('noir')">
-                        Explore →
+                        View Event
                     </button>
 
                 </div>
@@ -187,43 +219,44 @@
         </article>
 
 
-        <!-- AURUM JAZZ -->
+        <!-- EVENT 3 -->
+
         <article class="event-card">
 
-            <img
-                src="images/aurum-jazz.jpg"
-                alt="Aurum Jazz">
+            <div class="event-image">
 
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+                <img src="images/aurum-jazz.jpg"
+                     alt="Aurum Jazz">
 
                 <span class="event-category">
                     JAZZ EXPERIENCE
                 </span>
 
-                <h3>
-                    Aurum Jazz
-                </h3>
+            </div>
+
+            <div class="event-content">
+
+                <h3>Aurum Jazz</h3>
+
+                <div class="event-info">
+                    <span>02 OCT 2026</span>
+                    <span>7:30 PM</span>
+                </div>
 
                 <p>
-                    02 OCT 2026 · 7:30 PM
-                </p>
-
-                <p class="event-location">
-                    Hyderabad
+                    Hyderabad · Skyline Arena
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹899
+                        From <strong>₹899</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('aurum')">
-                        Explore →
+                        View Event
                     </button>
 
                 </div>
@@ -233,43 +266,44 @@
         </article>
 
 
-        <!-- GRAND VINTNER -->
+        <!-- EVENT 4 -->
+
         <article class="event-card">
 
-            <img
-                src="images/grand-vintner.jpg"
-                alt="Grand Vintner">
+            <div class="event-image">
 
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+                <img src="images/grand-vintner.jpg"
+                     alt="Grand Vintner">
 
                 <span class="event-category">
                     LUXURY EVENING
                 </span>
 
-                <h3>
-                    Grand Vintner
-                </h3>
+            </div>
+
+            <div class="event-content">
+
+                <h3>Grand Vintner</h3>
+
+                <div class="event-info">
+                    <span>05 OCT 2026</span>
+                    <span>7:00 PM</span>
+                </div>
 
                 <p>
-                    05 OCT 2026 · 7:00 PM
-                </p>
-
-                <p class="event-location">
-                    Bengaluru
+                    Bengaluru · The Garden Stage
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹749
+                        From <strong>₹749</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('vintner')">
-                        Explore →
+                        View Event
                     </button>
 
                 </div>
@@ -279,43 +313,44 @@
         </article>
 
 
-        <!-- CELESTIAL ROOFTOP -->
+        <!-- EVENT 5 -->
+
         <article class="event-card">
 
-            <img
-                src="images/celestial-rooftop.jpg"
-                alt="Celestial Rooftop">
+            <div class="event-image">
 
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+                <img src="images/celestial-rooftop.jpg"
+                     alt="Celestial Rooftop">
 
                 <span class="event-category">
                     ROOFTOP EXPERIENCE
                 </span>
 
-                <h3>
-                    Celestial Rooftop
-                </h3>
+            </div>
+
+            <div class="event-content">
+
+                <h3>Celestial Rooftop</h3>
+
+                <div class="event-info">
+                    <span>18 OCT 2026</span>
+                    <span>8:00 PM</span>
+                </div>
 
                 <p>
-                    18 OCT 2026 · 8:00 PM
-                </p>
-
-                <p class="event-location">
-                    Mumbai
+                    Mumbai · Metro Live Arena
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹999
+                        From <strong>₹999</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('celestial')">
-                        Explore →
+                        View Event
                     </button>
 
                 </div>
@@ -325,43 +360,232 @@
         </article>
 
 
-        <!-- IMPERIAL OPERA -->
+        <!-- EVENT 6 -->
+
         <article class="event-card">
 
-            <img
-                src="images/imperial-opera.jpg"
-                alt="Imperial Opera">
+            <div class="event-image">
 
-            <div class="event-card-overlay"></div>
-
-            <div class="event-card-content">
+                <img src="images/imperial-opera.jpg"
+                     alt="Imperial Opera">
 
                 <span class="event-category">
                     OPERA NIGHT
                 </span>
 
-                <h3>
-                    Imperial Opera
-                </h3>
+            </div>
+
+            <div class="event-content">
+
+                <h3>Imperial Opera</h3>
+
+                <div class="event-info">
+                    <span>31 OCT 2026</span>
+                    <span>6:00 PM</span>
+                </div>
 
                 <p>
-                    31 OCT 2026 · 6:00 PM
-                </p>
-
-                <p class="event-location">
-                    Goa
+                    Goa · Neon Beach Arena
                 </p>
 
                 <div class="event-bottom">
 
                     <span>
-                        From ₹1099
+                        From <strong>₹1099</strong>
                     </span>
 
                     <button
-                        class="event-btn"
+                        class="btn btn-primary"
                         onclick="showEvent('imperial')">
-                        Explore →
+                        View Event
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 7 -->
+
+        <article class="event-card">
+
+            <div class="event-image">
+
+                <img src="images/velvet-symphony.jpg"
+                     alt="Elysian Nights">
+
+                <span class="event-category">
+                    SIGNATURE NIGHT
+                </span>
+
+            </div>
+
+            <div class="event-content">
+
+                <h3>Elysian Nights</h3>
+
+                <div class="event-info">
+                    <span>08 NOV 2026</span>
+                    <span>7:30 PM</span>
+                </div>
+
+                <p>
+                    Chennai · Grand Convention Hall
+                </p>
+
+                <div class="event-bottom">
+
+                    <span>
+                        From <strong>₹899</strong>
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="showEvent('elysian')">
+                        View Event
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 8 -->
+
+        <article class="event-card">
+
+            <div class="event-image">
+
+                <img src="images/midnight-noir.jpg"
+                     alt="Veloura">
+
+                <span class="event-category">
+                    LUXURY EXPERIENCE
+                </span>
+
+            </div>
+
+            <div class="event-content">
+
+                <h3>Veloura</h3>
+
+                <div class="event-info">
+                    <span>15 NOV 2026</span>
+                    <span>8:00 PM</span>
+                </div>
+
+                <p>
+                    Pune · Imperial Convention Centre
+                </p>
+
+                <div class="event-bottom">
+
+                    <span>
+                        From <strong>₹1199</strong>
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="showEvent('veloura')">
+                        View Event
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 9 -->
+
+        <article class="event-card">
+
+            <div class="event-image">
+
+                <img src="images/aurum-jazz.jpg"
+                     alt="Noir Élan">
+
+                <span class="event-category">
+                    MIDNIGHT AFFAIR
+                </span>
+
+            </div>
+
+            <div class="event-content">
+
+                <h3>Noir Élan</h3>
+
+                <div class="event-info">
+                    <span>21 NOV 2026</span>
+                    <span>9:00 PM</span>
+                </div>
+
+                <p>
+                    Delhi · The Grand Pavilion
+                </p>
+
+                <div class="event-bottom">
+
+                    <span>
+                        From <strong>₹1299</strong>
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="showEvent('noirelan')">
+                        View Event
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- EVENT 10 -->
+
+        <article class="event-card">
+
+            <div class="event-image">
+
+                <img src="images/celestial-rooftop.jpg"
+                     alt="Astral Reverie">
+
+                <span class="event-category">
+                    COSMIC EXPERIENCE
+                </span>
+
+            </div>
+
+            <div class="event-content">
+
+                <h3>Astral Reverie</h3>
+
+                <div class="event-info">
+                    <span>05 DEC 2026</span>
+                    <span>8:30 PM</span>
+                </div>
+
+                <p>
+                    Kochi · Waterfront Arena
+                </p>
+
+                <div class="event-bottom">
+
+                    <span>
+                        From <strong>₹1099</strong>
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="showEvent('astral')">
+                        View Event
                     </button>
 
                 </div>
@@ -372,8 +596,313 @@
 
     </div>
 
-        </section>
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section about-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-label">THE AURELIA EXPERIENCE</p>
+
+            <h2>
+                More Than
+                <span>An Event</span>
+            </h2>
+        </div>
+
+        <p>
+            AURELIA brings together music, culture, entertainment
+            and premium experiences in one destination.
+        </p>
 
     </div>
 
-</header>
+
+    <div class="about-grid">
+
+        <div class="about-box">
+            <span>01</span>
+            <h3>Curated Events</h3>
+            <p>
+                Discover experiences selected for quality,
+                atmosphere and unforgettable moments.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <span>02</span>
+            <h3>Simple Booking</h3>
+            <p>
+                Select an event, choose your ticket and
+                complete your booking in just a few steps.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <span>03</span>
+            <h3>Digital Tickets</h3>
+            <p>
+                Keep your bookings safely available through
+                your personal My Tickets section.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="section contact-section">
+
+    <div class="contact-content">
+
+        <p class="section-label">GET IN TOUCH</p>
+
+        <h2>
+            Let's Create
+            <span>Memories.</span>
+        </h2>
+
+        <p>
+            Have a question about an event, booking or partnership?
+            Our support team is here to help.
+        </p>
+
+        <div class="contact-details">
+
+            <div>
+                <strong>Email</strong>
+                <span>support@aureliaevents.com</span>
+            </div>
+
+            <div>
+                <strong>Support</strong>
+                <span>Available for event enquiries</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MY TICKETS ================= -->
+
+<section id="tickets" class="section tickets-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-label">YOUR EXPERIENCES</p>
+
+            <h2>
+                My
+                <span>Tickets</span>
+            </h2>
+        </div>
+
+        <p>
+            Your confirmed bookings will appear here.
+        </p>
+
+    </div>
+
+
+    <div id="ticketList" class="ticket-list">
+
+        <div class="empty-tickets">
+            <h3>No tickets yet</h3>
+
+            <p>
+                Book an event and your tickets will appear here.
+            </p>
+
+            <a href="#events" class="btn btn-primary">
+                Explore Events
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        AURELIA
+    </div>
+
+    <p>
+        Discover. Book. Experience.
+    </p>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 AURELIA. All rights reserved.
+    </div>
+
+</footer>
+
+
+<!-- ================= EVENT DETAILS MODAL ================= -->
+
+<div id="eventModal" class="modal">
+
+    <div class="modal-box event-modal-box">
+
+        <button class="modal-close"
+                onclick="closeModal('eventModal')">
+            ×
+        </button>
+
+        <p id="eventCategory" class="section-label">
+            EVENT
+        </p>
+
+        <h2 id="eventTitle">
+            Event Title
+        </h2>
+
+        <div class="event-detail-grid">
+
+            <div>
+                <span>DATE</span>
+                <strong id="eventDate"></strong>
+            </div>
+
+            <div>
+                <span>TIME</span>
+                <strong id="eventTime"></strong>
+            </div>
+
+            <div>
+                <span>LOCATION</span>
+                <strong id="eventLocation"></strong>
+            </div>
+
+            <div>
+                <span>VENUE</span>
+                <strong id="eventVenue"></strong>
+            </div>
+
+        </div>
+
+        <p id="eventDescription" class="event-description"></p>
+
+
+        <div class="ticket-prices">
+
+            <div>
+                <span>GENERAL</span>
+                <strong id="generalPrice">₹0</strong>
+            </div>
+
+            <div>
+                <span>VIP</span>
+                <strong id="vipPrice">₹0</strong>
+            </div>
+
+            <div>
+                <span>VVIP</span>
+                <strong id="vvipPrice">₹0</strong>
+            </div>
+
+        </div>
+
+
+        <button class="btn btn-primary full-width"
+                onclick="startBooking()">
+            Book Tickets
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div id="loginModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="modal-close"
+                onclick="closeModal('loginModal')">
+            ×
+        </button>
+
+        <p class="section-label">WELCOME BACK</p>
+
+        <h2>Sign <span>In</span></h2>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                required
+                placeholder="Enter your email">
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                required
+                placeholder="Enter your password">
+
+
+            <button class="btn btn-primary full-width"
+                    type="submit">
+                Sign In
+            </button>
+
+        </form>
+
+        <p class="switch-auth">
+            Don't have an account?
+            <button onclick="switchToSignup()">
+                Create Account
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SIGNUP MODAL ================= -->
+
+<div id="signupModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="modal-close"
+                onclick="closeModal('signupModal')">
+            ×
+        </button>
+
+        <p class="section-label">JOIN AURELIA</p>
+
+        <h2>Create <span>Account</span></h2>
+
+        <form id="sig
