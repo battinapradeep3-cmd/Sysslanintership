@@ -1,7 +1,10 @@
 /* =========================================================
-   AURELIA - EVENT BOOKING WEBSITE
-   Frontend JavaScript
+   AURELIA EVENT BOOKING SYSTEM
+   Vanilla JavaScript
    ========================================================= */
+
+
+/* ================= EVENT DATA ================= */
 
 const events = {
 
@@ -99,25 +102,88 @@ const events = {
             vip: 1999,
             vvip: 3499
         }
+    },
+
+    elysian: {
+        category: "SIGNATURE NIGHT",
+        title: "Elysian Nights",
+        date: "08 NOV 2026",
+        time: "7:30 PM",
+        location: "Chennai",
+        venue: "Grand Convention Hall",
+        description:
+            "An immersive signature night combining music, art, atmosphere and refined entertainment.",
+        prices: {
+            general: 899,
+            vip: 1699,
+            vvip: 2799
+        }
+    },
+
+    veloura: {
+        category: "LUXURY EXPERIENCE",
+        title: "Veloura",
+        date: "15 NOV 2026",
+        time: "8:00 PM",
+        location: "Pune",
+        venue: "Imperial Convention Centre",
+        description:
+            "A sophisticated evening created around elegance, premium entertainment and unforgettable moments.",
+        prices: {
+            general: 1199,
+            vip: 2199,
+            vvip: 3299
+        }
+    },
+
+    noirelan: {
+        category: "MIDNIGHT AFFAIR",
+        title: "Noir Élan",
+        date: "21 NOV 2026",
+        time: "9:00 PM",
+        location: "Delhi",
+        venue: "The Grand Pavilion",
+        description:
+            "A mysterious late-night experience featuring contemporary performances, music and a dramatic atmosphere.",
+        prices: {
+            general: 1299,
+            vip: 2399,
+            vvip: 3599
+        }
+    },
+
+    astral: {
+        category: "COSMIC EXPERIENCE",
+        title: "Astral Reverie",
+        date: "05 DEC 2026",
+        time: "8:30 PM",
+        location: "Kochi",
+        venue: "Waterfront Arena",
+        description:
+            "A dreamlike evening beneath the lights, blending music, art and a spectacular waterfront atmosphere.",
+        prices: {
+            general: 1099,
+            vip: 1999,
+            vvip: 3199
+        }
     }
 
 };
 
 
-/* =========================================================
-   GLOBAL VARIABLES
-   ========================================================= */
+/* ================= GLOBAL VARIABLES ================= */
 
 let currentEventId = null;
 
 
-/* =========================================================
-   LOCAL STORAGE HELPERS
-   ========================================================= */
+/* ================= LOCAL STORAGE ================= */
 
 function getCurrentUser() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaUser")) || null;
+        return JSON.parse(
+            localStorage.getItem("aureliaUser")
+        );
     } catch (error) {
         return null;
     }
@@ -125,17 +191,32 @@ function getCurrentUser() {
 
 
 function getAccounts() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaAccounts")) || [];
+        return JSON.parse(
+            localStorage.getItem("aureliaAccounts")
+        ) || [];
     } catch (error) {
         return [];
     }
 }
 
 
+function saveAccounts(accounts) {
+
+    localStorage.setItem(
+        "aureliaAccounts",
+        JSON.stringify(accounts)
+    );
+}
+
+
 function getBookings() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaBookings")) || [];
+        return JSON.parse(
+            localStorage.getItem("aureliaBookings")
+        ) || [];
     } catch (error) {
         return [];
     }
@@ -143,6 +224,7 @@ function getBookings() {
 
 
 function saveBookings(bookings) {
+
     localStorage.setItem(
         "aureliaBookings",
         JSON.stringify(bookings)
@@ -150,86 +232,82 @@ function saveBookings(bookings) {
 }
 
 
-/* =========================================================
-   MODAL FUNCTIONS
-   ========================================================= */
+/* ================= MODALS ================= */
 
 function openModal(id) {
+
     const modal = document.getElementById(id);
 
-    if (modal) {
-        modal.classList.add("active");
-        document.body.classList.add("modal-open");
-    }
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
 }
 
 
 function closeModal(id) {
+
     const modal = document.getElementById(id);
 
-    if (modal) {
-        modal.classList.remove("active");
-    }
+    if (!modal) return;
 
-    const activeModals =
-        document.querySelectorAll(".modal.active");
+    modal.classList.remove("active");
 
-    if (activeModals.length === 0) {
-        document.body.classList.remove("modal-open");
+    if (!document.querySelector(".modal.active")) {
+        document.body.style.overflow = "";
     }
 }
 
 
-/* Close modal when clicking outside */
+/* Close modal by clicking outside */
 
 document.addEventListener("click", function (event) {
 
     if (event.target.classList.contains("modal")) {
+
         event.target.classList.remove("active");
 
-        const activeModals =
-            document.querySelectorAll(".modal.active");
-
-        if (activeModals.length === 0) {
-            document.body.classList.remove("modal-open");
+        if (!document.querySelector(".modal.active")) {
+            document.body.style.overflow = "";
         }
     }
 
 });
 
 
-/* Close modal using Escape */
+/* Close modal with Escape */
 
 document.addEventListener("keydown", function (event) {
 
     if (event.key === "Escape") {
 
-        const activeModals =
-            document.querySelectorAll(".modal.active");
+        document.querySelectorAll(".modal.active")
+            .forEach(function (modal) {
 
-        activeModals.forEach(function (modal) {
-            modal.classList.remove("active");
-        });
+                modal.classList.remove("active");
 
-        document.body.classList.remove("modal-open");
+            });
+
+        document.body.style.overflow = "";
     }
 
 });
 
 
-/* =========================================================
-   EVENT DETAILS
-   ========================================================= */
+/* ================= EVENT DETAILS ================= */
 
 function showEvent(eventId) {
 
     const event = events[eventId];
 
     if (!event) {
+        alert("Event details not available.");
         return;
     }
 
     currentEventId = eventId;
+
 
     document.getElementById("eventCategory").textContent =
         event.category;
@@ -252,6 +330,7 @@ function showEvent(eventId) {
     document.getElementById("eventDescription").textContent =
         event.description;
 
+
     document.getElementById("generalPrice").textContent =
         "₹" + event.prices.general;
 
@@ -261,20 +340,21 @@ function showEvent(eventId) {
     document.getElementById("vvipPrice").textContent =
         "₹" + event.prices.vvip;
 
+
     openModal("eventModal");
 }
 
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
+/* ================= AUTH ================= */
 
 function openLogin() {
 
     const user = getCurrentUser();
 
     if (user) {
+
         signOut();
+
         return;
     }
 
@@ -282,13 +362,10 @@ function openLogin() {
 }
 
 
-/* =========================================================
-   SWITCH LOGIN / SIGNUP
-   ========================================================= */
-
 function switchToSignup() {
 
     closeModal("loginModal");
+
     openModal("signupModal");
 }
 
@@ -296,61 +373,78 @@ function switchToSignup() {
 function switchToLogin() {
 
     closeModal("signupModal");
+
     openModal("loginModal");
 }
 
 
-/* =========================================================
-   SIGNUP
-   ========================================================= */
+/* ================= SIGN UP ================= */
 
 function handleSignup(event) {
 
     event.preventDefault();
 
+
     const name =
         document.getElementById("signupName").value.trim();
 
     const email =
-        document.getElementById("signupEmail").value.trim()
+        document.getElementById("signupEmail").value
+            .trim()
             .toLowerCase();
 
     const password =
         document.getElementById("signupPassword").value;
 
+
     if (!name || !email || !password) {
+
         alert("Please fill all fields.");
+
         return;
     }
+
 
     if (password.length < 6) {
+
         alert("Password must contain at least 6 characters.");
+
         return;
     }
 
-    let accounts = getAccounts();
 
-    const existingAccount = accounts.find(function (account) {
-        return account.email === email;
-    });
+    const accounts = getAccounts();
+
+
+    const existingAccount = accounts.find(
+        function (account) {
+            return account.email === email;
+        }
+    );
+
 
     if (existingAccount) {
-        alert("An account with this email already exists.");
+
+        alert(
+            "An account with this email already exists. Please sign in."
+        );
+
         return;
     }
 
+
     const newAccount = {
+
         name: name,
         email: email,
         password: password
     };
 
+
     accounts.push(newAccount);
 
-    localStorage.setItem(
-        "aureliaAccounts",
-        JSON.stringify(accounts)
-    );
+    saveAccounts(accounts);
+
 
     localStorage.setItem(
         "aureliaUser",
@@ -360,50 +454,59 @@ function handleSignup(event) {
         })
     );
 
-    alert("Account created successfully! Welcome to AURELIA.");
 
     document.getElementById("signupForm").reset();
 
     closeModal("signupModal");
 
     updateAuthUI();
+
+    alert(
+        "Welcome to AURELIA, " + name + "!"
+    );
 }
 
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
+/* ================= LOGIN ================= */
 
 function handleLogin(event) {
 
     event.preventDefault();
 
+
     const email =
-        document.getElementById("loginEmail").value.trim()
+        document.getElementById("loginEmail").value
+            .trim()
             .toLowerCase();
 
     const password =
         document.getElementById("loginPassword").value;
 
-    if (!email || !password) {
-        alert("Please enter email and password.");
-        return;
-    }
 
     const accounts = getAccounts();
 
-    const account = accounts.find(function (user) {
-        return user.email === email &&
-            user.password === password;
-    });
+
+    const account = accounts.find(
+        function (item) {
+
+            return (
+                item.email === email &&
+                item.password === password
+            );
+
+        }
+    );
+
 
     if (!account) {
+
         alert(
-            "Invalid email or password.\n\n" +
-            "If you are a new user, please create an account first."
+            "Invalid email or password."
         );
+
         return;
     }
+
 
     localStorage.setItem(
         "aureliaUser",
@@ -413,19 +516,20 @@ function handleLogin(event) {
         })
     );
 
-    alert("Login successful. Welcome, " + account.name + "!");
 
     document.getElementById("loginForm").reset();
 
     closeModal("loginModal");
 
     updateAuthUI();
+
+    alert(
+        "Welcome back, " + account.name + "!"
+    );
 }
 
 
-/* =========================================================
-   SIGN OUT
-   ========================================================= */
+/* ================= SIGN OUT ================= */
 
 function signOut() {
 
@@ -434,88 +538,77 @@ function signOut() {
     updateAuthUI();
 
     alert("You have been signed out.");
-
 }
 
 
-/* =========================================================
-   UPDATE NAVBAR AUTH UI
-   ========================================================= */
+/* ================= AUTH UI ================= */
 
 function updateAuthUI() {
 
-    const userStatus =
-        document.getElementById("userStatus");
-
-    const authButton =
-        document.getElementById("authButton");
-
     const user = getCurrentUser();
 
-    if (!user) {
+    const status =
+        document.getElementById("userStatus");
 
-        if (userStatus) {
-            userStatus.textContent = "";
-        }
+    const button =
+        document.getElementById("authButton");
 
-        if (authButton) {
-            authButton.textContent = "Sign In";
-            authButton.onclick = openLogin;
-        }
 
-        return;
-    }
+    if (!status || !button) return;
 
-    if (userStatus) {
-        userStatus.textContent =
+
+    if (user) {
+
+        status.textContent =
             "Hi, " + user.name;
-    }
 
-    if (authButton) {
-        authButton.textContent = "Sign Out";
-        authButton.onclick = signOut;
-    }
+        button.textContent =
+            "Sign Out";
 
+    } else {
+
+        status.textContent = "";
+
+        button.textContent =
+            "Sign In";
+    }
 }
 
 
-/* =========================================================
-   START BOOKING
-   ========================================================= */
+/* ================= START BOOKING ================= */
 
 function startBooking() {
 
-    if (!currentEventId ||
-        !events[currentEventId]) {
+    if (!currentEventId) {
 
         alert("Please select an event first.");
+
         return;
     }
 
+
     const user = getCurrentUser();
+
 
     if (!user) {
 
-        alert(
-            "Please sign in or create an account before booking."
-        );
-
         closeModal("eventModal");
+
+        alert(
+            "Please sign in before booking your ticket."
+        );
 
         openModal("loginModal");
 
         return;
     }
 
+
     const event = events[currentEventId];
 
-    const bookingEventName =
-        document.getElementById("bookingEventName");
 
-    if (bookingEventName) {
-        bookingEventName.textContent =
-            event.title;
-    }
+    document.getElementById("bookingEventName").textContent =
+        event.title;
 
     document.getElementById("bookingName").value =
         user.name;
@@ -523,15 +616,16 @@ function startBooking() {
     document.getElementById("bookingEmail").value =
         user.email;
 
-    document.getElementById("bookingPhone").value = "";
 
     document.getElementById("ticketType").value =
         "general";
 
     document.getElementById("ticketQuantity").value =
-        "1";
+        1;
+
 
     updateTotal();
+
 
     closeModal("eventModal");
 
@@ -539,77 +633,99 @@ function startBooking() {
 }
 
 
-/* =========================================================
-   UPDATE BOOKING TOTAL
-   ========================================================= */
+/* ================= CALCULATE TOTAL ================= */
 
 function updateTotal() {
 
-    if (!currentEventId ||
-        !events[currentEventId]) {
+    if (!currentEventId) return;
 
-        return;
-    }
 
     const event = events[currentEventId];
+
 
     const ticketType =
         document.getElementById("ticketType").value;
 
-    const quantity =
+
+    let quantity =
         parseInt(
             document.getElementById("ticketQuantity").value,
             10
-        ) || 1;
+        );
+
+
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+    }
+
+
+    if (quantity > 10) {
+        quantity = 10;
+    }
+
+
+    document.getElementById("ticketQuantity").value =
+        quantity;
+
 
     const price =
         event.prices[ticketType];
 
+
     const total =
         price * quantity;
 
-    const bookingTotal =
-        document.getElementById("bookingTotal");
 
-    if (bookingTotal) {
-        bookingTotal.textContent =
-            "₹" + total.toLocaleString("en-IN");
-    }
-
+    document.getElementById("bookingTotal").textContent =
+        "₹" + total.toLocaleString("en-IN");
 }
 
 
-/* =========================================================
-   GENERATE BOOKING ID
-   ========================================================= */
+/* ================= BOOKING ID ================= */
 
 function generateBookingId() {
 
-    const random =
-        Math.floor(100000 + Math.random() * 900000);
+    const randomNumber =
+        Math.floor(
+            100000 + Math.random() * 900000
+        );
 
-    return "AUR-" + random;
-
+    return "AUR-" + randomNumber;
 }
 
 
-/* =========================================================
-   CONFIRM BOOKING
-   ========================================================= */
+/* ================= HANDLE BOOKING ================= */
 
 function handleBooking(event) {
 
     event.preventDefault();
 
-    if (!currentEventId ||
-        !events[currentEventId]) {
+
+    if (!currentEventId) {
 
         alert("Please select an event.");
+
         return;
     }
 
-    const eventData =
+
+    const currentUser =
+        getCurrentUser();
+
+
+    if (!currentUser) {
+
+        closeModal("bookingModal");
+
+        openModal("loginModal");
+
+        return;
+    }
+
+
+    const selectedEvent =
         events[currentEventId];
+
 
     const name =
         document.getElementById("bookingName")
@@ -617,7 +733,8 @@ function handleBooking(event) {
 
     const email =
         document.getElementById("bookingEmail")
-            .value.trim();
+            .value.trim()
+            .toLowerCase();
 
     const phone =
         document.getElementById("bookingPhone")
@@ -627,39 +744,67 @@ function handleBooking(event) {
         document.getElementById("ticketType")
             .value;
 
-    const quantity =
+    let quantity =
         parseInt(
             document.getElementById("ticketQuantity")
                 .value,
             10
         );
 
-    if (!name || !email || !phone) {
-        alert("Please fill all booking details.");
+
+    /* Validation */
+
+    if (!name) {
+
+        alert("Please enter your name.");
+
         return;
     }
+
+
+    if (!email) {
+
+        alert("Please enter your email.");
+
+        return;
+    }
+
 
     if (!/^[0-9]{10}$/.test(phone)) {
-        alert("Please enter a valid 10-digit mobile number.");
+
+        alert(
+            "Please enter a valid 10-digit phone number."
+        );
+
         return;
     }
 
-    if (!quantity ||
+
+    if (
+        isNaN(quantity) ||
         quantity < 1 ||
-        quantity > 10) {
+        quantity > 10
+    ) {
 
-        alert("Ticket quantity must be between 1 and 10.");
+        alert(
+            "Ticket quantity must be between 1 and 10."
+        );
+
         return;
     }
+
 
     const price =
-        eventData.prices[ticketType];
+        selectedEvent.prices[ticketType];
+
 
     const total =
         price * quantity;
 
+
     const bookingId =
         generateBookingId();
+
 
     const booking = {
 
@@ -667,15 +812,17 @@ function handleBooking(event) {
 
         eventId: currentEventId,
 
-        eventName: eventData.title,
+        eventName: selectedEvent.title,
 
-        date: eventData.date,
+        category: selectedEvent.category,
 
-        time: eventData.time,
+        date: selectedEvent.date,
 
-        location: eventData.location,
+        time: selectedEvent.time,
 
-        venue: eventData.venue,
+        location: selectedEvent.location,
+
+        venue: selectedEvent.venue,
 
         name: name,
 
@@ -690,36 +837,31 @@ function handleBooking(event) {
         total: total,
 
         createdAt: new Date().toISOString()
-
     };
 
 
     const bookings =
         getBookings();
 
+
     bookings.push(booking);
 
     saveBookings(bookings);
 
 
-    /* Fill confirmation modal */
+    /* Confirmation details */
 
     document.getElementById("confirmationId")
         .textContent = bookingId;
 
     document.getElementById("confirmationEvent")
-        .textContent = eventData.title;
-
-    document.getElementById("confirmationName")
-        .textContent = name;
+        .textContent = selectedEvent.title;
 
     document.getElementById("confirmationDate")
         .textContent =
-        eventData.date + " · " + eventData.time;
-
-    document.getElementById("confirmationLocation")
-        .textContent =
-        eventData.location;
+        selectedEvent.date +
+        " · " +
+        selectedEvent.time;
 
     document.getElementById("confirmationTickets")
         .textContent =
@@ -729,24 +871,22 @@ function handleBooking(event) {
 
     document.getElementById("confirmationTotal")
         .textContent =
-        "₹" + total.toLocaleString("en-IN");
+        "₹" +
+        total.toLocaleString("en-IN");
 
 
-    document.getElementById("bookingForm")
-        .reset();
+    document.getElementById("bookingForm").reset();
+
 
     closeModal("bookingModal");
 
     loadTickets();
 
     openModal("confirmationModal");
-
 }
 
 
-/* =========================================================
-   FORMAT TICKET TYPE
-   ========================================================= */
+/* ================= FORMAT TICKET TYPE ================= */
 
 function formatTicketType(type) {
 
@@ -766,30 +906,92 @@ function formatTicketType(type) {
 }
 
 
-/* =========================================================
-   LOAD MY TICKETS
-   ========================================================= */
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ================= LOAD MY TICKETS ================= */
 
 function loadTickets() {
 
     const ticketList =
         document.getElementById("ticketList");
 
-    if (!ticketList) {
+
+    if (!ticketList) return;
+
+
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+
+        ticketList.innerHTML = `
+
+            <div class="empty-tickets">
+
+                <h3>Sign In Required</h3>
+
+                <p>
+                    Sign in to view your booked tickets.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="openLogin()">
+                    Sign In
+                </button>
+
+            </div>
+        `;
+
         return;
     }
+
 
     const bookings =
         getBookings();
 
-    if (bookings.length === 0) {
+
+    const userBookings =
+        bookings.filter(
+            function (booking) {
+
+                return booking.email === user.email;
+
+            }
+        );
+
+
+    if (userBookings.length === 0) {
 
         ticketList.innerHTML = `
+
             <div class="empty-tickets">
-                <h3>No Tickets Yet</h3>
+
+                <h3>No tickets yet</h3>
+
                 <p>
-                    Your booked events will appear here.
+                    Book an event and your tickets
+                    will appear here.
                 </p>
+
+                <a
+                    href="#events"
+                    class="btn btn-primary">
+                    Explore Events
+                </a>
+
             </div>
         `;
 
@@ -797,127 +999,278 @@ function loadTickets() {
     }
 
 
-    ticketList.innerHTML = "";
+    ticketList.innerHTML =
+        userBookings.map(
+            function (booking) {
+
+                return `
+
+                    <div class="ticket-card">
+
+                        <h3>
+                            ${escapeHTML(
+                                booking.eventName
+                            )}
+                        </h3>
+
+                        <div class="ticket-id">
+                            BOOKING ID:
+                            ${escapeHTML(
+                                booking.bookingId
+                            )}
+                        </div>
 
 
-    bookings.forEach(function (booking) {
+                        <div class="ticket-details">
 
-        const ticketCard =
-            document.createElement("div");
+                            <div>
+                                <span>DATE</span>
 
-        ticketCard.className =
-            "ticket-card";
-
-
-        ticketCard.innerHTML = `
-
-            <div class="ticket-details">
-
-                <div>
-                    <span class="ticket-label">
-                        BOOKING ID
-                    </span>
-
-                    <strong>
-                        ${escapeHTML(booking.bookingId)}
-                    </strong>
-                </div>
-
-                <div>
-                    <span class="ticket-label">
-                        EVENT
-                    </span>
-
-                    <strong>
-                        ${escapeHTML(booking.eventName)}
-                    </strong>
-                </div>
-
-                <div>
-                    <span class="ticket-label">
-                        DATE & TIME
-                    </span>
-
-                    <span>
-                        ${escapeHTML(booking.date)}
-                        ·
-                        ${escapeHTML(booking.time)}
-                    </span>
-                </div>
-
-                <div>
-                    <span class="ticket-label">
-                        LOCATION
-                    </span>
-
-                    <span>
-                        ${escapeHTML(booking.location)}
-                    </span>
-                </div>
-
-                <div>
-                    <span class="ticket-label">
-                        TICKETS
-                    </span>
-
-                    <span>
-                        ${booking.ticketQuantity}
-                        ×
-                        ${escapeHTML(
-                            formatTicketType(
-                                booking.ticketType
-                            )
-                        )}
-                    </span>
-                </div>
-
-                <div>
-                    <span class="ticket-label">
-                        TOTAL
-                    </span>
-
-                    <strong>
-                        ₹${booking.total.toLocaleString("en-IN")}
-                    </strong>
-                </div>
-
-            </div>
-
-            <button
-                class="cancel-ticket"
-                onclick="cancelTicket('${booking.bookingId}')"
-            >
-                Cancel Ticket
-            </button>
-
-        `;
+                                <strong>
+                                    ${escapeHTML(
+                                        booking.date
+                                    )}
+                                </strong>
+                            </div>
 
 
-        ticketList.appendChild(ticketCard);
+                            <div>
+                                <span>TIME</span>
 
-    });
+                                <strong>
+                                    ${escapeHTML(
+                                        booking.time
+                                    )}
+                                </strong>
+                            </div>
 
+
+                            <div>
+                                <span>LOCATION</span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        booking.location
+                                    )}
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>VENUE</span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        booking.venue
+                                    )}
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>TICKET TYPE</span>
+
+                                <strong>
+                                    ${formatTicketType(
+                                        booking.ticketType
+                                    )}
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span>TICKETS</span>
+
+                                <strong>
+                                    ${booking.ticketQuantity}
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="ticket-footer">
+
+                            <div class="ticket-total">
+                                ₹${Number(
+                                    booking.total
+                                ).toLocaleString("en-IN")}
+                            </div>
+
+                            <button
+                                class="cancel-ticket"
+                                onclick="cancelTicket('${escapeHTML(
+                                    booking.bookingId
+                                )}')">
+
+                                Cancel Ticket
+
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }
+        ).join("");
 }
 
 
-/* =========================================================
-   CANCEL TICKET
-   ========================================================= */
+/* ================= CANCEL TICKET ================= */
 
 function cancelTicket(bookingId) {
 
-    const confirmation =
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+
+        alert(
+            "Please sign in to manage your tickets."
+        );
+
+        return;
+    }
+
+
+    const bookings =
+        getBookings();
+
+
+    const booking =
+        bookings.find(
+            function (item) {
+
+                return (
+                    item.bookingId === bookingId &&
+                    item.email === user.email
+                );
+
+            }
+        );
+
+
+    if (!booking) {
+
+        alert("Ticket not found.");
+
+        return;
+    }
+
+
+    const confirmed =
         confirm(
             "Are you sure you want to cancel this ticket?"
         );
 
-    if (!confirmation) {
-        return;
+
+    if (!confirmed) return;
+
+
+    const updatedBookings =
+        bookings.filter(
+            function (item) {
+
+                return item.bookingId !== bookingId;
+
+            }
+        );
+
+
+    saveBookings(updatedBookings);
+
+    loadTickets();
+
+
+    alert(
+        "Ticket " +
+        bookingId +
+        " has been cancelled."
+    );
+}
+
+
+/* ================= NAVIGATION ================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        updateAuthUI();
+
+        loadTickets();
+
+
+        /* Update tickets whenever My Tickets is clicked */
+
+        const ticketLink =
+            document.querySelector(
+                'a[href="#tickets"]'
+            );
+
+
+        if (ticketLink) {
+
+            ticketLink.addEventListener(
+                "click",
+                function () {
+
+                    loadTickets();
+
+                }
+            );
+
+        }
+
+
+        /* Mobile / normal navigation */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            const target =
+                                link.getAttribute("href");
+
+
+                            if (target === "#tickets") {
+                                loadTickets();
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
     }
+);
 
-    let bookings =
-        getBookings();
+[/writing]
 
-    bookings =
-        bookings.filter(function (booking) {
-            return b
+Important: Folder structure exactly ila undali:
+
+Sysslanintership/
+│
+├── index.html
+├── style.css
+├── script.js
+│
+└── images/
+    ├── velvet-symphony.jpg
+    ├── midnight-noir.jpg
+    ├── aurum-jazz.jpg
+    ├── grand-vintner.jpg
+    ├── celestial-rooftop.jpg
+    └── imperial-opera.jpg
+
+Ippudu 3 files replace chesi GitHub ki upload/commit cheyyandi. Existing 6 images tho kuda site run avutundi; events 7–10 temporary ga existing images reuse chestunnayi.
+
+Next important step GitHub Pages lo 404 / images / buttons anni test cheyyadam.
