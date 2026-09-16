@@ -1,92 +1,760 @@
-// AURELIA - INTERACTIONS
+/* =========================================================
+   NEXORA EVENT BOOKING WEBSITE
+   Main JavaScript
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  /* MOBILE MENU */
+/* =========================================================
+   EVENT DATA
+   ========================================================= */
 
-  const menuBtn = document.querySelector(".menu-btn");
-  const navLinks = document.querySelector(".nav-links");
+const events = {
 
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-      });
-    });
-  }
-
-  /* SMOOTH SCROLL */
-
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function (e) {
-      const target = document.querySelector(this.getAttribute("href"));
-
-      if (target) {
-        e.preventDefault();
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  });
-
-  /* EVENT BUTTONS */
-
-  document.querySelectorAll(".event-card .btn").forEach(button => {
-    button.addEventListener("click", () => {
-      const card = button.closest(".event-card");
-      const eventName = card?.querySelector("h3")?.textContent || "Selected Event";
-
-      localStorage.setItem("selectedEvent", eventName);
-
-      // If booking page exists, open it
-      if (button.dataset.page) {
-        window.location.href = button.dataset.page;
-      } else {
-        alert(`${eventName} selected!`);
-      }
-    });
-  });
-
-  /* SCROLL HEADER EFFECT */
-
-  const header = document.querySelector("header");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header?.classList.add("scrolled");
-    } else {
-      header?.classList.remove("scrolled");
-    }
-  });
-
-  /* REVEAL ANIMATION */
-
-  const revealElements = document.querySelectorAll(
-    ".event-card, .feature, .stat"
-  );
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target);
-        }
-      });
+    euphoria: {
+        name: "Euphoria Royale",
+        category: "MUSIC FESTIVAL",
+        date: "20 SEP 2026",
+        time: "7:00 PM",
+        location: "Vijayawada",
+        venue: "The Grand Arena",
+        description:
+            "An electrifying night of live music, powerful performances, spectacular lights and an unforgettable festival atmosphere.",
+        general: 799,
+        vip: 1499,
+        vvip: 2499
     },
-    { threshold: 0.12 }
-  );
 
-  revealElements.forEach(element => {
-    element.classList.add("reveal");
-    observer.observe(element);
-  });
+    lunaris: {
+        name: "Lunaris",
+        category: "LIVE MUSIC",
+        date: "25 SEP 2026",
+        time: "6:30 PM",
+        location: "Visakhapatnam",
+        venue: "Harbour Convention Centre",
+        description:
+            "A moonlit musical experience featuring soulful performances, atmospheric visuals and beautiful live music.",
+        general: 649,
+        vip: 1299,
+        vvip: 2199
+    },
 
-});
+    veloura: {
+        name: "Veloura",
+        category: "POP NIGHT",
+        date: "02 OCT 2026",
+        time: "7:30 PM",
+        location: "Hyderabad",
+        venue: "Skyline Arena",
+        description:
+            "A vibrant pop experience featuring energetic artists, immersive visuals and an exciting crowd atmosphere.",
+        general: 899,
+        vip: 1699,
+        vvip: 2799
+    },
+
+    moonveil: {
+        name: "Moonveil",
+        category: "ACOUSTIC",
+        date: "05 OCT 2026",
+        time: "7:00 PM",
+        location: "Bengaluru",
+        venue: "The Garden Stage",
+        description:
+            "An intimate acoustic evening filled with beautiful melodies, talented performers and a relaxed atmosphere.",
+        general: 749,
+        vip: 1399,
+        vvip: 2299
+    },
+
+    aurevia: {
+        name: "Aurevia",
+        category: "URBAN FEST",
+        date: "18 OCT 2026",
+        time: "8:00 PM",
+        location: "Mumbai",
+        venue: "Metro Live Arena",
+        description:
+            "A high-energy urban festival combining music, culture, entertainment and unforgettable live performances.",
+        general: 999,
+        vip: 1899,
+        vvip: 2999
+    },
+
+    neon: {
+        name: "Neon Nights",
+        category: "EDM NIGHT",
+        date: "31 OCT 2026",
+        time: "6:00 PM",
+        location: "Goa",
+        venue: "Neon Beach Arena",
+        description:
+            "Lose yourself in powerful EDM beats, neon lights, live DJs and an unforgettable night on the coast.",
+        general: 1099,
+        vip: 1999,
+        vvip: 3499
+    }
+
+};
+
+
+/* =========================================================
+   MODAL FUNCTIONS
+   ========================================================= */
+
+function openModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+}
+
+
+function closeModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+}
+
+
+/* =========================================================
+   EVENT DETAILS
+   ========================================================= */
+
+function showEvent(eventId) {
+
+    const event = events[eventId];
+
+    if (!event) {
+        return;
+    }
+
+    const details = document.getElementById("eventDetails");
+
+    details.innerHTML = `
+
+        <div class="event-modal-category">
+            ${event.category}
+        </div>
+
+        <h2 class="event-modal-title">
+            ${event.name}
+        </h2>
+
+        <p class="event-modal-description">
+            ${event.description}
+        </p>
+
+        <div class="event-meta">
+
+            <div>
+                <small>DATE</small>
+                <strong>${event.date}</strong>
+            </div>
+
+            <div>
+                <small>TIME</small>
+                <strong>${event.time}</strong>
+            </div>
+
+            <div>
+                <small>LOCATION</small>
+                <strong>${event.location}</strong>
+            </div>
+
+            <div>
+                <small>VENUE</small>
+                <strong>${event.venue}</strong>
+            </div>
+
+        </div>
+
+        <div class="event-price-box">
+
+            <p>STARTING FROM</p>
+
+            <strong>
+                ₹${event.general.toLocaleString("en-IN")}
+            </strong>
+
+        </div>
+
+        <button
+            class="modal-action"
+            onclick="openBooking('${eventId}')">
+
+            Book Tickets →
+
+        </button>
+    `;
+
+    openModal("eventModal");
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function openLogin() {
+
+    closeModal("signupModal");
+
+    openModal("loginModal");
+}
+
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value.trim();
+
+    if (!email || !password) {
+        alert("Please enter your email and password.");
+        return;
+    }
+
+    const account =
+        JSON.parse(localStorage.getItem("nexoraAccount"));
+
+    if (account) {
+
+        if (
+            account.email !== email ||
+            account.password !== password
+        ) {
+            alert("Invalid email or password.");
+            return;
+        }
+
+    }
+
+    localStorage.setItem(
+        "nexoraLoggedIn",
+        "true"
+    );
+
+    localStorage.setItem(
+        "nexoraUserEmail",
+        email
+    );
+
+    closeModal("loginModal");
+
+    alert("Welcome back to NEXORA!");
+
+    document.getElementById("loginEmail").value = "";
+    document.getElementById("loginPassword").value = "";
+}
+
+
+/* =========================================================
+   SIGN UP
+   ========================================================= */
+
+function showSignup() {
+
+    closeModal("loginModal");
+
+    openModal("signupModal");
+}
+
+
+function backToLogin() {
+
+    closeModal("signupModal");
+
+    openModal("loginModal");
+}
+
+
+function signupUser(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("signupName").value.trim();
+
+    const email =
+        document.getElementById("signupEmail").value.trim();
+
+    const password =
+        document.getElementById("signupPassword").value.trim();
+
+    if (!name || !email || !password) {
+        alert("Please fill all the fields.");
+        return;
+    }
+
+    if (password.length < 6) {
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    const account = {
+
+        name: name,
+        email: email,
+        password: password
+
+    };
+
+
+    localStorage.setItem(
+        "nexoraAccount",
+        JSON.stringify(account)
+    );
+
+
+    closeModal("signupModal");
+
+    alert(
+        "Account created successfully! Please sign in."
+    );
+
+
+    document.getElementById("signupName").value = "";
+    document.getElementById("signupEmail").value = "";
+    document.getElementById("signupPassword").value = "";
+
+    openModal("loginModal");
+}
+
+
+/* =========================================================
+   BOOKING
+   ========================================================= */
+
+function openBooking(eventId) {
+
+    const event = events[eventId];
+
+    if (!event) {
+        return;
+    }
+
+    closeModal("eventModal");
+
+    document.getElementById("bookingEvent").value =
+        eventId;
+
+    document.getElementById("bookingTitle").textContent =
+        event.name;
+
+    document.getElementById("ticketType").value =
+        "general";
+
+    document.getElementById("ticketQuantity").value =
+        1;
+
+    updateTotal();
+
+    openModal("bookingModal");
+}
+
+
+/* =========================================================
+   CALCULATE TOTAL
+   ========================================================= */
+
+function updateTotal() {
+
+    const eventId =
+        document.getElementById("bookingEvent").value;
+
+    const ticketType =
+        document.getElementById("ticketType").value;
+
+    let quantity =
+        parseInt(
+            document.getElementById("ticketQuantity").value
+        );
+
+
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+        document.getElementById("ticketQuantity").value = 1;
+    }
+
+
+    if (quantity > 10) {
+        quantity = 10;
+        document.getElementById("ticketQuantity").value = 10;
+    }
+
+
+    const event = events[eventId];
+
+    if (!event) {
+        return;
+    }
+
+
+    const price =
+        event[ticketType];
+
+    const total =
+        price * quantity;
+
+
+    document.getElementById("bookingTotal").textContent =
+        "₹" + total.toLocaleString("en-IN");
+}
+
+
+/* =========================================================
+   CONFIRM BOOKING
+   ========================================================= */
+
+function confirmBooking(event) {
+
+    event.preventDefault();
+
+
+    const eventId =
+        document.getElementById("bookingEvent").value;
+
+    const ticketType =
+        document.getElementById("ticketType").value;
+
+    const quantity =
+        parseInt(
+            document.getElementById("ticketQuantity").value
+        );
+
+
+    const selectedEvent =
+        events[eventId];
+
+
+    if (!selectedEvent) {
+        alert("Please select an event.");
+        return;
+    }
+
+
+    const price =
+        selectedEvent[ticketType];
+
+    const total =
+        price * quantity;
+
+
+    const bookingId =
+        "NX" +
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        );
+
+
+    const booking = {
+
+        bookingId: bookingId,
+
+        eventId: eventId,
+
+        eventName: selectedEvent.name,
+
+        date: selectedEvent.date,
+
+        time: selectedEvent.time,
+
+        location: selectedEvent.location,
+
+        venue: selectedEvent.venue,
+
+        ticketType: ticketType.toUpperCase(),
+
+        quantity: quantity,
+
+        total: total
+
+    };
+
+
+    let bookings =
+        JSON.parse(
+            localStorage.getItem("nexoraBookings")
+        ) || [];
+
+
+    bookings.push(booking);
+
+
+    localStorage.setItem(
+        "nexoraBookings",
+        JSON.stringify(bookings)
+    );
+
+
+    closeModal("bookingModal");
+
+
+    alert(
+        "Booking Confirmed!\n\n" +
+        "Event: " + selectedEvent.name + "\n" +
+        "Ticket: " + ticketType.toUpperCase() + "\n" +
+        "Quantity: " + quantity + "\n" +
+        "Total: ₹" + total.toLocaleString("en-IN") + "\n" +
+        "Booking ID: " + bookingId
+    );
+
+
+    loadTickets();
+
+
+    document
+        .getElementById("tickets")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+/* =========================================================
+   MY TICKETS
+   ========================================================= */
+
+function loadTickets() {
+
+    const ticketList =
+        document.getElementById("ticketList");
+
+
+    if (!ticketList) {
+        return;
+    }
+
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem("nexoraBookings")
+        ) || [];
+
+
+    if (bookings.length === 0) {
+
+        ticketList.innerHTML = `
+
+            <div class="empty-ticket">
+
+                <div class="empty-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    No bookings yet
+                </h3>
+
+                <p>
+                    Explore our upcoming events and book
+                    your first unforgettable experience.
+                </p>
+
+                <a
+                    href="#events"
+                    class="primary-btn">
+
+                    Explore Events
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    ticketList.innerHTML = "";
+
+
+    bookings
+        .slice()
+        .reverse()
+        .forEach(function(booking) {
+
+            const ticket = document.createElement("div");
+
+            ticket.className =
+                "ticket-card";
+
+
+            ticket.innerHTML = `
+
+                <div class="ticket-card-header">
+
+                    <h3>
+                        ${booking.eventName}
+                    </h3>
+
+                    <span class="ticket-status">
+                        CONFIRMED
+                    </span>
+
+                </div>
+
+
+                <div class="ticket-info">
+
+                    <div>
+                        <small>DATE</small>
+                        <strong>
+                            ${booking.date}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>TIME</small>
+                        <strong>
+                            ${booking.time}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>VENUE</small>
+                        <strong>
+                            ${booking.venue}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>TICKET</small>
+                        <strong>
+                            ${booking.ticketType}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>QUANTITY</small>
+                        <strong>
+                            ${booking.quantity}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>TOTAL</small>
+                        <strong>
+                            ₹${booking.total.toLocaleString("en-IN")}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <small>BOOKING ID</small>
+                        <strong>
+                            ${booking.bookingId}
+                        </strong>
+                    </div>
+
+                </div>
+
+            `;
+
+
+            ticketList.appendChild(ticket);
+
+        });
+}
+
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Thank you for contacting NEXORA!\n\n" +
+        "We have received your message."
+    );
+
+    event.target.reset();
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target.classList.contains("modal")
+        ) {
+
+            event.target.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC KEY CLOSE MODAL
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            document
+                .querySelectorAll(".modal.active")
+                .forEach(function(modal) {
+
+                    modal.classList.remove("active");
+
+                });
+
+            document.body.style.overflow = "";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD BOOKINGS WHEN PAGE OPENS
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadTickets();
+
+    }
+);
