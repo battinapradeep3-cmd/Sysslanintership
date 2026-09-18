@@ -13,7 +13,6 @@
 const EVENTS = {
 
     "Velvet Symphony": {
-        id: "velvet",
         category: "CLASSICAL NIGHT",
         date: "20 SEP 2026",
         time: "7:00 PM",
@@ -22,13 +21,11 @@ const EVENTS = {
         price: 799,
         vip: 1499,
         vvip: 2499,
-        image: "images/velvet-symphony.jpg",
         description:
-            "An elegant evening of classical music and unforgettable performances. Experience a sophisticated atmosphere filled with live music, beautiful lighting and premium entertainment."
+            "An elegant evening of classical music, live performances and unforgettable moments. Experience premium sound, beautiful ambience and an extraordinary night at The Grand Arena."
     },
 
     "Midnight Noir": {
-        id: "noir",
         category: "NIGHT EXPERIENCE",
         date: "25 SEP 2026",
         time: "6:30 PM",
@@ -37,13 +34,11 @@ const EVENTS = {
         price: 649,
         vip: 1299,
         vvip: 2199,
-        image: "images/midnight-noir.jpg",
         description:
-            "A premium night experience filled with music, lights and entertainment. Step into an unforgettable evening created for extraordinary memories."
+            "Step into an atmospheric night filled with music, lights and premium entertainment. Midnight Noir brings a sophisticated nightlife experience to Visakhapatnam."
     },
 
     "Aurum Jazz": {
-        id: "aurum",
         category: "JAZZ EXPERIENCE",
         date: "02 OCT 2026",
         time: "7:30 PM",
@@ -52,13 +47,11 @@ const EVENTS = {
         price: 899,
         vip: 1699,
         vvip: 2799,
-        image: "images/aurum-jazz.jpg",
         description:
-            "Experience an extraordinary night of live jazz, soulful performances and premium entertainment at one of Hyderabad's finest venues."
+            "A premium live jazz evening featuring extraordinary performances, elegant ambience and unforgettable musical moments."
     },
 
     "Grand Vintner": {
-        id: "vintner",
         category: "LUXURY EVENING",
         date: "05 OCT 2026",
         time: "7:00 PM",
@@ -67,13 +60,11 @@ const EVENTS = {
         price: 749,
         vip: 1499,
         vvip: 2399,
-        image: "images/grand-vintner.jpg",
         description:
-            "A sophisticated luxury evening curated for unforgettable memories, elegant ambience and premium entertainment."
+            "A sophisticated luxury evening created for people who appreciate music, atmosphere and memorable experiences."
     },
 
     "Celestial Rooftop": {
-        id: "celestial",
         category: "ROOFTOP EXPERIENCE",
         date: "18 OCT 2026",
         time: "8:00 PM",
@@ -82,13 +73,11 @@ const EVENTS = {
         price: 999,
         vip: 1899,
         vvip: 2999,
-        image: "images/celestial-rooftop.jpg",
         description:
-            "A breathtaking rooftop experience under the stars with music, entertainment and an atmosphere designed for unforgettable moments."
+            "Enjoy an unforgettable rooftop experience under the stars with premium entertainment, music and a spectacular atmosphere."
     },
 
     "Imperial Opera": {
-        id: "imperial",
         category: "OPERA NIGHT",
         date: "31 OCT 2026",
         time: "6:00 PM",
@@ -97,13 +86,11 @@ const EVENTS = {
         price: 1099,
         vip: 1999,
         vvip: 3299,
-        image: "images/imperial-opera.jpg",
         description:
-            "An elegant opera night combining art, music, performance and luxury in a spectacular Goa setting."
+            "An elegant opera experience combining art, music, stage performance and luxury in the beautiful surroundings of Goa."
     },
 
     "Elysian Nights": {
-        id: "elysian",
         category: "SIGNATURE NIGHT",
         date: "08 NOV 2026",
         time: "7:30 PM",
@@ -112,13 +99,11 @@ const EVENTS = {
         price: 899,
         vip: 1699,
         vvip: 2799,
-        image: "images/velvet-symphony.jpg",
         description:
-            "A signature AURELIA experience filled with music, entertainment and an elegant atmosphere."
+            "A signature AURELIA experience featuring music, entertainment and an elegant atmosphere designed for an unforgettable evening."
     },
 
     "Veloura": {
-        id: "veloura",
         category: "LUXURY EXPERIENCE",
         date: "15 NOV 2026",
         time: "8:00 PM",
@@ -127,13 +112,11 @@ const EVENTS = {
         price: 1199,
         vip: 2199,
         vvip: 3499,
-        image: "images/midnight-noir.jpg",
         description:
-            "A premium luxury experience designed for people who appreciate sophisticated entertainment and unforgettable evenings."
+            "Veloura is a premium luxury experience bringing together music, entertainment and an elegant atmosphere."
     },
 
     "Noir Élan": {
-        id: "noirelan",
         category: "MIDNIGHT AFFAIR",
         date: "21 NOV 2026",
         time: "9:00 PM",
@@ -142,13 +125,11 @@ const EVENTS = {
         price: 1299,
         vip: 2399,
         vvip: 3699,
-        image: "images/aurum-jazz.jpg",
         description:
-            "A stylish midnight affair with music, lights and premium experiences designed to create an unforgettable night."
+            "A stylish midnight affair featuring premium entertainment, dramatic lighting and an unforgettable nightlife atmosphere."
     },
 
     "Astral Reverie": {
-        id: "astral",
         category: "COSMIC EXPERIENCE",
         date: "05 DEC 2026",
         time: "8:30 PM",
@@ -157,16 +138,14 @@ const EVENTS = {
         price: 1099,
         vip: 2099,
         vvip: 3299,
-        image: "images/celestial-rooftop.jpg",
         description:
-            "Step into a cosmic experience created for extraordinary moments, premium entertainment and an unforgettable atmosphere."
+            "Step into a cosmic experience where music, atmosphere and entertainment come together for an extraordinary night."
     }
-
 };
 
 
 /* ============================================================
-   STATE
+   GLOBAL VARIABLE
    ============================================================ */
 
 let selectedEvent = null;
@@ -199,9 +178,7 @@ function saveUser(user) {
 
 function removeUser() {
 
-    localStorage.removeItem(
-        "aureliaUser"
-    );
+    localStorage.removeItem("aureliaUser");
 }
 
 
@@ -210,9 +187,7 @@ function getAccounts() {
     try {
 
         return JSON.parse(
-            localStorage.getItem(
-                "aureliaAccounts"
-            )
+            localStorage.getItem("aureliaAccounts")
         ) || [];
 
     } catch (error) {
@@ -236,9 +211,7 @@ function getBookings() {
     try {
 
         return JSON.parse(
-            localStorage.getItem(
-                "aureliaBookings"
-            )
+            localStorage.getItem("aureliaBookings")
         ) || [];
 
     } catch (error) {
@@ -258,57 +231,7 @@ function saveBookings(bookings) {
 
 
 /* ============================================================
-   BASIC HELPERS
-   ============================================================ */
-
-function getValue(id) {
-
-    const element =
-        document.getElementById(id);
-
-    if (!element) {
-        return "";
-    }
-
-    return element.value.trim();
-}
-
-
-function setValue(id, value) {
-
-    const element =
-        document.getElementById(id);
-
-    if (element) {
-        element.value = value;
-    }
-}
-
-
-function setText(id, value) {
-
-    const element =
-        document.getElementById(id);
-
-    if (element) {
-        element.textContent = value;
-    }
-}
-
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* ============================================================
-   MODAL
+   MODAL FUNCTIONS
    ============================================================ */
 
 function openModal(id) {
@@ -317,6 +240,12 @@ function openModal(id) {
         document.getElementById(id);
 
     if (!modal) {
+
+        console.log(
+            "Modal not found:",
+            id
+        );
+
         return;
     }
 
@@ -366,69 +295,10 @@ function closeAllModals() {
    FULL EVENT PAGE
    ============================================================ */
 
-function createEventPage() {
-
-    let page =
-        document.getElementById(
-            "aureliaEventPage"
-        );
-
-    if (page) {
-        return page;
-    }
-
-    page =
-        document.createElement("div");
-
-    page.id =
-        "aureliaEventPage";
-
-    page.style.position = "fixed";
-    page.style.inset = "0";
-    page.style.zIndex = "99999";
-    page.style.background = "#090807";
-    page.style.color = "#f4efe6";
-    page.style.overflowY = "auto";
-    page.style.display = "none";
-
-    document.body.appendChild(page);
-
-    return page;
-}
-
-
 function showEvent(eventName) {
 
-    let event =
+    const event =
         EVENTS[eventName];
-
-    if (!event) {
-
-        const keys =
-            Object.keys(EVENTS);
-
-        for (
-            let i = 0;
-            i < keys.length;
-            i++
-        ) {
-
-            if (
-                keys[i]
-                    .toLowerCase()
-                    .trim() ===
-                String(eventName)
-                    .toLowerCase()
-                    .trim()
-            ) {
-
-                event =
-                    EVENTS[keys[i]];
-
-                break;
-            }
-        }
-    }
 
     if (!event) {
 
@@ -441,374 +311,2037 @@ function showEvent(eventName) {
 
     selectedEvent = event;
 
-    closeAllModals();
+    /*
+       Use existing modal as a full event page.
+    */
+
+    const modal =
+        document.getElementById(
+            "eventModal"
+        );
+
+    if (!modal) {
+
+        createEventPage(
+            eventName,
+            event
+        );
+
+        return;
+    }
+
+
+    /* Fill existing modal */
+
+    setText(
+        "eventCategory",
+        event.category
+    );
+
+    setText(
+        "eventTitle",
+        eventName
+    );
+
+    setText(
+        "eventDate",
+        event.date
+    );
+
+    setText(
+        "eventTime",
+        event.time
+    );
+
+    setText(
+        "eventLocation",
+        event.location
+    );
+
+    setText(
+        "eventVenue",
+        event.venue
+    );
+
+    setText(
+        "eventDescription",
+        event.description
+    );
+
+    setText(
+        "generalPrice",
+        "₹" + event.price
+    );
+
+    setText(
+        "vipPrice",
+        "₹" + event.vip
+    );
+
+    setText(
+        "vvipPrice",
+        "₹" + event.vvip
+    );
+
+
+    /*
+       Convert existing event modal
+       into full screen.
+    */
+
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.maxWidth = "100%";
+    modal.style.borderRadius = "0";
+
+
+    openModal("eventModal");
+}
+
+
+/* ============================================================
+   CREATE FULL EVENT PAGE IF MODAL DOES NOT EXIST
+   ============================================================ */
+
+function createEventPage(
+    eventName,
+    event
+) {
 
     const page =
-        createEventPage();
+        document.createElement(
+            "div"
+        );
+
+    page.id =
+        "dynamicEventPage";
 
     page.innerHTML = `
 
-        <div style="
-            min-height:100vh;
-            background:#090807;
-            font-family:Inter,Arial,sans-serif;
-        ">
+        <div class="aurelia-event-page">
 
-            <!-- TOP BAR -->
+            <button
+                id="eventBackButton"
+                class="event-back-button">
+                ← Back to Events
+            </button>
 
-            <div style="
-                position:sticky;
-                top:0;
-                z-index:10;
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                padding:20px 6%;
-                background:rgba(9,8,7,.94);
-                border-bottom:1px solid rgba(201,169,110,.25);
-                backdrop-filter:blur(15px);
-            ">
+            <div class="event-page-content">
 
-                <div style="
-                    font-family:Georgia,serif;
-                    font-size:26px;
-                    letter-spacing:5px;
-                    color:#e5c98f;
-                ">
-                    AURELIA
+                <div class="event-page-category">
+                    ${safe(event.category)}
                 </div>
 
+                <h1>
+                    ${safe(eventName)}
+                </h1>
+
+                <p class="event-page-description">
+                    ${safe(event.description)}
+                </p>
+
+                <div class="event-page-details">
+
+                    <div>
+                        <span>DATE</span>
+                        <strong>
+                            ${safe(event.date)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>TIME</span>
+                        <strong>
+                            ${safe(event.time)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>LOCATION</span>
+                        <strong>
+                            ${safe(event.location)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>VENUE</span>
+                        <strong>
+                            ${safe(event.venue)}
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="event-page-prices">
+
+                    <div>
+                        <span>GENERAL</span>
+                        <strong>
+                            ₹${event.price}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>VIP</span>
+                        <strong>
+                            ₹${event.vip}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>VVIP</span>
+                        <strong>
+                            ₹${event.vvip}
+                        </strong>
+                    </div>
+
+                </div>
+
+
                 <button
-                    id="eventBackButton"
-                    style="
-                        padding:12px 22px;
-                        border:1px solid #c9a96e;
-                        background:transparent;
-                        color:#e5c98f;
-                        border-radius:3px;
-                        cursor:pointer;
-                        font-size:13px;
-                        letter-spacing:1px;
-                    "
-                >
-                    ← BACK TO EVENTS
+                    id="dynamicBookButton"
+                    class="btn">
+                    Book Tickets
                 </button>
 
             </div>
 
-
-            <!-- HERO -->
-
-            <section style="
-                min-height:75vh;
-                display:grid;
-                grid-template-columns:1fr 1fr;
-                align-items:center;
-                gap:50px;
-                padding:70px 7%;
-            ">
-
-                <div>
-
-                    <div style="
-                        color:#c9a96e;
-                        letter-spacing:4px;
-                        font-size:12px;
-                        margin-bottom:20px;
-                    ">
-                        ${escapeHTML(event.category)}
-                    </div>
-
-                    <h1 style="
-                        font-family:Georgia,serif;
-                        font-size:clamp(45px,6vw,82px);
-                        line-height:1;
-                        font-weight:400;
-                        margin:0 0 30px;
-                        color:#f4efe6;
-                    ">
-                        ${escapeHTML(eventName)}
-                    </h1>
-
-                    <p style="
-                        color:#aaa39a;
-                        font-size:17px;
-                        line-height:1.8;
-                        max-width:650px;
-                        margin-bottom:35px;
-                    ">
-                        ${escapeHTML(event.description)}
-                    </p>
-
-                    <button
-                        id="eventBookButton"
-                        style="
-                            padding:16px 30px;
-                            border:1px solid #c9a96e;
-                            background:#c9a96e;
-                            color:#090807;
-                            font-weight:700;
-                            letter-spacing:1px;
-                            cursor:pointer;
-                            border-radius:3px;
-                        "
-                    >
-                        BOOK TICKETS
-                    </button>
-
-                </div>
-
-
-                <div style="
-                    height:520px;
-                    border-radius:6px;
-                    overflow:hidden;
-                    border:1px solid rgba(201,169,110,.3);
-                    background:#171512;
-                ">
-
-                    <img
-                        src="${escapeHTML(event.image)}"
-                        alt="${escapeHTML(eventName)}"
-                        style="
-                            width:100%;
-                            height:100%;
-                            object-fit:cover;
-                            display:block;
-                        "
-                        onerror="
-                            this.style.display='none';
-                        "
-                    >
-
-                </div>
-
-            </section>
-
-
-            <!-- EVENT INFORMATION -->
-
-            <section style="
-                padding:80px 7%;
-                background:#11100e;
-                border-top:1px solid rgba(201,169,110,.15);
-                border-bottom:1px solid rgba(201,169,110,.15);
-            ">
-
-                <div style="
-                    max-width:1200px;
-                    margin:auto;
-                ">
-
-                    <div style="
-                        color:#c9a96e;
-                        letter-spacing:3px;
-                        font-size:12px;
-                        margin-bottom:15px;
-                    ">
-                        EVENT INFORMATION
-                    </div>
-
-                    <h2 style="
-                        font-family:Georgia,serif;
-                        font-size:45px;
-                        font-weight:400;
-                        margin:0 0 45px;
-                    ">
-                        Everything You Need To Know
-                    </h2>
-
-
-                    <div style="
-                        display:grid;
-                        grid-template-columns:
-                            repeat(4,1fr);
-                        gap:20px;
-                    ">
-
-                        ${eventInfo(
-                            "DATE",
-                            event.date
-                        )}
-
-                        ${eventInfo(
-                            "TIME",
-                            event.time
-                        )}
-
-                        ${eventInfo(
-                            "LOCATION",
-                            event.location
-                        )}
-
-                        ${eventInfo(
-                            "VENUE",
-                            event.venue
-                        )}
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- TICKET PRICES -->
-
-            <section style="
-                padding:80px 7%;
-                background:#090807;
-            ">
-
-                <div style="
-                    max-width:1200px;
-                    margin:auto;
-                ">
-
-                    <div style="
-                        color:#c9a96e;
-                        letter-spacing:3px;
-                        font-size:12px;
-                        margin-bottom:15px;
-                    ">
-                        TICKET PRICES
-                    </div>
-
-                    <h2 style="
-                        font-family:Georgia,serif;
-                        font-size:45px;
-                        font-weight:400;
-                        margin:0 0 45px;
-                    ">
-                        Choose Your Experience
-                    </h2>
-
-
-                    <div style="
-                        display:grid;
-                        grid-template-columns:
-                            repeat(3,1fr);
-                        gap:25px;
-                    ">
-
-                        ${priceCard(
-                            "GENERAL",
-                            event.price
-                        )}
-
-                        ${priceCard(
-                            "VIP",
-                            event.vip
-                        )}
-
-                        ${priceCard(
-                            "VVIP",
-                            event.vvip
-                        )}
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ABOUT EVENT -->
-
-            <section style="
-                padding:80px 7%;
-                background:#11100e;
-            ">
-
-                <div style="
-                    max-width:900px;
-                    margin:auto;
-                    text-align:center;
-                ">
-
-                    <div style="
-                        color:#c9a96e;
-                        letter-spacing:3px;
-                        font-size:12px;
-                        margin-bottom:20px;
-                    ">
-                        ABOUT THE EVENT
-                    </div>
-
-                    <h2 style="
-                        font-family:Georgia,serif;
-                        font-size:48px;
-                        font-weight:400;
-                        margin-bottom:25px;
-                    ">
-                        ${escapeHTML(eventName)}
-                    </h2>
-
-                    <p style="
-                        color:#aaa39a;
-                        line-height:2;
-                        font-size:17px;
-                    ">
-                        ${escapeHTML(event.description)}
-                    </p>
-
-                    <button
-                        id="eventBookButton2"
-                        style="
-                            margin-top:35px;
-                            padding:16px 35px;
-                            background:#c9a96e;
-                            border:none;
-                            color:#090807;
-                            cursor:pointer;
-                            font-weight:700;
-                            letter-spacing:1px;
-                        "
-                    >
-                        BOOK YOUR TICKET
-                    </button>
-
-                </div>
-
-            </section>
-
-
-            <!-- FOOTER -->
-
-            <footer style="
-                padding:40px 7%;
-                text-align:center;
-                border-top:1px solid rgba(201,169,110,.2);
-                color:#aaa39a;
-            ">
-
-                <div style="
-                    font-family:Georgia,serif;
-                    color:#e5c98f;
-                    letter-spacing:4px;
-                    margin-bottom:10px;
-                ">
-                    AURELIA
-                </div>
-
-                Discover. Book. Experience.
-
-            </footer>
-
         </div>
     `;
 
-    page.style.display = "block";
 
-    document.body.style.overflow = "hidden";
+    document.body.appendChild(page);
 
 
-    const back =
-        document.getElementById(
+    addEventPageStyles();
+
+
+    document
+        .getElementById(
             "eventBackButton"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+                page.remove();
+
+                document.body.style.overflow =
+                    "";
+
+            }
         );
 
-    if (back) {
 
-        back.onclick =
-        
+    document
+        .getElementById(
+            "dynamicBookButton"
+        )
+        .addEventListener(
+            "click",
+            function() {
+
+                page.remove();
+
+                document.body.style.overflow =
+                    "";
+
+                startBooking();
+
+            }
+        );
+
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* ============================================================
+   FULL PAGE EVENT CSS
+   ============================================================ */
+
+function addEventPageStyles() {
+
+    if (
+        document.getElementById(
+            "aureliaEventPageStyles"
+        )
+    ) {
+        return;
+    }
+
+    const style =
+        document.createElement(
+            "style"
+        );
+
+    style.id =
+        "aureliaEventPageStyles";
+
+    style.innerHTML = `
+
+        #dynamicEventPage {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            overflow-y: auto;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(201,169,110,.18),
+                    transparent 35%
+                ),
+                #090807;
+            color: #f4efe6;
+        }
+
+        .aurelia-event-page {
+            min-height: 100vh;
+            padding: 40px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .event-back-button {
+            position: absolute;
+            top: 30px;
+            left: 7%;
+            padding: 12px 20px;
+            background: transparent;
+            border: 1px solid #c9a96e;
+            color: #c9a96e;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .event-back-button:hover {
+            background: #c9a96e;
+            color: #090807;
+        }
+
+        .event-page-content {
+            width: min(1000px, 100%);
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .event-page-category {
+            color: #c9a96e;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .event-page-content h1 {
+            font-size: clamp(42px, 7vw, 90px);
+            margin: 0 0 25px;
+            font-family: "Playfair Display", serif;
+            font-weight: 500;
+        }
+
+        .event-page-description {
+            max-width: 750px;
+            margin: 0 auto 50px;
+            color: #aaa39a;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .event-page-details {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .event-page-details div,
+        .event-page-prices div {
+            padding: 25px 15px;
+            border: 1px solid rgba(201,169,110,.25);
+            background: rgba(255,255,255,.03);
+        }
+
+        .event-page-details span,
+        .event-page-prices span {
+            display: block;
+            color: #8f7040;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .event-page-details strong,
+        .event-page-prices strong {
+            color: #f4efe6;
+            font-size: 16px;
+        }
+
+        .event-page-prices {
+            display: grid;
+            grid-template-columns:
+                repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .event-page-prices strong {
+            color: #c9a96e;
+            font-size: 25px;
+        }
+
+        @media(max-width:700px) {
+
+            .event-page-details {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .event-page-prices {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .event-page-content {
+                padding-top: 110px;
+            }
+        }
+
+    `;
+
+    document.head.appendChild(
+        style
+    );
+}
+
+
+/* ============================================================
+   SIGN IN
+   ============================================================ */
+
+function openLogin() {
+
+    const user =
+        getUser();
+
+    if (user) {
+
+        const logout =
+            confirm(
+                "You are signed in as " +
+                user.name +
+                ".\n\nDo you want to Sign Out?"
+            );
+
+        if (logout) {
+            signOut();
+        }
+
+        return;
+    }
+
+    openModal(
+        "loginModal"
+    );
+}
+
+
+/* ============================================================
+   SIGN UP
+   ============================================================ */
+
+function switchToSignup() {
+
+    closeModal(
+        "loginModal"
+    );
+
+    openModal(
+        "signupModal"
+    );
+}
+
+
+function switchToLogin() {
+
+    closeModal(
+        "signupModal"
+    );
+
+    openModal(
+        "loginModal"
+    );
+}
+
+
+function handleSignup(e) {
+
+    if (e) {
+        e.preventDefault();
+    }
+
+    const name =
+        getValue("signupName");
+
+    const email =
+        getValue("signupEmail")
+            .toLowerCase();
+
+    const password =
+        getValue("signupPassword");
+
+
+    if (
+        !name ||
+        !email ||
+        !password
+    ) {
+
+        alert(
+            "Please fill all fields."
+        );
+
+        return;
+    }
+
+
+    if (
+        password.length < 6
+    ) {
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const exists =
+        accounts.some(
+            function(account) {
+
+                return (
+                    account.email ===
+                    email
+                );
+
+            }
+        );
+
+
+    if (exists) {
+
+        alert(
+            "This email is already registered."
+        );
+
+        return;
+    }
+
+
+    accounts.push({
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    });
+
+
+    saveAccounts(
+        accounts
+    );
+
+
+    saveUser({
+
+        name: name,
+
+        email: email
+
+    });
+
+
+    closeModal(
+        "signupModal"
+    );
+
+
+    updateAuth();
+
+
+    alert(
+        "Account created successfully!"
+    );
+}
+
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+
+function handleLogin(e) {
+
+    if (e) {
+        e.preventDefault();
+    }
+
+    const email =
+        getValue("loginEmail")
+            .toLowerCase();
+
+    const password =
+        getValue("loginPassword");
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        alert(
+            "Please enter email and password."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const account =
+        accounts.find(
+            function(item) {
+
+                return (
+                    item.email ===
+                    email &&
+                    item.password ===
+                    password
+                );
+
+            }
+        );
+
+
+    if (!account) {
+
+        alert(
+            "Invalid email or password."
+        );
+
+        return;
+    }
+
+
+    saveUser({
+
+        name: account.name,
+
+        email: account.email
+
+    });
+
+
+    closeModal(
+        "loginModal"
+    );
+
+
+    updateAuth();
+
+
+    alert(
+        "Sign In successful. Welcome " +
+        account.name +
+        "!"
+    );
+}
+
+
+/* ============================================================
+   SIGN OUT
+   ============================================================ */
+
+function signOut() {
+
+    removeUser();
+
+    updateAuth();
+
+    alert(
+        "You have been signed out."
+    );
+}
+
+
+/* ============================================================
+   UPDATE AUTH UI
+   ============================================================ */
+
+function updateAuth() {
+
+    const user =
+        getUser();
+
+
+    const button =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "userStatus"
+        );
+
+
+    if (button) {
+
+        button.textContent =
+            user
+                ? "Sign Out"
+                : "Sign In";
+    }
+
+
+    if (status) {
+
+        if (user) {
+
+            status.textContent =
+                "Welcome, " +
+                user.name;
+
+            status.style.display =
+                "block";
+
+        } else {
+
+            status.textContent =
+                "";
+
+            status.style.display =
+                "none";
+        }
+    }
+}
+
+
+/* ============================================================
+   BOOKING
+   ============================================================ */
+
+function startBooking() {
+
+    const user =
+        getUser();
+
+
+    if (!user) {
+
+        closeModal(
+            "eventModal"
+        );
+
+        alert(
+            "Please Sign In before booking."
+        );
+
+        openModal(
+            "loginModal"
+        );
+
+        return;
+    }
+
+
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event."
+        );
+
+        return;
+    }
+
+
+    setValue(
+        "bookingEventName",
+        findEventName(
+            selectedEvent
+        )
+    );
+
+
+    setValue(
+        "bookingName",
+        user.name
+    );
+
+
+    setValue(
+        "bookingEmail",
+        user.email
+    );
+
+
+    setValue(
+        "ticketType",
+        "general"
+    );
+
+
+    setValue(
+        "ticketQuantity",
+        "1"
+    );
+
+
+    updateTotal();
+
+
+    closeModal(
+        "eventModal"
+    );
+
+
+    openModal(
+        "bookingModal"
+    );
+}
+
+
+/* ============================================================
+   TOTAL PRICE
+   ============================================================ */
+
+function updateTotal() {
+
+    if (!selectedEvent) {
+        return;
+    }
+
+
+    const type =
+        getValue(
+            "ticketType"
+        );
+
+
+    let quantity =
+        parseInt(
+            getValue(
+                "ticketQuantity"
+            ),
+            10
+        );
+
+
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        quantity = 1;
+
+        setValue(
+            "ticketQuantity",
+            "1"
+        );
+    }
+
+
+    let price =
+        selectedEvent.price;
+
+
+    if (type === "vip") {
+
+        price =
+            selectedEvent.vip;
+    }
+
+
+    if (type === "vvip") {
+
+        price =
+            selectedEvent.vvip;
+    }
+
+
+    setText(
+        "bookingTotal",
+        "₹" +
+        (
+            price *
+            quantity
+        )
+    );
+}
+
+
+/* ============================================================
+   BOOKING SUBMIT
+   ============================================================ */
+
+function handleBooking(e) {
+
+    if (e) {
+        e.preventDefault();
+    }
+
+
+    const user =
+        getUser();
+
+
+    if (!user) {
+
+        closeModal(
+            "bookingModal"
+        );
+
+        openModal(
+            "loginModal"
+        );
+
+        return;
+    }
+
+
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event."
+        );
+
+        return;
+    }
+
+
+    const name =
+        getValue(
+            "bookingName"
+        );
+
+
+    const email =
+        getValue(
+            "bookingEmail"
+        );
+
+
+    const phone =
+        getValue(
+            "bookingPhone"
+        );
+
+
+    const type =
+        getValue(
+            "ticketType"
+        );
+
+
+    const quantity =
+        parseInt(
+            getValue(
+                "ticketQuantity"
+            ),
+            10
+        );
+
+
+    if (
+        !name ||
+        !email ||
+        !phone
+    ) {
+
+        alert(
+            "Please fill all booking details."
+        );
+
+        return;
+    }
+
+
+    let price =
+        selectedEvent.price;
+
+
+    if (type === "vip") {
+
+        price =
+            selectedEvent.vip;
+    }
+
+
+    if (type === "vvip") {
+
+        price =
+            selectedEvent.vvip;
+    }
+
+
+    const total =
+        price *
+        quantity;
+
+
+    const bookingId =
+        "AUR-" +
+        Date.now()
+            .toString()
+            .slice(-8);
+
+
+    const booking = {
+
+        id: bookingId,
+
+        event:
+            findEventName(
+                selectedEvent
+            ),
+
+        date:
+            selectedEvent.date,
+
+        time:
+            selectedEvent.time,
+
+        location:
+            selectedEvent.location,
+
+        venue:
+            selectedEvent.venue,
+
+        name:
+            name,
+
+        email:
+            email,
+
+        phone:
+            phone,
+
+        ticketType:
+            type,
+
+        quantity:
+            quantity,
+
+        total:
+            total
+    };
+
+
+    const bookings =
+        getBookings();
+
+
+    bookings.push(
+        booking
+    );
+
+
+    saveBookings(
+        bookings
+    );
+
+
+    closeModal(
+        "bookingModal"
+    );
+
+
+    setText(
+        "confirmationId",
+        bookingId
+    );
+
+
+    setText(
+        "confirmationEvent",
+        booking.event
+    );
+
+
+    setText(
+        "confirmationDate",
+        selectedEvent.date +
+        " · " +
+        selectedEvent.time
+    );
+
+
+    setText(
+        "confirmationTickets",
+        quantity +
+        " × " +
+        ticketName(
+            type
+        )
+    );
+
+
+    setText(
+        "confirmationTotal",
+        "₹" +
+        total
+    );
+
+
+    openModal(
+        "confirmationModal"
+    );
+
+
+    loadTickets();
+}
+
+
+/* ============================================================
+   MY TICKETS
+   ============================================================ */
+
+function loadTickets() {
+
+    const container =
+        document.getElementById(
+            "ticketsContainer"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    const bookings =
+        getBookings();
+
+
+    if (
+        bookings.length === 0
+    ) {
+
+        container.innerHTML = `
+            <div class="empty-tickets">
+                <h3>No tickets yet</h3>
+                <p>
+                    Book an event and
+                    your tickets will appear here.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    bookings.forEach(
+        function(booking) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "ticket-card";
+
+
+            card.innerHTML = `
+
+                <div class="ticket-info">
+
+                    <small>
+                        AURELIA DIGITAL TICKET
+                    </small>
+
+                    <h3>
+                        ${safe(
+                            booking.event
+                        )}
+                    </h3>
+
+                    <p>
+                        ${safe(
+                            booking.date
+                        )}
+                        ·
+                        ${safe(
+                            booking.time
+                        )}
+                    </p>
+
+                    <p>
+                        ${safe(
+                            booking.location
+                        )}
+                    </p>
+
+                    <p>
+                        ${booking.quantity}
+                        ×
+                        ${safe(
+                            ticketName(
+                                booking.ticketType
+                            )
+                        )}
+                    </p>
+
+                    <strong>
+                        ₹${booking.total}
+                    </strong>
+
+                    <p>
+                        Booking ID:
+                        ${safe(
+                            booking.id
+                        )}
+                    </p>
+
+                    <button
+                        class="btn btn-outline"
+                        data-cancel-ticket="${safe(
+                            booking.id
+                        )}">
+                        Cancel
+                    </button>
+
+                </div>
+            `;
+
+
+            container.appendChild(
+                card
+            );
+        }
+    );
+
+
+    container
+        .querySelectorAll(
+            "[data-cancel-ticket]"
+        )
+        .forEach(
+            function(button) {
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+                        cancelTicket(
+                            button.getAttribute(
+                                "data-cancel-ticket"
+                            )
+                        );
+                    }
+                );
+            }
+        );
+}
+
+
+/* ============================================================
+   CANCEL TICKET
+   ============================================================ */
+
+function cancelTicket(id) {
+
+    if (
+        !confirm(
+            "Cancel this ticket?"
+        )
+    ) {
+        return;
+    }
+
+
+    let bookings =
+        getBookings();
+
+
+    bookings =
+        bookings.filter(
+            function(item) {
+
+                return (
+                    item.id !== id
+                );
+            }
+        );
+
+
+    saveBookings(
+        bookings
+    );
+
+
+    loadTickets();
+
+
+    alert(
+        "Ticket cancelled successfully."
+    );
+}
+
+
+/* ============================================================
+   EVENT BUTTONS
+   IMPORTANT:
+   This automatically connects
+   View Event buttons.
+   ============================================================ */
+
+function setupEventButtons() {
+
+    const cards =
+        document.querySelectorAll(
+            ".event-card"
+        );
+
+
+    cards.forEach(
+        function(card) {
+
+            const heading =
+                card.querySelector(
+                    "h2, h3, h4"
+                );
+
+
+            const button =
+                card.querySelector(
+                    "button, .btn"
+                );
+
+
+            if (
+                !heading ||
+                !button
+            ) {
+                return;
+            }
+
+
+            const title =
+                heading.textContent
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+                    .trim();
+
+
+            if (
+                EVENTS[title]
+            ) {
+
+                button.onclick =
+                    function(e) {
+
+                        e.preventDefault();
+
+                        showEvent(
+                            title
+                        );
+                    };
+            }
+        }
+    );
+}
+
+
+/* ============================================================
+   SIGN IN BUTTON
+   Works even if HTML onclick is missing.
+   ============================================================ */
+
+function setupSignInButton() {
+
+    let button =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    if (!button) {
+
+        const possibleButtons =
+            document.querySelectorAll(
+                "button, a"
+            );
+
+
+        possibleButtons.forEach(
+            function(item) {
+
+                const text =
+                    item.textContent
+                        .trim()
+                        .toLowerCase();
+
+
+                if (
+                    text === "sign in" &&
+                    !button
+                ) {
+
+                    button = item;
+                }
+            }
+        );
+    }
+
+
+    if (!button) {
+
+        console.log(
+            "Sign In button not found."
+        );
+
+        return;
+    }
+
+
+    button.onclick =
+        function(e) {
+
+            e.preventDefault();
+
+            openLogin();
+        };
+}
+
+
+/* ============================================================
+   CONTACT SECTION
+   EMAIL + TWO MOBILE NUMBERS
+   ============================================================ */
+
+function updateContactSection() {
+
+    const contactSection =
+        document.getElementById(
+            "contact"
+        );
+
+
+    if (!contactSection) {
+        return;
+    }
+
+
+    /*
+       Demo contact numbers.
+       Replace these with your actual
+       company/internship contact numbers.
+    */
+
+    const contactHTML = `
+
+        <div class="aurelia-contact-details">
+
+            <div class="contact-item">
+
+                <span>EMAIL</span>
+
+                <a href="mailto:support@aureliaevents.com">
+                    support@aureliaevents.com
+                </a>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <span>PHONE 01</span>
+
+                <a href="tel:+919876543210">
+                    +91 98765 43210
+                </a>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <span>PHONE 02</span>
+
+                <a href="tel:+919123456789">
+                    +91 91234 56789
+                </a>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    const existingEmail =
+        contactSection.querySelector(
+            "a[href^='mailto:']"
+        );
+
+
+    if (existingEmail) {
+
+        existingEmail
+            .closest("p, div")
+            ?.insertAdjacentHTML(
+                "afterend",
+                contactHTML
+            );
+
+    } else {
+
+        contactSection
+            .insertAdjacentHTML(
+                "beforeend",
+                contactHTML
+            );
+    }
+
+
+    addContactStyles();
+}
+
+
+/* ============================================================
+   CONTACT CSS
+   ============================================================ */
+
+function addContactStyles() {
+
+    if (
+        document.getElementById(
+            "aureliaContactStyles"
+        )
+    ) {
+        return;
+    }
+
+
+    const style =
+        document.createElement(
+            "style"
+        );
+
+
+    style.id =
+        "aureliaContactStyles";
+
+
+    style.innerHTML = `
+
+        .aurelia-contact-details {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .contact-item {
+
+            padding: 24px;
+
+            border:
+                1px solid
+                rgba(201,169,110,.25);
+
+            background:
+                rgba(255,255,255,.025);
+
+        }
+
+
+        .contact-item span {
+
+            display: block;
+
+            color: #8f7040;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .contact-item a {
+
+            color: #f4efe6;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+        }
+
+
+        .contact-item a:hover {
+
+            color: #c9a96e;
+
+        }
+
+
+        @media(max-width:700px) {
+
+            .aurelia-contact-details {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    `;
+
+
+    document.head.appendChild(
+        style
+    );
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+function setupNavigation() {
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+            function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function(e) {
+
+                        const id =
+                            link.getAttribute(
+                                "href"
+                            );
+
+
+                        if (
+                            !id ||
+                            id === "#"
+                        ) {
+                            return;
+                        }
+
+
+                        const section =
+                            document.querySelector(
+                                id
+                            );
+
+
+                        if (section) {
+
+                            e.preventDefault();
+
+                            section.scrollIntoView({
+                                behavior:
+                                    "smooth",
+                                block:
+                                    "start"
+                            });
+                        }
+                    }
+                );
+            }
+        );
+}
+
+
+/* ============================================================
+   FORM SETUP
+   ============================================================ */
+
+function setupForms() {
+
+    const login =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    if (login) {
+
+        login.addEventListener(
+            "submit",
+            handleLogin
+        );
+    }
+
+
+    const signup =
+        document.getElementById(
+            "signupForm"
+        );
+
+
+    if (signup) {
+
+        signup.addEventListener(
+            "submit",
+            handleSignup
+        );
+    }
+
+
+    const booking =
+        document.getElementById(
+            "bookingForm"
+        );
+
+
+    if (booking) {
+
+        booking.addEventListener(
+            "submit",
+            handleBooking
+        );
+    }
+
+
+    const type =
+        document.getElementById(
+            "ticketType"
+        );
+
+
+    if (type) {
+
+        type.addEventListener(
+            "change",
+            updateTotal
+        );
+    }
+
+
+    const quantity =
+        document.getElementById(
+            "ticketQuantity"
+        );
+
+
+    if (quantity) {
+
+        quantity.addEventListener(
+            "input",
+            updateTotal
+        );
+
+        quantity.addEventListener(
+            "change",
+            updateTotal
+        );
+    }
+}
+
+
+/* ============================================================
+   MODAL BACKDROP + ESC
+   ============================================================ */
+
+function setupModalClose() {
+
+    document
+        .querySelectorAll(
+            ".modal"
+        )
+        .forEach(
+            function(modal) {
+
+                modal.addEventListener(
+                    "click",
+                    function(e) {
+
+                        if (
+                            e.target ===
+                            modal
+                        ) {
+
+                            closeModal(
+                                modal.id
+                            );
+                        }
+                    }
+                );
+            }
+        );
+
+
+    document.addEventListener(
+        "keydown",
+        function(e) {
+
+            if (
+                e.key === "Escape"
+            ) {
+
+                closeAllModals();
+
+            }
+        }
+    );
+}
+
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+function setText(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (element) {
+
+        element.textContent =
+            value;
+    }
+}
+
+
+function setValue(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (element) {
+
+        element.value =
+            value;
+    }
+}
+
+
+function getValue(id) {
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if (!element) {
+
+        return "";
+    }
+
+
+    return element.value.trim();
+}
+
+
+function safe(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+function findEventName(event) {
+
+    const names =
+        Object.keys(EVENTS);
+
+
+    for (
+        let i = 0;
+        i < names.length;
+        i++
+    ) {
+
+        if (
+            EVENTS[names[i]] ===
+            event
+        ) {
+
+            return names[i];
+        }
+    }
+
+
+    return "";
+}
+
+
+function ticketName(type) {
+
+    if (
+        type === "vip"
+    ) {
+        return "VIP";
+    }
+
+
+    if (
+        type === "vvip"
+    ) {
+        return "VVIP";
+    }
+
+
+    return "General";
+}
+
+
+/* ============================================================
+   INITIALIZE
+   ============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        console.log(
+            "AURELIA JavaScript Loaded Successfully"
+        );
+
+
+        updateAuth();
+
+        setupEventButtons();
+
+        setupSignInButton();
+
+        setupForms();
+
+        setupModalClose();
+
+        setupNavigation();
+
+        updateContactSection();
+
+        loadTickets();
+
+    }
+);
+
+
+/* ============================================================
+   MAKE FUNCTIONS AVAILABLE TO HTML
+   ============================================================ */
+
+window.openLogin =
+    openLogin;
+
+window.closeModal =
+    closeModal;
+
+window.showEvent =
+    showEvent;
+
+window.switchToSignup =
+    switchToSignup;
+
+window.switchToLogin =
+    switchToLogin;
+
+window.handleSignup =
+    handleSignup;
+
+window.handleLogin =
+    handleLogin;
+
+window.signOut =
+    signOut;
+
+window.startBooking =
+    startBooking;
+
+window.updateTotal =
+    updateTotal;
+
+window.handleBooking =
+    handleBooking;
+
+window.loadTickets =
+    loadTickets;
+
+window.cancelTicket =
+    cancelTicket;
+
+console.log(
+    "AURELIA ACTION SYSTEM READY"
+);
