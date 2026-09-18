@@ -1,118 +1,145 @@
-/* =========================================================
-   AURELIA - FULL ACTION JAVASCRIPT
-   ========================================================= */
-
 "use strict";
 
-
 /* =========================================================
-   EVENT DATA
+   AURELIA EVENT BOOKING - FULL WORKING JAVASCRIPT
    ========================================================= */
 
-const events = {
+/* ---------- EVENT DATA ---------- */
 
+const events = {
     velvet: {
-        category: "CLASSICAL NIGHT",
         title: "Velvet Symphony",
+        category: "CLASSICAL NIGHT",
         date: "20 SEP 2026",
         time: "7:00 PM",
         location: "Vijayawada",
         venue: "The Grand Arena",
-        description:
-            "An elegant evening of timeless classical music, refined performances and unforgettable moments.",
-        prices: {
-            general: 799,
-            vip: 1499,
-            vvip: 2499
-        }
+        description: "An elegant evening of classical music and unforgettable performances.",
+        general: 799,
+        vip: 1499,
+        vvip: 2499
     },
 
     noir: {
-        category: "NIGHT EXPERIENCE",
         title: "Midnight Noir",
+        category: "NIGHT EXPERIENCE",
         date: "25 SEP 2026",
         time: "6:30 PM",
         location: "Visakhapatnam",
         venue: "Harbour Convention Centre",
-        description:
-            "Step into a sophisticated night of music, lights and premium entertainment inspired by the mystery of midnight.",
-        prices: {
-            general: 649,
-            vip: 1299,
-            vvip: 2199
-        }
+        description: "A premium midnight experience filled with music, lights and entertainment.",
+        general: 649,
+        vip: 1299,
+        vvip: 2199
     },
 
     aurum: {
-        category: "JAZZ EXPERIENCE",
         title: "Aurum Jazz",
+        category: "JAZZ EXPERIENCE",
         date: "02 OCT 2026",
         time: "7:30 PM",
         location: "Hyderabad",
         venue: "Skyline Arena",
-        description:
-            "Experience golden evenings filled with smooth jazz, live performances and an intimate luxury atmosphere.",
-        prices: {
-            general: 899,
-            vip: 1699,
-            vvip: 2799
-        }
+        description: "Experience an extraordinary night of live jazz and premium entertainment.",
+        general: 899,
+        vip: 1699,
+        vvip: 2799
     },
 
     vintner: {
-        category: "LUXURY EVENING",
         title: "Grand Vintner",
+        category: "LUXURY EVENING",
         date: "05 OCT 2026",
         time: "7:00 PM",
         location: "Bengaluru",
         venue: "The Garden Stage",
-        description:
-            "A premium evening combining sophisticated entertainment, elegant ambience and unforgettable experiences.",
-        prices: {
-            general: 749,
-            vip: 1399,
-            vvip: 2299
-        }
+        description: "A sophisticated luxury evening curated for unforgettable memories.",
+        general: 749,
+        vip: 1499,
+        vvip: 2399
     },
 
     celestial: {
-        category: "ROOFTOP EXPERIENCE",
         title: "Celestial Rooftop",
+        category: "ROOFTOP EXPERIENCE",
         date: "18 OCT 2026",
         time: "8:00 PM",
         location: "Mumbai",
         venue: "Metro Live Arena",
-        description:
-            "Enjoy a breathtaking rooftop experience with city lights, live music and an exclusive atmosphere.",
-        prices: {
-            general: 999,
-            vip: 1899,
-            vvip: 2999
-        }
+        description: "A breathtaking rooftop experience under the stars.",
+        general: 999,
+        vip: 1899,
+        vvip: 2999
     },
 
     imperial: {
-        category: "OPERA NIGHT",
         title: "Imperial Opera",
+        category: "OPERA NIGHT",
         date: "31 OCT 2026",
         time: "6:00 PM",
         location: "Goa",
         venue: "Neon Beach Arena",
-        description:
-            "A spectacular opera-inspired evening featuring grand performances and an unforgettable celebration.",
-        prices: {
-            general: 1099,
-            vip: 1999,
-            vvip: 3499
-        }
-    }
+        description: "An elegant opera night combining art, music and luxury.",
+        general: 1099,
+        vip: 1999,
+        vvip: 3299
+    },
 
+    elysian: {
+        title: "Elysian Nights",
+        category: "SIGNATURE NIGHT",
+        date: "08 NOV 2026",
+        time: "7:30 PM",
+        location: "Chennai",
+        venue: "Grand Convention Hall",
+        description: "A signature AURELIA experience filled with music and entertainment.",
+        general: 899,
+        vip: 1699,
+        vvip: 2799
+    },
+
+    veloura: {
+        title: "Veloura",
+        category: "LUXURY EXPERIENCE",
+        date: "15 NOV 2026",
+        time: "8:00 PM",
+        location: "Pune",
+        venue: "Imperial Convention Centre",
+        description: "A premium luxury experience designed for an unforgettable evening.",
+        general: 1199,
+        vip: 2199,
+        vvip: 3499
+    },
+
+    noirelan: {
+        title: "Noir Élan",
+        category: "MIDNIGHT AFFAIR",
+        date: "21 NOV 2026",
+        time: "9:00 PM",
+        location: "Delhi",
+        venue: "The Grand Pavilion",
+        description: "A stylish midnight affair with music, lights and premium experiences.",
+        general: 1299,
+        vip: 2399,
+        vvip: 3699
+    },
+
+    astral: {
+        title: "Astral Reverie",
+        category: "COSMIC EXPERIENCE",
+        date: "05 DEC 2026",
+        time: "8:30 PM",
+        location: "Kochi",
+        venue: "Waterfront Arena",
+        description: "Step into a cosmic experience created for extraordinary moments.",
+        general: 1099,
+        vip: 2099,
+        vvip: 3299
+    }
 };
 
 
-/* =========================================================
-   CURRENT EVENT
-   ========================================================= */
+/* ---------- GLOBAL VARIABLES ---------- */
 
 let currentEventId = null;
 
@@ -122,45 +149,758 @@ let currentEventId = null;
    ========================================================= */
 
 function getUser() {
-
     try {
-        return JSON.parse(
-            localStorage.getItem("aureliaUser")
-        );
+        return JSON.parse(localStorage.getItem("aureliaUser")) || null;
     } catch (e) {
         return null;
     }
 }
 
+function saveUser(user) {
+    localStorage.setItem("aureliaUser", JSON.stringify(user));
+}
 
-function getBookings() {
+function removeUser() {
+    localStorage.removeItem("aureliaUser");
+}
 
+function getAccounts() {
     try {
-        return JSON.parse(
-            localStorage.getItem("aureliaBookings")
-        ) || [];
+        return JSON.parse(localStorage.getItem("aureliaAccounts")) || [];
     } catch (e) {
         return [];
     }
 }
 
+function saveAccounts(accounts) {
+    localStorage.setItem("aureliaAccounts", JSON.stringify(accounts));
+}
+
+function getBookings() {
+    try {
+        return JSON.parse(localStorage.getItem("aureliaBookings")) || [];
+    } catch (e) {
+        return [];
+    }
+}
 
 function saveBookings(bookings) {
-
-    localStorage.setItem(
-        "aureliaBookings",
-        JSON.stringify(bookings)
-    );
+    localStorage.setItem("aureliaBookings", JSON.stringify(bookings));
 }
 
 
 /* =========================================================
-   MODAL
+   MODAL FUNCTIONS
    ========================================================= */
 
 function openModal(id) {
-
     const modal = document.getElementById(id);
 
-    if (!modal) {
-        console.error("Modal n
+    if (modal) {
+        modal.classList.add("active");
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+}
+
+function closeModal(id) {
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.classList.remove("active");
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+    }
+}
+
+
+/* =========================================================
+   EVENT DETAILS
+   ========================================================= */
+
+function showEvent(eventId) {
+
+    const event = events[eventId];
+
+    if (!event) {
+        alert("Event details not found.");
+        return;
+    }
+
+    currentEventId = eventId;
+
+    setText("eventCategory", event.category);
+    setText("eventTitle", event.title);
+    setText("eventDate", event.date);
+    setText("eventTime", event.time);
+    setText("eventLocation", event.location);
+    setText("eventVenue", event.venue);
+    setText("eventDescription", event.description);
+
+    setText("generalPrice", "₹" + event.general);
+    setText("vipPrice", "₹" + event.vip);
+    setText("vvipPrice", "₹" + event.vvip);
+
+    openModal("eventModal");
+}
+
+
+/* =========================================================
+   SIGN IN
+   ========================================================= */
+
+function openLogin() {
+
+    const user = getUser();
+
+    if (user) {
+
+        const logout = confirm(
+            "You are already signed in as " +
+            user.name +
+            ".\n\nDo you want to Sign Out?"
+        );
+
+        if (logout) {
+            signOut();
+        }
+
+        return;
+    }
+
+    openModal("loginModal");
+}
+
+
+/* =========================================================
+   SIGN UP
+   ========================================================= */
+
+function switchToSignup() {
+
+    closeModal("loginModal");
+    openModal("signupModal");
+}
+
+function switchToLogin() {
+
+    closeModal("signupModal");
+    openModal("loginModal");
+}
+
+
+function handleSignup(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const name = getValue("signupName");
+    const email = getValue("signupEmail").toLowerCase();
+    const password = getValue("signupPassword");
+
+    if (!name || !email || !password) {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must contain at least 6 characters.");
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    const existing = accounts.find(function(account) {
+        return account.email === email;
+    });
+
+    if (existing) {
+        alert("An account with this email already exists.");
+        return;
+    }
+
+    const account = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    accounts.push(account);
+    saveAccounts(accounts);
+
+    saveUser({
+        name: name,
+        email: email
+    });
+
+    alert("Account created successfully!");
+
+    closeModal("signupModal");
+
+    updateAuthUI();
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+function handleLogin(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const email = getValue("loginEmail").toLowerCase();
+    const password = getValue("loginPassword");
+
+    if (!email || !password) {
+        alert("Please enter email and password.");
+        return;
+    }
+
+    const accounts = getAccounts();
+
+    const account = accounts.find(function(item) {
+        return item.email === email &&
+               item.password === password;
+    });
+
+    if (!account) {
+        alert("Invalid email or password.");
+        return;
+    }
+
+    saveUser({
+        name: account.name,
+        email: account.email
+    });
+
+    alert("Sign In successful. Welcome " + account.name + "!");
+
+    closeModal("loginModal");
+
+    updateAuthUI();
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+function signOut() {
+
+    removeUser();
+
+    alert("You have been signed out.");
+
+    updateAuthUI();
+}
+
+
+/* =========================================================
+   UPDATE NAVBAR
+   ========================================================= */
+
+function updateAuthUI() {
+
+    const user = getUser();
+
+    const authButton = document.getElementById("authButton");
+    const userStatus = document.getElementById("userStatus");
+
+    if (authButton) {
+
+        if (user) {
+            authButton.textContent = "Sign Out";
+        } else {
+            authButton.textContent = "Sign In";
+        }
+    }
+
+    if (userStatus) {
+
+        if (user) {
+            userStatus.textContent = "Welcome, " + user.name;
+            userStatus.style.display = "block";
+        } else {
+            userStatus.textContent = "";
+            userStatus.style.display = "none";
+        }
+    }
+}
+
+
+/* =========================================================
+   START BOOKING
+   ========================================================= */
+
+function startBooking() {
+
+    const user = getUser();
+
+    if (!user) {
+
+        alert("Please Sign In before booking a ticket.");
+
+        closeModal("eventModal");
+        openModal("loginModal");
+
+        return;
+    }
+
+    if (!currentEventId || !events[currentEventId]) {
+        alert("Please select an event first.");
+        return;
+    }
+
+    const event = events[currentEventId];
+
+    setValue("bookingEventName", event.title);
+
+    const nameField = document.getElementById("bookingName");
+    const emailField = document.getElementById("bookingEmail");
+
+    if (nameField) {
+        nameField.value = user.name;
+    }
+
+    if (emailField) {
+        emailField.value = user.email;
+    }
+
+    const quantity = document.getElementById("ticketQuantity");
+
+    if (quantity) {
+        quantity.value = 1;
+    }
+
+    const ticketType = document.getElementById("ticketType");
+
+    if (ticketType) {
+        ticketType.value = "general";
+    }
+
+    updateTotal();
+
+    closeModal("eventModal");
+
+    openModal("bookingModal");
+}
+
+
+/* =========================================================
+   CALCULATE TOTAL
+   ========================================================= */
+
+function updateTotal() {
+
+    if (!currentEventId || !events[currentEventId]) {
+        return;
+    }
+
+    const event = events[currentEventId];
+
+    const ticketTypeElement =
+        document.getElementById("ticketType");
+
+    const quantityElement =
+        document.getElementById("ticketQuantity");
+
+    const totalElement =
+        document.getElementById("bookingTotal");
+
+    if (!ticketTypeElement ||
+        !quantityElement ||
+        !totalElement) {
+        return;
+    }
+
+    let price = event.general;
+
+    if (ticketTypeElement.value === "vip") {
+        price = event.vip;
+    }
+
+    if (ticketTypeElement.value === "vvip") {
+        price = event.vvip;
+    }
+
+    let quantity = parseInt(quantityElement.value, 10);
+
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+        quantityElement.value = 1;
+    }
+
+    if (quantity > 10) {
+        quantity = 10;
+        quantityElement.value = 10;
+    }
+
+    const total = price * quantity;
+
+    totalElement.textContent = "₹" + total;
+}
+
+
+/* =========================================================
+   BOOK TICKET
+   ========================================================= */
+
+function handleBooking(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    const user = getUser();
+
+    if (!user) {
+        alert("Please Sign In first.");
+        closeModal("bookingModal");
+        openModal("loginModal");
+        return;
+    }
+
+    const eventData = events[currentEventId];
+
+    if (!eventData) {
+        alert("Please select an event.");
+        return;
+    }
+
+    const name = getValue("bookingName");
+    const email = getValue("bookingEmail");
+    const phone = getValue("bookingPhone");
+    const ticketType = getValue("ticketType");
+    const quantity =
+        parseInt(getValue("ticketQuantity"), 10);
+
+    if (!name || !email || !phone) {
+        alert("Please fill all booking details.");
+        return;
+    }
+
+    if (!quantity || quantity < 1) {
+        alert("Please select at least 1 ticket.");
+        return;
+    }
+
+    let price = eventData.general;
+
+    if (ticketType === "vip") {
+        price = eventData.vip;
+    }
+
+    if (ticketType === "vvip") {
+        price = eventData.vvip;
+    }
+
+    const total = price * quantity;
+
+    const bookingId =
+        "AUR-" +
+        Date.now().toString().slice(-8);
+
+    const booking = {
+
+        id: bookingId,
+
+        eventId: currentEventId,
+
+        event: eventData.title,
+
+        date: eventData.date,
+
+        time: eventData.time,
+
+        location: eventData.location,
+
+        venue: eventData.venue,
+
+        name: name,
+
+        email: email,
+
+        phone: phone,
+
+        ticketType: ticketType,
+
+        quantity: quantity,
+
+        total: total,
+
+        createdAt: new Date().toISOString()
+    };
+
+    const bookings = getBookings();
+
+    bookings.push(booking);
+
+    saveBookings(bookings);
+
+    closeModal("bookingModal");
+
+    setText("confirmationId", bookingId);
+    setText("confirmationEvent", eventData.title);
+    setText(
+        "confirmationDate",
+        eventData.date + " · " + eventData.time
+    );
+    setText(
+        "confirmationTickets",
+        quantity +
+        " × " +
+        formatTicketType(ticketType)
+    );
+    setText("confirmationTotal", "₹" + total);
+
+    openModal("confirmationModal");
+
+    loadTickets();
+}
+
+
+/* =========================================================
+   TICKET TYPE
+   ========================================================= */
+
+function formatTicketType(type) {
+
+    if (type === "vip") {
+        return "VIP";
+    }
+
+    if (type === "vvip") {
+        return "VVIP";
+    }
+
+    return "General";
+}
+
+
+/* =========================================================
+   MY TICKETS
+   ========================================================= */
+
+function loadTickets() {
+
+    const container =
+        document.getElementById("ticketsContainer");
+
+    if (!container) {
+        return;
+    }
+
+    const bookings = getBookings();
+
+    if (bookings.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-tickets">
+                <h3>No tickets yet</h3>
+                <p>Book an event and your tickets will appear here.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    bookings.forEach(function(booking) {
+
+        const ticket = document.createElement("div");
+
+        ticket.className = "ticket-card";
+
+        ticket.innerHTML = `
+            <div class="ticket-info">
+                <small>AURELIA DIGITAL TICKET</small>
+
+                <h3>${escapeHTML(booking.event)}</h3>
+
+                <p>
+                    ${escapeHTML(booking.date)}
+                    ·
+                    ${escapeHTML(booking.time)}
+                </p>
+
+                <p>
+                    ${escapeHTML(booking.location)}
+                    ·
+                    ${escapeHTML(booking.venue)}
+                </p>
+
+                <p>
+                    ${booking.quantity}
+                    ×
+                    ${escapeHTML(formatTicketType(booking.ticketType))}
+                </p>
+
+                <strong>₹${booking.total}</strong>
+
+                <p>Booking ID: ${escapeHTML(booking.id)}</p>
+            </div>
+
+            <button
+                class="btn btn-outline"
+                type="button"
+                onclick="cancelTicket('${booking.id}')">
+                Cancel
+            </button>
+        `;
+
+        container.appendChild(ticket);
+    });
+}
+
+
+/* =========================================================
+   CANCEL TICKET
+   ========================================================= */
+
+function cancelTicket(id) {
+
+    const confirmCancel =
+        confirm("Are you sure you want to cancel this ticket?");
+
+    if (!confirmCancel) {
+        return;
+    }
+
+    let bookings = getBookings();
+
+    bookings = bookings.filter(function(booking) {
+        return booking.id !== id;
+    });
+
+    saveBookings(bookings);
+
+    loadTickets();
+
+    alert("Ticket cancelled successfully.");
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function goToSection(id) {
+
+    const section = document.getElementById(id);
+
+    if (section) {
+
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+
+/* =========================================================
+   AUTOMATIC EVENT BUTTON ACTIONS
+   IMPORTANT:
+   Even if your HTML button does NOT have onclick,
+   this code will make "View Event" buttons work.
+   ========================================================= */
+
+function setupEventButtons() {
+
+    const cards =
+        document.querySelectorAll(".event-card");
+
+    cards.forEach(function(card) {
+
+        const button =
+            card.querySelector("button, .btn");
+
+        const titleElement =
+            card.querySelector("h3");
+
+        if (!button || !titleElement) {
+            return;
+        }
+
+        const title =
+            titleElement.textContent
+                .trim()
+                .toLowerCase();
+
+        let eventId = null;
+
+        if (title === "velvet symphony") {
+            eventId = "velvet";
+        }
+
+        else if (title === "midnight noir") {
+            eventId = "noir";
+        }
+
+        else if (title === "aurum jazz") {
+            eventId = "aurum";
+        }
+
+        else if (title === "grand vintner") {
+            eventId = "vintner";
+        }
+
+        else if (title === "celestial rooftop") {
+            eventId = "celestial";
+        }
+
+        else if (title === "imperial opera") {
+            eventId = "imperial";
+        }
+
+        else if (title === "elysian nights") {
+            eventId = "elysian";
+        }
+
+        else if (title === "veloura") {
+            eventId = "veloura";
+        }
+
+        else if (title === "noir élan" ||
+                 title === "noir elan") {
+            eventId = "noirelan";
+        }
+
+        else if (title === "astral reverie") {
+            eventId = "astral";
+        }
+
+        if (eventId) {
+
+            button.addEventListener("click", function(e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                showEvent(eventId);
+
+            });
+        }
+    });
+}
+
+
+/* =========================================================
+   NAVBAR SIGN IN BUTTON
+   ========================================================= */
+
+function setupAuthButton() {
+
+    const authButton =
+        document.getElementById("authButton");
+
+    if (!authButton) {
+        return;
+    }
+
+    authButton
