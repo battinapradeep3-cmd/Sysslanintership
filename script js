@@ -1,14 +1,18 @@
 "use strict";
 
 /* =========================================================
-   AURELIA EVENT BOOKING - FULL WORKING JAVASCRIPT
+   AURELIA - COMPLETE ACTION JAVASCRIPT
    ========================================================= */
 
-/* ---------- EVENT DATA ---------- */
 
-const events = {
-    velvet: {
-        title: "Velvet Symphony",
+/* =========================
+   EVENT DATA
+========================= */
+
+const EVENTS = {
+
+    "Velvet Symphony": {
+        id: "velvet",
         category: "CLASSICAL NIGHT",
         date: "20 SEP 2026",
         time: "7:00 PM",
@@ -20,34 +24,34 @@ const events = {
         vvip: 2499
     },
 
-    noir: {
-        title: "Midnight Noir",
+    "Midnight Noir": {
+        id: "noir",
         category: "NIGHT EXPERIENCE",
         date: "25 SEP 2026",
         time: "6:30 PM",
         location: "Visakhapatnam",
         venue: "Harbour Convention Centre",
-        description: "A premium midnight experience filled with music, lights and entertainment.",
+        description: "A premium night experience filled with music, lights and entertainment.",
         general: 649,
         vip: 1299,
         vvip: 2199
     },
 
-    aurum: {
-        title: "Aurum Jazz",
+    "Aurum Jazz": {
+        id: "aurum",
         category: "JAZZ EXPERIENCE",
         date: "02 OCT 2026",
         time: "7:30 PM",
         location: "Hyderabad",
         venue: "Skyline Arena",
-        description: "Experience an extraordinary night of live jazz and premium entertainment.",
+        description: "Experience an extraordinary evening of live jazz and premium entertainment.",
         general: 899,
         vip: 1699,
         vvip: 2799
     },
 
-    vintner: {
-        title: "Grand Vintner",
+    "Grand Vintner": {
+        id: "vintner",
         category: "LUXURY EVENING",
         date: "05 OCT 2026",
         time: "7:00 PM",
@@ -59,8 +63,8 @@ const events = {
         vvip: 2399
     },
 
-    celestial: {
-        title: "Celestial Rooftop",
+    "Celestial Rooftop": {
+        id: "celestial",
         category: "ROOFTOP EXPERIENCE",
         date: "18 OCT 2026",
         time: "8:00 PM",
@@ -72,8 +76,8 @@ const events = {
         vvip: 2999
     },
 
-    imperial: {
-        title: "Imperial Opera",
+    "Imperial Opera": {
+        id: "imperial",
         category: "OPERA NIGHT",
         date: "31 OCT 2026",
         time: "6:00 PM",
@@ -85,8 +89,8 @@ const events = {
         vvip: 3299
     },
 
-    elysian: {
-        title: "Elysian Nights",
+    "Elysian Nights": {
+        id: "elysian",
         category: "SIGNATURE NIGHT",
         date: "08 NOV 2026",
         time: "7:30 PM",
@@ -98,8 +102,8 @@ const events = {
         vvip: 2799
     },
 
-    veloura: {
-        title: "Veloura",
+    "Veloura": {
+        id: "veloura",
         category: "LUXURY EXPERIENCE",
         date: "15 NOV 2026",
         time: "8:00 PM",
@@ -111,8 +115,8 @@ const events = {
         vvip: 3499
     },
 
-    noirelan: {
-        title: "Noir Élan",
+    "Noir Élan": {
+        id: "noirelan",
         category: "MIDNIGHT AFFAIR",
         date: "21 NOV 2026",
         time: "9:00 PM",
@@ -124,8 +128,8 @@ const events = {
         vvip: 3699
     },
 
-    astral: {
-        title: "Astral Reverie",
+    "Astral Reverie": {
+        id: "astral",
         category: "COSMIC EXPERIENCE",
         date: "05 DEC 2026",
         time: "8:30 PM",
@@ -139,115 +143,240 @@ const events = {
 };
 
 
-/* ---------- GLOBAL VARIABLES ---------- */
+/* =========================
+   GLOBAL STATE
+========================= */
 
-let currentEventId = null;
+let selectedEvent = null;
 
 
-/* =========================================================
+/* =========================
    LOCAL STORAGE
-   ========================================================= */
+========================= */
 
 function getUser() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaUser")) || null;
-    } catch (e) {
+        return JSON.parse(
+            localStorage.getItem("aureliaUser")
+        );
+    } catch (error) {
         return null;
     }
 }
 
-function saveUser(user) {
-    localStorage.setItem("aureliaUser", JSON.stringify(user));
+
+function setUser(user) {
+    localStorage.setItem(
+        "aureliaUser",
+        JSON.stringify(user)
+    );
 }
 
-function removeUser() {
+
+function logoutUser() {
     localStorage.removeItem("aureliaUser");
 }
 
+
 function getAccounts() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaAccounts")) || [];
-    } catch (e) {
+        return JSON.parse(
+            localStorage.getItem("aureliaAccounts")
+        ) || [];
+    } catch (error) {
         return [];
     }
 }
+
 
 function saveAccounts(accounts) {
-    localStorage.setItem("aureliaAccounts", JSON.stringify(accounts));
+
+    localStorage.setItem(
+        "aureliaAccounts",
+        JSON.stringify(accounts)
+    );
 }
 
+
 function getBookings() {
+
     try {
-        return JSON.parse(localStorage.getItem("aureliaBookings")) || [];
-    } catch (e) {
+        return JSON.parse(
+            localStorage.getItem("aureliaBookings")
+        ) || [];
+    } catch (error) {
         return [];
     }
 }
 
+
 function saveBookings(bookings) {
-    localStorage.setItem("aureliaBookings", JSON.stringify(bookings));
+
+    localStorage.setItem(
+        "aureliaBookings",
+        JSON.stringify(bookings)
+    );
 }
 
 
-/* =========================================================
-   MODAL FUNCTIONS
-   ========================================================= */
+/* =========================
+   MODALS
+========================= */
 
 function openModal(id) {
+
     const modal = document.getElementById(id);
 
-    if (modal) {
-        modal.classList.add("active");
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-    }
-}
-
-function closeModal(id) {
-    const modal = document.getElementById(id);
-
-    if (modal) {
-        modal.classList.remove("active");
-        modal.style.display = "none";
-        document.body.style.overflow = "";
-    }
-}
-
-
-/* =========================================================
-   EVENT DETAILS
-   ========================================================= */
-
-function showEvent(eventId) {
-
-    const event = events[eventId];
-
-    if (!event) {
-        alert("Event details not found.");
+    if (!modal) {
+        console.warn("Modal not found:", id);
         return;
     }
 
-    currentEventId = eventId;
+    modal.classList.add("active");
 
-    setText("eventCategory", event.category);
-    setText("eventTitle", event.title);
-    setText("eventDate", event.date);
-    setText("eventTime", event.time);
-    setText("eventLocation", event.location);
-    setText("eventVenue", event.venue);
-    setText("eventDescription", event.description);
+    modal.style.display = "flex";
 
-    setText("generalPrice", "₹" + event.general);
-    setText("vipPrice", "₹" + event.vip);
-    setText("vvipPrice", "₹" + event.vvip);
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove("active");
+
+    modal.style.display = "none";
+
+    document.body.style.overflow = "";
+}
+
+
+function closeAllModals() {
+
+    document.querySelectorAll(".modal").forEach(function(modal) {
+
+        modal.classList.remove("active");
+
+        modal.style.display = "none";
+    });
+
+    document.body.style.overflow = "";
+}
+
+
+/* =========================
+   SHOW EVENT
+========================= */
+
+function showEvent(eventKey) {
+
+    let event = EVENTS[eventKey];
+
+    if (!event) {
+
+        const normalized =
+            String(eventKey)
+                .toLowerCase()
+                .trim();
+
+        Object.keys(EVENTS).forEach(function(name) {
+
+            if (
+                name.toLowerCase() === normalized
+            ) {
+                event = EVENTS[name];
+            }
+        });
+    }
+
+    if (!event) {
+
+        alert("Event details are not available.");
+
+        return;
+    }
+
+    selectedEvent = event;
+
+    setText(
+        "eventCategory",
+        event.category
+    );
+
+    setText(
+        "eventTitle",
+        event.title || findEventName(event)
+    );
+
+    setText(
+        "eventDate",
+        event.date
+    );
+
+    setText(
+        "eventTime",
+        event.time
+    );
+
+    setText(
+        "eventLocation",
+        event.location
+    );
+
+    setText(
+        "eventVenue",
+        event.venue
+    );
+
+    setText(
+        "eventDescription",
+        event.description
+    );
+
+    setText(
+        "generalPrice",
+        "₹" + event.general
+    );
+
+    setText(
+        "vipPrice",
+        "₹" + event.vip
+    );
+
+    setText(
+        "vvipPrice",
+        "₹" + event.vvip
+    );
 
     openModal("eventModal");
 }
 
 
-/* =========================================================
+function findEventName(event) {
+
+    const names = Object.keys(EVENTS);
+
+    for (let i = 0; i < names.length; i++) {
+
+        if (EVENTS[names[i]] === event) {
+            return names[i];
+        }
+    }
+
+    return "";
+}
+
+
+/* =========================
    SIGN IN
-   ========================================================= */
+========================= */
 
 function openLogin() {
 
@@ -255,13 +384,13 @@ function openLogin() {
 
     if (user) {
 
-        const logout = confirm(
-            "You are already signed in as " +
+        const answer = confirm(
+            "You are signed in as " +
             user.name +
             ".\n\nDo you want to Sign Out?"
         );
 
-        if (logout) {
+        if (answer) {
             signOut();
         }
 
@@ -272,169 +401,217 @@ function openLogin() {
 }
 
 
-/* =========================================================
+/* =========================
    SIGN UP
-   ========================================================= */
+========================= */
 
 function switchToSignup() {
 
     closeModal("loginModal");
+
     openModal("signupModal");
 }
+
 
 function switchToLogin() {
 
     closeModal("signupModal");
+
     openModal("loginModal");
 }
 
 
-function handleSignup(event) {
+function handleSignup(e) {
 
-    if (event) {
-        event.preventDefault();
+    if (e) {
+        e.preventDefault();
     }
 
-    const name = getValue("signupName");
-    const email = getValue("signupEmail").toLowerCase();
-    const password = getValue("signupPassword");
+    const name =
+        getValue("signupName");
+
+    const email =
+        getValue("signupEmail").toLowerCase();
+
+    const password =
+        getValue("signupPassword");
 
     if (!name || !email || !password) {
+
         alert("Please fill all fields.");
+
         return;
     }
 
     if (password.length < 6) {
-        alert("Password must contain at least 6 characters.");
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
         return;
     }
 
     const accounts = getAccounts();
 
-    const existing = accounts.find(function(account) {
+    const exists = accounts.some(function(account) {
+
         return account.email === email;
+
     });
 
-    if (existing) {
-        alert("An account with this email already exists.");
+    if (exists) {
+
+        alert(
+            "An account with this email already exists."
+        );
+
         return;
     }
 
-    const account = {
+    accounts.push({
         name: name,
         email: email,
         password: password
-    };
+    });
 
-    accounts.push(account);
     saveAccounts(accounts);
 
-    saveUser({
+    setUser({
         name: name,
         email: email
     });
 
-    alert("Account created successfully!");
-
     closeModal("signupModal");
 
-    updateAuthUI();
+    updateAuth();
+
+    alert(
+        "Account created successfully!"
+    );
 }
 
 
-/* =========================================================
+/* =========================
    LOGIN
-   ========================================================= */
+========================= */
 
-function handleLogin(event) {
+function handleLogin(e) {
 
-    if (event) {
-        event.preventDefault();
+    if (e) {
+        e.preventDefault();
     }
 
-    const email = getValue("loginEmail").toLowerCase();
-    const password = getValue("loginPassword");
+    const email =
+        getValue("loginEmail").toLowerCase();
+
+    const password =
+        getValue("loginPassword");
 
     if (!email || !password) {
-        alert("Please enter email and password.");
+
+        alert(
+            "Please enter email and password."
+        );
+
         return;
     }
 
     const accounts = getAccounts();
 
     const account = accounts.find(function(item) {
-        return item.email === email &&
-               item.password === password;
+
+        return (
+            item.email === email &&
+            item.password === password
+        );
+
     });
 
     if (!account) {
-        alert("Invalid email or password.");
+
+        alert(
+            "Invalid email or password."
+        );
+
         return;
     }
 
-    saveUser({
+    setUser({
         name: account.name,
         email: account.email
     });
 
-    alert("Sign In successful. Welcome " + account.name + "!");
-
     closeModal("loginModal");
 
-    updateAuthUI();
+    updateAuth();
+
+    alert(
+        "Sign In successful. Welcome " +
+        account.name +
+        "!"
+    );
 }
 
 
-/* =========================================================
-   LOGOUT
-   ========================================================= */
+/* =========================
+   SIGN OUT
+========================= */
 
 function signOut() {
 
-    removeUser();
+    logoutUser();
 
-    alert("You have been signed out.");
+    updateAuth();
 
-    updateAuthUI();
+    alert(
+        "You have been signed out."
+    );
 }
 
 
-/* =========================================================
-   UPDATE NAVBAR
-   ========================================================= */
+/* =========================
+   UPDATE SIGN IN BUTTON
+========================= */
 
-function updateAuthUI() {
+function updateAuth() {
 
     const user = getUser();
 
-    const authButton = document.getElementById("authButton");
-    const userStatus = document.getElementById("userStatus");
+    const button =
+        document.getElementById("authButton");
 
-    if (authButton) {
+    const status =
+        document.getElementById("userStatus");
 
-        if (user) {
-            authButton.textContent = "Sign Out";
-        } else {
-            authButton.textContent = "Sign In";
-        }
+    if (button) {
+
+        button.textContent =
+            user ? "Sign Out" : "Sign In";
     }
 
-    if (userStatus) {
+    if (status) {
 
         if (user) {
-            userStatus.textContent = "Welcome, " + user.name;
-            userStatus.style.display = "block";
+
+            status.textContent =
+                "Welcome, " + user.name;
+
+            status.style.display = "block";
+
         } else {
-            userStatus.textContent = "";
-            userStatus.style.display = "none";
+
+            status.textContent = "";
+
+            status.style.display = "none";
         }
     }
 }
 
 
-/* =========================================================
-   START BOOKING
-   ========================================================= */
+/* =========================
+   BOOKING
+========================= */
 
 function startBooking() {
 
@@ -442,45 +619,53 @@ function startBooking() {
 
     if (!user) {
 
-        alert("Please Sign In before booking a ticket.");
-
         closeModal("eventModal");
+
+        alert(
+            "Please Sign In before booking."
+        );
+
         openModal("loginModal");
 
         return;
     }
 
-    if (!currentEventId || !events[currentEventId]) {
-        alert("Please select an event first.");
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event first."
+        );
+
         return;
     }
 
-    const event = events[currentEventId];
+    const eventName =
+        findEventName(selectedEvent);
 
-    setValue("bookingEventName", event.title);
+    setValue(
+        "bookingEventName",
+        eventName
+    );
 
-    const nameField = document.getElementById("bookingName");
-    const emailField = document.getElementById("bookingEmail");
+    setValue(
+        "bookingName",
+        user.name
+    );
 
-    if (nameField) {
-        nameField.value = user.name;
-    }
+    setValue(
+        "bookingEmail",
+        user.email
+    );
 
-    if (emailField) {
-        emailField.value = user.email;
-    }
+    setValue(
+        "ticketQuantity",
+        "1"
+    );
 
-    const quantity = document.getElementById("ticketQuantity");
-
-    if (quantity) {
-        quantity.value = 1;
-    }
-
-    const ticketType = document.getElementById("ticketType");
-
-    if (ticketType) {
-        ticketType.value = "general";
-    }
+    setValue(
+        "ticketType",
+        "general"
+    );
 
     updateTotal();
 
@@ -490,135 +675,168 @@ function startBooking() {
 }
 
 
-/* =========================================================
-   CALCULATE TOTAL
-   ========================================================= */
+/* =========================
+   TOTAL
+========================= */
 
 function updateTotal() {
 
-    if (!currentEventId || !events[currentEventId]) {
+    if (!selectedEvent) {
         return;
     }
 
-    const event = events[currentEventId];
+    const type =
+        getValue("ticketType") || "general";
 
-    const ticketTypeElement =
-        document.getElementById("ticketType");
+    let quantity =
+        parseInt(
+            getValue("ticketQuantity"),
+            10
+        );
 
-    const quantityElement =
-        document.getElementById("ticketQuantity");
-
-    const totalElement =
-        document.getElementById("bookingTotal");
-
-    if (!ticketTypeElement ||
-        !quantityElement ||
-        !totalElement) {
-        return;
-    }
-
-    let price = event.general;
-
-    if (ticketTypeElement.value === "vip") {
-        price = event.vip;
-    }
-
-    if (ticketTypeElement.value === "vvip") {
-        price = event.vvip;
-    }
-
-    let quantity = parseInt(quantityElement.value, 10);
-
-    if (isNaN(quantity) || quantity < 1) {
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
         quantity = 1;
-        quantityElement.value = 1;
+        setValue("ticketQuantity", "1");
     }
 
     if (quantity > 10) {
+
         quantity = 10;
-        quantityElement.value = 10;
+
+        setValue(
+            "ticketQuantity",
+            "10"
+        );
     }
 
-    const total = price * quantity;
+    let price =
+        selectedEvent.general;
 
-    totalElement.textContent = "₹" + total;
+    if (type === "vip") {
+        price = selectedEvent.vip;
+    }
+
+    if (type === "vvip") {
+        price = selectedEvent.vvip;
+    }
+
+    const total =
+        price * quantity;
+
+    setText(
+        "bookingTotal",
+        "₹" + total
+    );
 }
 
 
-/* =========================================================
-   BOOK TICKET
-   ========================================================= */
+/* =========================
+   CONFIRM BOOKING
+========================= */
 
-function handleBooking(event) {
+function handleBooking(e) {
 
-    if (event) {
-        event.preventDefault();
+    if (e) {
+        e.preventDefault();
     }
 
     const user = getUser();
 
     if (!user) {
-        alert("Please Sign In first.");
+
         closeModal("bookingModal");
+
         openModal("loginModal");
+
         return;
     }
 
-    const eventData = events[currentEventId];
+    if (!selectedEvent) {
 
-    if (!eventData) {
-        alert("Please select an event.");
+        alert(
+            "Please select an event."
+        );
+
         return;
     }
 
-    const name = getValue("bookingName");
-    const email = getValue("bookingEmail");
-    const phone = getValue("bookingPhone");
-    const ticketType = getValue("ticketType");
+    const name =
+        getValue("bookingName");
+
+    const email =
+        getValue("bookingEmail");
+
+    const phone =
+        getValue("bookingPhone");
+
+    const type =
+        getValue("ticketType") || "general";
+
     const quantity =
-        parseInt(getValue("ticketQuantity"), 10);
+        parseInt(
+            getValue("ticketQuantity"),
+            10
+        );
 
     if (!name || !email || !phone) {
-        alert("Please fill all booking details.");
+
+        alert(
+            "Please fill all booking details."
+        );
+
         return;
     }
 
-    if (!quantity || quantity < 1) {
-        alert("Please select at least 1 ticket.");
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        alert(
+            "Please select ticket quantity."
+        );
+
         return;
     }
 
-    let price = eventData.general;
+    let price =
+        selectedEvent.general;
 
-    if (ticketType === "vip") {
-        price = eventData.vip;
+    if (type === "vip") {
+        price = selectedEvent.vip;
     }
 
-    if (ticketType === "vvip") {
-        price = eventData.vvip;
+    if (type === "vvip") {
+        price = selectedEvent.vvip;
     }
 
-    const total = price * quantity;
+    const total =
+        price * quantity;
 
     const bookingId =
         "AUR-" +
-        Date.now().toString().slice(-8);
+        Date.now()
+            .toString()
+            .slice(-8);
 
     const booking = {
 
         id: bookingId,
 
-        eventId: currentEventId,
+        event: findEventName(
+            selectedEvent
+        ),
 
-        event: eventData.title,
+        date: selectedEvent.date,
 
-        date: eventData.date,
+        time: selectedEvent.time,
 
-        time: eventData.time,
+        location: selectedEvent.location,
 
-        location: eventData.location,
-
-        venue: eventData.venue,
+        venue: selectedEvent.venue,
 
         name: name,
 
@@ -626,16 +844,15 @@ function handleBooking(event) {
 
         phone: phone,
 
-        ticketType: ticketType,
+        ticketType: type,
 
         quantity: quantity,
 
-        total: total,
-
-        createdAt: new Date().toISOString()
+        total: total
     };
 
-    const bookings = getBookings();
+    const bookings =
+        getBookings();
 
     bookings.push(booking);
 
@@ -643,19 +860,34 @@ function handleBooking(event) {
 
     closeModal("bookingModal");
 
-    setText("confirmationId", bookingId);
-    setText("confirmationEvent", eventData.title);
+    setText(
+        "confirmationId",
+        bookingId
+    );
+
+    setText(
+        "confirmationEvent",
+        booking.event
+    );
+
     setText(
         "confirmationDate",
-        eventData.date + " · " + eventData.time
+        selectedEvent.date +
+        " · " +
+        selectedEvent.time
     );
+
     setText(
         "confirmationTickets",
         quantity +
         " × " +
-        formatTicketType(ticketType)
+        ticketName(type)
     );
-    setText("confirmationTotal", "₹" + total);
+
+    setText(
+        "confirmationTotal",
+        "₹" + total
+    );
 
     openModal("confirmationModal");
 
@@ -663,11 +895,11 @@ function handleBooking(event) {
 }
 
 
-/* =========================================================
-   TICKET TYPE
-   ========================================================= */
+/* =========================
+   TICKET NAME
+========================= */
 
-function formatTicketType(type) {
+function ticketName(type) {
 
     if (type === "vip") {
         return "VIP";
@@ -681,27 +913,32 @@ function formatTicketType(type) {
 }
 
 
-/* =========================================================
+/* =========================
    MY TICKETS
-   ========================================================= */
+========================= */
 
 function loadTickets() {
 
     const container =
-        document.getElementById("ticketsContainer");
+        document.getElementById(
+            "ticketsContainer"
+        );
 
     if (!container) {
         return;
     }
 
-    const bookings = getBookings();
+    const bookings =
+        getBookings();
 
     if (bookings.length === 0) {
 
         container.innerHTML = `
             <div class="empty-tickets">
                 <h3>No tickets yet</h3>
-                <p>Book an event and your tickets will appear here.</p>
+                <p>
+                    Your booked tickets will appear here.
+                </p>
             </div>
         `;
 
@@ -712,195 +949,219 @@ function loadTickets() {
 
     bookings.forEach(function(booking) {
 
-        const ticket = document.createElement("div");
+        const card =
+            document.createElement("div");
 
-        ticket.className = "ticket-card";
+        card.className =
+            "ticket-card";
 
-        ticket.innerHTML = `
+        card.innerHTML = `
+
             <div class="ticket-info">
-                <small>AURELIA DIGITAL TICKET</small>
 
-                <h3>${escapeHTML(booking.event)}</h3>
+                <small>
+                    AURELIA DIGITAL TICKET
+                </small>
+
+                <h3>
+                    ${safe(booking.event)}
+                </h3>
 
                 <p>
-                    ${escapeHTML(booking.date)}
+                    ${safe(booking.date)}
                     ·
-                    ${escapeHTML(booking.time)}
+                    ${safe(booking.time)}
                 </p>
 
                 <p>
-                    ${escapeHTML(booking.location)}
-                    ·
-                    ${escapeHTML(booking.venue)}
+                    ${safe(booking.location)}
                 </p>
 
                 <p>
                     ${booking.quantity}
                     ×
-                    ${escapeHTML(formatTicketType(booking.ticketType))}
+                    ${safe(ticketName(
+                        booking.ticketType
+                    ))}
                 </p>
 
-                <strong>₹${booking.total}</strong>
+                <strong>
+                    ₹${booking.total}
+                </strong>
 
-                <p>Booking ID: ${escapeHTML(booking.id)}</p>
+                <p>
+                    Booking ID:
+                    ${safe(booking.id)}
+                </p>
+
             </div>
 
             <button
-                class="btn btn-outline"
                 type="button"
-                onclick="cancelTicket('${booking.id}')">
+                class="btn btn-outline"
+                data-cancel-id="${safe(
+                    booking.id
+                )}">
                 Cancel
             </button>
         `;
 
-        container.appendChild(ticket);
+        container.appendChild(card);
     });
+
+    container
+        .querySelectorAll(
+            "[data-cancel-id]"
+        )
+        .forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    cancelTicket(
+                        button.getAttribute(
+                            "data-cancel-id"
+                        )
+                    );
+
+                }
+            );
+        });
 }
 
 
-/* =========================================================
+/* =========================
    CANCEL TICKET
-   ========================================================= */
+========================= */
 
 function cancelTicket(id) {
 
-    const confirmCancel =
-        confirm("Are you sure you want to cancel this ticket?");
+    const answer =
+        confirm(
+            "Are you sure you want to cancel this ticket?"
+        );
 
-    if (!confirmCancel) {
+    if (!answer) {
         return;
     }
 
-    let bookings = getBookings();
+    let bookings =
+        getBookings();
 
-    bookings = bookings.filter(function(booking) {
-        return booking.id !== id;
-    });
+    bookings =
+        bookings.filter(function(item) {
+
+            return item.id !== id;
+
+        });
 
     saveBookings(bookings);
 
     loadTickets();
 
-    alert("Ticket cancelled successfully.");
+    alert(
+        "Ticket cancelled successfully."
+    );
 }
 
 
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-function goToSection(id) {
-
-    const section = document.getElementById(id);
-
-    if (section) {
-
-        section.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    }
-}
-
-
-/* =========================================================
-   AUTOMATIC EVENT BUTTON ACTIONS
-   IMPORTANT:
-   Even if your HTML button does NOT have onclick,
-   this code will make "View Event" buttons work.
-   ========================================================= */
+/* =========================
+   EVENT BUTTONS
+   THIS FIXES BUTTON ACTIONS
+========================= */
 
 function setupEventButtons() {
 
     const cards =
-        document.querySelectorAll(".event-card");
+        document.querySelectorAll(
+            ".event-card"
+        );
 
     cards.forEach(function(card) {
 
+        const heading =
+            card.querySelector(
+                "h2, h3, h4"
+            );
+
         const button =
-            card.querySelector("button, .btn");
+            card.querySelector(
+                "button, .btn, a"
+            );
 
-        const titleElement =
-            card.querySelector("h3");
-
-        if (!button || !titleElement) {
+        if (!heading || !button) {
             return;
         }
 
         const title =
-            titleElement.textContent
-                .trim()
-                .toLowerCase();
+            heading.textContent
+                .replace(/\s+/g, " ")
+                .trim();
 
-        let eventId = null;
+        const event =
+            findEventByTitle(title);
 
-        if (title === "velvet symphony") {
-            eventId = "velvet";
+        if (!event) {
+            return;
         }
 
-        else if (title === "midnight noir") {
-            eventId = "noir";
-        }
+        /* Remove old inline action */
+        button.removeAttribute(
+            "onclick"
+        );
 
-        else if (title === "aurum jazz") {
-            eventId = "aurum";
-        }
-
-        else if (title === "grand vintner") {
-            eventId = "vintner";
-        }
-
-        else if (title === "celestial rooftop") {
-            eventId = "celestial";
-        }
-
-        else if (title === "imperial opera") {
-            eventId = "imperial";
-        }
-
-        else if (title === "elysian nights") {
-            eventId = "elysian";
-        }
-
-        else if (title === "veloura") {
-            eventId = "veloura";
-        }
-
-        else if (title === "noir élan" ||
-                 title === "noir elan") {
-            eventId = "noirelan";
-        }
-
-        else if (title === "astral reverie") {
-            eventId = "astral";
-        }
-
-        if (eventId) {
-
-            button.addEventListener("click", function(e) {
+        button.addEventListener(
+            "click",
+            function(e) {
 
                 e.preventDefault();
-                e.stopPropagation();
 
-                showEvent(eventId);
+                showEvent(
+                    findEventName(event)
+                );
 
-            });
-        }
+            }
+        );
     });
 }
 
 
-/* =========================================================
-   NAVBAR SIGN IN BUTTON
-   ========================================================= */
+function findEventByTitle(title) {
+
+    const cleanTitle =
+        title
+            .toLowerCase()
+            .trim();
+
+    const names =
+        Object.keys(EVENTS);
+
+    for (
+        let i = 0;
+        i < names.length;
+        i++
+    ) {
+
+        if (
+            names[i]
+                .toLowerCase()
+                .trim() === cleanTitle
+        ) {
+
+            return EVENTS[names[i]];
+        }
+    }
+
+    return null;
+}
+
+
+/* =========================
+   SIGN IN BUTTON ACTION
+========================= */
 
 function setupAuthButton() {
 
-    const authButton =
-        document.getElementById("authButton");
-
-    if (!authButton) {
-        return;
-    }
-
-    authButton
+    const button =
+        document.getElementB
