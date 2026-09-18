@@ -2,12 +2,7 @@
 
 /* ============================================================
    AURELIA EVENT BOOKING WEBSITE
-   FULL ACTION JAVASCRIPT
-   ============================================================ */
-
-
-/* ============================================================
-   EVENT DATA
+   UPDATED JAVASCRIPT — PART 1
    ============================================================ */
 
 const EVENTS = {
@@ -145,9 +140,10 @@ const EVENTS = {
 
 
 /* ============================================================
-   GLOBAL VARIABLE
+   GLOBAL VARIABLES
    ============================================================ */
 
+let selectedEventName = null;
 let selectedEvent = null;
 
 
@@ -156,7 +152,6 @@ let selectedEvent = null;
    ============================================================ */
 
 function getUser() {
-
     try {
         return JSON.parse(
             localStorage.getItem("aureliaUser")
@@ -168,7 +163,6 @@ function getUser() {
 
 
 function saveUser(user) {
-
     localStorage.setItem(
         "aureliaUser",
         JSON.stringify(user)
@@ -177,28 +171,22 @@ function saveUser(user) {
 
 
 function removeUser() {
-
     localStorage.removeItem("aureliaUser");
 }
 
 
 function getAccounts() {
-
     try {
-
         return JSON.parse(
             localStorage.getItem("aureliaAccounts")
         ) || [];
-
     } catch (error) {
-
         return [];
     }
 }
 
 
 function saveAccounts(accounts) {
-
     localStorage.setItem(
         "aureliaAccounts",
         JSON.stringify(accounts)
@@ -207,26 +195,67 @@ function saveAccounts(accounts) {
 
 
 function getBookings() {
-
     try {
-
         return JSON.parse(
             localStorage.getItem("aureliaBookings")
         ) || [];
-
     } catch (error) {
-
         return [];
     }
 }
 
 
 function saveBookings(bookings) {
-
     localStorage.setItem(
         "aureliaBookings",
         JSON.stringify(bookings)
     );
+}
+
+
+/* ============================================================
+   BASIC HELPERS
+   ============================================================ */
+
+function getValue(id) {
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return "";
+    }
+
+    return element.value.trim();
+}
+
+
+function setValue(id, value) {
+    const element =
+        document.getElementById(id);
+
+    if (element) {
+        element.value = value;
+    }
+}
+
+
+function setText(id, value) {
+    const element =
+        document.getElementById(id);
+
+    if (element) {
+        element.textContent = value;
+    }
+}
+
+
+function escapeHTML(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
@@ -240,20 +269,18 @@ function openModal(id) {
         document.getElementById(id);
 
     if (!modal) {
-
-        console.log(
+        console.warn(
             "Modal not found:",
             id
         );
-
         return;
     }
 
     modal.style.display = "flex";
-
     modal.classList.add("active");
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 }
 
 
@@ -267,10 +294,10 @@ function closeModal(id) {
     }
 
     modal.style.display = "none";
-
     modal.classList.remove("active");
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 }
 
 
@@ -280,19 +307,22 @@ function closeAllModals() {
         .querySelectorAll(".modal")
         .forEach(function(modal) {
 
-            modal.style.display = "none";
+            modal.style.display =
+                "none";
 
             modal.classList.remove(
                 "active"
             );
+
         });
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 }
 
 
 /* ============================================================
-   FULL EVENT PAGE
+   VIEW EVENT
    ============================================================ */
 
 function showEvent(eventName) {
@@ -303,110 +333,45 @@ function showEvent(eventName) {
     if (!event) {
 
         alert(
-            "Event details not found."
+            "Event details not available."
         );
 
         return;
     }
 
-    selectedEvent = event;
+    selectedEventName =
+        eventName;
 
-    /*
-       Use existing modal as a full event page.
-    */
+    selectedEvent =
+        event;
 
-    const modal =
-        document.getElementById(
-            "eventModal"
-        );
+    closeAllModals();
 
-    if (!modal) {
-
-        createEventPage(
-            eventName,
-            event
-        );
-
-        return;
-    }
-
-
-    /* Fill existing modal */
-
-    setText(
-        "eventCategory",
-        event.category
+    createFullEventPage(
+        eventName,
+        event
     );
-
-    setText(
-        "eventTitle",
-        eventName
-    );
-
-    setText(
-        "eventDate",
-        event.date
-    );
-
-    setText(
-        "eventTime",
-        event.time
-    );
-
-    setText(
-        "eventLocation",
-        event.location
-    );
-
-    setText(
-        "eventVenue",
-        event.venue
-    );
-
-    setText(
-        "eventDescription",
-        event.description
-    );
-
-    setText(
-        "generalPrice",
-        "₹" + event.price
-    );
-
-    setText(
-        "vipPrice",
-        "₹" + event.vip
-    );
-
-    setText(
-        "vvipPrice",
-        "₹" + event.vvip
-    );
-
-
-    /*
-       Convert existing event modal
-       into full screen.
-    */
-
-    modal.style.width = "100%";
-    modal.style.height = "100%";
-    modal.style.maxWidth = "100%";
-    modal.style.borderRadius = "0";
-
-
-    openModal("eventModal");
 }
 
 
 /* ============================================================
-   CREATE FULL EVENT PAGE IF MODAL DOES NOT EXIST
+   FULL SCREEN EVENT PAGE
    ============================================================ */
 
-function createEventPage(
+function createFullEventPage(
     eventName,
     event
 ) {
+
+    const oldPage =
+        document.getElementById(
+            "aureliaFullEventPage"
+        );
+
+    if (oldPage) {
+        oldPage.remove();
+    }
+
 
     const page =
         document.createElement(
@@ -414,82 +379,98 @@ function createEventPage(
         );
 
     page.id =
-        "dynamicEventPage";
+        "aureliaFullEventPage";
+
 
     page.innerHTML = `
 
-        <div class="aurelia-event-page">
+        <div class="aurelia-event-screen">
 
             <button
-                id="eventBackButton"
-                class="event-back-button">
+                type="button"
+                class="aurelia-event-back"
+                id="aureliaEventBack">
                 ← Back to Events
             </button>
 
-            <div class="event-page-content">
 
-                <div class="event-page-category">
-                    ${safe(event.category)}
+            <div class="aurelia-event-inner">
+
+                <div class="aurelia-event-category">
+                    ${escapeHTML(event.category)}
                 </div>
 
-                <h1>
-                    ${safe(eventName)}
+
+                <h1 class="aurelia-event-title">
+                    ${escapeHTML(eventName)}
                 </h1>
 
-                <p class="event-page-description">
-                    ${safe(event.description)}
+
+                <p class="aurelia-event-description">
+                    ${escapeHTML(event.description)}
                 </p>
 
-                <div class="event-page-details">
 
-                    <div>
+                <div class="aurelia-event-information">
+
+                    <div class="aurelia-event-info-box">
                         <span>DATE</span>
                         <strong>
-                            ${safe(event.date)}
+                            ${escapeHTML(event.date)}
                         </strong>
                     </div>
 
-                    <div>
+
+                    <div class="aurelia-event-info-box">
                         <span>TIME</span>
                         <strong>
-                            ${safe(event.time)}
+                            ${escapeHTML(event.time)}
                         </strong>
                     </div>
 
-                    <div>
+
+                    <div class="aurelia-event-info-box">
                         <span>LOCATION</span>
                         <strong>
-                            ${safe(event.location)}
+                            ${escapeHTML(event.location)}
                         </strong>
                     </div>
 
-                    <div>
+
+                    <div class="aurelia-event-info-box">
                         <span>VENUE</span>
                         <strong>
-                            ${safe(event.venue)}
+                            ${escapeHTML(event.venue)}
                         </strong>
                     </div>
 
                 </div>
 
 
-                <div class="event-page-prices">
+                <h3 class="aurelia-ticket-heading">
+                    SELECT YOUR EXPERIENCE
+                </h3>
 
-                    <div>
+
+                <div class="aurelia-event-prices">
+
+                    <div class="aurelia-price-box">
                         <span>GENERAL</span>
                         <strong>
                             ₹${event.price}
                         </strong>
                     </div>
 
-                    <div>
+
+                    <div class="aurelia-price-box">
                         <span>VIP</span>
                         <strong>
                             ₹${event.vip}
                         </strong>
                     </div>
 
-                    <div>
+
+                    <div class="aurelia-price-box">
                         <span>VVIP</span>
                         <strong>
                             ₹${event.vvip}
@@ -500,9 +481,10 @@ function createEventPage(
 
 
                 <button
-                    id="dynamicBookButton"
-                    class="btn">
-                    Book Tickets
+                    type="button"
+                    id="aureliaBookEvent"
+                    class="aurelia-book-button">
+                    Book Tickets →
                 </button>
 
             </div>
@@ -513,13 +495,12 @@ function createEventPage(
 
     document.body.appendChild(page);
 
-
-    addEventPageStyles();
+    addEventPageCSS();
 
 
     document
         .getElementById(
-            "eventBackButton"
+            "aureliaEventBack"
         )
         .addEventListener(
             "click",
@@ -536,7 +517,7 @@ function createEventPage(
 
     document
         .getElementById(
-            "dynamicBookButton"
+            "aureliaBookEvent"
         )
         .addEventListener(
             "click",
@@ -559,164 +540,246 @@ function createEventPage(
 
 
 /* ============================================================
-   FULL PAGE EVENT CSS
+   EVENT PAGE CSS
    ============================================================ */
 
-function addEventPageStyles() {
+function addEventPageCSS() {
 
     if (
         document.getElementById(
-            "aureliaEventPageStyles"
+            "aureliaEventPageCSS"
         )
     ) {
         return;
     }
+
 
     const style =
         document.createElement(
             "style"
         );
 
+
     style.id =
-        "aureliaEventPageStyles";
+        "aureliaEventPageCSS";
 
-    style.innerHTML = `
 
-        #dynamicEventPage {
+    style.textContent = `
+
+        #aureliaFullEventPage {
             position: fixed;
             inset: 0;
-            z-index: 99999;
+            z-index: 999999;
             overflow-y: auto;
             background:
                 radial-gradient(
-                    circle at top right,
+                    circle at 85% 10%,
                     rgba(201,169,110,.18),
                     transparent 35%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    rgba(201,169,110,.08),
+                    transparent 30%
                 ),
                 #090807;
             color: #f4efe6;
         }
 
-        .aurelia-event-page {
+
+        .aurelia-event-screen {
             min-height: 100vh;
-            padding: 40px 7%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 100px 7% 70px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .event-back-button {
-            position: absolute;
-            top: 30px;
-            left: 7%;
-            padding: 12px 20px;
-            background: transparent;
+
+        .aurelia-event-back {
+            position: fixed;
+            top: 28px;
+            left: 6%;
+            z-index: 10;
+            padding: 12px 22px;
             border: 1px solid #c9a96e;
-            color: #c9a96e;
             border-radius: 30px;
+            background: rgba(9,8,7,.8);
+            color: #c9a96e;
             cursor: pointer;
             font-size: 14px;
+            transition: .3s ease;
         }
 
-        .event-back-button:hover {
+
+        .aurelia-event-back:hover {
             background: #c9a96e;
             color: #090807;
         }
 
-        .event-page-content {
-            width: min(1000px, 100%);
-            padding: 80px 30px;
+
+        .aurelia-event-inner {
+            width: min(1050px, 100%);
             text-align: center;
         }
 
-        .event-page-category {
+
+        .aurelia-event-category {
             color: #c9a96e;
-            letter-spacing: 4px;
-            font-size: 13px;
+            letter-spacing: 5px;
+            font-size: 12px;
             margin-bottom: 20px;
         }
 
-        .event-page-content h1 {
-            font-size: clamp(42px, 7vw, 90px);
-            margin: 0 0 25px;
+
+        .aurelia-event-title {
+            margin: 0;
             font-family: "Playfair Display", serif;
+            font-size: clamp(45px, 8vw, 95px);
+            line-height: 1;
             font-weight: 500;
         }
 
-        .event-page-description {
-            max-width: 750px;
-            margin: 0 auto 50px;
+
+        .aurelia-event-description {
+            width: min(760px, 100%);
+            margin: 35px auto 55px;
             color: #aaa39a;
             line-height: 1.8;
             font-size: 17px;
         }
 
-        .event-page-details {
+
+        .aurelia-event-information {
             display: grid;
             grid-template-columns:
                 repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 14px;
+            margin-bottom: 35px;
         }
 
-        .event-page-details div,
-        .event-page-prices div {
+
+        .aurelia-event-info-box {
             padding: 25px 15px;
-            border: 1px solid rgba(201,169,110,.25);
-            background: rgba(255,255,255,.03);
+            border: 1px solid
+                rgba(201,169,110,.25);
+            background:
+                rgba(255,255,255,.025);
         }
 
-        .event-page-details span,
-        .event-page-prices span {
+
+        .aurelia-event-info-box span,
+        .aurelia-price-box span {
             display: block;
             color: #8f7040;
-            font-size: 11px;
             letter-spacing: 2px;
+            font-size: 10px;
             margin-bottom: 10px;
         }
 
-        .event-page-details strong,
-        .event-page-prices strong {
+
+        .aurelia-event-info-box strong {
+            display: block;
             color: #f4efe6;
-            font-size: 16px;
+            font-size: 15px;
         }
 
-        .event-page-prices {
+
+        .aurelia-ticket-heading {
+            color: #aaa39a;
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 400;
+            margin: 35px 0 18px;
+        }
+
+
+        .aurelia-event-prices {
             display: grid;
             grid-template-columns:
                 repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
+            gap: 14px;
+            margin-bottom: 35px;
         }
 
-        .event-page-prices strong {
+
+        .aurelia-price-box {
+            padding: 25px;
+            border: 1px solid
+                rgba(201,169,110,.35);
+            background:
+                rgba(201,169,110,.04);
+        }
+
+
+        .aurelia-price-box strong {
             color: #c9a96e;
-            font-size: 25px;
+            font-size: 28px;
         }
 
-        @media(max-width:700px) {
 
-            .event-page-details {
+        .aurelia-book-button {
+            padding: 16px 35px;
+            border: 1px solid #c9a96e;
+            background: #c9a96e;
+            color: #090807;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+
+        .aurelia-book-button:hover {
+            background: #e5c98f;
+            transform: translateY(-2px);
+        }
+
+
+        @media(max-width:800px) {
+
+            .aurelia-event-information {
                 grid-template-columns:
                     repeat(2, 1fr);
             }
 
-            .event-page-prices {
+            .aurelia-event-prices {
                 grid-template-columns:
                     1fr;
             }
 
-            .event-page-content {
-                padding-top: 110px;
+        }
+
+
+        @media(max-width:500px) {
+
+            .aurelia-event-screen {
+                padding: 100px 20px 50px;
             }
+
+            .aurelia-event-information {
+                grid-template-columns: 1fr;
+            }
+
+            .aurelia-event-title {
+                font-size: 48px;
+            }
+
+            .aurelia-event-description {
+                font-size: 15px;
+            }
+
+            .aurelia-event-back {
+                left: 20px;
+            }
+
         }
 
     `;
 
-    document.head.appendChild(
-        style
-    );
+
+    document.head.appendChild(style);
 }
 
 
@@ -729,21 +792,25 @@ function openLogin() {
     const user =
         getUser();
 
+
     if (user) {
 
-        const logout =
+        const shouldLogout =
             confirm(
                 "You are signed in as " +
                 user.name +
                 ".\n\nDo you want to Sign Out?"
             );
 
-        if (logout) {
+
+        if (shouldLogout) {
             signOut();
         }
 
+
         return;
     }
+
 
     openModal(
         "loginModal"
@@ -752,7 +819,7 @@ function openLogin() {
 
 
 /* ============================================================
-   SIGN UP
+   LOGIN / SIGNUP SWITCH
    ============================================================ */
 
 function switchToSignup() {
@@ -779,18 +846,25 @@ function switchToLogin() {
 }
 
 
-function handleSignup(e) {
+/* ============================================================
+   SIGNUP
+   ============================================================ */
 
-    if (e) {
-        e.preventDefault();
+function handleSignup(event) {
+
+    if (event) {
+        event.preventDefault();
     }
+
 
     const name =
         getValue("signupName");
 
+
     const email =
         getValue("signupEmail")
             .toLowerCase();
+
 
     const password =
         getValue("signupPassword");
@@ -826,7 +900,7 @@ function handleSignup(e) {
         getAccounts();
 
 
-    const exists =
+    const alreadyExists =
         accounts.some(
             function(account) {
 
@@ -839,7 +913,7 @@ function handleSignup(e) {
         );
 
 
-    if (exists) {
+    if (alreadyExists) {
 
         alert(
             "This email is already registered."
@@ -879,7 +953,7 @@ function handleSignup(e) {
     );
 
 
-    updateAuth();
+    updateAuthUI();
 
 
     alert(
@@ -892,234 +966,60 @@ function handleSignup(e) {
    LOGIN
    ============================================================ */
 
-function handleLogin(e) {
-
-    if (e) {
-        e.preventDefault();
-    }
-
-    const email =
-        getValue("loginEmail")
-            .toLowerCase();
-
-    const password =
-        getValue("loginPassword");
-
-
-    if (
-        !email ||
-        !password
-    ) {
-
-        alert(
-            "Please enter email and password."
-        );
-
-        return;
-    }
-
-
-    const accounts =
-        getAccounts();
-
-
-    const account =
-        accounts.find(
-            function(item) {
-
-                return (
-                    item.email ===
-                    email &&
-                    item.password ===
-                    password
-                );
-
-            }
-        );
-
-
-    if (!account) {
-
-        alert(
-            "Invalid email or password."
-        );
-
-        return;
-    }
-
-
-    saveUser({
-
-        name: account.name,
-
-        email: account.email
-
-    });
-
-
-    closeModal(
-        "loginModal"
-    );
-
-
-    updateAuth();
-
-
-    alert(
-        "Sign In successful. Welcome " +
-        account.name +
-        "!"
-    );
-}
-
-
-/* ============================================================
-   SIGN OUT
-   ============================================================ */
-
-function signOut() {
-
-    removeUser();
-
-    updateAuth();
-
-    alert(
-        "You have been signed out."
-    );
-}
-
-
-/* ============================================================
-   UPDATE AUTH UI
-   ============================================================ */
-
-function updateAuth() {
-
-    const user =
-        getUser();
-
-
-    const button =
-        document.getElementById(
-            "authButton"
-        );
-
-
-    const status =
-        document.getElementById(
-            "userStatus"
-        );
-
-
-    if (button) {
-
-        button.textContent =
-            user
-                ? "Sign Out"
-                : "Sign In";
-    }
-
-
-    if (status) {
-
-        if (user) {
-
-            status.textContent =
-                "Welcome, " +
-                user.name;
-
-            status.style.display =
-                "block";
-
-        } else {
-
-            status.textContent =
-                "";
-
-            status.style.display =
-                "none";
-        }
-    }
-}
-
-
-/* ============================================================
+function handleLogin/* ============================================================
    BOOKING
    ============================================================ */
 
 function startBooking() {
 
-    const user =
-        getUser();
-
+    const user = getUser();
 
     if (!user) {
 
-        closeModal(
-            "eventModal"
-        );
-
         alert(
-            "Please Sign In before booking."
+            "Please Sign In before booking a ticket."
         );
 
-        openModal(
-            "loginModal"
-        );
+        openLogin();
 
         return;
     }
-
 
     if (!selectedEvent) {
 
         alert(
-            "Please select an event."
+            "Please select an event first."
         );
 
         return;
     }
 
-
     setValue(
         "bookingEventName",
-        findEventName(
-            selectedEvent
-        )
+        selectedEventName
     );
-
 
     setValue(
         "bookingName",
         user.name
     );
 
-
     setValue(
         "bookingEmail",
         user.email
     );
-
 
     setValue(
         "ticketType",
         "general"
     );
 
-
     setValue(
         "ticketQuantity",
         "1"
     );
 
-
-    updateTotal();
-
-
-    closeModal(
-        "eventModal"
-    );
-
+    updateBookingTotal();
 
     openModal(
         "bookingModal"
@@ -1128,30 +1028,23 @@ function startBooking() {
 
 
 /* ============================================================
-   TOTAL PRICE
+   UPDATE BOOKING TOTAL
    ============================================================ */
 
-function updateTotal() {
+function updateBookingTotal() {
 
     if (!selectedEvent) {
         return;
     }
 
-
-    const type =
-        getValue(
-            "ticketType"
-        );
-
+    let type =
+        getValue("ticketType");
 
     let quantity =
         parseInt(
-            getValue(
-                "ticketQuantity"
-            ),
+            getValue("ticketQuantity"),
             10
         );
-
 
     if (
         isNaN(quantity) ||
@@ -1166,32 +1059,23 @@ function updateTotal() {
         );
     }
 
-
     let price =
         selectedEvent.price;
 
-
     if (type === "vip") {
-
         price =
             selectedEvent.vip;
     }
 
-
     if (type === "vvip") {
-
         price =
             selectedEvent.vvip;
     }
 
-
     setText(
         "bookingTotal",
         "₹" +
-        (
-            price *
-            quantity
-        )
+        (price * quantity)
     );
 }
 
@@ -1200,16 +1084,14 @@ function updateTotal() {
    BOOKING SUBMIT
    ============================================================ */
 
-function handleBooking(e) {
+function handleBooking(event) {
 
-    if (e) {
-        e.preventDefault();
+    if (event) {
+        event.preventDefault();
     }
-
 
     const user =
         getUser();
-
 
     if (!user) {
 
@@ -1217,13 +1099,10 @@ function handleBooking(e) {
             "bookingModal"
         );
 
-        openModal(
-            "loginModal"
-        );
+        openLogin();
 
         return;
     }
-
 
     if (!selectedEvent) {
 
@@ -1234,39 +1113,23 @@ function handleBooking(e) {
         return;
     }
 
-
     const name =
-        getValue(
-            "bookingName"
-        );
-
+        getValue("bookingName");
 
     const email =
-        getValue(
-            "bookingEmail"
-        );
-
+        getValue("bookingEmail");
 
     const phone =
-        getValue(
-            "bookingPhone"
-        );
+        getValue("bookingPhone");
 
-
-    const type =
-        getValue(
-            "ticketType"
-        );
-
+    const ticketType =
+        getValue("ticketType");
 
     const quantity =
         parseInt(
-            getValue(
-                "ticketQuantity"
-            ),
+            getValue("ticketQuantity"),
             10
         );
-
 
     if (
         !name ||
@@ -1281,29 +1144,39 @@ function handleBooking(e) {
         return;
     }
 
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        alert(
+            "Please enter a valid ticket quantity."
+        );
+
+        return;
+    }
 
     let price =
         selectedEvent.price;
 
-
-    if (type === "vip") {
+    if (
+        ticketType === "vip"
+    ) {
 
         price =
             selectedEvent.vip;
     }
 
-
-    if (type === "vvip") {
+    if (
+        ticketType === "vvip"
+    ) {
 
         price =
             selectedEvent.vvip;
     }
 
-
     const total =
-        price *
-        quantity;
-
+        price * quantity;
 
     const bookingId =
         "AUR-" +
@@ -1311,78 +1184,61 @@ function handleBooking(e) {
             .toString()
             .slice(-8);
 
-
     const booking = {
 
         id: bookingId,
 
-        event:
-            findEventName(
-                selectedEvent
-            ),
+        event: selectedEventName,
 
-        date:
-            selectedEvent.date,
+        date: selectedEvent.date,
 
-        time:
-            selectedEvent.time,
+        time: selectedEvent.time,
 
-        location:
-            selectedEvent.location,
+        location: selectedEvent.location,
 
-        venue:
-            selectedEvent.venue,
+        venue: selectedEvent.venue,
 
-        name:
-            name,
+        name: name,
 
-        email:
-            email,
+        email: email,
 
-        phone:
-            phone,
+        phone: phone,
 
-        ticketType:
-            type,
+        ticketType: ticketType,
 
-        quantity:
-            quantity,
+        quantity: quantity,
 
-        total:
-            total
+        total: total
+
     };
-
 
     const bookings =
         getBookings();
-
 
     bookings.push(
         booking
     );
 
-
     saveBookings(
         bookings
     );
-
 
     closeModal(
         "bookingModal"
     );
 
 
+    /* Confirmation */
+
     setText(
         "confirmationId",
         bookingId
     );
 
-
     setText(
         "confirmationEvent",
-        booking.event
+        selectedEventName
     );
-
 
     setText(
         "confirmationDate",
@@ -1391,16 +1247,14 @@ function handleBooking(e) {
         selectedEvent.time
     );
 
-
     setText(
         "confirmationTickets",
         quantity +
         " × " +
-        ticketName(
-            type
+        formatTicketType(
+            ticketType
         )
     );
-
 
     setText(
         "confirmationTotal",
@@ -1408,13 +1262,29 @@ function handleBooking(e) {
         total
     );
 
-
     openModal(
         "confirmationModal"
     );
 
-
     loadTickets();
+}
+
+
+/* ============================================================
+   TICKET TYPE
+   ============================================================ */
+
+function formatTicketType(type) {
+
+    if (type === "vip") {
+        return "VIP";
+    }
+
+    if (type === "vvip") {
+        return "VVIP";
+    }
+
+    return "General";
 }
 
 
@@ -1429,15 +1299,12 @@ function loadTickets() {
             "ticketsContainer"
         );
 
-
     if (!container) {
         return;
     }
 
-
     const bookings =
         getBookings();
-
 
     if (
         bookings.length === 0
@@ -1447,8 +1314,8 @@ function loadTickets() {
             <div class="empty-tickets">
                 <h3>No tickets yet</h3>
                 <p>
-                    Book an event and
-                    your tickets will appear here.
+                    Book an event and your tickets
+                    will appear here.
                 </p>
             </div>
         `;
@@ -1456,9 +1323,7 @@ function loadTickets() {
         return;
     }
 
-
     container.innerHTML = "";
-
 
     bookings.forEach(
         function(booking) {
@@ -1468,10 +1333,8 @@ function loadTickets() {
                     "div"
                 );
 
-
             card.className =
                 "ticket-card";
-
 
             card.innerHTML = `
 
@@ -1482,23 +1345,23 @@ function loadTickets() {
                     </small>
 
                     <h3>
-                        ${safe(
+                        ${escapeHTML(
                             booking.event
                         )}
                     </h3>
 
                     <p>
-                        ${safe(
+                        ${escapeHTML(
                             booking.date
                         )}
                         ·
-                        ${safe(
+                        ${escapeHTML(
                             booking.time
                         )}
                     </p>
 
                     <p>
-                        ${safe(
+                        ${escapeHTML(
                             booking.location
                         )}
                     </p>
@@ -1506,8 +1369,8 @@ function loadTickets() {
                     <p>
                         ${booking.quantity}
                         ×
-                        ${safe(
-                            ticketName(
+                        ${escapeHTML(
+                            formatTicketType(
                                 booking.ticketType
                             )
                         )}
@@ -1519,22 +1382,22 @@ function loadTickets() {
 
                     <p>
                         Booking ID:
-                        ${safe(
+                        ${escapeHTML(
                             booking.id
                         )}
                     </p>
 
                     <button
+                        type="button"
                         class="btn btn-outline"
-                        data-cancel-ticket="${safe(
+                        data-cancel-ticket="${escapeHTML(
                             booking.id
                         )}">
-                        Cancel
+                        Cancel Ticket
                     </button>
 
                 </div>
             `;
-
 
             container.appendChild(
                 card
@@ -1559,8 +1422,10 @@ function loadTickets() {
                                 "data-cancel-ticket"
                             )
                         );
+
                     }
                 );
+
             }
         );
 }
@@ -1572,37 +1437,34 @@ function loadTickets() {
 
 function cancelTicket(id) {
 
-    if (
-        !confirm(
-            "Cancel this ticket?"
-        )
-    ) {
+    const confirmCancel =
+        confirm(
+            "Are you sure you want to cancel this ticket?"
+        );
+
+    if (!confirmCancel) {
         return;
     }
-
 
     let bookings =
         getBookings();
 
-
     bookings =
         bookings.filter(
-            function(item) {
+            function(booking) {
 
                 return (
-                    item.id !== id
+                    booking.id !== id
                 );
+
             }
         );
-
 
     saveBookings(
         bookings
     );
 
-
     loadTickets();
-
 
     alert(
         "Ticket cancelled successfully."
@@ -1611,10 +1473,7 @@ function cancelTicket(id) {
 
 
 /* ============================================================
-   EVENT BUTTONS
-   IMPORTANT:
-   This automatically connects
-   View Event buttons.
+   VIEW EVENT BUTTONS
    ============================================================ */
 
 function setupEventButtons() {
@@ -1624,21 +1483,18 @@ function setupEventButtons() {
             ".event-card"
         );
 
-
     cards.forEach(
         function(card) {
 
             const heading =
                 card.querySelector(
-                    "h2, h3, h4"
+                    "h1, h2, h3, h4, h5, h6"
                 );
-
 
             const button =
                 card.querySelector(
-                    "button, .btn"
+                    "button, .btn, a"
                 );
-
 
             if (
                 !heading ||
@@ -1646,7 +1502,6 @@ function setupEventButtons() {
             ) {
                 return;
             }
-
 
             const title =
                 heading.textContent
@@ -1656,21 +1511,122 @@ function setupEventButtons() {
                     )
                     .trim();
 
+            if (
+                EVENTS[title]
+            ) {
+
+                /*
+                 * Remove normal link behaviour.
+                 * Open AURELIA full event page.
+                 */
+
+                button.addEventListener(
+                    "click",
+                    function(event) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        showEvent(
+                            title
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+    );
+}
+
+
+/* ============================================================
+   EXTRA EVENT BUTTON FALLBACK
+   Works even if card class changes.
+   ============================================================ */
+
+function setupEventButtonFallback() {
+
+    const buttons =
+        document.querySelectorAll(
+            "button, a"
+        );
+
+    buttons.forEach(
+        function(button) {
+
+            const text =
+                button.textContent
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+                    .trim()
+                    .toLowerCase();
+
+            if (
+                text !== "view event"
+            ) {
+                return;
+            }
+
+            if (
+                button.dataset.aureliaReady ===
+                "true"
+            ) {
+                return;
+            }
+
+            let card =
+                button.closest(
+                    ".event-card, article, .card"
+                );
+
+            if (!card) {
+                return;
+            }
+
+            const heading =
+                card.querySelector(
+                    "h1, h2, h3, h4, h5, h6"
+                );
+
+            if (!heading) {
+                return;
+            }
+
+            const title =
+                heading.textContent
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+                    .trim();
 
             if (
                 EVENTS[title]
             ) {
 
-                button.onclick =
-                    function(e) {
+                button.dataset.aureliaReady =
+                    "true";
 
-                        e.preventDefault();
+                button.addEventListener(
+                    "click",
+                    function(event) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
 
                         showEvent(
                             title
                         );
-                    };
+
+                    }
+                );
+
             }
+
         }
     );
 }
@@ -1678,157 +1634,103 @@ function setupEventButtons() {
 
 /* ============================================================
    SIGN IN BUTTON
-   Works even if HTML onclick is missing.
    ============================================================ */
 
 function setupSignInButton() {
 
-    let button =
+    const button =
         document.getElementById(
             "authButton"
         );
 
-
     if (!button) {
 
-        const possibleButtons =
-            document.querySelectorAll(
-                "button, a"
-            );
-
-
-        possibleButtons.forEach(
-            function(item) {
-
-                const text =
-                    item.textContent
-                        .trim()
-                        .toLowerCase();
-
-
-                if (
-                    text === "sign in" &&
-                    !button
-                ) {
-
-                    button = item;
-                }
-            }
-        );
-    }
-
-
-    if (!button) {
-
-        console.log(
-            "Sign In button not found."
+        console.warn(
+            "authButton not found."
         );
 
         return;
     }
 
+    button.addEventListener(
+        "click",
+        function(event) {
 
-    button.onclick =
-        function(e) {
-
-            e.preventDefault();
+            event.preventDefault();
+            event.stopPropagation();
 
             openLogin();
-        };
+
+        }
+    );
 }
 
 
 /* ============================================================
-   CONTACT SECTION
-   EMAIL + TWO MOBILE NUMBERS
+   CONTACT DETAILS
    ============================================================ */
 
-function updateContactSection() {
+function setupContactDetails() {
 
-    const contactSection =
+    const contact =
         document.getElementById(
             "contact"
         );
 
-
-    if (!contactSection) {
+    if (!contact) {
         return;
     }
 
+    if (
+        document.getElementById(
+            "aureliaPhoneContacts"
+        )
+    ) {
+        return;
+    }
 
-    /*
-       Demo contact numbers.
-       Replace these with your actual
-       company/internship contact numbers.
-    */
+    const wrapper =
+        document.createElement(
+            "div"
+        );
 
-    const contactHTML = `
+    wrapper.id =
+        "aureliaPhoneContacts";
 
-        <div class="aurelia-contact-details">
+    wrapper.innerHTML = `
 
-            <div class="contact-item">
+        <div class="aurelia-contact-box">
 
-                <span>EMAIL</span>
+            <span>
+                PHONE 01
+            </span>
 
-                <a href="mailto:support@aureliaevents.com">
-                    support@aureliaevents.com
-                </a>
+            <a href="tel:+919876543210">
+                +91 98765 43210
+            </a>
 
-            </div>
-
-
-            <div class="contact-item">
-
-                <span>PHONE 01</span>
-
-                <a href="tel:+919876543210">
-                    +91 98765 43210
-                </a>
-
-            </div>
+        </div>
 
 
-            <div class="contact-item">
+        <div class="aurelia-contact-box">
 
-                <span>PHONE 02</span>
+            <span>
+                PHONE 02
+            </span>
 
-                <a href="tel:+919123456789">
-                    +91 91234 56789
-                </a>
-
-            </div>
+            <a href="tel:+919123456789">
+                +91 91234 56789
+            </a>
 
         </div>
 
     `;
 
+    contact.appendChild(
+        wrapper
+    );
 
-    const existingEmail =
-        contactSection.querySelector(
-            "a[href^='mailto:']"
-        );
-
-
-    if (existingEmail) {
-
-        existingEmail
-            .closest("p, div")
-            ?.insertAdjacentHTML(
-                "afterend",
-                contactHTML
-            );
-
-    } else {
-
-        contactSection
-            .insertAdjacentHTML(
-                "beforeend",
-                contactHTML
-            );
-    }
-
-
-    addContactStyles();
+    addContactCSS();
 }
 
 
@@ -1836,102 +1738,74 @@ function updateContactSection() {
    CONTACT CSS
    ============================================================ */
 
-function addContactStyles() {
+function addContactCSS() {
 
     if (
         document.getElementById(
-            "aureliaContactStyles"
+            "aureliaContactCSS"
         )
     ) {
         return;
     }
-
 
     const style =
         document.createElement(
             "style"
         );
 
-
     style.id =
-        "aureliaContactStyles";
+        "aureliaContactCSS";
 
+    style.textContent = `
 
-    style.innerHTML = `
-
-        .aurelia-contact-details {
-
+        #aureliaPhoneContacts {
             display: grid;
-
             grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 18px;
-
+                repeat(2, minmax(0, 1fr));
+            gap: 16px;
             margin-top: 25px;
-
         }
 
 
-        .contact-item {
-
-            padding: 24px;
-
-            border:
-                1px solid
+        .aurelia-contact-box {
+            padding: 22px;
+            border: 1px solid
                 rgba(201,169,110,.25);
-
             background:
                 rgba(255,255,255,.025);
-
         }
 
 
-        .contact-item span {
-
+        .aurelia-contact-box span {
             display: block;
-
             color: #8f7040;
-
-            font-size: 11px;
-
+            font-size: 10px;
             letter-spacing: 2px;
-
             margin-bottom: 10px;
-
         }
 
 
-        .contact-item a {
-
+        .aurelia-contact-box a {
             color: #f4efe6;
-
             text-decoration: none;
-
             font-size: 16px;
-
         }
 
 
-        .contact-item a:hover {
-
+        .aurelia-contact-box a:hover {
             color: #c9a96e;
-
         }
 
 
-        @media(max-width:700px) {
+        @media(max-width:600px) {
 
-            .aurelia-contact-details {
-
+            #aureliaPhoneContacts {
                 grid-template-columns: 1fr;
-
             }
 
         }
 
     `;
-
 
     document.head.appendChild(
         style
@@ -1954,31 +1828,28 @@ function setupNavigation() {
 
                 link.addEventListener(
                     "click",
-                    function(e) {
+                    function(event) {
 
-                        const id =
+                        const target =
                             link.getAttribute(
                                 "href"
                             );
 
-
                         if (
-                            !id ||
-                            id === "#"
+                            !target ||
+                            target === "#"
                         ) {
                             return;
                         }
 
-
                         const section =
                             document.querySelector(
-                                id
+                                target
                             );
-
 
                         if (section) {
 
-                            e.preventDefault();
+                            event.preventDefault();
 
                             section.scrollIntoView({
                                 behavior:
@@ -1986,77 +1857,80 @@ function setupNavigation() {
                                 block:
                                     "start"
                             });
+
                         }
+
                     }
                 );
+
             }
         );
 }
 
 
 /* ============================================================
-   FORM SETUP
+   FORMS
    ============================================================ */
 
 function setupForms() {
 
-    const login =
+    const loginForm =
         document.getElementById(
             "loginForm"
         );
 
+    if (loginForm) {
 
-    if (login) {
-
-        login.addEventListener(
+        loginForm.addEventListener(
             "submit",
             handleLogin
         );
+
     }
 
 
-    const signup =
+    const signupForm =
         document.getElementById(
             "signupForm"
         );
 
+    if (signupForm) {
 
-    if (signup) {
-
-        signup.addEventListener(
+        signupForm.addEventListener(
             "submit",
             handleSignup
         );
+
     }
 
 
-    const booking =
+    const bookingForm =
         document.getElementById(
             "bookingForm"
         );
 
+    if (bookingForm) {
 
-    if (booking) {
-
-        booking.addEventListener(
+        bookingForm.addEventListener(
             "submit",
             handleBooking
         );
+
     }
 
 
-    const type =
+    const ticketType =
         document.getElementById(
             "ticketType"
         );
 
+    if (ticketType) {
 
-    if (type) {
-
-        type.addEventListener(
+        ticketType.addEventListener(
             "change",
-            updateTotal
+            updateBookingTotal
         );
+
     }
 
 
@@ -2065,27 +1939,27 @@ function setupForms() {
             "ticketQuantity"
         );
 
-
     if (quantity) {
 
         quantity.addEventListener(
             "input",
-            updateTotal
+            updateBookingTotal
         );
 
         quantity.addEventListener(
             "change",
-            updateTotal
+            updateBookingTotal
         );
+
     }
 }
 
 
 /* ============================================================
-   MODAL BACKDROP + ESC
+   MODAL CLOSE
    ============================================================ */
 
-function setupModalClose() {
+function setupModalActions() {
 
     document
         .querySelectorAll(
@@ -2096,178 +1970,61 @@ function setupModalClose() {
 
                 modal.addEventListener(
                     "click",
-                    function(e) {
+                    function(event) {
 
                         if (
-                            e.target ===
+                            event.target ===
                             modal
                         ) {
 
                             closeModal(
                                 modal.id
                             );
+
                         }
+
                     }
                 );
+
             }
         );
 
 
     document.addEventListener(
         "keydown",
-        function(e) {
+        function(event) {
 
             if (
-                e.key === "Escape"
+                event.key ===
+                "Escape"
             ) {
+
+                const eventPage =
+                    document.getElementById(
+                        "aureliaFullEventPage"
+                    );
+
+                if (eventPage) {
+
+                    eventPage.remove();
+
+                    document.body.style.overflow =
+                        "";
+
+                    return;
+                }
 
                 closeAllModals();
 
             }
+
         }
     );
 }
 
 
 /* ============================================================
-   HELPERS
-   ============================================================ */
-
-function setText(
-    id,
-    value
-) {
-
-    const element =
-        document.getElementById(
-            id
-        );
-
-
-    if (element) {
-
-        element.textContent =
-            value;
-    }
-}
-
-
-function setValue(
-    id,
-    value
-) {
-
-    const element =
-        document.getElementById(
-            id
-        );
-
-
-    if (element) {
-
-        element.value =
-            value;
-    }
-}
-
-
-function getValue(id) {
-
-    const element =
-        document.getElementById(
-            id
-        );
-
-
-    if (!element) {
-
-        return "";
-    }
-
-
-    return element.value.trim();
-}
-
-
-function safe(value) {
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-}
-
-
-function findEventName(event) {
-
-    const names =
-        Object.keys(EVENTS);
-
-
-    for (
-        let i = 0;
-        i < names.length;
-        i++
-    ) {
-
-        if (
-            EVENTS[names[i]] ===
-            event
-        ) {
-
-            return names[i];
-        }
-    }
-
-
-    return "";
-}
-
-
-function ticketName(type) {
-
-    if (
-        type === "vip"
-    ) {
-        return "VIP";
-    }
-
-
-    if (
-        type === "vvip"
-    ) {
-        return "VVIP";
-    }
-
-
-    return "General";
-}
-
-
-/* ============================================================
-   INITIALIZE
+   INITIALIZATION
    ============================================================ */
 
 document.addEventListener(
@@ -2275,73 +2032,29 @@ document.addEventListener(
     function() {
 
         console.log(
-            "AURELIA JavaScript Loaded Successfully"
+            "AURELIA JS loaded successfully."
         );
 
 
-        updateAuth();
+        updateAuthUI();
+
 
         setupEventButtons();
 
+
+        setupEventButtonFallback();
+
+
         setupSignInButton();
+
 
         setupForms();
 
-        setupModalClose();
+
+        setupModalActions();
+
 
         setupNavigation();
 
-        updateContactSection();
 
-        loadTickets();
-
-    }
-);
-
-
-/* ============================================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
-   ============================================================ */
-
-window.openLogin =
-    openLogin;
-
-window.closeModal =
-    closeModal;
-
-window.showEvent =
-    showEvent;
-
-window.switchToSignup =
-    switchToSignup;
-
-window.switchToLogin =
-    switchToLogin;
-
-window.handleSignup =
-    handleSignup;
-
-window.handleLogin =
-    handleLogin;
-
-window.signOut =
-    signOut;
-
-window.startBooking =
-    startBooking;
-
-window.updateTotal =
-    updateTotal;
-
-window.handleBooking =
-    handleBooking;
-
-window.loadTickets =
-    loadTickets;
-
-window.cancelTicket =
-    cancelTicket;
-
-console.log(
-    "AURELIA ACTION SYSTEM READY"
-);
+        setupContactDetail
