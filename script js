@@ -25,7 +25,7 @@ const EVENTS = {
             "An elegant evening of classical music, live performances and unforgettable moments. Experience premium sound, beautiful ambience and an extraordinary night at The Grand Arena."
     },
 
-    "Midnight Noir": {
+ "Midnight Noir": {
         category: "NIGHT EXPERIENCE",
         date: "25 SEP 2026",
         time: "6:30 PM",
