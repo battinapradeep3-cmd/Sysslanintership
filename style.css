@@ -1333,3 +1333,374 @@ textarea:focus-visible {
 /* =========================
    END
 ========================= */
+/* =========================================================
+   AURELIA EVENT DETAILS - FINAL FIX
+========================================================= */
+
+#aurelia-event-details-page {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(201,169,110,0.12),
+            transparent 35%
+        ),
+        #090807;
+
+    color: #fff;
+}
+
+
+.aurelia-details-container {
+
+    width: min(1200px, 92%);
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding: 100px 0 80px;
+
+    position: relative;
+}
+
+
+.aurelia-details-close {
+
+    position: fixed;
+
+    top: 25px;
+    right: 30px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 1px solid #c9a96e;
+
+    background: #090807;
+
+    color: #c9a96e;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    z-index: 100000;
+
+    transition: 0.3s ease;
+}
+
+
+.aurelia-details-close:hover {
+
+    background: #c9a96e;
+
+    color: #090807;
+
+    transform: rotate(90deg);
+}
+
+
+.aurelia-details-label {
+
+    color: #c9a96e;
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.22em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+}
+
+
+.aurelia-details-container h1 {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(3rem, 8vw, 7rem);
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    color: #fff;
+
+    margin-bottom: 30px;
+}
+
+
+.aurelia-details-description {
+
+    max-width: 750px;
+
+    color: #aaa39a;
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    margin-bottom: 55px;
+}
+
+
+.aurelia-details-info {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 18px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+}
+
+
+.aurelia-detail-box {
+
+    flex: 1 0 220px;
+
+    padding: 28px;
+
+    background: #151310;
+
+    border: 1px solid
+        rgba(201,169,110,0.22);
+
+    border-radius: 16px;
+}
+
+
+.aurelia-detail-box span {
+
+    display: block;
+
+    color: #c9a96e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.16em;
+
+    margin-bottom: 12px;
+}
+
+
+.aurelia-detail-box strong {
+
+    color: #fff;
+
+    font-size: 1rem;
+
+    font-weight: 500;
+}
+
+
+.aurelia-ticket-heading {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #fff;
+
+    font-size: 2.2rem;
+
+    margin:
+        55px 0 25px;
+}
+
+
+.aurelia-ticket-prices {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 18px;
+
+    overflow-x: auto;
+
+    padding-bottom: 10px;
+}
+
+
+.aurelia-ticket-box {
+
+    flex: 1 0 220px;
+
+    padding: 30px;
+
+    background: #151310;
+
+    border: 1px solid
+        rgba(201,169,110,0.22);
+
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+
+.aurelia-ticket-box span {
+
+    display: block;
+
+    color: #aaa39a;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.16em;
+
+    margin-bottom: 12px;
+}
+
+
+.aurelia-ticket-box strong {
+
+    color: #e5c98e;
+
+    font-size: 1.7rem;
+
+    font-weight: 600;
+}
+
+
+.aurelia-details-buttons {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 15px;
+
+    margin-top: 50px;
+
+    flex-wrap: wrap;
+}
+
+
+.aurelia-book-btn,
+.aurelia-back-btn {
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    font-size: 0.8rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.aurelia-book-btn {
+
+    border: 1px solid #c9a96e;
+
+    background: #c9a96e;
+
+    color: #090807;
+}
+
+
+.aurelia-book-btn:hover {
+
+    background: #e5c98e;
+
+    transform: translateY(-2px);
+}
+
+
+.aurelia-back-btn {
+
+    border: 1px solid #c9a96e;
+
+    background: transparent;
+
+    color: #c9a96e;
+}
+
+
+.aurelia-back-btn:hover {
+
+    background: #c9a96e;
+
+    color: #090807;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .aurelia-details-container {
+
+        width: 88%;
+
+        padding-top: 90px;
+    }
+
+
+    .aurelia-details-container h1 {
+
+        font-size: 3.2rem;
+    }
+
+
+    .aurelia-details-description {
+
+        font-size: 0.95rem;
+    }
+
+
+    .aurelia-detail-box {
+
+        flex-basis: 200px;
+    }
+
+
+    .aurelia-ticket-box {
+
+        flex-basis: 200px;
+    }
+
+
+    .aurelia-details-buttons {
+
+        flex-direction: column;
+    }
+
+
+    .aurelia-book-btn,
+    .aurelia-back-btn {
+
+        width: 100%;
+    }
+}
