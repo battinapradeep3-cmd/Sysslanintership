@@ -1554,105 +1554,48 @@ function cancelTicket(id) {
 /* ============================================================
    EVENT BUTTONS
    ============================================================ */
+/* ============================================================
+   EVENT BUTTONS
+   ============================================================ */
 
 function setupEventButtons() {
 
-    const cards =
-        document.querySelectorAll(
-            ".event-card, article, .card"
-        );
+    document
+        .querySelectorAll(".event-card button")
+        .forEach(function(button) {
 
+            button.addEventListener(
+                "click",
+                function(event) {
 
-    cards.forEach(
-        function(card) {
+                    event.preventDefault();
+                    event.stopPropagation();
 
-            const heading =
-                card.querySelector(
-                    "h1, h2, h3, h4, h5, h6"
-                );
+                    const card =
+                        button.closest(".event-card");
 
-
-            if (!heading) {
-                return;
-            }
-
-
-            const title =
-                heading.textContent
-                    .replace(
-                        /\s+/g,
-                        " "
-                    )
-                    .trim();
-
-
-            if (!EVENTS[title]) {
-                return;
-            }
-
-
-            const buttons =
-                card.querySelectorAll(
-                    "button, a"
-                );
-
-
-            buttons.forEach(
-                function(button) {
-
-                    const text =
-                        button.textContent
-                            .replace(
-                                /\s+/g,
-                                " "
-                            )
-                            .trim()
-                            .toLowerCase();
-
-
-                    if (
-                        !text.includes(
-                            "view event"
-                        )
-                    ) {
+                    if (!card) {
                         return;
                     }
 
+                    const heading =
+                        card.querySelector("h3");
 
-                    if (
-                        button.dataset
-                            .aureliaReady ===
-                        "true"
-                    ) {
+                    if (!heading) {
                         return;
                     }
 
+                    const eventName =
+                        heading.textContent
+                            .replace(/\s+/g, " ")
+                            .trim();
 
-                    button.dataset
-                        .aureliaReady =
-                        "true";
-
-
-                    button.addEventListener(
-                        "click",
-                        function(event) {
-
-                            event.preventDefault();
-
-                            event.stopPropagation();
-
-                            showEvent(
-                                title
-                            );
-
-                        }
-                    );
+                    showEvent(eventName);
 
                 }
             );
 
-        }
-    );
+        });
 }
 
 
