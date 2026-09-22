@@ -140,169 +140,24 @@ const aureliaEvents = {
 /* =========================================================
    SHOW EVENT DETAILS
 ========================================================= */
+/* =========================================================
+   AURELIA - VIEW EVENT
+   Opens a NEW EVENT DETAILS PAGE
+========================================================= */
 
+function showEvent(eventKey) {
 
-                    /* =========================================================
-   AURELIA - WORKING VIEW EVENT DETAILS
-   ========================================================= */
+    // Make sure event key is available
+    if (!eventKey) {
+        console.error("Event key missing");
+        return;
+    }
 
-(function () {
-
-    const eventDetails = {
-
-        "Velvet Symphony": {
-            category: "CLASSICAL NIGHT",
-            date: "20 SEP 2026",
-            time: "7:00 PM",
-            location: "Vijayawada",
-            venue: "The Grand Arena",
-            prices: [
-                ["STANDARD", "₹799"],
-                ["PREMIUM", "₹1499"],
-                ["VIP", "₹2499"]
-            ],
-            description:
-                "An elegant classical evening featuring soulful music, refined ambience and an unforgettable live experience."
-        },
-
-        "Midnight Noir": {
-            category: "NIGHT EXPERIENCE",
-            date: "25 SEP 2026",
-            time: "6:30 PM",
-            location: "Visakhapatnam",
-            venue: "Harbour Convention Centre",
-            prices: [
-                ["STANDARD", "₹649"],
-                ["PREMIUM", "₹1299"],
-                ["VIP", "₹2199"]
-            ],
-            description:
-                "Step into a sophisticated night experience filled with music, atmosphere and premium entertainment."
-        },
-
-        "Aurum Jazz": {
-            category: "JAZZ EXPERIENCE",
-            date: "02 OCT 2026",
-            time: "7:30 PM",
-            location: "Hyderabad",
-            venue: "Skyline Arena",
-            prices: [
-                ["STANDARD", "₹899"],
-                ["PREMIUM", "₹1699"],
-                ["VIP", "₹2799"]
-            ],
-            description:
-                "Experience an extraordinary evening of smooth jazz, elegant ambience and premium entertainment."
-        },
-
-        "Grand Vintner": {
-            category: "LUXURY EVENING",
-            date: "05 OCT 2026",
-            time: "7:00 PM",
-            location: "Bengaluru",
-            venue: "The Garden Stage",
-            prices: [
-                ["STANDARD", "₹749"],
-                ["PREMIUM", "₹1399"],
-                ["VIP", "₹2299"]
-            ],
-            description:
-                "A luxury evening combining sophisticated entertainment, beautiful surroundings and memorable moments."
-        },
-
-        "Celestial Rooftop": {
-            category: "ROOFTOP EXPERIENCE",
-            date: "18 OCT 2026",
-            time: "8:00 PM",
-            location: "Mumbai",
-            venue: "Metro Live Arena",
-            prices: [
-                ["STANDARD", "₹999"],
-                ["PREMIUM", "₹1899"],
-                ["VIP", "₹2999"]
-            ],
-            description:
-                "Enjoy a spectacular rooftop experience under the stars with premium music and entertainment."
-        },
-
-        "Imperial Opera": {
-            category: "OPERA NIGHT",
-            date: "31 OCT 2026",
-            time: "6:00 PM",
-            location: "Goa",
-            venue: "Neon Beach Arena",
-            prices: [
-                ["STANDARD", "₹1099"],
-                ["PREMIUM", "₹1999"],
-                ["VIP", "₹3499"]
-            ],
-            description:
-                "A grand opera night bringing together beautiful performances, atmosphere and an unforgettable experience."
-        },
-
-        "Elysian Nights": {
-            category: "SIGNATURE NIGHT",
-            date: "08 NOV 2026",
-            time: "7:30 PM",
-            location: "Chennai",
-            venue: "Grand Convention Hall",
-            prices: [
-                ["STANDARD", "₹899"],
-                ["PREMIUM", "₹1699"],
-                ["VIP", "₹2799"]
-            ],
-            description:
-                "A signature night curated for music lovers looking for an elegant and memorable experience."
-        },
-
-        "Veloura": {
-            category: "LUXURY EXPERIENCE",
-            date: "15 NOV 2026",
-            time: "8:00 PM",
-            location: "Pune",
-            venue: "Imperial Convention Centre",
-            prices: [
-                ["STANDARD", "₹1199"],
-                ["PREMIUM", "₹2199"],
-                ["VIP", "₹3299"]
-            ],
-            description:
-                "Discover a luxurious evening filled with premium entertainment and an exclusive atmosphere."
-        },
-
-        "Noir Élan": {
-            category: "MIDNIGHT AFFAIR",
-            date: "21 NOV 2026",
-            time: "9:00 PM",
-            location: "Delhi",
-            venue: "The Grand Pavilion",
-            prices: [
-                ["STANDARD", "₹1299"],
-                ["PREMIUM", "₹2299"],
-                ["VIP", "₹3499"]
-            ],
-            description:
-                "A sophisticated midnight affair designed around music, elegance and unforgettable moments."
-        },
-
-        "Astral Reverie": {
-            category: "COSMIC EXPERIENCE",
-            date: "05 DEC 2026",
-            time: "8:30 PM",
-            location: "Kochi",
-            venue: "Waterfront Arena",
-            prices: [
-                ["STANDARD", "₹1099"],
-                ["PREMIUM", "₹1999"],
-                ["VIP", "₹2999"]
-            ],
-            description:
-                "An immersive cosmic-inspired experience combining music, ambience and spectacular entertainment."
-        }
-
-    };
-
-
+    // Open event-details.html with selected event
+    window.location.href =
+        "event-details.html?event=" + encodeURIComponent(eventKey);
+}
+         
     /* =====================================================
        CREATE EVENT DETAILS PAGE
        ===================================================== */
