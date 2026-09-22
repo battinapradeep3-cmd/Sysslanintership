@@ -141,213 +141,534 @@ const aureliaEvents = {
    SHOW EVENT DETAILS
 ========================================================= */
 
-function showEvent(eventName) {
 
-    const event = aureliaEvents[eventName];
+                    /* =========================================================
+   AURELIA - WORKING VIEW EVENT DETAILS
+   ========================================================= */
 
-    if (!event) {
-        console.error("Event not found:", eventName);
-        return;
-    }
+(function () {
 
-    /* Close other modals */
+    const eventDetails = {
 
-    const modals = [
-        "eventModal",
-        "loginModal",
-        "signupModal",
-        "bookingModal",
-        "confirmationModal"
-    ];
+        "Velvet Symphony": {
+            category: "CLASSICAL NIGHT",
+            date: "20 SEP 2026",
+            time: "7:00 PM",
+            location: "Vijayawada",
+            venue: "The Grand Arena",
+            prices: [
+                ["STANDARD", "₹799"],
+                ["PREMIUM", "₹1499"],
+                ["VIP", "₹2499"]
+            ],
+            description:
+                "An elegant classical evening featuring soulful music, refined ambience and an unforgettable live experience."
+        },
 
-    modals.forEach(function(id) {
-        const modal = document.getElementById(id);
+        "Midnight Noir": {
+            category: "NIGHT EXPERIENCE",
+            date: "25 SEP 2026",
+            time: "6:30 PM",
+            location: "Visakhapatnam",
+            venue: "Harbour Convention Centre",
+            prices: [
+                ["STANDARD", "₹649"],
+                ["PREMIUM", "₹1299"],
+                ["VIP", "₹2199"]
+            ],
+            description:
+                "Step into a sophisticated night experience filled with music, atmosphere and premium entertainment."
+        },
 
-        if (modal) {
-            modal.classList.remove("active");
-            modal.style.display = "none";
+        "Aurum Jazz": {
+            category: "JAZZ EXPERIENCE",
+            date: "02 OCT 2026",
+            time: "7:30 PM",
+            location: "Hyderabad",
+            venue: "Skyline Arena",
+            prices: [
+                ["STANDARD", "₹899"],
+                ["PREMIUM", "₹1699"],
+                ["VIP", "₹2799"]
+            ],
+            description:
+                "Experience an extraordinary evening of smooth jazz, elegant ambience and premium entertainment."
+        },
+
+        "Grand Vintner": {
+            category: "LUXURY EVENING",
+            date: "05 OCT 2026",
+            time: "7:00 PM",
+            location: "Bengaluru",
+            venue: "The Garden Stage",
+            prices: [
+                ["STANDARD", "₹749"],
+                ["PREMIUM", "₹1399"],
+                ["VIP", "₹2299"]
+            ],
+            description:
+                "A luxury evening combining sophisticated entertainment, beautiful surroundings and memorable moments."
+        },
+
+        "Celestial Rooftop": {
+            category: "ROOFTOP EXPERIENCE",
+            date: "18 OCT 2026",
+            time: "8:00 PM",
+            location: "Mumbai",
+            venue: "Metro Live Arena",
+            prices: [
+                ["STANDARD", "₹999"],
+                ["PREMIUM", "₹1899"],
+                ["VIP", "₹2999"]
+            ],
+            description:
+                "Enjoy a spectacular rooftop experience under the stars with premium music and entertainment."
+        },
+
+        "Imperial Opera": {
+            category: "OPERA NIGHT",
+            date: "31 OCT 2026",
+            time: "6:00 PM",
+            location: "Goa",
+            venue: "Neon Beach Arena",
+            prices: [
+                ["STANDARD", "₹1099"],
+                ["PREMIUM", "₹1999"],
+                ["VIP", "₹3499"]
+            ],
+            description:
+                "A grand opera night bringing together beautiful performances, atmosphere and an unforgettable experience."
+        },
+
+        "Elysian Nights": {
+            category: "SIGNATURE NIGHT",
+            date: "08 NOV 2026",
+            time: "7:30 PM",
+            location: "Chennai",
+            venue: "Grand Convention Hall",
+            prices: [
+                ["STANDARD", "₹899"],
+                ["PREMIUM", "₹1699"],
+                ["VIP", "₹2799"]
+            ],
+            description:
+                "A signature night curated for music lovers looking for an elegant and memorable experience."
+        },
+
+        "Veloura": {
+            category: "LUXURY EXPERIENCE",
+            date: "15 NOV 2026",
+            time: "8:00 PM",
+            location: "Pune",
+            venue: "Imperial Convention Centre",
+            prices: [
+                ["STANDARD", "₹1199"],
+                ["PREMIUM", "₹2199"],
+                ["VIP", "₹3299"]
+            ],
+            description:
+                "Discover a luxurious evening filled with premium entertainment and an exclusive atmosphere."
+        },
+
+        "Noir Élan": {
+            category: "MIDNIGHT AFFAIR",
+            date: "21 NOV 2026",
+            time: "9:00 PM",
+            location: "Delhi",
+            venue: "The Grand Pavilion",
+            prices: [
+                ["STANDARD", "₹1299"],
+                ["PREMIUM", "₹2299"],
+                ["VIP", "₹3499"]
+            ],
+            description:
+                "A sophisticated midnight affair designed around music, elegance and unforgettable moments."
+        },
+
+        "Astral Reverie": {
+            category: "COSMIC EXPERIENCE",
+            date: "05 DEC 2026",
+            time: "8:30 PM",
+            location: "Kochi",
+            venue: "Waterfront Arena",
+            prices: [
+                ["STANDARD", "₹1099"],
+                ["PREMIUM", "₹1999"],
+                ["VIP", "₹2999"]
+            ],
+            description:
+                "An immersive cosmic-inspired experience combining music, ambience and spectacular entertainment."
         }
-    });
+
+    };
 
 
-    /* Create event details page */
+    /* =====================================================
+       CREATE EVENT DETAILS PAGE
+       ===================================================== */
 
-    let page = document.getElementById("aureliaFullEventPage");
+    function openEventDetails(name) {
 
-    if (!page) {
+        const data = eventDetails[name];
 
-        page = document.createElement("div");
-
-        page.id = "aureliaFullEventPage";
-
-        document.body.appendChild(page);
-    }
-
-
-    page.innerHTML = `
-
-        <div class="aurelia-event-page">
-
-            <!-- CLOSE BUTTON -->
-
-            <button
-                onclick="closeEventDetails()"
-                style="
-                    position:fixed;
-                    top:25px;
-                    right:30px;
-                    width:45px;
-                    height:45px;
-                    border-radius:50%;
-                    border:1px solid #c9a96e;
-                    background:#090807;
-                    color:#c9a96e;
-                    font-size:25px;
-                    cursor:pointer;
-                    z-index:10;
-                "
-            >
-                ×
-            </button>
+        if (!data) {
+            console.log("Event not found:", name);
+            return;
+        }
 
 
-            <!-- EVENT CONTENT -->
+        /* Remove existing page */
 
-            <div class="aurelia-event-details">
+        const old = document.getElementById(
+            "aurelia-event-page"
+        );
+
+        if (old) {
+            old.remove();
+        }
+
+
+        /* Create new full page */
+
+        const page = document.createElement("div");
+
+        page.id = "aurelia-event-page";
+
+
+        page.innerHTML = `
+
+            <div class="aurelia-event-page-inner">
+
+                <button
+                    class="aurelia-event-close"
+                    id="aureliaEventClose"
+                    type="button"
+                >
+                    ×
+                </button>
+
 
                 <div class="aurelia-event-main">
 
-                    <span
-                        style="
-                            color:#c9a96e;
-                            font-size:0.75rem;
-                            letter-spacing:0.18em;
-                        "
-                    >
-                        ${event.category}
-                    </span>
+                    <div class="aurelia-event-category">
+                        ${data.category}
+                    </div>
+
 
                     <h1>
-                        ${eventName}
+                        ${name}
                     </h1>
 
+
                     <p class="aurelia-event-description">
-                        ${event.description}
+                        ${data.description}
                     </p>
 
-                </div>
+
+                    <div class="aurelia-event-details-grid">
+
+                        <div class="aurelia-detail-box">
+                            <span>DATE</span>
+                            <strong>${data.date}</strong>
+                        </div>
 
 
-                <!-- EVENT INFORMATION -->
+                        <div class="aurelia-detail-box">
+                            <span>TIME</span>
+                            <strong>${data.time}</strong>
+                        </div>
 
-                <div class="aurelia-event-info">
 
-                    <div>
-                        <small>DATE</small>
-                        <strong>${event.date}</strong>
+                        <div class="aurelia-detail-box">
+                            <span>LOCATION</span>
+                            <strong>${data.location}</strong>
+                        </div>
+
+
+                        <div class="aurelia-detail-box">
+                            <span>VENUE</span>
+                            <strong>${data.venue}</strong>
+                        </div>
+
                     </div>
 
-                    <div>
-                        <small>TIME</small>
-                        <strong>${event.time}</strong>
+
+                    <div class="aurelia-price-title">
+                        TICKET PRICES
                     </div>
 
-                    <div>
-                        <small>LOCATION</small>
-                        <strong>${event.location}</strong>
+
+                    <div class="aurelia-prices">
+
+                        <div class="aurelia-price-card">
+                            <span>${data.prices[0][0]}</span>
+                            <strong>${data.prices[0][1]}</strong>
+                        </div>
+
+
+                        <div class="aurelia-price-card">
+                            <span>${data.prices[1][0]}</span>
+                            <strong>${data.prices[1][1]}</strong>
+                        </div>
+
+
+                        <div class="aurelia-price-card">
+                            <span>${data.prices[2][0]}</span>
+                            <strong>${data.prices[2][1]}</strong>
+                        </div>
+
                     </div>
 
-                    <div>
-                        <small>VENUE</small>
-                        <strong>${event.venue}</strong>
-                    </div>
+
+                    <button
+                        class="aurelia-book-event"
+                        id="aureliaBookEvent"
+                        type="button"
+                    >
+                        BOOK TICKETS
+                    </button>
 
                 </div>
 
             </div>
 
-
-            <!-- TICKET PRICES -->
-
-            <div style="margin-top:45px;">
-
-                <h3
-                    style="
-                        font-family:'Playfair Display',serif;
-                        font-size:2rem;
-                        margin-bottom:20px;
-                    "
-                >
-                    Ticket Prices
-                </h3>
+        `;
 
 
-                <div class="aurelia-event-prices">
-
-                    <div class="aurelia-price">
-                        <span>General</span>
-                        <strong>₹${event.general}</strong>
-                    </div>
-
-                    <div class="aurelia-price">
-                        <span>VIP</span>
-                        <strong>₹${event.vip}</strong>
-                    </div>
-
-                    <div class="aurelia-price">
-                        <span>VVIP</span>
-                        <strong>₹${event.vvip}</strong>
-                    </div>
-
-                </div>
-
-            </div>
+        document.body.appendChild(page);
 
 
-            <!-- BOOK BUTTON -->
+        /* Stop background scrolling */
 
-            <div
-                style="
-                    margin-top:45px;
-                    display:flex;
-                    gap:15px;
-                    flex-wrap:wrap;
-                "
-            >
-
-                <button
-                    class="btn btn-primary"
-                    onclick="startBookingFromEvent('${eventName}')"
-                >
-                    Book Tickets
-                </button>
-
-                <button
-                    class="btn btn-outline"
-                    onclick="closeEventDetails()"
-                >
-                    Back to Events
-                </button>
-
-            </div>
-
-        </div>
-    `;
+        document.body.style.overflow = "hidden";
 
 
-    /* Show */
+        /* Close */
 
-    page.style.display = "block";
-
-    document.body.classList.add("no-scroll");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
+        document
+            .getElementById("aureliaEventClose")
+            .addEventListener("click", closeEventDetails);
 
 
+        /* Book */
+
+        document
+            .getElementById("aureliaBookEvent")
+            .addEventListener("click", function () {
+
+                closeEventDetails();
+
+
+                /*
+                 * Existing booking modal
+                 */
+
+                if (typeof openBooking === "function") {
+
+                    openBooking(name);
+
+                }
+
+                else if (
+                    typeof openBookingModal === "function"
+                ) {
+
+                    openBookingModal(name);
+
+                }
+
+                else {
+
+                    alert(
+                        "Booking selected for " + name
+                    );
+
+                }
+
+            });
+
+    }
+
+
+    /* =====================================================
+       CLOSE EVENT PAGE
+       ===================================================== */
+
+    function closeEventDetails() {
+
+        const page =
+            document.getElementById(
+                "aurelia-event-page"
+            );
+
+
+        if (page) {
+            page.remove();
+        }
+
+
+        document.body.style.overflow = "";
+    }
+
+
+    /* =====================================================
+       GET EVENT NAME FROM CARD
+       ===================================================== */
+
+    function getCardEventName(card) {
+
+        const heading =
+            card.querySelector("h3");
+
+
+        if (!heading) {
+            return "";
+        }
+
+
+        return heading.textContent.trim();
+    }
+
+
+    /* =====================================================
+       CONNECT VIEW EVENT BUTTONS
+       ===================================================== */
+
+    function connectButtons() {
+
+        const allButtons =
+            document.querySelectorAll(
+                "button, a"
+            );
+
+
+        allButtons.forEach(function (button) {
+
+            const text =
+                button.textContent
+                    .trim()
+                    .toLowerCase();
+
+
+            if (
+                text !== "view event" &&
+                !text.includes("view event")
+            ) {
+                return;
+            }
+
+
+            /*
+             * Find nearest event card
+             */
+
+            const card =
+                button.closest(".event-card");
+
+
+            if (!card) {
+                return;
+            }
+
+
+            const eventName =
+                getCardEventName(card);
+
+
+            if (!eventName) {
+                return;
+            }
+
+
+            /*
+             * Remove old click behavior
+             */
+
+            button.removeAttribute("href");
+
+
+            button.onclick = function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+
+                openEventDetails(eventName);
+
+
+                return false;
+
+            };
+
+        });
+
+    }
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    function startAureliaEvents() {
+
+        connectButtons();
+
+
+        /*
+         * Run again because some websites
+         * create elements dynamically.
+         */
+
+        setTimeout(
+            connectButtons,
+            300
+        );
+
+        setTimeout(
+            connectButtons,
+            1000
+        );
+
+        setTimeout(
+            connectButtons,
+            2000
+        );
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            startAureliaEvents
+        );
+
+    }
+
+    else {
+
+        startAureliaEvents();
+
+    }
+
+
+    /*
+     * Global functions
+     */
+
+    window.openEventDetails =
+        openEventDetails;
+
+    window.closeEventDetails =
+        closeEventDetails;
+
+
+})();
+      
 /* =========================================================
    CLOSE EVENT DETAILS
 ========================================================= */
