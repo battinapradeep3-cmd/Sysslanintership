@@ -1704,3 +1704,459 @@ textarea:focus-visible {
         width: 100%;
     }
 }
+/* =====================================================
+   AURELIA PREMIUM CONTACT SECTION
+   ===================================================== */
+
+.contact-section {
+    position: relative;
+
+    padding: 130px 6%;
+
+    background: #090807;
+
+    border-top: 1px solid rgba(201, 169, 110, 0.12);
+}
+
+
+.contact-container {
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+}
+
+
+/* ================= HEADING ================= */
+
+.contact-heading {
+    max-width: 700px;
+
+    margin-bottom: 70px;
+}
+
+
+.contact-eyebrow {
+    display: block;
+
+    color: #c9a96e;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+
+.contact-heading h2 {
+    margin: 0;
+
+    color: #f5f1e9;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(42px, 6vw, 76px);
+
+    line-height: 1.05;
+
+    font-weight: 400;
+}
+
+
+.contact-heading h2 span {
+    color: #c9a96e;
+}
+
+
+.contact-heading p {
+    max-width: 570px;
+
+    margin-top: 25px;
+
+    color: #92908c;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ================= MAIN GRID ================= */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 80px;
+
+    align-items: start;
+}
+
+
+/* ================= CONTACT DETAILS ================= */
+
+.contact-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+}
+
+
+.contact-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+
+    transition: 0.3s;
+}
+
+
+.contact-card:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+
+.contact-card:hover {
+    padding-left: 10px;
+}
+
+
+.contact-number {
+    color: #c9a96e;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    min-width: 25px;
+}
+
+
+.contact-card-content {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.contact-card-content small {
+    color: #66635e;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.contact-card-content a,
+.contact-card-content p {
+    margin: 0;
+
+    color: #e8e4dc;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+
+.contact-card-content a:hover {
+    color: #c9a96e;
+}
+
+
+/* ================= SOCIAL ================= */
+
+.contact-social {
+    margin-top: 45px;
+}
+
+
+.contact-social > span {
+    color: #66635e;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.social-links {
+    display: flex;
+
+    gap: 25px;
+
+    margin-top: 18px;
+}
+
+
+.social-links a {
+    color: #b4b0a8;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+
+.social-links a:hover {
+    color: #c9a96e;
+}
+
+
+/* ================= FORM ================= */
+
+.contact-form-wrapper {
+    padding: 42px;
+
+    background: #0e0d0b;
+
+    border: 1px solid rgba(201, 169, 110, 0.18);
+
+    border-radius: 4px;
+}
+
+
+.form-heading {
+    margin-bottom: 35px;
+}
+
+
+.form-heading span {
+    color: #c9a96e;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.form-heading h3 {
+    margin: 10px 0 0;
+
+    color: #f4f0e8;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 30px;
+
+    font-weight: 400;
+}
+
+
+/* ================= FORM GROUP ================= */
+
+.form-group {
+    margin-bottom: 23px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #aaa59d;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background: #090807;
+
+    border: 1px solid #292622;
+
+    border-radius: 3px;
+
+    outline: none;
+
+    color: #f5f1e9;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    padding: 15px;
+
+    transition: 0.3s;
+}
+
+
+.form-group input {
+    height: 50px;
+}
+
+
+.form-group textarea {
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #55514b;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #c9a96e;
+
+    box-shadow:
+        0 0 0 2px rgba(201, 169, 110, 0.06);
+}
+
+
+/* ================= SUBMIT ================= */
+
+.contact-submit {
+    width: 100%;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    background: #c9a96e;
+
+    border: none;
+
+    border-radius: 3px;
+
+    color: #090807;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.contact-submit:hover {
+    background: #e0c18b;
+
+    transform: translateY(-2px);
+}
+
+
+.submit-arrow {
+    font-size: 20px;
+
+    transition: 0.3s;
+}
+
+
+.contact-submit:hover .submit-arrow {
+    transform: translateX(5px);
+}
+
+
+/* ================= STATUS ================= */
+
+.contact-status {
+    min-height: 20px;
+
+    margin: 15px 0 0;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 900px) {
+
+    .contact-section {
+        padding: 100px 5%;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+    .contact-heading {
+        margin-bottom: 50px;
+    }
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .contact-section {
+        padding: 80px 20px;
+    }
+
+    .contact-heading h2 {
+        font-size: 43px;
+    }
+
+    .contact-heading p {
+        font-size: 14px;
+    }
+
+    .contact-form-wrapper {
+        padding: 25px 20px;
+    }
+
+    .contact-card {
+        gap: 16px;
+    }
+
+    .contact-card-content a,
+    .contact-card-content p {
+        font-size: 14px;
+    }
+
+    .social-links {
+        flex-wrap: wrap;
+
+        gap: 18px;
+    }
+
+}
