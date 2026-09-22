@@ -2160,3 +2160,147 @@ textarea:focus-visible {
     }
 
 }
+/* =====================================================
+   AURELIA EVENTS - HORIZONTAL LAYOUT
+   ===================================================== */
+
+/* Events container */
+#events .events-grid,
+.events-grid {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    gap: 24px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding: 10px 5px 25px;
+
+    scroll-behavior: smooth;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* Individual event card */
+#events .event-card,
+.event-card {
+    flex: 0 0 320px !important;
+
+    width: 320px !important;
+
+    min-width: 320px !important;
+
+    max-width: 320px !important;
+
+    box-sizing: border-box;
+
+    height: auto;
+}
+
+
+/* Hide ugly scrollbar but keep scrolling */
+#events .events-grid::-webkit-scrollbar,
+.events-grid::-webkit-scrollbar {
+    height: 5px;
+}
+
+#events .events-grid::-webkit-scrollbar-track,
+.events-grid::-webkit-scrollbar-track {
+    background: #151311;
+}
+
+#events .events-grid::-webkit-scrollbar-thumb,
+.events-grid::-webkit-scrollbar-thumb {
+    background: #c9a96e;
+
+    border-radius: 10px;
+}
+
+
+/* Firefox */
+#events .events-grid,
+.events-grid {
+    scrollbar-width: thin;
+
+    scrollbar-color: #c9a96e #151311;
+}
+
+
+/* Event image */
+.event-card img {
+    width: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* Event card hover */
+.event-card {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    #events .event-card,
+    .event-card {
+        flex: 0 0 290px !important;
+
+        width: 290px !important;
+
+        min-width: 290px !important;
+
+        max-width: 290px !important;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    #events .events-grid,
+    .events-grid {
+        gap: 16px;
+
+        padding-left: 2px;
+
+        padding-right: 20px;
+    }
+
+
+    #events .event-card,
+    .event-card {
+        flex: 0 0 82vw !important;
+
+        width: 82vw !important;
+
+        min-width: 82vw !important;
+
+        max-width: 82vw !important;
+    }
+
+}
