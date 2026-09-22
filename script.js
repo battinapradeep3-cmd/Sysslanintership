@@ -954,3 +954,46 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 });
 
+/* =====================================================
+   CONTACT FORM
+   ===================================================== */
+
+function sendContactMessage(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("contactName").value.trim();
+
+    const email =
+        document.getElementById("contactEmail").value.trim();
+
+    const subject =
+        document.getElementById("contactSubject").value.trim();
+
+    const message =
+        document.getElementById("contactMessage").value.trim();
+
+    const status =
+        document.getElementById("contactMessageStatus");
+
+
+    if (!name || !email || !subject || !message) {
+
+        status.textContent =
+            "Please fill in all the fields.";
+
+        status.style.color = "#d99b9b";
+
+        return;
+    }
+
+
+    status.textContent =
+        "Thank you, " + name + ". Your message has been received.";
+
+    status.style.color = "#c9a96e";
+
+
+    document.getElementById("contactForm").reset();
+}
