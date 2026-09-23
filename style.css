@@ -2344,7 +2344,527 @@ button:disabled {
 .hidden {
     display: none !important;
 }
+/* =========================================================
+   AURELIA FINAL BLACK + GOLD THEME
+   FORCE OVERRIDE
+========================================================= */
 
+:root {
+    --bg: #090807 !important;
+    --bg-soft: #0f0e0c !important;
+    --bg-card: #171512 !important;
+
+    --gold: #c9a96e !important;
+    --gold-light: #e5c98f !important;
+    --gold-dark: #8f7040 !important;
+
+    --cream: #f4efe6 !important;
+    --muted: #aaa39a !important;
+
+    --border: rgba(201, 169, 110, 0.28) !important;
+}
+
+
+/* =========================
+   WHOLE WEBSITE
+========================= */
+
+html,
+body {
+    background: #090807 !important;
+    color: #f4efe6 !important;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(201,169,110,0.06),
+            transparent 35%
+        ),
+        #090807 !important;
+}
+
+
+/* =========================
+   ALL SECTIONS
+========================= */
+
+section,
+main,
+header,
+footer {
+    background-color: #090807 !important;
+    color: #f4efe6 !important;
+}
+
+.about,
+.contact,
+.events {
+    background: #0f0e0c !important;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    background: rgba(9,8,7,0.98) !important;
+    border-bottom: 1px solid #8f7040 !important;
+}
+
+.logo,
+.brand {
+    color: #e5c98f !important;
+}
+
+.logo span,
+.brand span {
+    color: #c9a96e !important;
+}
+
+.nav-links a,
+nav ul a {
+    color: #c9a96e !important;
+}
+
+.nav-links a:hover,
+nav ul a:hover {
+    color: #e5c98f !important;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(201,169,110,0.12),
+            transparent 35%
+        ),
+        #090807 !important;
+}
+
+.hero h1 {
+    color: #f4efe6 !important;
+}
+
+.hero h1 span {
+    color: #c9a96e !important;
+}
+
+.hero p {
+    color: #aaa39a !important;
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #f4efe6 !important;
+}
+
+h1 span,
+h2 span,
+h3 span {
+    color: #c9a96e !important;
+}
+
+.section-label {
+    color: #c9a96e !important;
+}
+
+
+/* =========================
+   NORMAL LINKS
+========================= */
+
+a {
+    color: #c9a96e !important;
+}
+
+a:hover {
+    color: #e5c98f !important;
+}
+
+
+/* =========================
+   REMOVE DEFAULT PURPLE
+========================= */
+
+a:visited {
+    color: #c9a96e !important;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button,
+.btn {
+    color: #e5c98f;
+    background: transparent;
+    border: 1px solid #c9a96e;
+}
+
+.btn-primary {
+    background: #c9a96e !important;
+    color: #090807 !important;
+    border-color: #c9a96e !important;
+}
+
+.btn-primary:hover {
+    background: #e5c98f !important;
+    border-color: #e5c98f !important;
+}
+
+.btn-secondary {
+    background: transparent !important;
+    color: #e5c98f !important;
+    border-color: #c9a96e !important;
+}
+
+
+/* =========================
+   SIGN IN
+========================= */
+
+#authButton {
+    background: transparent !important;
+    color: #e5c98f !important;
+    border: 1px solid #c9a96e !important;
+}
+
+#authButton:hover {
+    background: #c9a96e !important;
+    color: #090807 !important;
+}
+
+
+/* =========================
+   HERO STAT CARDS
+========================= */
+
+.hero-stat {
+    background: #171512 !important;
+    border: 1px solid rgba(201,169,110,0.35) !important;
+}
+
+.hero-stat strong {
+    color: #e5c98f !important;
+}
+
+.hero-stat span {
+    color: #aaa39a !important;
+}
+
+
+/* =========================
+   EVENT CARDS
+========================= */
+
+.event-card {
+    background: #171512 !important;
+    border: 1px solid rgba(201,169,110,0.28) !important;
+}
+
+.event-card:hover {
+    border-color: #c9a96e !important;
+}
+
+.event-card h3 {
+    color: #f4efe6 !important;
+}
+
+.event-card p {
+    color: #aaa39a !important;
+}
+
+.event-meta > div {
+    background: #0f0e0c !important;
+    border-color: rgba(201,169,110,0.25) !important;
+}
+
+.event-meta span {
+    color: #aaa39a !important;
+}
+
+.event-meta strong {
+    color: #e5c98f !important;
+}
+
+
+/* =========================
+   ABOUT CARDS
+========================= */
+
+.about-feature {
+    background: #171512 !important;
+    border-color: rgba(201,169,110,0.28) !important;
+}
+
+.about-feature:hover {
+    border-color: #c9a96e !important;
+}
+
+.about-feature h3 {
+    color: #f4efe6 !important;
+}
+
+.about-feature p {
+    color: #aaa39a !important;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-item,
+.contact-form {
+    background: #171512 !important;
+    border-color: rgba(201,169,110,0.28) !important;
+}
+
+.contact-item strong {
+    color: #e5c98f !important;
+}
+
+.contact-item span,
+.contact-form label {
+    color: #aaa39a !important;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+select,
+textarea {
+    background: #0f0e0c !important;
+    color: #f4efe6 !important;
+    border: 1px solid rgba(201,169,110,0.30) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #77716a !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #c9a96e !important;
+    box-shadow: 0 0 0 2px rgba(201,169,110,0.10) !important;
+}
+
+
+/* =========================
+   TICKETS
+========================= */
+
+.ticket-card {
+    background: #171512 !important;
+    border-color: rgba(201,169,110,0.28) !important;
+}
+
+.ticket-card h3 {
+    color: #e5c98f !important;
+}
+
+.ticket-card p {
+    color: #aaa39a !important;
+}
+
+.ticket-card strong {
+    color: #f4efe6 !important;
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+.modal {
+    background: rgba(0,0,0,0.88) !important;
+}
+
+.modal-box,
+.modal-content {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(201,169,110,0.10),
+            transparent 40%
+        ),
+        #11100e !important;
+
+    border: 1px solid rgba(201,169,110,0.40) !important;
+    color: #f4efe6 !important;
+}
+
+.modal-box h2,
+.modal-content h2 {
+    color: #f4efe6 !important;
+}
+
+.modal-close {
+    color: #e5c98f !important;
+    border-color: #8f7040 !important;
+    background: transparent !important;
+}
+
+.modal-close:hover {
+    background: #c9a96e !important;
+    color: #090807 !important;
+}
+
+
+/* =========================
+   EVENT DETAILS
+========================= */
+
+#aureliaFullEventPage,
+#aurelia-event-details-page {
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(201,169,110,0.13),
+            transparent 35%
+        ),
+        #090807 !important;
+}
+
+.aurelia-event-main h1 {
+    color: #f4efe6 !important;
+}
+
+.aurelia-event-main h1 span {
+    color: #c9a96e !important;
+}
+
+.aurelia-event-main p {
+    color: #aaa39a !important;
+}
+
+.aurelia-event-info > div,
+.aurelia-event-prices > div {
+    background: #171512 !important;
+    border-color: rgba(201,169,110,0.28) !important;
+}
+
+.aurelia-event-info span,
+.aurelia-event-prices span {
+    color: #aaa39a !important;
+}
+
+.aurelia-event-info strong,
+.aurelia-event-prices strong {
+    color: #e5c98f !important;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #070706 !important;
+    border-top: 1px solid rgba(201,169,110,0.28) !important;
+}
+
+.footer-column h4 {
+    color: #e5c98f !important;
+}
+
+.footer-column p,
+.footer-column a,
+.footer-bottom {
+    color: #aaa39a !important;
+}
+
+.footer-column a:hover {
+    color: #e5c98f !important;
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090807 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8f7040 !important;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c9a96e !important;
+}
+
+
+/* =========================
+   TEXT SELECTION
+========================= */
+
+::selection {
+    background: #c9a96e !important;
+    color: #090807 !important;
+}
+
+
+/* =========================
+   MOBILE EVENTS
+========================= */
+
+@media (max-width: 700px) {
+
+    .event-grid,
+    .events-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+
+        scroll-snap-type: x mandatory;
+    }
+
+    .event-card {
+        flex: 0 0 82vw !important;
+        width: 82vw !important;
+        min-width: 82vw !important;
+
+        scroll-snap-align: center;
+    }
+
+    body {
+        background: #090807 !important;
+    }
+}
 
 /* =========================================================
    END OF FINAL STYLE.CSS
