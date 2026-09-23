@@ -1,3125 +1,2378 @@
-/* =========================================================
-   AURELIA — PREMIUM HORIZONTAL LAYOUT
-   Complete Replacement style.css
-   ========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
-/* =========================
-   ROOT
-========================= */
-
-:root {
-    --bg: #090807;
-    --bg-soft: #11100e;
-    --card: #151310;
-    --card-light: #1b1814;
-
-    --gold: #c9a96e;
-    --gold-light: #e5c98e;
-    --gold-dark: #927545;
-
-    --white: #ffffff;
-    --text: #eeeae2;
-    --muted: #a9a39a;
-    --border: rgba(201, 169, 110, 0.22);
-
-    --max-width: 1400px;
-    --radius: 18px;
-
-    --shadow:
-        0 20px 60px rgba(0, 0, 0, 0.45);
-
-    --transition:
-        all 0.3s ease;
-}
-
-/* =========================
-   RESET
-========================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
-body {
-    font-family: "Inter", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-body.no-scroll {
-    overflow: hidden;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* =========================
-   GLOBAL CONTAINER
-========================= */
-
-.container {
-    width: min(94%, var(--max-width));
-    margin: auto;
-}
-
-/* =========================
-   HEADINGS
-========================= */
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: "Playfair Display", serif;
-    font-weight: 500;
-    line-height: 1.1;
-}
-
-h2 {
-    font-size: clamp(2rem, 4vw, 4rem);
-}
-
-p {
-    color: var(--muted);
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-header,
-.navbar {
-    width: 100%;
-}
-
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-
-    background: rgba(9, 8, 7, 0.94);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid var(--border);
-}
-
-.navbar .container {
-    min-height: 78px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.logo,
-.brand {
-    font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
-    letter-spacing: 0.12em;
-    color: var(--gold-light);
-    white-space: nowrap;
-}
-
-/* Horizontal navigation */
-
-.nav-links,
-nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-
-    list-style: none;
-    white-space: nowrap;
-}
-
-.nav-links a,
-nav ul a {
-    color: var(--muted);
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-
-    transition: var(--transition);
-}
-
-.nav-links a:hover,
-nav ul a:hover {
-    color: var(--gold-light);
-}
-
-#authButton {
-    border: 1px solid var(--gold);
-    background: transparent;
-    color: var(--gold-light);
-
-    padding: 11px 20px;
-    border-radius: 30px;
-
-    transition: var(--transition);
-}
-
-#authButton:hover {
-    background: var(--gold);
-    color: #080706;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: calc(100vh - 78px);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 90px 0;
-}
-
-.hero-content {
-    width: min(94%, var(--max-width));
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 70px;
-}
-
-.hero-text {
-    flex: 1;
-    min-width: 0;
-}
-
-.hero h1 {
-    font-size: clamp(3.5rem, 8vw, 8rem);
-    letter-spacing: -0.04em;
-    color: var(--white);
-}
-
-.hero h1 span {
-    color: var(--gold-light);
-}
-
-.hero p {
-    max-width: 650px;
-    margin: 30px 0;
-    font-size: 1.05rem;
-}
-
-.hero-buttons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.hero-stats {
-    flex: 0 0 420px;
-
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-
-    overflow-x: auto;
-}
-
-.hero-stat {
-    min-width: 125px;
-    padding: 25px 18px;
-
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    text-align: center;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.btn,
-button {
-    border: 0;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 46px;
-    padding: 12px 25px;
-
-    border-radius: 30px;
-
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-
-    transition: var(--transition);
-}
-
-.btn-primary {
-    background: var(--gold);
-    color: #0b0907;
-}
-
-.btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    background: transparent;
-    color: var(--gold-light);
-    border: 1px solid var(--gold);
-}
-
-.btn-outline:hover {
-    background: var(--gold);
-    color: #090807;
-}
-
-/* =========================
-   COMMON SECTION
-========================= */
-
-section {
-    width: 100%;
-    padding: 110px 0;
-}
-
-.section-header {
-    margin-bottom: 50px;
-
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.section-header p {
-    max-width: 580px;
-}
-
-/* =========================
-   EVENTS
-========================= */
-
-#events {
-    overflow: hidden;
-}
-
-.events-grid {
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 24px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding: 10px 5px 25px;
-
-    scroll-snap-type: x mandatory;
-}
-
-.events-grid::-webkit-scrollbar {
-    height: 7px;
-}
-
-.events-grid::-webkit-scrollbar-track {
-    background: #11100e;
-}
+"use strict";
+
+/* ============================================================
+   AURELIA EVENT BOOKING WEBSITE
+   UPDATED JAVASCRIPT — ONLY JS
+   ============================================================ */
+
+
+/* ============================================================
+   EVENT DATA
+   ============================================================ */
+
+const EVENTS = {
+
+    "Velvet Symphony": {
+        category: "CLASSICAL NIGHT",
+        date: "20 SEP 2026",
+        time: "7:00 PM",
+        location: "Vijayawada",
+        venue: "The Grand Arena",
+        price: 799,
+        vip: 1499,
+        vvip: 2499,
+        description:
+            "An elegant evening of classical music, live performances and unforgettable moments. Experience premium sound, beautiful ambience and an extraordinary night at The Grand Arena."
+    },
+
+    "Midnight Noir": {
+        category: "NIGHT EXPERIENCE",
+        date: "25 SEP 2026",
+        time: "6:30 PM",
+        location: "Visakhapatnam",
+        venue: "Harbour Convention Centre",
+        price: 649,
+        vip: 1299,
+        vvip: 2199,
+        description:
+            "Step into an atmospheric night filled with music, lights and premium entertainment. Midnight Noir brings a sophisticated nightlife experience to Visakhapatnam."
+    },
+
+    "Aurum Jazz": {
+        category: "JAZZ EXPERIENCE",
+        date: "02 OCT 2026",
+        time: "7:30 PM",
+        location: "Hyderabad",
+        venue: "Skyline Arena",
+        price: 899,
+        vip: 1699,
+        vvip: 2799,
+        description:
+            "A premium live jazz evening featuring extraordinary performances, elegant ambience and unforgettable musical moments."
+    },
+
+    "Grand Vintner": {
+        category: "LUXURY EVENING",
+        date: "05 OCT 2026",
+        time: "7:00 PM",
+        location: "Bengaluru",
+        venue: "The Garden Stage",
+        price: 749,
+        vip: 1499,
+        vvip: 2399,
+        description:
+            "A sophisticated luxury evening created for people who appreciate music, atmosphere and memorable experiences."
+    },
+
+    "Celestial Rooftop": {
+        category: "ROOFTOP EXPERIENCE",
+        date: "18 OCT 2026",
+        time: "8:00 PM",
+        location: "Mumbai",
+        venue: "Metro Live Arena",
+        price: 999,
+        vip: 1899,
+        vvip: 2999,
+        description:
+            "Enjoy an unforgettable rooftop experience under the stars with premium entertainment, music and a spectacular atmosphere."
+    },
+
+    "Imperial Opera": {
+        category: "OPERA NIGHT",
+        date: "31 OCT 2026",
+        time: "6:00 PM",
+        location: "Goa",
+        venue: "Neon Beach Arena",
+        price: 1099,
+        vip: 1999,
+        vvip: 3299,
+        description:
+            "An elegant opera experience combining art, music, stage performance and luxury in the beautiful surroundings of Goa."
+    },
+
+    "Elysian Nights": {
+        category: "SIGNATURE NIGHT",
+        date: "08 NOV 2026",
+        time: "7:30 PM",
+        location: "Chennai",
+        venue: "Grand Convention Hall",
+        price: 899,
+        vip: 1699,
+        vvip: 2799,
+        description:
+            "A signature AURELIA experience featuring music, entertainment and an elegant atmosphere designed for an unforgettable evening."
+    },
+
+    "Veloura": {
+        category: "LUXURY EXPERIENCE",
+        date: "15 NOV 2026",
+        time: "8:00 PM",
+        location: "Pune",
+        venue: "Imperial Convention Centre",
+        price: 1199,
+        vip: 2199,
+        vvip: 3499,
+        description:
+            "Veloura is a premium luxury experience bringing together music, entertainment and an elegant atmosphere."
+    },
 
-.events-grid::-webkit-scrollbar-thumb {
-    background: var(--gold-dark);
-    border-radius: 20px;
-}
-
-/* Each event card stays horizontal */
-
-.event-card {
-    flex: 0 0 350px;
-    width: 350px;
-
-    display: flex;
-    flex-direction: column;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-
-    overflow: hidden;
-
-    scroll-snap-align: start;
-
-    transition: var(--transition);
-}
-
-.event-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(201, 169, 110, 0.55);
-
-    box-shadow: var(--shadow);
-}
-
-.event-card img {
-    width: 100%;
-    height: 240px;
-
-    object-fit: cover;
-
-    transition: transform 0.5s ease;
-}
-
-.event-card:hover img {
-    transform: scale(1.04);
-}
-
-.event-card-content {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 25px;
-}
-
-.event-card h3 {
-    font-size: 1.7rem;
-    margin: 8px 0 15px;
-    color: var(--white);
-}
-
-.event-category {
-    color: var(--gold);
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-}
-
-.event-meta {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 18px;
-}
-
-.event-date,
-.event-time,
-.event-location,
-.event-venue {
-    color: var(--muted);
-    font-size: 0.82rem;
-}
-
-.event-details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-    margin-top: auto;
-}
-
-.event-price {
-    color: var(--gold-light);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.event-card .btn {
-    white-space: nowrap;
-}
-
-/* =========================
-   EVENT INFORMATION ROW
-========================= */
-
-.event-info,
-.event-information,
-.event-info-grid {
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-
-    gap: 18px;
-
-    overflow-x: auto;
-}
-
-.event-info > *,
-.event-information > *,
-.event-info-grid > * {
-    flex: 1 0 220px;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about-content {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-
-    gap: 50px;
-}
-
-.about-text {
-    flex: 1;
-}
-
-.about-text h2 {
-    margin-bottom: 25px;
-}
-
-.about-text > p {
-    max-width: 700px;
-}
-
-.about-features {
-    flex: 1;
+    "Noir Élan": {
+        category: "MIDNIGHT AFFAIR",
+        date: "21 NOV 2026",
+        time: "9:00 PM",
+        location: "Delhi",
+        venue: "The Grand Pavilion",
+        price: 1299,
+        vip: 2399,
+        vvip: 3699,
+        description:
+            "A stylish midnight affair featuring premium entertainment, dramatic lighting and an unforgettable nightlife atmosphere."
+    },
 
-    display: flex;
-    flex-direction: row;
-    gap: 18px;
+    "Astral Reverie": {
+        category: "COSMIC EXPERIENCE",
+        date: "05 DEC 2026",
+        time: "8:30 PM",
+        location: "Kochi",
+        venue: "Waterfront Arena",
+        price: 1099,
+        vip: 2099,
+        vvip: 3299,
+        description:
+            "Step into a cosmic experience where music, atmosphere and entertainment come together for an extraordinary night."
+    }
+};
 
-    overflow-x: auto;
-}
-
-.about-feature {
-    flex: 1 0 220px;
-
-    padding: 28px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.about-feature span,
-.feature-number {
-    display: block;
-
-    color: var(--gold);
-
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-
-    margin-bottom: 18px;
-}
-
-.about-feature h3 {
-    color: var(--white);
-    margin-bottom: 12px;
-}
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact-content {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-
-    gap: 45px;
-}
-
-.contact-info {
-    flex: 1;
-
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-
-    overflow-x: auto;
-}
-
-.contact-item {
-    flex: 1 0 220px;
-
-    padding: 25px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.contact-item span {
-    display: block;
-
-    color: var(--gold);
-
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
 
-    margin-bottom: 10px;
-}
-
-.contact-item h3 {
-    color: var(--white);
-    font-size: 1.1rem;
-}
+/* ============================================================
+   GLOBAL VARIABLES
+   ============================================================ */
 
-.contact-form {
-    flex: 1;
-}
+let selectedEventName = null;
+let selectedEvent = null;
 
-.contact-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
 
-.form-row {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
+/* ============================================================
+   EVENT KEY ALIASES
+   Keeps existing index.html onclick values working.
+   ============================================================ */
 
-.form-row > * {
-    flex: 1;
-}
+const EVENT_ALIASES = {
+    velvet: "Velvet Symphony",
+    noir: "Midnight Noir",
+    aurum: "Aurum Jazz",
+    vintner: "Grand Vintner",
+    celestial: "Celestial Rooftop",
+    imperial: "Imperial Opera",
+    elysian: "Elysian Nights",
+    veloura: "Veloura",
+    noirelan: "Noir Élan",
+    astral: "Astral Reverie"
+};
 
-/* =========================
-   INPUTS
-========================= */
 
-input,
-select,
-textarea {
-    width: 100%;
+/* ============================================================
+   LOCAL STORAGE
+   ============================================================ */
 
-    background: #11100e;
+function getUser() {
 
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    try {
 
-    padding: 14px 16px;
+        return JSON.parse(
+            localStorage.getItem("aureliaUser")
+        );
 
-    color: var(--white);
+    } catch (error) {
 
-    outline: none;
+        return null;
 
-    transition: var(--transition);
+    }
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #777169;
-}
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--gold);
-}
+function saveUser(user) {
 
-textarea {
-    min-height: 130px;
-    resize: vertical;
+    localStorage.setItem(
+        "aureliaUser",
+        JSON.stringify(user)
+    );
 }
 
-/* =========================
-   MY TICKETS
-========================= */
 
-#ticketsContainer {
-    width: 100%;
+function removeUser() {
 
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-
-    overflow-x: auto;
+    localStorage.removeItem(
+        "aureliaUser"
+    );
 }
-
-.ticket-card {
-    flex: 0 0 360px;
 
-    padding: 25px;
 
-    background: var(--card);
+function getAccounts() {
 
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-/* =========================
-   FULL EVENT PAGE
-========================= */
+    try {
 
-#aureliaFullEventPage {
-    position: fixed;
-    inset: 0;
+        return JSON.parse(
+            localStorage.getItem("aureliaAccounts")
+        ) || [];
 
-    z-index: 5000;
+    } catch (error) {
 
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(201, 169, 110, 0.10),
-            transparent 40%
-        ),
-        var(--bg);
+        return [];
 
-    overflow-y: auto;
+    }
 }
-
-.aurelia-event-page {
-    min-height: 100vh;
-
-    width: min(94%, 1400px);
 
-    margin: auto;
 
-    padding: 100px 0;
+function saveAccounts(accounts) {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    localStorage.setItem(
+        "aureliaAccounts",
+        JSON.stringify(accounts)
+    );
 }
 
-/* Event details horizontal */
 
-.aurelia-event-details {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
+function getBookings() {
 
-    gap: 50px;
-}
-
-.aurelia-event-main {
-    flex: 1;
-}
+    try {
 
-.aurelia-event-main h1 {
-    font-size: clamp(3rem, 7vw, 7rem);
+        return JSON.parse(
+            localStorage.getItem("aureliaBookings")
+        ) || [];
 
-    color: var(--white);
+    } catch (error) {
 
-    margin: 15px 0 25px;
-}
-
-.aurelia-event-description {
-    max-width: 750px;
+        return [];
 
-    font-size: 1rem;
-    line-height: 1.8;
+    }
 }
 
-.aurelia-event-info {
-    flex: 1;
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+function saveBookings(bookings) {
 
-    gap: 15px;
+    localStorage.setItem(
+        "aureliaBookings",
+        JSON.stringify(bookings)
+    );
 }
-
-.aurelia-event-info > div {
-    flex: 1 0 200px;
-
-    padding: 25px;
 
-    background: var(--card);
 
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-}
-
-.aurelia-event-info small {
-    display: block;
+/* ============================================================
+   BASIC HELPERS
+   ============================================================ */
 
-    color: var(--gold);
+function getValue(id) {
 
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
+    const element =
+        document.getElementById(id);
 
-    margin-bottom: 8px;
-}
+    if (!element) {
+        return "";
+    }
 
-.aurelia-event-info strong {
-    color: var(--white);
+    return element.value.trim();
 }
 
-/* Prices horizontal */
 
-.aurelia-event-prices {
-    margin-top: 35px;
+function setValue(id, value) {
 
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+    const element =
+        document.getElementById(id);
 
-    overflow-x: auto;
+    if (element) {
+        element.value = value;
+    }
 }
-
-.aurelia-price {
-    flex: 1 0 180px;
 
-    padding: 22px;
 
-    background: var(--card);
+function setText(id, value) {
 
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    const element =
+        document.getElementById(id);
 
-    text-align: center;
+    if (element) {
+        element.textContent = value;
+    }
 }
 
-.aurelia-price span {
-    display: block;
 
-    color: var(--muted);
+function escapeHTML(value) {
 
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
-.aurelia-price strong {
-    display: block;
-
-    margin-top: 8px;
-
-    color: var(--gold-light);
-
-    font-size: 1.4rem;
-}
 
-/* =========================
+/* ============================================================
    MODALS
-========================= */
+   ============================================================ */
 
-.modal,
-#aureliaModal,
-#eventModal,
-#loginModal,
-#signupModal,
-#bookingModal,
-#confirmationModal {
-    position: fixed;
-    inset: 0;
+function openModal(id) {
 
-    z-index: 4000;
+    const modal =
+        document.getElementById(id);
 
-    display: none;
+    if (!modal) {
 
-    align-items: center;
-    justify-content: center;
+        console.warn(
+            "Modal not found:",
+            id
+        );
 
-    padding: 25px;
-
-    background: rgba(0, 0, 0, 0.82);
-    backdrop-filter: blur(12px);
-}
-
-.modal.active,
-.modal.show,
-#eventModal.active,
-#loginModal.active,
-#signupModal.active,
-#bookingModal.active,
-#confirmationModal.active {
-    display: flex;
-}
-
-.modal-content {
-    width: min(900px, 95vw);
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: 20px;
-
-    padding: 40px;
-
-    box-shadow: var(--shadow);
-}
-
-/* Modal content horizontal */
-
-.modal-content .modal-body {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-
-    gap: 30px;
-}
-
-.modal-body > * {
-    flex: 1;
-}
-
-/* =========================
-   EVENT MODAL
-========================= */
-
-.event-modal-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.event-modal-info > div {
-    flex: 1 0 180px;
-
-    padding: 20px;
-
-    background: #100f0d;
-
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-/* =========================
-   BOOKING FORM
-========================= */
-
-.booking-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.booking-row {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
-
-.booking-row > * {
-    flex: 1;
-}
-
-.ticket-prices,
-.event-prices,
-.prices {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-
-    overflow-x: auto;
-}
-
-.ticket-price,
-.price-option {
-    flex: 1 0 150px;
-
-    padding: 18px;
-
-    background: #100f0d;
-
-    border: 1px solid var(--border);
-    border-radius: 12px;
-
-    text-align: center;
-}
-
-/* =========================
-   LOGIN / SIGNUP
-========================= */
-
-#loginModal .modal-content,
-#signupModal .modal-content {
-    width: min(500px, 95vw);
-}
-
-#loginForm,
-#signupForm {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* =========================
-   CONFIRMATION
-========================= */
-
-.confirmation-details {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.confirmation-details > div {
-    flex: 1 0 180px;
-
-    padding: 20px;
-
-    background: #100f0d;
-
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-/* =========================
-   PHONE CONTACTS
-========================= */
-
-#aureliaPhoneContacts {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-
-    flex-wrap: wrap;
-}
-
-#aureliaPhoneContacts > div {
-    flex: 1 0 220px;
-
-    padding: 20px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 70px 0 30px;
-
-    border-top: 1px solid var(--border);
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 50px;
-}
-
-.footer-column {
-    flex: 1;
-}
-
-.footer-column h4 {
-    color: var(--gold-light);
-    margin-bottom: 18px;
-}
-
-.footer-column ul {
-    list-style: none;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer-column a {
-    color: var(--muted);
-    transition: var(--transition);
-}
-
-.footer-column a:hover {
-    color: var(--gold-light);
-}
-
-.footer-bottom {
-    margin-top: 45px;
-    padding-top: 25px;
-
-    border-top: 1px solid var(--border);
-
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-/* =========================
-   HORIZONTAL UTILITY
-========================= */
-
-.horizontal {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    overflow-x: auto;
-}
-
-.horizontal > * {
-    flex: 0 0 auto;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--gold-dark) #11100e;
-}
-
-::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #11100e;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--gold-dark);
-    border-radius: 20px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-/* Tablet */
-
-@media (max-width: 1000px) {
-
-    .navbar .container {
-        gap: 15px;
+        return;
     }
 
-    .nav-links,
-    nav ul {
-        gap: 15px;
-    }
+    modal.style.display = "flex";
 
-    .hero-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .hero-stats {
-        width: 100%;
-        flex: none;
-    }
-
-    .about-content,
-    .contact-content {
-        flex-direction: column;
-    }
-
-    .aurelia-event-details {
-        flex-direction: column;
-    }
-
-    .footer-content {
-        flex-wrap: wrap;
-    }
-}
-
-/* Mobile */
-
-@media (max-width: 700px) {
-
-    html {
-        scroll-padding-top: 70px;
-    }
-
-    .navbar .container {
-        min-height: 70px;
-
-        overflow-x: auto;
-    }
-
-    .logo,
-    .brand {
-        font-size: 1.4rem;
-    }
-
-    .nav-links,
-    nav ul {
-        gap: 18px;
-    }
-
-    #authButton {
-        padding: 9px 15px;
-    }
-
-    section {
-        padding: 75px 0;
-    }
-
-    .hero {
-        min-height: auto;
-        padding: 80px 0;
-    }
-
-    .hero h1 {
-        font-size: 3.4rem;
-    }
-
-    .hero-stats {
-        width: 100%;
-    }
-
-    .event-card {
-        flex-basis: 82vw;
-        width: 82vw;
-    }
-
-    .about-features,
-    .contact-info {
-        width: 100%;
-    }
-
-    .form-row,
-    .booking-row {
-        flex-direction: column;
-    }
-
-    .modal-content {
-        padding: 25px;
-    }
-
-    .modal-content .modal-body {
-        flex-direction: column;
-    }
-
-    .aurelia-event-page {
-        padding: 80px 0;
-    }
-
-    .aurelia-event-main h1 {
-        font-size: 3.2rem;
-    }
-
-    .aurelia-event-info {
-        flex-direction: column;
-    }
-
-    .aurelia-event-info > div {
-        flex: 1 0 auto;
-    }
-
-    .footer-content {
-        flex-direction: column;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-    }
-}
-
-/* Small Mobile */
-
-@media (max-width: 450px) {
-
-    .hero h1 {
-        font-size: 2.8rem;
-    }
-
-    .event-card {
-        flex-basis: 88vw;
-        width: 88vw;
-    }
-
-    .event-card img {
-        height: 210px;
-    }
-
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .modal {
-        padding: 12px;
-    }
-
-    .modal-content {
-        padding: 20px;
-    }
-}
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.event-card,
-.about-feature,
-.contact-item,
-.ticket-card {
-    animation: fadeUp 0.6s ease both;
-}
-
-/* =========================
-   ACCESSIBILITY
-========================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--gold-light);
-    outline-offset: 3px;
-}
-
-/* =========================
-   END
-========================= */
-/* =========================================================
-   AURELIA EVENT DETAILS - FINAL FIX
-========================================================= */
-
-#aurelia-event-details-page {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-
-    width: 100%;
-    height: 100vh;
-
-    overflow-y: auto;
-
-    background:
-        radial-gradient(
-            circle at 85% 15%,
-            rgba(201,169,110,0.12),
-            transparent 35%
-        ),
-        #090807;
-
-    color: #fff;
-}
-
-
-.aurelia-details-container {
-
-    width: min(1200px, 92%);
-
-    min-height: 100vh;
-
-    margin: auto;
-
-    padding: 100px 0 80px;
-
-    position: relative;
-}
-
-
-.aurelia-details-close {
-
-    position: fixed;
-
-    top: 25px;
-    right: 30px;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-
-    border: 1px solid #c9a96e;
-
-    background: #090807;
-
-    color: #c9a96e;
-
-    font-size: 28px;
-
-    cursor: pointer;
-
-    z-index: 100000;
-
-    transition: 0.3s ease;
-}
-
-
-.aurelia-details-close:hover {
-
-    background: #c9a96e;
-
-    color: #090807;
-
-    transform: rotate(90deg);
-}
-
-
-.aurelia-details-label {
-
-    color: #c9a96e;
-
-    font-size: 0.75rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.22em;
-
-    text-transform: uppercase;
-
-    margin-bottom: 20px;
-}
-
-
-.aurelia-details-container h1 {
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-size:
-        clamp(3rem, 8vw, 7rem);
-
-    font-weight: 500;
-
-    line-height: 1;
-
-    color: #fff;
-
-    margin-bottom: 30px;
-}
-
-
-.aurelia-details-description {
-
-    max-width: 750px;
-
-    color: #aaa39a;
-
-    font-size: 1.05rem;
-
-    line-height: 1.9;
-
-    margin-bottom: 55px;
-}
-
-
-.aurelia-details-info {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 18px;
-
-    overflow-x: auto;
-
-    padding-bottom: 10px;
-}
-
-
-.aurelia-detail-box {
-
-    flex: 1 0 220px;
-
-    padding: 28px;
-
-    background: #151310;
-
-    border: 1px solid
-        rgba(201,169,110,0.22);
-
-    border-radius: 16px;
-}
-
-
-.aurelia-detail-box span {
-
-    display: block;
-
-    color: #c9a96e;
-
-    font-size: 0.7rem;
-
-    letter-spacing: 0.16em;
-
-    margin-bottom: 12px;
-}
-
-
-.aurelia-detail-box strong {
-
-    color: #fff;
-
-    font-size: 1rem;
-
-    font-weight: 500;
-}
-
-
-.aurelia-ticket-heading {
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    color: #fff;
-
-    font-size: 2.2rem;
-
-    margin:
-        55px 0 25px;
-}
-
-
-.aurelia-ticket-prices {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 18px;
-
-    overflow-x: auto;
-
-    padding-bottom: 10px;
-}
-
-
-.aurelia-ticket-box {
-
-    flex: 1 0 220px;
-
-    padding: 30px;
-
-    background: #151310;
-
-    border: 1px solid
-        rgba(201,169,110,0.22);
-
-    border-radius: 16px;
-
-    text-align: center;
-}
-
-
-.aurelia-ticket-box span {
-
-    display: block;
-
-    color: #aaa39a;
-
-    font-size: 0.7rem;
-
-    letter-spacing: 0.16em;
-
-    margin-bottom: 12px;
-}
-
-
-.aurelia-ticket-box strong {
-
-    color: #e5c98e;
-
-    font-size: 1.7rem;
-
-    font-weight: 600;
-}
-
-
-.aurelia-details-buttons {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 15px;
-
-    margin-top: 50px;
-
-    flex-wrap: wrap;
-}
-
-
-.aurelia-book-btn,
-.aurelia-back-btn {
-
-    padding: 14px 30px;
-
-    border-radius: 30px;
-
-    font-size: 0.8rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.08em;
-
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-}
-
-
-.aurelia-book-btn {
-
-    border: 1px solid #c9a96e;
-
-    background: #c9a96e;
-
-    color: #090807;
-}
-
-
-.aurelia-book-btn:hover {
-
-    background: #e5c98e;
-
-    transform: translateY(-2px);
-}
-
-
-.aurelia-back-btn {
-
-    border: 1px solid #c9a96e;
-
-    background: transparent;
-
-    color: #c9a96e;
-}
-
-
-.aurelia-back-btn:hover {
-
-    background: #c9a96e;
-
-    color: #090807;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .aurelia-details-container {
-
-        width: 88%;
-
-        padding-top: 90px;
-    }
-
-
-    .aurelia-details-container h1 {
-
-        font-size: 3.2rem;
-    }
-
-
-    .aurelia-details-description {
-
-        font-size: 0.95rem;
-    }
-
-
-    .aurelia-detail-box {
-
-        flex-basis: 200px;
-    }
-
-
-    .aurelia-ticket-box {
-
-        flex-basis: 200px;
-    }
-
-
-    .aurelia-details-buttons {
-
-        flex-direction: column;
-    }
-
-
-    .aurelia-book-btn,
-    .aurelia-back-btn {
-
-        width: 100%;
-    }
-}
-/* =====================================================
-   AURELIA PREMIUM CONTACT SECTION
-   ===================================================== */
-
-.contact-section {
-    position: relative;
-
-    padding: 130px 6%;
-
-    background: #090807;
-
-    border-top: 1px solid rgba(201, 169, 110, 0.12);
-}
-
-
-.contact-container {
-    width: 100%;
-
-    max-width: 1250px;
-
-    margin: 0 auto;
-}
-
-
-/* ================= HEADING ================= */
-
-.contact-heading {
-    max-width: 700px;
-
-    margin-bottom: 70px;
-}
-
-
-.contact-eyebrow {
-    display: block;
-
-    color: #c9a96e;
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 18px;
-}
-
-
-.contact-heading h2 {
-    margin: 0;
-
-    color: #f5f1e9;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(42px, 6vw, 76px);
-
-    line-height: 1.05;
-
-    font-weight: 400;
-}
-
-
-.contact-heading h2 span {
-    color: #c9a96e;
-}
-
-
-.contact-heading p {
-    max-width: 570px;
-
-    margin-top: 25px;
-
-    color: #92908c;
-
-    font-size: 15px;
-
-    line-height: 1.8;
-}
-
-
-/* ================= MAIN GRID ================= */
-
-.contact-grid {
-    display: grid;
-
-    grid-template-columns: 0.9fr 1.1fr;
-
-    gap: 80px;
-
-    align-items: start;
-}
-
-
-/* ================= CONTACT DETAILS ================= */
-
-.contact-details {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0;
-}
-
-
-.contact-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    padding: 28px 0;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-
-    transition: 0.3s;
-}
-
-
-.contact-card:first-child {
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-
-.contact-card:hover {
-    padding-left: 10px;
-}
-
-
-.contact-number {
-    color: #c9a96e;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    min-width: 25px;
-}
-
-
-.contact-card-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-
-.contact-card-content small {
-    color: #66635e;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-}
-
-
-.contact-card-content a,
-.contact-card-content p {
-    margin: 0;
-
-    color: #e8e4dc;
-
-    text-decoration: none;
-
-    font-size: 16px;
-
-    transition: 0.3s;
-}
-
-
-.contact-card-content a:hover {
-    color: #c9a96e;
-}
-
-
-/* ================= SOCIAL ================= */
-
-.contact-social {
-    margin-top: 45px;
-}
-
-
-.contact-social > span {
-    color: #66635e;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-}
-
-
-.social-links {
-    display: flex;
-
-    gap: 25px;
-
-    margin-top: 18px;
-}
-
-
-.social-links a {
-    color: #b4b0a8;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    transition: 0.3s;
-}
-
-
-.social-links a:hover {
-    color: #c9a96e;
-}
-
-
-/* ================= FORM ================= */
-
-.contact-form-wrapper {
-    padding: 42px;
-
-    background: #0e0d0b;
-
-    border: 1px solid rgba(201, 169, 110, 0.18);
-
-    border-radius: 4px;
-}
-
-
-.form-heading {
-    margin-bottom: 35px;
-}
-
-
-.form-heading span {
-    color: #c9a96e;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-}
-
-
-.form-heading h3 {
-    margin: 10px 0 0;
-
-    color: #f4f0e8;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 30px;
-
-    font-weight: 400;
-}
-
-
-/* ================= FORM GROUP ================= */
-
-.form-group {
-    margin-bottom: 23px;
-}
-
-
-.form-group label {
-    display: block;
-
-    margin-bottom: 9px;
-
-    color: #aaa59d;
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-}
-
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    background: #090807;
-
-    border: 1px solid #292622;
-
-    border-radius: 3px;
-
-    outline: none;
-
-    color: #f5f1e9;
-
-    font-family: inherit;
-
-    font-size: 14px;
-
-    padding: 15px;
-
-    transition: 0.3s;
-}
-
-
-.form-group input {
-    height: 50px;
-}
-
-
-.form-group textarea {
-    min-height: 125px;
-
-    resize: vertical;
-}
-
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: #55514b;
-}
-
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #c9a96e;
-
-    box-shadow:
-        0 0 0 2px rgba(201, 169, 110, 0.06);
-}
-
-
-/* ================= SUBMIT ================= */
-
-.contact-submit {
-    width: 100%;
-
-    height: 55px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 0 20px;
-
-    background: #c9a96e;
-
-    border: none;
-
-    border-radius: 3px;
-
-    color: #090807;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.5px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-.contact-submit:hover {
-    background: #e0c18b;
-
-    transform: translateY(-2px);
-}
-
-
-.submit-arrow {
-    font-size: 20px;
-
-    transition: 0.3s;
-}
-
-
-.contact-submit:hover .submit-arrow {
-    transform: translateX(5px);
-}
-
-
-/* ================= STATUS ================= */
-
-.contact-status {
-    min-height: 20px;
-
-    margin: 15px 0 0;
-
-    text-align: center;
-
-    font-size: 13px;
-}
-
-
-/* ================= TABLET ================= */
-
-@media (max-width: 900px) {
-
-    .contact-section {
-        padding: 100px 5%;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-
-        gap: 55px;
-    }
-
-    .contact-heading {
-        margin-bottom: 50px;
-    }
-
-}
-
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 600px) {
-
-    .contact-section {
-        padding: 80px 20px;
-    }
-
-    .contact-heading h2 {
-        font-size: 43px;
-    }
-
-    .contact-heading p {
-        font-size: 14px;
-    }
-
-    .contact-form-wrapper {
-        padding: 25px 20px;
-    }
-
-    .contact-card {
-        gap: 16px;
-    }
-
-    .contact-card-content a,
-    .contact-card-content p {
-        font-size: 14px;
-    }
-
-    .social-links {
-        flex-wrap: wrap;
-
-        gap: 18px;
-    }
-
-}
-/* =====================================================
-   AURELIA EVENTS - HORIZONTAL LAYOUT
-   ===================================================== */
-
-/* Events container */
-#events .events-grid,
-.events-grid {
-    display: flex !important;
-
-    flex-direction: row !important;
-
-    flex-wrap: nowrap !important;
-
-    gap: 24px;
-
-    width: 100%;
-
-    overflow-x: auto;
-
-    overflow-y: hidden;
-
-    padding: 10px 5px 25px;
-
-    scroll-behavior: smooth;
-
-    -webkit-overflow-scrolling: touch;
-}
-
-
-/* Individual event card */
-#events .event-card,
-.event-card {
-    flex: 0 0 320px !important;
-
-    width: 320px !important;
-
-    min-width: 320px !important;
-
-    max-width: 320px !important;
-
-    box-sizing: border-box;
-
-    height: auto;
-}
-
-
-/* Hide ugly scrollbar but keep scrolling */
-#events .events-grid::-webkit-scrollbar,
-.events-grid::-webkit-scrollbar {
-    height: 5px;
-}
-
-#events .events-grid::-webkit-scrollbar-track,
-.events-grid::-webkit-scrollbar-track {
-    background: #151311;
-}
-
-#events .events-grid::-webkit-scrollbar-thumb,
-.events-grid::-webkit-scrollbar-thumb {
-    background: #c9a96e;
-
-    border-radius: 10px;
-}
-
-
-/* Firefox */
-#events .events-grid,
-.events-grid {
-    scrollbar-width: thin;
-
-    scrollbar-color: #c9a96e #151311;
-}
-
-
-/* Event image */
-.event-card img {
-    width: 100%;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* Event card hover */
-.event-card {
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease;
-}
-
-.event-card:hover {
-    transform: translateY(-6px);
-}
-
-
-/* =====================================================
-   TABLET
-   ===================================================== */
-
-@media (max-width: 900px) {
-
-    #events .event-card,
-    .event-card {
-        flex: 0 0 290px !important;
-
-        width: 290px !important;
-
-        min-width: 290px !important;
-
-        max-width: 290px !important;
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 600px) {
-
-    #events .events-grid,
-    .events-grid {
-        gap: 16px;
-
-        padding-left: 2px;
-
-        padding-right: 20px;
-    }
-
-
-    #events .event-card,
-    .event-card {
-        flex: 0 0 82vw !important;
-
-        width: 82vw !important;
-
-        min-width: 82vw !important;
-
-        max-width: 82vw !important;
-    }
-
-}
-/* =========================================================
-   AURELIA EVENT DETAILS PAGE
-   ========================================================= */
-
-#aureliaEventDetails {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    font-family: "Inter", sans-serif;
-}
-
-.aurelia-details-overlay {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.94);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-    overflow-y: auto;
-}
-
-.aurelia-details-box {
-    position: relative;
-
-    width: 100%;
-    max-width: 900px;
-
-    background: linear-gradient(
-        145deg,
-        #15120e,
-        #090807
+    modal.classList.add(
+        "active"
     );
 
-    border: 1px solid rgba(201, 169, 110, 0.35);
-
-    box-shadow:
-        0 30px 100px rgba(0, 0, 0, 0.8);
-
-    color: #ffffff;
-
-    animation: aureliaDetailsIn 0.35s ease;
+    document.body.style.overflow =
+        "hidden";
 }
 
-@keyframes aureliaDetailsIn {
 
-    from {
-        opacity: 0;
-        transform: translateY(25px) scale(0.98);
+function closeModal(id) {
+
+    const modal =
+        document.getElementById(id);
+
+    if (!modal) {
+        return;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    modal.style.display =
+        "none";
+
+    modal.classList.remove(
+        "active"
+    );
+
+    document.body.style.overflow =
+        "";
+}
+
+
+function closeAllModals() {
+
+    document
+        .querySelectorAll(".modal")
+        .forEach(function(modal) {
+
+            modal.style.display =
+                "none";
+
+            modal.classList.remove(
+                "active"
+            );
+
+        });
+
+    document.body.style.overflow =
+        "";
+}
+
+
+/* ============================================================
+   EVENT VIEW
+   ============================================================ */
+
+function showEvent(eventName) {
+
+    const actualEventName =
+        EVENT_ALIASES[eventName] || eventName;
+
+    const event =
+        EVENTS[actualEventName];
+
+    if (!event) {
+
+        alert(
+            "Event details not available."
+        );
+
+        return;
     }
 
-}
+    selectedEventName =
+        actualEventName;
 
-.aurelia-details-content {
-    padding: 60px;
-}
+    selectedEvent =
+        event;
 
-.aurelia-details-close {
-    position: absolute;
+    closeAllModals();
 
-    top: 20px;
-    right: 20px;
-
-    width: 44px;
-    height: 44px;
-
-    border: 1px solid rgba(201, 169, 110, 0.4);
-
-    background: transparent;
-
-    color: #c9a96e;
-
-    font-size: 28px;
-
-    cursor: pointer;
-
-    transition: 0.25s ease;
-}
-
-.aurelia-details-close:hover {
-    background: #c9a96e;
-    color: #090807;
-}
-
-.details-label {
-    color: #c9a96e;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 15px;
-}
-
-.aurelia-details-content h1 {
-    margin: 0 0 20px;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(42px, 7vw, 76px);
-
-    font-weight: 400;
-
-    line-height: 1.05;
-
-    color: #f4eee5;
-}
-
-.details-description {
-    max-width: 700px;
-
-    color: #aaa29a;
-
-    font-size: 16px;
-
-    line-height: 1.8;
-
-    margin-bottom: 45px;
-}
-
-/* INFORMATION */
-
-.details-info-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 1px;
-
-    background: rgba(201, 169, 110, 0.18);
-
-    border: 1px solid rgba(201, 169, 110, 0.18);
-
-    margin-bottom: 45px;
-}
-
-.details-info {
-
-    background: #0d0b09;
-
-    padding: 25px 20px;
-}
-
-.details-info span {
-
-    display: block;
-
-    color: #80786f;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 10px;
-}
-
-.details-info strong {
-
-    color: #eee7dd;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    line-height: 1.5;
-}
-
-/* TICKET PRICES */
-
-.ticket-section {
-    margin-top: 10px;
-}
-
-.ticket-price-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 16px;
-
-    margin-top: 20px;
-}
-
-.ticket-price {
-
-    border: 1px solid rgba(201, 169, 110, 0.25);
-
-    background: rgba(201, 169, 110, 0.04);
-
-    padding: 25px;
-
-    transition: 0.25s ease;
-}
-
-.ticket-price:hover {
-
-    border-color: #c9a96e;
-
-    transform: translateY(-3px);
-}
-
-.ticket-price span {
-
-    display: block;
-
-    color: #80786f;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 10px;
-}
-
-.ticket-price strong {
-
-    font-family: "Playfair Display", serif;
-
-    color: #c9a96e;
-
-    font-size: 30px;
-
-    font-weight: 400;
-}
-
-/* BOOK BUTTON */
-
-.details-actions {
-
-    margin-top: 45px;
-}
-
-.details-book-btn {
-
-    min-height: 50px;
-
-    padding: 0 35px;
-
-    background: #c9a96e;
-
-    border: 1px solid #c9a96e;
-
-    color: #090807;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: 0.25s ease;
-}
-
-.details-book-btn:hover {
-
-    background: transparent;
-
-    color: #c9a96e;
-}
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-    .aurelia-details-overlay {
-
-        padding: 15px;
-
-        align-items: flex-start;
-    }
-
-    .aurelia-details-box {
-
-        margin: 20px 0;
-    }
-
-    .aurelia-details-content {
-
-        padding: 45px 25px 35px;
-    }
-
-    .aurelia-details-content h1 {
-
-        font-size: 42px;
-    }
-
-    .details-info-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .ticket-price-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-    .ticket-price {
-
-        padding: 20px;
-    }
-
-    .aurelia-details-close {
-
-        top: 12px;
-
-        right: 12px;
-    }
-
-}
-
-/* VERY SMALL MOBILE */
-
-@media (max-width: 400px) {
-
-    .details-info-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-    .aurelia-details-content h1 {
-
-        font-size: 36px;
-    }
-
-}
-/* =========================================================
-   AURELIA FULL EVENT DETAILS PAGE
-   ========================================================= */
-
-#aurelia-event-page {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 999999;
-
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(201,169,110,0.12),
-            transparent 35%
-        ),
-        #090807;
-
-    overflow-y: auto;
-
-    color: #ffffff;
-
+    createFullEventPage(
+        actualEventName,
+        event
+    );
 }
 
 
-/* MAIN PAGE */
-
-.aurelia-event-page-inner {
-
-    min-height: 100%;
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 80px 30px;
-
-    box-sizing: border-box;
-
-}
-
-
-/* CONTENT */
-
-.aurelia-event-main {
-
-    width: 100%;
-
-    max-width: 1050px;
-
-    margin: auto;
-
-}
-
-
-/* CLOSE */
-
-.aurelia-event-close {
-
-    position: fixed;
-
-    top: 25px;
-
-    right: 30px;
-
-    width: 50px;
-
-    height: 50px;
-
-    border: 1px solid
-        rgba(201,169,110,0.5);
-
-    background: rgba(0,0,0,0.5);
-
-    color: #c9a96e;
-
-    font-size: 32px;
-
-    line-height: 1;
-
-    cursor: pointer;
-
-    z-index: 1000000;
-
-    transition: all 0.3s ease;
-
-}
-
-
-.aurelia-event-close:hover {
-
-    background: #c9a96e;
-
-    color: #090807;
-
-}
-
-
-/* CATEGORY */
-
-.aurelia-event-category {
-
-    color: #c9a96e;
-
-    font-size: 12px;
-
-    letter-spacing: 4px;
-
-    font-weight: 600;
-
-    margin-bottom: 20px;
-
-}
-
-
-/* EVENT NAME */
-
-.aurelia-event-main h1 {
-
-    font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-    font-size:
-        clamp(48px, 8vw, 100px);
-
-    line-height: 1;
-
-    font-weight: 400;
-
-    margin: 0;
-
-    color: #f5eee4;
-
-}
-
-
-/* DESCRIPTION */
-
-.aurelia-event-description {
-
-    max-width: 700px;
-
-    margin-top: 30px;
-
-    margin-bottom: 55px;
-
-    color: #aaa39a;
-
-    font-size: 17px;
-
-    line-height: 1.8;
-
-}
-
-
-/* DETAILS GRID */
-
-.aurelia-event-details-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 1px;
-
-    background:
-        rgba(201,169,110,0.25);
-
-    border: 1px solid
-        rgba(201,169,110,0.25);
-
-}
-
-
-/* DETAIL BOX */
-
-.aurelia-detail-box {
-
-    background: #100e0b;
-
-    padding: 30px 25px;
-
-    min-height: 100px;
-
-    box-sizing: border-box;
-
-}
-
-
-.aurelia-detail-box span {
-
-    display: block;
-
-    color: #777168;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 14px;
-
-}
-
-
-.aurelia-detail-box strong {
-
-    display: block;
-
-    color: #eee7dd;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
-    line-height: 1.5;
-
-}
-
-
-/* PRICE TITLE */
-
-.aurelia-price-title {
-
-    margin-top: 55px;
-
-    margin-bottom: 20px;
-
-    color: #c9a96e;
-
-    font-size: 11px;
-
-    letter-spacing: 3px;
-
-    font-weight: 600;
-
-}
-
-
-/* PRICES */
-
-.aurelia-prices {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
-
-}
-
-
-/* PRICE CARD */
-
-.aurelia-price-card {
-
-    border: 1px solid
-        rgba(201,169,110,0.3);
-
-    background:
-        rgba(201,169,110,0.04);
-
-    padding: 30px;
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease;
-
-}
-
-
-.aurelia-price-card:hover {
-
-    transform: translateY(-5px);
-
-    border-color: #c9a96e;
-
-}
-
-
-.aurelia-price-card span {
-
-    display: block;
-
-    color: #827a70;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.aurelia-price-card strong {
-
-    font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-    color: #c9a96e;
-
-    font-size: 34px;
-
-    font-weight: 400;
-
-}
-
-
-/* BOOK BUTTON */
-
-.aurelia-book-event {
-
-    margin-top: 45px;
-
-    min-height: 55px;
-
-    padding: 0 45px;
-
-    border: 1px solid #c9a96e;
-
-    background: #c9a96e;
-
-    color: #090807;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: all 0.3s ease;
-
-}
-
-
-.aurelia-book-event:hover {
-
-    background: transparent;
-
-    color: #c9a96e;
-
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 800px) {
-
-    .aurelia-event-page-inner {
-
-        padding: 80px 25px 50px;
-
+/* ============================================================
+   FULL EVENT DETAILS PAGE
+   ============================================================ */
+
+function createFullEventPage(
+    eventName,
+    event
+) {
+
+    const existing =
+        document.getElementById(
+            "aureliaFullEventPage"
+        );
+
+    if (existing) {
+        existing.remove();
     }
 
 
-    .aurelia-event-details-grid {
+    const page =
+        document.createElement(
+            "div"
+        );
 
-        grid-template-columns:
-            repeat(2, 1fr);
+    page.id =
+        "aureliaFullEventPage";
 
+
+    page.innerHTML = `
+
+        <div class="aurelia-event-screen">
+
+            <button
+                type="button"
+                class="aurelia-event-back"
+                id="aureliaEventBack">
+
+                ← Back to Events
+
+            </button>
+
+
+            <div class="aurelia-event-inner">
+
+                <div class="aurelia-event-category">
+
+                    ${escapeHTML(
+                        event.category
+                    )}
+
+                </div>
+
+
+                <h1 class="aurelia-event-title">
+
+                    ${escapeHTML(
+                        eventName
+                    )}
+
+                </h1>
+
+
+                <p class="aurelia-event-description">
+
+                    ${escapeHTML(
+                        event.description
+                    )}
+
+                </p>
+
+
+                <div class="aurelia-event-information">
+
+                    <div class="aurelia-event-info-box">
+
+                        <span>DATE</span>
+
+                        <strong>
+                            ${escapeHTML(
+                                event.date
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="aurelia-event-info-box">
+
+                        <span>TIME</span>
+
+                        <strong>
+                            ${escapeHTML(
+                                event.time
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="aurelia-event-info-box">
+
+                        <span>LOCATION</span>
+
+                        <strong>
+                            ${escapeHTML(
+                                event.location
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="aurelia-event-info-box">
+
+                        <span>VENUE</span>
+
+                        <strong>
+                            ${escapeHTML(
+                                event.venue
+                            )}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <h3 class="aurelia-ticket-heading">
+
+                    TICKET PRICES
+
+                </h3>
+
+
+                <div class="aurelia-event-prices">
+
+                    <div class="aurelia-price-box">
+
+                        <span>GENERAL</span>
+
+                        <strong>
+                            ₹${event.price}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="aurelia-price-box">
+
+                        <span>VIP</span>
+
+                        <strong>
+                            ₹${event.vip}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="aurelia-price-box">
+
+                        <span>VVIP</span>
+
+                        <strong>
+                            ₹${event.vvip}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="aureliaBookEvent"
+                    class="aurelia-book-button">
+
+                    Book Tickets →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        page
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    const backButton =
+        document.getElementById(
+            "aureliaEventBack"
+        );
+
+
+    if (backButton) {
+
+        backButton.addEventListener(
+            "click",
+            function() {
+
+                page.remove();
+
+                document.body.style.overflow =
+                    "";
+
+            }
+        );
     }
 
 
-    .aurelia-prices {
+    const bookButton =
+        document.getElementById(
+            "aureliaBookEvent"
+        );
 
-        grid-template-columns: 1fr;
 
+    if (bookButton) {
+
+        bookButton.addEventListener(
+            "click",
+            function() {
+
+                page.remove();
+
+                document.body.style.overflow =
+                    "";
+
+                startBooking();
+
+            }
+        );
     }
-
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ============================================================
+   SIGN IN
+   ============================================================ */
 
-@media (max-width: 500px) {
+function openLogin() {
 
-    .aurelia-event-page-inner {
+    const user =
+        getUser();
 
-        padding:
-            85px
-            18px
-            40px;
 
-        align-items: flex-start;
+    if (user) {
 
+        const logout =
+            confirm(
+                "You are signed in as " +
+                user.name +
+                ".\n\nDo you want to Sign Out?"
+            );
+
+
+        if (logout) {
+
+            signOut();
+
+        }
+
+        return;
     }
 
 
-    .aurelia-event-close {
-
-        top: 15px;
-
-        right: 15px;
-
-        width: 44px;
-
-        height: 44px;
-
-        font-size: 27px;
-
-    }
-
-
-    .aurelia-event-category {
-
-        font-size: 10px;
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .aurelia-event-main h1 {
-
-        font-size: 48px;
-
-    }
-
-
-    .aurelia-event-description {
-
-        font-size: 15px;
-
-        margin-bottom: 35px;
-
-    }
-
-
-    .aurelia-event-details-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .aurelia-detail-box {
-
-        padding: 22px;
-
-    }
-
-
-    .aurelia-price-card {
-
-        padding: 25px;
-
-    }
-
-
-    .aurelia-book-event {
-
-        width: 100%;
-
-    }
-
+    openModal(
+        "loginModal"
+    );
 }
+
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+
+function handleLogin(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+
+    const email =
+        getValue("loginEmail")
+            .toLowerCase();
+
+
+    const password =
+        getValue("loginPassword");
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        alert(
+            "Please enter your email and password."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const account =
+        accounts.find(
+            function(item) {
+
+                return (
+                    item.email === email &&
+                    item.password === password
+                );
+
+            }
+        );
+
+
+    if (!account) {
+
+        alert(
+            "Invalid email or password."
+        );
+
+        return;
+    }
+
+
+    saveUser({
+
+        name:
+            account.name,
+
+        email:
+            account.email
+
+    });
+
+
+    closeModal(
+        "loginModal"
+    );
+
+
+    updateAuthUI();
+
+
+    alert(
+        "Signed in successfully!"
+    );
+}
+
+
+/* ============================================================
+   SIGN UP
+   ============================================================ */
+
+function handleSignup(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+
+    const name =
+        getValue("signupName");
+
+
+    const email =
+        getValue("signupEmail")
+            .toLowerCase();
+
+
+    const password =
+        getValue("signupPassword");
+
+
+    if (
+        !name ||
+        !email ||
+        !password
+    ) {
+
+        alert(
+            "Please fill all fields."
+        );
+
+        return;
+    }
+
+
+    if (
+        password.length < 6
+    ) {
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const exists =
+        accounts.some(
+            function(account) {
+
+                return (
+                    account.email ===
+                    email
+                );
+
+            }
+        );
+
+
+    if (exists) {
+
+        alert(
+            "This email is already registered."
+        );
+
+        return;
+    }
+
+
+    accounts.push({
+
+        name:
+            name,
+
+        email:
+            email,
+
+        password:
+            password
+
+    });
+
+
+    saveAccounts(
+        accounts
+    );
+
+
+    saveUser({
+
+        name:
+            name,
+
+        email:
+            email
+
+    });
+
+
+    closeModal(
+        "signupModal"
+    );
+
+
+    updateAuthUI();
+
+
+    alert(
+        "Account created successfully!"
+    );
+}
+
+
+/* ============================================================
+   SWITCH LOGIN / SIGNUP
+   ============================================================ */
+
+function switchToSignup() {
+
+    closeModal(
+        "loginModal"
+    );
+
+    openModal(
+        "signupModal"
+    );
+}
+
+
+function switchToLogin() {
+
+    closeModal(
+        "signupModal"
+    );
+
+    openModal(
+        "loginModal"
+    );
+}
+
+
+/* ============================================================
+   SIGN OUT
+   ============================================================ */
+
+function signOut() {
+
+    removeUser();
+
+    updateAuthUI();
+
+    alert(
+        "You have been signed out."
+    );
+}
+
+
+/* ============================================================
+   AUTH UI
+   ============================================================ */
+
+function updateAuthUI() {
+
+    const button =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    const user =
+        getUser();
+
+
+    if (user) {
+
+        button.textContent =
+            "Hi, " +
+            user.name;
+
+    } else {
+
+        button.textContent =
+            "Sign In";
+
+    }
+
+    loadTickets();
+}
+
+
+/* ============================================================
+   BOOKING
+   ============================================================ */
+
+function startBooking() {
+
+    const user =
+        getUser();
+
+
+    if (!user) {
+
+        alert(
+            "Please sign in before booking tickets."
+        );
+
+        openLogin();
+
+        return;
+    }
+
+
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event first."
+        );
+
+        return;
+    }
+
+
+    closeAllModals();
+
+
+    const eventModal =
+        document.getElementById(
+            "eventModal"
+        );
+
+    if (eventModal) {
+        eventModal.style.display =
+            "none";
+    }
+
+
+    openModal(
+        "bookingModal"
+    );
+
+
+    setText(
+        "bookingEventName",
+        selectedEventName
+    );
+
+
+    setText(
+        "bookingEventDate",
+        selectedEvent.date
+    );
+
+
+    setText(
+        "bookingEventLocation",
+        selectedEvent.location
+    );
+
+
+    const bookingUser =
+        document.getElementById(
+            "bookingName"
+        );
+
+    if (bookingUser) {
+        bookingUser.value =
+            user.name;
+    }
+
+
+    const bookingEmail =
+        document.getElementById(
+            "bookingEmail"
+        );
+
+    if (bookingEmail) {
+        bookingEmail.value =
+            user.email;
+    }
+
+
+    const generalPrice =
+        document.getElementById(
+            "bookingGeneralPrice"
+        );
+
+    if (generalPrice) {
+        generalPrice.textContent =
+            "₹" +
+            selectedEvent.price;
+    }
+
+
+    const vipPrice =
+        document.getElementById(
+            "bookingVipPrice"
+        );
+
+    if (vipPrice) {
+        vipPrice.textContent =
+            "₹" +
+            selectedEvent.vip;
+    }
+
+
+    const vvipPrice =
+        document.getElementById(
+            "bookingVvipPrice"
+        );
+
+    if (vvipPrice) {
+        vvipPrice.textContent =
+            "₹" +
+            selectedEvent.vvip;
+    }
+
+
+    updateBookingTotal();
+}
+
+
+/* ============================================================
+ BOOKING TOTAL
+   ============================================================ */
+
+function updateBookingTotal() {
+
+    if (!selectedEvent) {
+        return;
+    }
+
+
+    const ticketTypeElement =
+        document.getElementById(
+            "ticketType"
+        );
+
+
+    const quantityElement =
+        document.getElementById(
+            "ticketQuantity"
+        );
+
+
+    if (
+        !ticketTypeElement ||
+        !quantityElement
+    ) {
+        return;
+    }
+
+
+    const ticketType =
+        ticketTypeElement.value;
+
+
+    let price =
+        selectedEvent.price;
+
+
+    if (
+        ticketType === "VIP"
+    ) {
+
+        price =
+            selectedEvent.vip;
+
+    }
+
+
+    if (
+        ticketType === "VVIP"
+    ) {
+
+        price =
+            selectedEvent.vvip;
+
+    }
+
+
+    let quantity =
+        parseInt(
+            quantityElement.value,
+            10
+        );
+
+
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        quantity = 1;
+
+    }
+
+
+    const total =
+        price * quantity;
+
+
+    setText(
+        "bookingTotal",
+        "₹" + total
+    );
+   }
+           alert(
+            "Please Sign In before booking a ticket."
+        );
+
+        openLogin();
+
+        return;
+    }
+
+
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event first."
+        );
+
+        return;
+    }
+
+
+    setValue(
+        "bookingEventName",
+        selectedEventName
+    );
+
+
+    setValue(
+        "bookingName",
+        user.name
+    );
+
+
+    setValue(
+        "bookingEmail",
+        user.email
+    );
+
+
+    setValue(
+        "ticketType",
+        "general"
+    );
+
+
+    setValue(
+        "ticketQuantity",
+        "1"
+    );
+
+
+    updateBookingTotal();
+
+
+    openModal(
+        "bookingModal"
+    );
+}
+
+
+/* ============================================================
+   BOOKING TOTAL
+   ============================================================ */
+
+function updateBookingTotal() {
+
+    if (!selectedEvent) {
+        return;
+    }
+
+
+    let type =
+        getValue("ticketType");
+
+
+    let quantity =
+        parseInt(
+            getValue("ticketQuantity"),
+            10
+        );
+
+
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        quantity = 1;
+
+        setValue(
+            "ticketQuantity",
+            "1"
+        );
+    }
+
+
+    let price =
+        selectedEvent.price;
+
+
+    if (type === "vip") {
+
+        price =
+            selectedEvent.vip;
+
+    } else if (type === "vvip") {
+
+        price =
+            selectedEvent.vvip;
+
+    }
+
+
+    setText(
+        "bookingTotal",
+        "₹" +
+        (price * quantity)
+    );
+}
+
+
+/* ============================================================
+   BOOKING SUBMIT
+   ============================================================ */
+
+function handleBooking(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+
+    const user =
+        getUser();
+
+
+    if (!user) {
+
+        closeModal(
+            "bookingModal"
+        );
+
+        openLogin();
+
+        return;
+    }
+
+
+    if (!selectedEvent) {
+
+        alert(
+            "Please select an event."
+        );
+
+        return;
+    }
+
+
+    const name =
+        getValue("bookingName");
+
+
+    const email =
+        getValue("bookingEmail");
+
+
+    const phone =
+        getValue("bookingPhone");
+
+
+    const ticketType =
+        getValue("ticketType");
+
+
+    const quantity =
+        parseInt(
+            getValue("ticketQuantity"),
+            10
+        );
+
+
+    if (
+        !name ||
+        !email ||
+        !phone
+    ) {
+
+        alert(
+            "Please fill all booking details."
+        );
+
+        return;
+    }
+
+
+    if (
+        isNaN(quantity) ||
+        quantity < 1
+    ) {
+
+        alert(
+            "Please enter a valid ticket quantity."
+        );
+
+        return;
+    }
+
+
+    let price =
+        selectedEvent.price;
+
+
+    if (
+        ticketType === "vip"
+    ) {
+
+        price =
+            selectedEvent.vip;
+
+    } else if (
+        ticketType === "vvip"
+    ) {
+
+        price =
+            selectedEvent.vvip;
+
+    }
+
+
+    const total =
+        price * quantity;
+
+
+    const bookingId =
+        "AUR-" +
+        Date.now()
+            .toString()
+            .slice(-8);
+
+
+    const booking = {
+
+        id:
+            bookingId,
+
+        event:
+            selectedEventName,
+
+        date:
+            selectedEvent.date,
+
+        time:
+            selectedEvent.time,
+
+        location:
+            selectedEvent.location,
+
+        venue:
+            selectedEvent.venue,
+
+        name:
+            name,
+
+        email:
+            email,
+
+        userEmail:
+            user.email,
+
+        phone:
+            phone,
+
+        ticketType:
+            ticketType,
+
+        quantity:
+            quantity,
+
+        total:
+            total
+
+    };
+
+
+    const bookings =
+        getBookings();
+
+
+    bookings.push(
+        booking
+    );
+
+
+    saveBookings(
+        bookings
+    );
+
+
+    closeModal(
+        "bookingModal"
+    );
+
+
+    setText(
+        "confirmationId",
+        bookingId
+    );
+
+
+    setText(
+        "confirmationEvent",
+        selectedEventName
+    );
+
+
+    setText(
+        "confirmationDate",
+        selectedEvent.date +
+        " · " +
+        selectedEvent.time
+    );
+
+
+    setText(
+        "confirmationTickets",
+        quantity +
+        " × " +
+        formatTicketType(
+            ticketType
+        )
+    );
+
+
+    setText(
+        "confirmationTotal",
+        "₹" +
+        total
+    );
+
+
+    openModal(
+        "confirmationModal"
+    );
+
+    addConfirmationQR(booking);
+
+    loadTickets();
+}
+
+
+/* ============================================================
+   TICKET TYPE
+   ============================================================ */
+
+function formatTicketType(type) {
+
+    if (type === "vip") {
+        return "VIP";
+    }
+
+
+    if (type === "vvip") {
+        return "VVIP";
+    }
+
+
+    return "General";
+}
+
+
+/* ============================================================
+   QR CODE
+   ============================================================ */
+
+function createQRCodeData(booking) {
+
+    const data = [
+        "AURELIA DIGITAL TICKET",
+        "Booking ID: " + booking.id,
+        "Event: " + booking.event,
+        "Date: " + booking.date,
+        "Time: " + booking.time,
+        "Venue: " + booking.venue,
+        "Ticket: " + formatTicketType(booking.ticketType),
+        "Quantity: " + booking.quantity,
+        "Total: ₹" + booking.total
+    ].join(" | ");
+
+    return (
+        "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+        encodeURIComponent(data)
+    );
+}
+
+
+function addConfirmationQR(booking) {
+
+    const details =
+        document.querySelector(
+            "#confirmationModal .confirmation-details"
+        );
+
+    if (!details) {
+        return;
+    }
+
+    let qrBox =
+        document.getElementById(
+            "aureliaConfirmationQR"
+        );
+
+    if (!qrBox) {
+        qrBox = document.createElement("div");
+        qrBox.id = "aureliaConfirmationQR";
+        qrBox.style.cssText =
+            "margin:20px auto 0;text-align:center;padding:15px;border:1px solid rgba(201,169,110,.25);background:rgba(255,255,255,.025);max-width:220px;";
+        details.parentNode.insertBefore(
+            qrBox,
+            details.nextSibling
+        );
+    }
+
+    qrBox.innerHTML = `
+        <div style="font-size:9px;letter-spacing:1.5px;color:#aaa39a;margin-bottom:10px;">
+            SCAN TO VERIFY TICKET
+        </div>
+
+        <img
+            src="${createQRCodeData(booking)}"
+            alt="QR code for ${escapeHTML(booking.id)}"
+            style="width:180px;height:180px;margin:auto;background:#fff;padding:6px;"
+        >
+
+        <div style="font-size:10px;color:#c9a96e;margin-top:8px;">
+            ${escapeHTML(booking.id)}
+        </div>
+    `;
+}
+
+
+/* ============================================================
+   MY TICKETS
+   ============================================================ */
+
+function loadTickets() {
+
+    const container =
+        document.getElementById("ticketList") ||
+        document.getElementById("ticketsContainer");
+
+    if (!container) {
+        return;
+    }
+
+    const user = getUser();
+    const allBookings = getBookings();
+
+    const bookings = user
+        ? allBookings.filter(function(booking) {
+
+            return !booking.userEmail ||
+                   booking.userEmail.toLowerCase() ===
+                   user.email.toLowerCase();
+
+        })
+        : [];
+
+    if (bookings.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-tickets">
+
+                <h3>No tickets yet</h3>
+
+                <p>
+                    Sign in and book an event
+                    to see your digital tickets here.
+                </p>
+
+                <a
+                    href="#events"
+                    class="btn btn-primary">
+                    Explore Events
+                </a>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = "";
+
+    bookings.forEach(function(booking) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "ticket-card";
+
+        card.innerHTML = `
+            <div class="ticket-info">
+
+                <small>
+                    AURELIA DIGITAL TICKET
+                </small>
+
+                <h3>
+                    ${escapeHTML(booking.event)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(booking.date)}
+                    ·
+                    ${escapeHTML(booking.time)}
+                </p>
+
+                <p>
+                    ${escapeHTML(booking.location)}
+                </p>
+
+                <p>
+                    ${escapeHTML(booking.venue)}
+                </p>
+
+                <p>
+                    ${booking.quantity}
+                    ×
+                    ${escapeHTML(
+                        formatTicketType(
+                            booking.ticketType
+                        )
+                    )}
+                </p>
+
+                <strong>
+                    ₹${booking.total}
+                </strong>
+
+                <p class="ticket-id">
+                    Booking ID:
+                    ${escapeHTML(booking.id)}
+                </p>
+
+
+                <div
+                    style="
+                        margin-top:18px;
+                        text-align:center;
+                        padding:12px;
+                        border-top:1px solid rgba(255,255,255,.10);
+                    "
+                >
+
+                    <img
+                        src="${createQRCodeData(booking)}"
+                        alt="QR code for ${escapeHTML(booking.id)}"
+                        style="
+                            width:140px;
+                            height:140px;
+                            background:#fff;
+                            padding:5px;
+                            margin:auto;
+                        "
+                    >
+
+                    <small
+                        style="
+                            display:block;
+                            margin-top:7px;
+                        "
+                    >
+                        SCAN TO VERIFY
+                    </small>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-outline"
+                    data-cancel-ticket="${escapeHTML(booking.id)}"
+                >
+                    Cancel Ticket
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+
+
+    container
+        .querySelectorAll(
+            "[data-cancel-ticket]"
+        )
+        .forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    cancelTicket(
+                        button.getAttribute(
+                            "data-cancel-ticket"
+                        )
+                    );
+
+                }
+            );
+
+        });
+}
+
+
+/* ============================================================
+   CANCEL TICKET
+   ============================================================ */
+
+function cancelTicket(id) {
+
+    const confirmCancel =
+        confirm(
+            "Are you sure you want to cancel this ticket?"
+        );
+
+
+    if (!confirmCancel) {
+        return;
+    }
+
+
+    let bookings =
+        getBookings();
+
+
+    bookings =
+        bookings.filter(
+            function(booking) {
+
+                return (
+                    booking.id !== id
+                );
+
+            }
+        );
+
+
+    saveBookings(
+        bookings
+    );
+
+
+    loadTickets();
+
+
+    alert(
+        "Ticket cancelled successfully."
+    );
+}
+
+
+/* ============================================================
+   EVENT BUTTONS
+   ============================================================ */
+
+function setupEventButtons() {
+
+    const cards =
+        document.querySelectorAll(
+            ".event-card, article, .card"
+        );
+
+
+    cards.forEach(
+        function(card) {
+
+            const heading =
+                card.querySelector(
+                    "h1, h2, h3, h4, h5, h6"
+                );
+
+
+            if (!heading) {
+                return;
+            }
+
+
+            const title =
+                heading.textContent
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+                    .trim();
+
+
+            if (!EVENTS[title]) {
+                return;
+            }
+
+
+            const buttons =
+                card.querySelectorAll(
+                    "button, a"
+                );
+
+
+            buttons.forEach(
+                function(button) {
+
+                    const text =
+                        button.textContent
+                            .replace(
+                                /\s+/g,
+                                " "
+                            )
+                            .trim()
+                            .toLowerCase();
+
+
+                    if (
+                        !text.includes(
+                            "view event"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    if (
+                        button.dataset
+                            .aureliaReady ===
+                        "true"
+                    ) {
+                        return;
+                    }
+
+
+                    button.dataset
+                        .aureliaReady =
+                        "true";
+
+
+                    button.addEventListener(
+                        "click",
+                        function(event) {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+                            showEvent(
+                                title
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+}
+
+
+/* ============================================================
+   SIGN IN BUTTON
+   ============================================================ */
+
+function setupSignInButton() {
+
+    const button =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    if (!button) {
+
+        console.warn(
+            "authButton not found."
+        );
+
+        return;
+    }
+
+
+    if (
+        button.dataset
+            .aureliaReady ===
+        "true"
+    ) {
+        return;
+    }
+
+
+    button.dataset
+        .aureliaReady =
+        "true";
+
+
+    button.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            openLogin();
+
+        }
+    );
+}
+
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+function setupContactDetails() {
+
+    const contact =
+        document.getElementById(
+            "contact"
+        );
+
+
+    if (!contact) {
+        return;
+    }
+
+
+    contact
+        .querySelectorAll(
+            'a[href^="mailto:"]'
+        )
+        .forEach(
+            function(emailLink) {
+
+                emailLink.remove();
+
+            }
+        );
+
+
+    if (
+        document.getElementById(
+            "aureliaPhoneContacts"
+        )
+    ) {
+        return;
+    }
+
+
+    const wrapper =
+        document.createElement(
+            "div"
+        );
+
+
+    wrapper.id =
+        "aureliaPhoneContacts";
+
+
+    wrapper.innerHTML = `
+
+        <div class="aurelia-contact-box">
+
+            <span>
+                PHONE 01
+            </span>
+
+            <a href="tel:+919876543210">
+
+                +91 98765 43210
+
+            </a>
+
+        </div>
+
+
+        <div class="aurelia-contact-box">
+
+            <span>
+                PHONE 02
+            </span>
+
+            <a href="tel:+919123456789">
+
+                +91 91234 56789
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    contact.appendChild(
+        wrapper
+    );
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+function setupNavigation() {
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+            function(link) {
+
+                if (
+                    link.dataset
+                        .aureliaNavReady ===
+                    "true"
+                ) {
+                    return;
+                }
+
+
+                link.dataset
+                    .aureliaNavReady =
+                    "true";
+
+
+                link.addEventListener(
+                    "click",
+                    function(event) {
+
+                        const target =
+                            link.getAttribute(
+                                "href"
+                            );
+
+
+                        if (
+                            !target ||
+                            target === "#"
+                        ) {
+                            return;
+                        }
+
+
+                        const section =
+                            document.querySelector(
+                                target
+                            );
+
+
+                        if (section) {
+
+                            event.preventDefault();
+
+
+                            section.scrollIntoView({
+
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "start"
+
+                            });
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+}
+
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+
+function setupForms() {
+
+    const loginForm =
+        document.getElementById(
+            "loginForm"
+        );
+
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            handleLogin
+        );
+
+    }
+
+
+    const signupForm =
+        document.getElementById(
+            "signupForm"
+        );
+
+
+    if (signupForm) {
+
+        signupForm.addEventListener(
+            "submit",
+            handleSignup
+        );
+
+    }
+
+
+    const bookingForm =
+        document.getElementById(
+            "bookingForm"
+        );
+
+
+    if (bookingForm) {
+
+        bookingForm.addEventListener(
+            "submit",
+            handleBooking
+        );
+
+    }
+
+
+    const ticketType =
+        document.getElementById(
+            "ticketType"
+        );
+
+
+    if (ticketType) {
+
+        ticketType.addEventListener(
+            "change",
+            updateBookingTotal
+        );
+
+    }
+
+
+    const quantity =
+        document.getElementById(
+            "ticketQuantity"
+        );
+
+
+    if (quantity) {
+
+        quantity.addEventListener(
+            "input",
+            updateBookingTotal
+        );
+
+        quantity.addEventListener(
+            "change",
+            updateBookingTotal
+        );
+
+    }
+}
+
+
+/* ============================================================
+   MODAL ACTIONS
+   ============================================================ */
+
+function setupModalActions() {
+
+    document
+        .querySelectorAll(
+            ".modal"
+        )
+        .forEach(
+            function(modal) {
+
+                modal.addEventListener(
+                    "click",
+                    function(event) {
+
+                        if (
+                            event.target ===
+                            modal
+                        ) {
+
+                            closeModal(
+                                modal.id
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key !==
+                "Escape"
+            ) {
+                return;
+            }
+
+
+            const eventPage =
+                document.getElementById(
+                    "aureliaFullEventPage"
+                );
+
+
+            if (eventPage) {
+
+                eventPage.remove();
+
+                document.body.style.overflow =
+                    "";
+
+                return;
+            }
+
+
+            closeAllModals();
+
+        }
+    );
+}
+
+
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        console.log(
+            "AURELIA JS loaded successfully."
+        );
+
+
+        updateAuthUI();
+
+        setupEventButtons();
+
+        setupSignInButton();
+
+        setupForms();
+
+        setupModalActions();
+
+        setupNavigation();
+
+        setupContactDetails();
+
+        loadTickets();
+
+    }
+);
