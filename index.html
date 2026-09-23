@@ -745,9 +745,21 @@
                     Delhi · The Grand Pavilion
                 </p>
 
-
                 <div class="event-bottom">
+
+                    <span>
+                        From <strong>₹1199</strong>
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="showEvent('veloura')">
+                        View Event
+                    </button>
+
                 </div>
+            
+
             </div>
         </article></div>
 </section>
@@ -806,239 +818,124 @@
     </section>
  
     <!-- ================= CONTACT ================= -->
+<section id="contact" class="section contact-section">
 
-          <!-- ================= CONTACT SECTION ================= -->
+    <div class="contact-content">
 
-<section class="contact-section" id="contact">
+        <div class="contact-info">
 
-    <div class="contact-container">
-
-        <!-- TOP HEADING -->
-        <div class="contact-heading">
-
-            <span class="contact-eyebrow">
-                GET IN TOUCH
-            </span>
+            <p class="section-label">GET IN TOUCH</p>
 
             <h2>
                 Let's Create
                 <span>Memories.</span>
             </h2>
 
+            <p class="contact-intro">
+                Have a question about an event or booking?
+                We're here to help.
+            </p>
+
+
+            <div class="contact-details">
+
+                <div class="contact-detail-card">
+                    <span class="contact-number">01</span>
+                    <strong>EMAIL</strong>
+                    <span>battinapradeep3@gmail.com</span>
+                </div>
+
+                <div class="contact-detail-card">
+                    <span class="contact-number">02</span>
+                    <strong>PHONE</strong>
+                    <span>9346070654</span>
+                </div>
+
+            </div>
 
         </div>
 
 
-        <!-- CONTACT CONTENT -->
+        <!-- SEND MESSAGE BOX -->
 
-        <div class="contact-grid">
+        <div class="contact-form">
 
-            <!-- LEFT SIDE -->
+            <p class="section-label">SEND A MESSAGE</p>
 
-            <div class="contact-details">
+            <h3>How can we help?</h3>
 
-                <div class="contact-card">
+            <form id="contactForm">
 
-                    <span class="contact-number">
-                        01
-                    </span>
-
-                    <div class="contact-card-content">
-
-                        <small>EMAIL</small>
-
-                        <a href="mailto:battinapradeep3@gmail.com">
-                            battinapradeep3@gmail.com
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-card">
-
-                    <span class="contact-number">
-                        02
-                    </span>
-
-                    <div class="contact-card-content">
-
-                        <small>PHONE</small>
-
-                        <a href="tel:9346070654">
-                          9346070654
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-card">
-
-                    <span class="contact-number">
-                        03
-                    </span>
-
-                    <div class="contact-card-content">
-
-                        <small>LOCATION</small>
-
-                        <p>
-                            Hyderabad, Telangana, India
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SOCIAL -->
-
-                <div class="contact-social">
-
-                    <span>FOLLOW AURELIA</span>
-
-                    <div class="social-links">
-
-
-                        
-
-                        <a href="#" aria-label="LinkedIn">
-                            LinkedIn
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- RIGHT SIDE FORM -->
-
-            <div class="contact-form-wrapper">
-
-                <div class="form-heading">
-
-                    <span>
-                        SEND A MESSAGE
-                    </span>
-
-                    <h3>
-                        How can we help?
-                    </h3>
-
-                </div>
-
-
-                <form
-                    id="contactForm"
-                    onsubmit="sendContactMessage(event)"
-                >
-
-                    <!-- NAME -->
+                <div class="form-row">
 
                     <div class="form-group">
-
-                        <label for="contactName">
-                            Your Name
-                        </label>
+                        <label for="contactName">Your Name</label>
 
                         <input
                             type="text"
                             id="contactName"
-                            name="name"
                             placeholder="Enter your name"
                             required
                         >
-
                     </div>
 
-
-                    <!-- EMAIL -->
-
                     <div class="form-group">
-
-                        <label for="contactEmail">
-                            Email Address
-                        </label>
+                        <label for="contactEmail">Email Address</label>
 
                         <input
                             type="email"
                             id="contactEmail"
-                            name="email"
                             placeholder="Enter your email"
                             required
                         >
-
                     </div>
 
-
-                    <!-- SUBJECT -->
-
-                    <div class="form-group">
-
-                        <label for="contactSubject">
-                            Subject
-                        </label>
-
-                        <input
-                            type="text"
-                            id="contactSubject"
-                            name="subject"
-                            placeholder="What is this regarding?"
-                            required
-                        >
-
-                    </div>
+                </div>
 
 
-                    <!-- MESSAGE -->
+                <div class="form-group">
 
-                    <div class="form-group">
+                    <label for="contactSubject">Subject</label>
 
-                        <label for="contactMessage">
-                            Message
-                        </label>
-
-                        <textarea
-                            id="contactMessage"
-                            name="message"
-                            rows="5"
-                            placeholder="Tell us how we can help..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-                    <!-- SUBMIT -->
-
-                    <button
-                        type="submit"
-                        class="contact-submit"
+                    <input
+                        type="text"
+                        id="contactSubject"
+                        placeholder="What is this regarding?"
+                        required
                     >
-                        <span>Send Message</span>
-                        <span class="submit-arrow">→</span>
-                    </button>
+
+                </div>
 
 
-                    <p
-                        id="contactMessageStatus"
-                        class="contact-status"
-                    ></p>
+                <div class="form-group">
 
-                </form>
+                    <label for="contactMessage">Message</label>
 
-            </div>
+                    <textarea
+                        id="contactMessage"
+                        placeholder="Write your message..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Send Message →
+                </button>
+
+            </form>
 
         </div>
 
     </div>
 
 </section>
+
+
 <!-- ================= MY TICKETS ================= -->
 
 <section id="tickets" class="section tickets-section">
@@ -1108,10 +1005,6 @@
                 AURELIA
             </div>
 
-            <p>
-                Discover extraordinary events.
-                Create unforgettable memories.
-            </p>
 
         </div>
 
