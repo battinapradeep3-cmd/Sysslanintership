@@ -1898,3 +1898,360 @@ textarea:focus {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================================
+   AURELIA LOGIN MODAL
+========================================================= */
+
+.login-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 0, 0, 0.82);
+
+    backdrop-filter: blur(14px);
+}
+
+
+/* OPEN */
+
+.login-modal.active {
+
+    display: flex;
+
+}
+
+
+/* LOGIN BOX */
+
+.login-box {
+
+    position: relative;
+
+    width: min(450px, 95vw);
+
+    padding: 42px 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171410,
+            #0e0d0b
+        );
+
+    border: 1px solid
+        rgba(201, 169, 110, 0.35);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0, 0, 0, 0.65);
+
+    animation:
+        loginAppear 0.3s ease;
+}
+
+
+@keyframes loginAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* CLOSE BUTTON */
+
+.login-close {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 20px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: 1px solid
+        rgba(201, 169, 110, 0.25);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #e5c98e;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    transition: 0.3s ease;
+}
+
+.login-close:hover {
+
+    background: #c9a96e;
+
+    color: #090807;
+
+    transform:
+        rotate(90deg);
+
+}
+
+
+/* HEADING */
+
+.login-heading {
+
+    margin-bottom: 32px;
+
+    text-align: center;
+}
+
+.login-heading span {
+
+    color: #c9a96e;
+
+    font-size: 0.68rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.22em;
+}
+
+.login-heading h2 {
+
+    margin-top: 10px;
+
+    color: #ffffff;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 2.5rem;
+
+    font-weight: 500;
+}
+
+.login-heading p {
+
+    margin-top: 10px;
+
+    color: #a9a39a;
+
+    font-size: 0.82rem;
+
+    line-height: 1.6;
+}
+
+
+/* INPUT GROUP */
+
+.login-group {
+
+    margin-bottom: 20px;
+}
+
+.login-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c9a96e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* INPUT */
+
+.login-group input {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 1px solid
+        rgba(201, 169, 110, 0.22);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #0d0c0a;
+
+    color: #ffffff;
+
+    font-size: 0.88rem;
+
+    transition: 0.3s ease;
+}
+
+.login-group input::placeholder {
+
+    color: #68635c;
+}
+
+.login-group input:focus {
+
+    border-color: #c9a96e;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(201, 169, 110, 0.08);
+}
+
+
+/* SUBMIT */
+
+.login-submit {
+
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 8px;
+
+    border: 1px solid #c9a96e;
+
+    border-radius: 30px;
+
+    background: #c9a96e;
+
+    color: #090807;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.14em;
+
+    transition: 0.3s ease;
+}
+
+.login-submit:hover {
+
+    background: #e5c98e;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* MESSAGE */
+
+.login-message {
+
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 0.78rem;
+}
+
+
+/* FOOTER */
+
+.login-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid
+        rgba(201, 169, 110, 0.15);
+
+    color: #8f8980;
+
+    font-size: 0.75rem;
+}
+
+.login-footer button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #e5c98e;
+
+    font-size: 0.75rem;
+
+    cursor: pointer;
+}
+
+.login-footer button:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .login-box {
+
+        padding:
+            38px 22px;
+
+    }
+
+    .login-heading h2 {
+
+        font-size: 2.1rem;
+
+    }
+
+}
