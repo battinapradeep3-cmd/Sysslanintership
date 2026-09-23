@@ -2376,3 +2376,282 @@ document.addEventListener(
 
     }
 );
+/* =========================================================
+   AURELIA SIGN IN
+========================================================= */
+
+function openLogin() {
+
+    const loginModal =
+        document.getElementById("loginModal");
+
+    if (!loginModal) {
+
+        console.error(
+            "loginModal not found"
+        );
+
+        return;
+    }
+
+    loginModal.classList.add("active");
+
+    document.body.classList.add(
+        "no-scroll"
+    );
+
+    setTimeout(function () {
+
+        const username =
+            document.getElementById(
+                "loginUsername"
+            );
+
+        if (username) {
+            username.focus();
+        }
+
+    }, 100);
+
+}
+
+
+/* CLOSE LOGIN */
+
+function closeLogin() {
+
+    const loginModal =
+        document.getElementById("loginModal");
+
+    if (!loginModal) {
+        return;
+    }
+
+    loginModal.classList.remove("active");
+
+    document.body.classList.remove(
+        "no-scroll"
+    );
+
+}
+
+
+/* LOGIN FORM */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+        if (!loginForm) {
+            return;
+        }
+
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document.getElementById(
+                        "loginUsername"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "loginPassword"
+                    ).value.trim();
+
+
+                const message =
+                    document.getElementById(
+                        "loginMessage"
+                    );
+
+
+                if (!username || !password) {
+
+                    message.textContent =
+                        "Please enter username and password.";
+
+                    message.style.color =
+                        "#d99a8f";
+
+                    return;
+                }
+
+
+                /*
+                   FRONT-END DEMO LOGIN
+
+                   This does not create a real
+                   secure account/database.
+                */
+
+                localStorage.setItem(
+                    "aureliaUser",
+                    username
+                );
+
+
+                message.textContent =
+                    "Sign in successful!";
+
+                message.style.color =
+                    "#c9a96e";
+
+
+                setTimeout(
+                    function () {
+
+                        closeLogin();
+
+                        updateUserStatus();
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+
+        /* CLOSE WHEN CLICKING OUTSIDE */
+
+        const loginModal =
+            document.getElementById(
+                "loginModal"
+            );
+
+        loginModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    loginModal
+                ) {
+
+                    closeLogin();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* UPDATE NAVBAR */
+
+function updateUserStatus() {
+
+    const username =
+        localStorage.getItem(
+            "aureliaUser"
+        );
+
+    const userStatus =
+        document.getElementById(
+            "userStatus"
+        );
+
+    const authButton =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    if (
+        username &&
+        userStatus &&
+        authButton
+    ) {
+
+        userStatus.textContent =
+            "Hi, " + username;
+
+        authButton.textContent =
+            "Sign Out";
+
+        authButton.onclick =
+            logoutUser;
+
+    }
+
+}
+
+
+/* LOGOUT */
+
+function logoutUser() {
+
+    localStorage.removeItem(
+        "aureliaUser"
+    );
+
+    const userStatus =
+        document.getElementById(
+            "userStatus"
+        );
+
+    const authButton =
+        document.getElementById(
+            "authButton"
+        );
+
+
+    if (userStatus) {
+        userStatus.textContent = "";
+    }
+
+    if (authButton) {
+
+        authButton.textContent =
+            "Sign In";
+
+        authButton.onclick =
+            openLogin;
+
+    }
+
+}
+
+
+/* CHECK LOGIN ON PAGE LOAD */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        updateUserStatus();
+
+    }
+);
+
+
+/* ESC KEY */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeLogin();
+
+        }
+
+    }
+);
