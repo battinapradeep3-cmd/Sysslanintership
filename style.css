@@ -1,348 +1,209 @@
 /* =========================================================
-   AURELIA — PREMIUM HORIZONTAL LAYOUT
-   CSS PART 1
-   ========================================================= */
+   AURELIA FINAL FIX — PART 1
+   NAVBAR + HERO + EVENTS
+   Paste this at the VERY END of style.css
+========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
+/* =========================================================
+   1. GLOBAL MOBILE OVERFLOW FIX
+========================================================= */
 
-/* =========================
-   ROOT
-========================= */
-
-:root {
-    --bg: #090807;
-    --bg-soft: #11100e;
-    --card: #151310;
-    --card-light: #1b1814;
-
-    --gold: #c9a96e;
-    --gold-light: #e5c98e;
-    --gold-dark: #927545;
-
-    --white: #ffffff;
-    --text: #eeeae2;
-    --muted: #a9a39a;
-
-    --border: rgba(201, 169, 110, 0.22);
-
-    --max-width: 1400px;
-    --radius: 18px;
-
-    --shadow:
-        0 20px 60px rgba(0, 0, 0, 0.45);
-
-    --transition:
-        all 0.3s ease;
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-
-/* =========================
-   RESET
-========================= */
-
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
+/* =========================================================
+   2. NAVBAR — CLEAN RESPONSIVE LAYOUT
+========================================================= */
 
-
-body {
-    font-family: "Inter", sans-serif;
-
-    background: var(--bg);
-    color: var(--text);
-
-    line-height: 1.6;
-
-    overflow-x: hidden;
-}
-
-
-body.no-scroll {
-    overflow: hidden;
-}
-
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
-}
-
-
-button {
-    cursor: pointer;
-}
-
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container {
-    width: min(94%, var(--max-width));
-    margin: auto;
-}
-
-
-/* =========================
-   HEADINGS
-========================= */
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: "Playfair Display", serif;
-
-    font-weight: 500;
-
-    line-height: 1.1;
-}
-
-
-h2 {
-    font-size: clamp(2rem, 4vw, 4rem);
-}
-
-
-p {
-    color: var(--muted);
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
-
-header,
 .navbar {
     width: 100%;
-}
-
-
-.navbar {
-    position: sticky;
-
-    top: 0;
-
-    z-index: 999;
-
-    background: rgba(9, 8, 7, 0.94);
-
-    backdrop-filter: blur(18px);
-
-    border-bottom:
-        1px solid var(--border);
-}
-
-
-.navbar .container {
     min-height: 78px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 30px;
+    gap: 25px;
+    padding: 0 4%;
+
+    background: rgba(9, 8, 7, 0.97);
+    border-bottom: 1px solid rgba(201, 169, 110, 0.22);
+
+    backdrop-filter: blur(16px);
 }
 
+.navbar .logo {
+    flex-shrink: 0;
 
-.logo,
-.brand {
-    font-family:
-        "Playfair Display",
-        serif;
-
+    font-family: "Playfair Display", serif;
     font-size: 1.8rem;
-
     letter-spacing: 0.12em;
 
-    color: var(--gold-light);
-
+    color: #e5c98e;
     white-space: nowrap;
 }
 
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.nav-links,
-nav ul {
-
+.nav-links {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    gap: 28px;
-
-    list-style: none;
-
-    white-space: nowrap;
-}
-
-
-.nav-links a,
-nav ul a {
-
-    color: var(--muted);
-
-    font-size: 0.82rem;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.12em;
-
-    transition: var(--transition);
-}
-
-
-.nav-links a:hover,
-nav ul a:hover {
-
-    color: var(--gold-light);
-}
-
-
-/* =========================
-   SIGN IN
-========================= */
-
-#authButton {
-
-    border:
-        1px solid var(--gold);
-
-    background: transparent;
-
-    color: var(--gold-light);
-
-    padding:
-        11px 20px;
-
-    border-radius: 30px;
-
-    transition:
-        var(--transition);
-}
-
-
-#authButton:hover {
-
-    background: var(--gold);
-
-    color: #080706;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-
-    min-height:
-        calc(100vh - 78px);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding:
-        90px 0;
-}
-
-
-.hero-content {
-
-    width:
-        min(94%, var(--max-width));
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 70px;
-}
-
-
-.hero-text {
+    gap: 26px;
 
     flex: 1;
 
-    min-width: 0;
+    white-space: nowrap;
+}
+
+.nav-links a {
+    color: #a9a39a;
+
+    font-size: 0.78rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #e5c98e;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+#authButton {
+    min-width: 120px;
+
+    padding: 11px 20px;
+
+    border: 1px solid #c9a96e;
+    border-radius: 30px;
+
+    background: transparent;
+    color: #e5c98e;
+
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition: all 0.3s ease;
+}
+
+#authButton:hover {
+    background: #c9a96e;
+    color: #090807;
 }
 
 
-.hero h1 {
+/* =========================================================
+   3. HERO — DESKTOP
+========================================================= */
 
-    font-size:
-        clamp(3.5rem, 8vw, 8rem);
+.hero {
+    width: 100%;
+    min-height: calc(100vh - 78px);
 
-    letter-spacing:
-        -0.04em;
-
-    color:
-        var(--white);
-}
-
-
-.hero h1 span {
-
-    color:
-        var(--gold-light);
-}
-
-
-.hero p {
-
-    max-width:
-        650px;
-
-    margin:
-        30px 0;
-
-    font-size:
-        1.05rem;
-}
-
-
-.hero-buttons {
+    padding: 90px 5%;
 
     display: flex;
+    align-items: center;
 
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(300px, 0.65fr);
+
+    grid-template-areas:
+        "label stats"
+        "title stats"
+        "description stats"
+        "buttons stats";
+
+    column-gap: 70px;
+    row-gap: 20px;
+
+    align-items: center;
+}
+
+.hero-label {
+    grid-area: label;
+
+    margin: 0;
+
+    color: #c9a96e;
+
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    grid-area: title;
+
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 8vw, 8rem);
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+
+    color: #ffffff;
+}
+
+.hero h1 span {
+    color: #c9a96e;
+}
+
+.hero-description {
+    grid-area: description;
+
+    max-width: 650px;
+
+    margin: 15px 0 5px;
+
+    color: #a9a39a;
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    grid-area: buttons;
+
+    display: flex;
     align-items: center;
 
     gap: 15px;
@@ -350,1792 +211,2080 @@ nav ul a:hover {
     flex-wrap: wrap;
 }
 
+.hero-buttons .btn {
+    min-width: 190px;
+}
 
-/* =========================
-   HERO STATS
-========================= */
+
+/* =========================================================
+   4. HERO STATS
+========================================================= */
 
 .hero-stats {
-
-    flex:
-        0 0 420px;
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 12px;
-
-    overflow-x: auto;
-}
-
-
-.hero-stat {
-
-    min-width:
-        125px;
-
-    padding:
-        25px 18px;
-
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-
-    text-align:
-        center;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.btn,
-button {
-    border: 0;
-}
-
-
-.btn {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 46px;
-
-    padding:
-        12px 25px;
-
-    border-radius: 30px;
-
-    font-size:
-        0.8rem;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        0.08em;
-
-    text-transform:
-        uppercase;
-
-    transition:
-        var(--transition);
-}
-
-
-.btn-primary {
-
-    background:
-        var(--gold);
-
-    color:
-        #0b0907;
-}
-
-
-.btn-primary:hover {
-
-    background:
-        var(--gold-light);
-
-    transform:
-        translateY(-2px);
-}
-
-
-.btn-outline {
-
-    background:
-        transparent;
-
-    color:
-        var(--gold-light);
-
-    border:
-        1px solid var(--gold);
-}
-
-
-.btn-outline:hover {
-
-    background:
-        var(--gold);
-
-    color:
-        #090807;
-}
-
-
-/* =========================
-   COMMON SECTION
-========================= */
-
-section {
+    grid-area: stats;
 
     width: 100%;
 
-    padding:
-        110px 0;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 14px;
+
+    overflow: visible;
 }
 
+.hero-stats > div {
+    min-height: 145px;
 
-.section-header {
-
-    margin-bottom:
-        50px;
+    padding: 25px 15px;
 
     display: flex;
+    flex-direction: column;
 
-    align-items: end;
+    align-items: center;
+    justify-content: center;
 
-    justify-content:
-        space-between;
+    text-align: center;
 
-    gap: 30px;
+    background: #151310;
+
+    border: 1px solid rgba(201, 169, 110, 0.22);
+    border-radius: 18px;
+}
+
+.hero-stats strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 2rem;
+
+    color: #e5c98e;
+}
+
+.hero-stats span {
+    color: #a9a39a;
+
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 
-.section-header p {
-
-    max-width:
-        580px;
-}
-
-
-/* =========================
-   EVENTS — HORIZONTAL
-========================= */
+/* =========================================================
+   5. EVENTS SECTION
+========================================================= */
 
 #events {
+    width: 100%;
     overflow: hidden;
 }
 
+.events-section {
+    padding: 110px 0;
+}
 
-.events-grid {
+.section-heading {
+    width: min(90%, 1400px);
 
-    width: 100%;
+    margin: 0 auto 45px;
 
     display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
 
-    flex-direction: row;
+    gap: 40px;
+}
+
+.section-heading > div {
+    flex-shrink: 0;
+}
+
+.section-heading h2 {
+    margin: 8px 0 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 5vw, 5rem);
+
+    color: #ffffff;
+}
+
+.section-heading h2 span {
+    color: #c9a96e;
+}
+
+.section-heading > p {
+    max-width: 550px;
+
+    margin: 0;
+
+    color: #a9a39a;
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.section-label {
+    color: #c9a96e !important;
+
+    font-size: 0.75rem !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   6. EVENTS — TRUE HORIZONTAL SCROLL
+========================================================= */
+
+/*
+   IMPORTANT:
+   HTML uses .event-grid
+   NOT .events-grid
+*/
+
+.event-grid {
+    width: 100%;
+
+    display: flex !important;
+    flex-direction: row !important;
 
     align-items: stretch;
 
     gap: 24px;
 
-    overflow-x: auto;
-
+    overflow-x: auto !important;
     overflow-y: hidden;
 
-    padding:
-        10px 5px 25px;
+    padding: 10px 5% 30px;
 
-    scroll-snap-type:
-        x mandatory;
-}
+    scroll-snap-type: x mandatory;
 
+    scrollbar-width: thin;
 
-.events-grid::-webkit-scrollbar {
-
-    height: 7px;
-}
-
-
-.events-grid::-webkit-scrollbar-track {
-
-    background:
+    scrollbar-color:
+        #927545
         #11100e;
 }
 
+.event-grid::-webkit-scrollbar {
+    height: 7px;
+}
 
-.events-grid::-webkit-scrollbar-thumb {
+.event-grid::-webkit-scrollbar-track {
+    background: #11100e;
+}
 
-    background:
-        var(--gold-dark);
-
-    border-radius:
-        20px;
+.event-grid::-webkit-scrollbar-thumb {
+    background: #927545;
+    border-radius: 20px;
 }
 
 
-/* =========================
-   EVENT CARD
-========================= */
+/* =========================================================
+   7. EVENT CARD
+========================================================= */
 
 .event-card {
+    flex: 0 0 390px !important;
 
-    flex:
-        0 0 350px;
+    width: 390px !important;
 
-    width:
-        350px;
+    min-width: 390px;
 
     display: flex;
 
     flex-direction: column;
 
-    background:
-        var(--card);
+    background: #151310;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid rgba(201, 169, 110, 0.25);
 
-    border-radius:
-        var(--radius);
+    border-radius: 20px;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    scroll-snap-align:
-        start;
+    scroll-snap-align: start;
 
     transition:
-        var(--transition);
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
-
 
 .event-card:hover {
+    transform: translateY(-7px);
 
-    transform:
-        translateY(-8px);
-
-    border-color:
-        rgba(201, 169, 110, 0.55);
+    border-color: rgba(201, 169, 110, 0.6);
 
     box-shadow:
-        var(--shadow);
+        0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
 
-.event-card img {
+/* =========================================================
+   8. EVENT IMAGE
+========================================================= */
 
+.event-image {
     width: 100%;
 
-    height: 240px;
+    height: 250px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
 
     object-fit: cover;
 
-    transition:
-        transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
-
-.event-card:hover img {
-
-    transform:
-        scale(1.04);
+.event-card:hover .event-image img {
+    transform: scale(1.04);
 }
 
+.event-image::after {
+    content: "";
 
-.event-card-content {
+    position: absolute;
 
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 25px;
-}
-
-
-.event-card h3 {
-
-    font-size:
-        1.7rem;
-
-    margin:
-        8px 0 15px;
-
-    color:
-        var(--white);
-}
-
-
-.event-category {
-
-    color:
-        var(--gold);
-
-    font-size:
-        0.7rem;
-
-    letter-spacing:
-        0.16em;
-
-    text-transform:
-        uppercase;
-}
-
-
-.event-meta {
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: center;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-
-    margin-bottom:
-        18px;
-}
-
-
-.event-date,
-.event-time,
-.event-location,
-.event-venue {
-
-    color:
-        var(--muted);
-
-    font-size:
-        0.82rem;
-}
-
-
-.event-details {
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: center;
-
-    justify-content:
-        space-between;
-
-    gap: 15px;
-
-    margin-top:
-        auto;
-}
-
-
-.event-price {
-
-    color:
-        var(--gold-light);
-
-    font-size:
-        1.1rem;
-
-    font-weight:
-        600;
-}
-
-
-.event-card .btn {
-
-    white-space:
-        nowrap;
-}
-
-
-/* =========================
-   EVENT INFORMATION
-========================= */
-
-.event-info,
-.event-information,
-.event-info-grid {
-
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: stretch;
-
-    gap: 18px;
-
-    overflow-x: auto;
-}
-
-
-.event-info > *,
-.event-information > *,
-.event-info-grid > * {
-
-    flex:
-        1 0 220px;
-}
-
-
-/* =========================
-   ABOUT — HORIZONTAL
-========================= */
-
-.about-content {
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: stretch;
-
-    gap: 50px;
-}
-
-
-.about-text {
-
-    flex: 1;
-}
-
-
-.about-text h2 {
-
-    margin-bottom:
-        25px;
-}
-
-
-.about-text > p {
-
-    max-width:
-        700px;
-}
-
-
-.about-features {
-
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 18px;
-
-    overflow-x: auto;
-}
-
-
-.about-feature {
-
-    flex:
-        1 0 220px;
-
-    padding:
-        28px;
+    inset: 0;
 
     background:
-        var(--card);
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.65),
+            transparent 55%
+        );
 
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
+    pointer-events: none;
 }
 
+.event-image .event-category {
+    position: absolute;
 
-.about-feature span,
-.feature-number {
+    left: 18px;
+    bottom: 18px;
 
-    display: block;
+    z-index: 2;
 
-    color:
-        var(--gold);
+    padding: 8px 13px;
 
-    font-size:
-        0.75rem;
+    border-radius: 20px;
 
-    letter-spacing:
-        0.12em;
+    background: rgba(15, 12, 9, 0.78);
 
-    margin-bottom:
-        18px;
-}
+    border: 1px solid rgba(201, 169, 110, 0.25);
 
+    color: #e5c98e;
 
-.about-feature h3 {
-
-    color:
-        var(--white);
-
-    margin-bottom:
-        12px;
-}
-
-
-/* =========================
-   CONTACT — HORIZONTAL
-========================= */
-
-.contact-content {
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: stretch;
-
-    gap: 45px;
-}
-
-
-.contact-info {
-
-    flex: 1;
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 15px;
-
-    overflow-x: auto;
-}
-
-
-.contact-item {
-
-    flex:
-        1 0 220px;
-
-    padding:
-        25px;
-
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-}
-
-
-.contact-item span {
-
-    display: block;
-
-    color:
-        var(--gold);
-
-    font-size:
-        0.7rem;
-
-    letter-spacing:
-        0.12em;
-
-    text-transform:
-        uppercase;
-
-    margin-bottom:
-        10px;
-}
-
-
-.contact-item h3 {
-
-    color:
-        var(--white);
-
-    font-size:
-        1.1rem;
-}
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-.contact-form {
-
-    flex: 1;
-}
-
-
-.contact-form form {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 15px;
-}
-
-
-.form-row {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 15px;
-}
-
-
-.form-row > * {
-
-    flex: 1;
-}
-
-
-/* =========================
-   INPUTS
-========================= */
-
-input,
-select,
-textarea {
-
-    width: 100%;
-
-    background:
-        #11100e;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        10px;
-
-    padding:
-        14px 16px;
-
-    color:
-        var(--white);
-
-    outline: none;
-
-    transition:
-        var(--transition);
-}
-
-
-input::placeholder,
-textarea::placeholder {
-
-    color:
-        #777169;
-}
-
-
-input:focus,
-select:focus,
-textarea:focus {
-
-    border-color:
-        var(--gold);
-}
-
-
-textarea {
-
-    min-height:
-        130px;
-
-    resize:
-        vertical;
-}
-
-
-/* =========================
-   MY TICKETS
-========================= */
-
-#ticketsContainer {
-
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 20px;
-
-    overflow-x: auto;
-}
-
-
-.ticket-card {
-
-    flex:
-        0 0 360px;
-
-    padding:
-        25px;
-
-    background:
-        var(--card);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-   }
-/* =========================================================
-   AURELIA — CSS PART 2
-   ========================================================= */
-
-
-/* =========================
-   CONFIRMATION DETAILS
-========================= */
-
-.confirmation-details {
-
-    display: flex;
-
-    flex-direction: row;
-
-    flex-wrap: wrap;
-
-    gap: 15px;
-}
-
-
-.confirmation-details > div {
-
-    flex: 1 0 180px;
-
-    padding: 20px;
-
-    background: #100f0d;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-}
-
-
-/* =========================
-   PHONE CONTACTS
-========================= */
-
-#aureliaPhoneContacts {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-}
-
-
-#aureliaPhoneContacts > div {
-
-    flex: 1 0 220px;
-
-    padding: 20px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    padding:
-        70px 0 30px;
-
-    border-top:
-        1px solid var(--border);
-}
-
-
-.footer-content {
-
-    display: flex;
-
-    flex-direction: row;
-
-    align-items: flex-start;
-
-    justify-content:
-        space-between;
-
-    gap: 50px;
-}
-
-
-.footer-column {
-
-    flex: 1;
-}
-
-
-.footer-column h4 {
-
-    color:
-        var(--gold-light);
-
-    margin-bottom:
-        18px;
-}
-
-
-.footer-column ul {
-
-    list-style:
-        none;
-
-    display: flex;
-
-    flex-direction:
-        column;
-
-    gap: 10px;
-}
-
-
-.footer-column a {
-
-    color:
-        var(--muted);
-
-    transition:
-        var(--transition);
-}
-
-
-.footer-column a:hover {
-
-    color:
-        var(--gold-light);
-}
-
-
-.footer-bottom {
-
-    margin-top:
-        45px;
-
-    padding-top:
-        25px;
-
-    border-top:
-        1px solid var(--border);
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    gap: 20px;
-}
-
-
-/* =========================
-   HORIZONTAL UTILITY
-========================= */
-
-.horizontal {
-
-    display: flex;
-
-    flex-direction: row;
-
-    gap: 20px;
-
-    overflow-x: auto;
-}
-
-
-.horizontal > * {
-
-    flex: 0 0 auto;
-}
-
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-* {
-
-    scrollbar-width:
-        thin;
-
-    scrollbar-color:
-        var(--gold-dark)
-        #11100e;
-}
-
-
-::-webkit-scrollbar {
-
-    width: 7px;
-
-    height: 7px;
-}
-
-
-::-webkit-scrollbar-track {
-
-    background:
-        #11100e;
-}
-
-
-::-webkit-scrollbar-thumb {
-
-    background:
-        var(--gold-dark);
-
-    border-radius:
-        20px;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   9. EVENT CONTENT
 ========================================================= */
 
+.event-content {
+    flex: 1;
 
-/* =========================
-   TABLET
-========================= */
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.event-content h3 {
+    margin: 5px 0 15px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.8rem;
+
+    color: #ffffff;
+}
+
+.event-meta {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px 15px;
+
+    margin-bottom: 18px;
+}
+
+.event-meta > * {
+    color: #a9a39a;
+
+    font-size: 0.82rem;
+}
+
+.event-location,
+.event-venue {
+    grid-column: 1 / -1;
+}
+
+.event-details {
+    margin-top: auto;
+
+    padding-top: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top: 1px solid rgba(201, 169, 110, 0.14);
+}
+
+.event-price {
+    color: #e5c98e;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   10. EVENT BUTTON
+========================================================= */
+
+.event-card .btn {
+    min-width: 140px;
+
+    padding: 11px 18px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   11. TABLET
+========================================================= */
 
 @media (max-width: 1000px) {
 
-    .navbar .container {
-
+    .navbar {
+        padding: 0 3%;
         gap: 15px;
     }
 
-
-    .nav-links,
-    nav ul {
-
+    .nav-links {
         gap: 15px;
     }
 
-
-    .hero-content {
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
+    .nav-links a {
+        font-size: 0.7rem;
     }
-
-
-    .hero-stats {
-
-        width: 100%;
-
-        flex: none;
-    }
-
-
-    .about-content,
-    .contact-content {
-
-        flex-direction:
-            column;
-    }
-
-
-    .aurelia-event-details {
-
-        flex-direction:
-            column;
-    }
-
-
-    .footer-content {
-
-        flex-wrap:
-            wrap;
-    }
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    html {
-
-        scroll-padding-top:
-            70px;
-    }
-
-
-    .navbar .container {
-
-        min-height:
-            70px;
-
-        overflow-x:
-            auto;
-    }
-
-
-    .logo,
-    .brand {
-
-        font-size:
-            1.4rem;
-    }
-
-
-    .nav-links,
-    nav ul {
-
-        gap:
-            18px;
-    }
-
-
-    #authButton {
-
-        padding:
-            9px 15px;
-    }
-
-
-    section {
-
-        padding:
-            75px 0;
-    }
-
 
     .hero {
+        min-height: auto;
 
-        min-height:
-            auto;
-
-        padding:
-            80px 0;
+        padding: 90px 4%;
     }
 
+    .hero-content {
+        grid-template-columns: 1fr;
 
-    .hero h1 {
+        grid-template-areas:
+            "label"
+            "title"
+            "description"
+            "buttons"
+            "stats";
 
-        font-size:
-            3.4rem;
+        gap: 22px;
     }
-
 
     .hero-stats {
-
-        width:
-            100%;
+        margin-top: 25px;
     }
 
+    .section-heading {
+        width: 92%;
+    }
 
     .event-card {
-
-        flex-basis:
-            82vw;
-
-        width:
-            82vw;
+        flex-basis: 350px !important;
+        width: 350px !important;
+        min-width: 350px;
     }
-
-
-    .about-features,
-    .contact-info {
-
-        width:
-            100%;
-    }
-
-
-    .form-row,
-    .booking-row {
-
-        flex-direction:
-            column;
-    }
-
-
-    .modal-content {
-
-        padding:
-            25px;
-    }
-
-
-    .modal-content .modal-body {
-
-        flex-direction:
-            column;
-    }
-
-
-    .aurelia-event-page {
-
-        padding:
-            80px 0;
-    }
-
-
-    .aurelia-event-main h1 {
-
-        font-size:
-            3.2rem;
-    }
-
-
-    .aurelia-event-info {
-
-        flex-direction:
-            column;
-    }
-
-
-    .aurelia-event-info > div {
-
-        flex:
-            1 0 auto;
-    }
-
-
-    .footer-content {
-
-        flex-direction:
-            column;
-    }
-
-
-    .footer-bottom {
-
-        flex-direction:
-            column;
-    }
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 450px) {
-
-    .hero h1 {
-
-        font-size:
-            2.8rem;
-    }
-
-
-    .event-card {
-
-        flex-basis:
-            88vw;
-
-        width:
-            88vw;
-    }
-
-
-    .event-card img {
-
-        height:
-            210px;
-    }
-
-
-    .section-header {
-
-        flex-direction:
-            column;
-
-        align-items:
-            flex-start;
-    }
-
-
-    .modal {
-
-        padding:
-            12px;
-    }
-
-
-    .modal-content {
-
-        padding:
-            20px;
-    }
-}
-
-
-/* =========================
-   ANIMATION
-========================= */
-
-@keyframes fadeUp {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(20px);
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-
-.event-card,
-.about-feature,
-.contact-item,
-.ticket-card {
-
-    animation:
-        fadeUp 0.6s ease both;
-}
-
-
-/* =========================
-   ACCESSIBILITY
-========================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-
-    outline:
-        2px solid
-        var(--gold-light);
-
-    outline-offset:
-        3px;
 }
 
 
 /* =========================================================
-   AURELIA EVENT DETAILS — FINAL FIX
+   12. MOBILE
 ========================================================= */
 
-#aurelia-event-details-page {
+@media (max-width: 700px) {
 
+    .navbar {
+        min-height: 70px;
+
+        padding: 12px 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px 18px;
+    }
+
+    .navbar .logo {
+        width: 100%;
+
+        text-align: center;
+
+        font-size: 1.45rem;
+    }
+
+    .nav-links {
+        order: 2;
+
+        width: 100%;
+
+        justify-content: flex-start;
+
+        gap: 22px;
+
+        overflow-x: auto;
+
+        padding: 4px 0;
+
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        flex-shrink: 0;
+
+        font-size: 0.68rem;
+    }
+
+    .nav-actions {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    #authButton {
+        min-width: 125px;
+
+        padding: 10px 18px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: auto;
+
+        padding: 75px 22px 85px;
+    }
+
+    .hero-content {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .hero-label {
+        font-size: 0.7rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 15vw, 4.8rem);
+
+        line-height: 0.98;
+    }
+
+    .hero-description {
+        margin: 5px 0 10px;
+
+        font-size: 0.95rem;
+
+        line-height: 1.7;
+    }
+
+    .hero-buttons {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-stats {
+        width: 100%;
+
+        display: flex;
+
+        overflow-x: auto;
+
+        gap: 12px;
+
+        padding-bottom: 5px;
+    }
+
+    .hero-stats > div {
+        flex: 0 0 125px;
+
+        min-height: 120px;
+    }
+
+
+    /* EVENTS */
+
+    .events-section {
+        padding: 80px 0;
+    }
+
+    .section-heading {
+        width: auto;
+
+        margin: 0 22px 30px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .section-heading h2 {
+        font-size: 2.7rem;
+    }
+
+    .section-heading > p {
+        font-size: 0.9rem;
+    }
+
+    .event-grid {
+        gap: 16px;
+
+        padding-left: 22px;
+        padding-right: 22px;
+
+        scroll-padding-left: 22px;
+    }
+
+    .event-card {
+        flex: 0 0 84vw !important;
+
+        width: 84vw !important;
+
+        min-width: 84vw;
+    }
+
+    .event-image {
+        height: 225px;
+    }
+
+    .event-content {
+        padding: 20px;
+    }
+
+    .event-content h3 {
+        font-size: 1.6rem;
+    }
+}
+
+
+/* =========================================================
+   13. SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .event-grid {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .event-card {
+        flex-basis: 86vw !important;
+
+        width: 86vw !important;
+
+        min-width: 86vw;
+    }
+
+    .event-image {
+        height: 210px;
+    }
+
+    .event-details {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .event-card .btn {
+        width: 100%;
+    }
+   }
+/* =========================================================
+   AURELIA FINAL FIX — PART 2
+   ABOUT + CONTACT + TICKETS + MODALS + EVENT DETAILS + FOOTER
+========================================================= */
+
+
+/* =========================================================
+   1. ABOUT SECTION
+========================================================= */
+
+#about {
+    width: 100%;
+    overflow: hidden;
+}
+
+.about-content {
+    width: min(1400px, 90%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 70px;
+    align-items: start;
+}
+
+.about-content h2 {
+    margin: 8px 0 20px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 1;
+
+    color: #fff;
+}
+
+.about-content > div > p:not(.section-label) {
+    max-width: 620px;
+
+    color: #a9a39a;
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* About feature cards */
+
+.about-features {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.about-feature,
+.about-box {
+    min-height: 220px;
+
+    padding: 28px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 16px;
+
+    transition: 0.3s ease;
+}
+
+.about-feature:hover,
+.about-box:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(201,169,110,0.55);
+}
+
+.about-feature > span,
+.about-box > span {
+    color: #c9a96e;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    letter-spacing: 0.16em;
+}
+
+.about-feature h3,
+.about-box h3 {
+    margin: 45px 0 12px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.6rem;
+
+    color: #fff;
+}
+
+.about-feature p,
+.about-box p {
+    margin: 0;
+
+    color: #9f9990;
+
+    font-size: 0.88rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   2. CONTACT SECTION
+========================================================= */
+
+#contact {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.contact-content {
+    width: min(1400px, 90%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 70px;
+
+    align-items: start;
+}
+
+.contact-content h2 {
+    margin: 8px 0 20px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.8rem, 5vw, 5rem);
+
+    line-height: 1;
+
+    color: #fff;
+}
+
+.contact-content > p:not(.section-label) {
+    max-width: 570px;
+
+    color: #a9a39a;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+
+/* Contact details */
+
+.contact-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 40px;
+}
+
+.contact-details > div {
+    padding: 20px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.18);
+
+    border-radius: 14px;
+}
+
+.contact-details strong {
+    display: block;
+
+    color: #c9a96e;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.15em;
+
+    margin-bottom: 9px;
+}
+
+.contact-details span,
+.contact-details a {
+    color: #b1aca4;
+
+    font-size: 0.82rem;
+
+    line-height: 1.5;
+
+    text-decoration: none;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   3. CONTACT FORM
+========================================================= */
+
+.contact-form {
+    width: 100%;
+
+    padding: 32px;
+
+    background: #11100e;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 18px;
+}
+
+.contact-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #aaa39a;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.04em;
+}
+
+.contact-form input,
+.contact-form textarea,
+#contactForm input,
+#contactForm textarea {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    margin-bottom: 18px;
+
+    background: #090807;
+
+    border: 1px solid rgba(201,169,110,0.18);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    transition: 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+#contactForm input:focus,
+#contactForm textarea:focus {
+    border-color: #c9a96e;
+
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.08);
+}
+
+.contact-form textarea,
+#contactForm textarea {
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+#contactForm input::placeholder,
+#contactForm textarea::placeholder {
+    color: #5f5a54;
+}
+
+
+/* FIX browser-default Send Message button */
+
+.contact-form button,
+#contactForm button,
+.contact-submit {
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 13px 20px;
+
+    border: 1px solid #c9a96e;
+
+    border-radius: 30px;
+
+    background: #c9a96e;
+
+    color: #090807;
+
+    font-family: inherit;
+
+    font-size: 0.78rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.contact-form button:hover,
+#contactForm button:hover,
+.contact-submit:hover {
+    background: #e5c98e;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   4. MY TICKETS
+========================================================= */
+
+#tickets {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.tickets-container,
+#ticketsContainer,
+#ticketList {
+    width: min(1400px, 90%);
+
+    margin: 0 auto;
+}
+
+.empty-tickets {
+    padding: 45px 30px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 18px;
+
+    text-align: center;
+}
+
+.empty-tickets h3 {
+    margin: 0 0 10px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 2rem;
+
+    color: #fff;
+}
+
+.empty-tickets p {
+    margin-bottom: 25px;
+
+    color: #99938b;
+
+    line-height: 1.7;
+}
+
+.ticket-card {
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 30px;
+
+    margin-bottom: 20px;
+
+    padding: 28px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.22);
+
+    border-radius: 18px;
+}
+
+.ticket-info {
+    flex: 1;
+}
+
+.ticket-info small {
+    color: #c9a96e;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.15em;
+}
+
+.ticket-info h3 {
+    margin: 10px 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.8rem;
+
+    color: #fff;
+}
+
+.ticket-info p {
+    margin: 6px 0;
+
+    color: #9e9890;
+
+    font-size: 0.85rem;
+}
+
+.ticket-info strong {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    color: #e5c98e;
+
+    font-size: 1.2rem;
+}
+
+.ticket-id {
+    color: #c9a96e !important;
+}
+
+
+/* =========================================================
+   5. MODALS — FIX RAW/UNSTYLED LOOK
+========================================================= */
+
+.modal {
     position: fixed;
 
     inset: 0;
 
     z-index: 99999;
 
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,0.82);
+
+    backdrop-filter: blur(12px);
+}
+
+.modal.active,
+.modal.show {
+    display: flex;
+}
+
+
+/* Actual HTML uses modal-box */
+
+.modal-box {
+    position: relative;
+
+    width: min(560px, 94vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #181511,
+            #0d0c0a
+        );
+
+    border: 1px solid rgba(201,169,110,0.30);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.75);
+
+    color: #fff;
+}
+
+.modal-box h2 {
+    margin: 5px 0 25px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 3rem;
+
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.modal-box h2 span {
+    color: #c9a96e;
+}
+
+
+/* Close button */
+
+.modal-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(201,169,110,0.35);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #c9a96e;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #c9a96e;
+
+    color: #090807;
+
+    transform: rotate(90deg);
+}
+
+
+/* Modal labels */
+
+.modal-box label {
+    display: block;
+
+    margin: 16px 0 7px;
+
+    color: #aaa39a;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.05em;
+}
+
+
+/* Modal inputs */
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
     width: 100%;
 
+    min-height: 50px;
+
+    padding: 13px 15px;
+
+    background: #090807;
+
+    border: 1px solid rgba(201,169,110,0.18);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+}
+
+.modal-box input:focus,
+.modal-box select:focus,
+.modal-box textarea:focus {
+    border-color: #c9a96e;
+
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.08);
+}
+
+.modal-box input::placeholder,
+.modal-box textarea::placeholder {
+    color: #5f5a54;
+}
+
+
+/* Modal button */
+
+.modal-box .btn {
+    margin-top: 18px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+/* =========================================================
+   6. LOGIN / SIGNUP
+========================================================= */
+
+.switch-auth {
+    margin-top: 22px;
+
+    color: #918b83;
+
+    text-align: center;
+
+    font-size: 0.85rem;
+}
+
+.switch-auth button {
+    border: none;
+
+    background: transparent;
+
+    color: #c9a96e;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: inherit;
+}
+
+.switch-auth button:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   7. EVENT MODAL
+========================================================= */
+
+.event-modal-box {
+    width: min(900px, 94vw);
+
+    padding: 42px;
+}
+
+.event-modal-box #eventTitle {
+    margin: 5px 0 15px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 6vw, 5rem);
+
+    color: #fff;
+}
+
+.event-description {
+    max-width: 720px;
+
+    margin-bottom: 30px;
+
+    color: #a39c93;
+
+    font-size: 0.95rem;
+
+    line-height: 1.8;
+}
+
+
+/* Event info */
+
+.event-modal-box .event-info,
+.event-modal-info {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.event-modal-box .event-info > div,
+.event-modal-info > div {
+    padding: 20px;
+
+    background: #100f0d;
+
+    border: 1px solid rgba(201,169,110,0.18);
+
+    border-radius: 12px;
+}
+
+.event-modal-box .event-info span,
+.event-modal-info span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #c9a96e;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.13em;
+}
+
+.event-modal-box .event-info strong,
+.event-modal-info strong {
+    color: #fff;
+
+    font-size: 0.85rem;
+}
+
+
+/* Prices */
+
+.event-prices,
+.aurelia-event-prices {
+    display: flex;
+
+    gap: 15px;
+
+    overflow-x: auto;
+
+    padding-bottom: 5px;
+}
+
+.event-price,
+.aurelia-price-box {
+    flex: 1 0 180px;
+
+    padding: 22px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+.event-price span,
+.aurelia-price-box span {
+    display: block;
+
+    color: #8f8981;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.13em;
+}
+
+.event-price strong,
+.aurelia-price-box strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #e5c98e;
+
+    font-size: 1.5rem;
+}
+
+
+/* =========================================================
+   8. ACTUAL JAVASCRIPT FULL EVENT PAGE
+========================================================= */
+
+#aureliaFullEventPage {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999999;
+
+    width: 100%;
     height: 100vh;
 
     overflow-y: auto;
 
     background:
-
         radial-gradient(
-            circle at 85% 15%,
-            rgba(201,169,110,0.12),
+            circle at 85% 10%,
+            rgba(201,169,110,0.13),
             transparent 35%
         ),
-
         #090807;
 
     color: #fff;
 }
 
+.aurelia-event-screen {
+    width: 100%;
 
-.aurelia-details-container {
+    min-height: 100vh;
 
-    width:
-        min(1200px, 92%);
+    padding: 90px 5% 80px;
+}
 
-    min-height:
-        100vh;
+.aurelia-event-inner {
+    width: min(1200px, 100%);
 
-    margin:
-        auto;
+    margin: 0 auto;
+}
 
-    padding:
-        100px 0 80px;
+.aurelia-event-back {
+    display: inline-flex;
 
-    position:
-        relative;
+    align-items: center;
+
+    margin-bottom: 55px;
+
+    padding: 11px 20px;
+
+    border: 1px solid rgba(201,169,110,0.35);
+
+    border-radius: 30px;
+
+    background: transparent;
+
+    color: #c9a96e;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 0.08em;
+
+    transition: 0.3s ease;
+}
+
+.aurelia-event-back:hover {
+    background: #c9a96e;
+
+    color: #090807;
+}
+
+.aurelia-event-category {
+    margin-bottom: 15px;
+
+    color: #c9a96e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+}
+
+.aurelia-event-title {
+    max-width: 1000px;
+
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(3.2rem, 8vw, 7rem);
+
+    line-height: 0.98;
+
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.aurelia-event-description {
+    max-width: 750px;
+
+    margin: 30px 0 45px;
+
+    color: #a39c93;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
 }
 
 
-.aurelia-details-close {
+/* Actual JS class: aurelia-event-information */
 
-    position:
-        fixed;
+.aurelia-event-information {
+    display: grid;
 
-    top:
-        25px;
+    grid-template-columns: repeat(4, 1fr);
 
-    right:
-        30px;
+    gap: 14px;
+}
 
-    width:
-        48px;
+.aurelia-event-info-box {
+    padding: 25px;
 
-    height:
-        48px;
+    background: #151310;
 
-    border-radius:
-        50%;
+    border: 1px solid rgba(201,169,110,0.20);
 
-    border:
-        1px solid #c9a96e;
+    border-radius: 15px;
+}
 
-    background:
-        #090807;
+.aurelia-event-info-box span {
+    display: block;
 
-    color:
-        #c9a96e;
+    margin-bottom: 10px;
 
-    font-size:
-        28px;
+    color: #c9a96e;
 
-    cursor:
-        pointer;
+    font-size: 0.65rem;
 
-    z-index:
-        100000;
+    letter-spacing: 0.15em;
+}
 
-    transition:
-        0.3s ease;
+.aurelia-event-info-box strong {
+    color: #fff;
+
+    font-size: 0.9rem;
 }
 
 
-.aurelia-details-close:hover {
-
-    background:
-        #c9a96e;
-
-    color:
-        #090807;
-
-    transform:
-        rotate(90deg);
-}
-
-
-.aurelia-details-label {
-
-    color:
-        #c9a96e;
-
-    font-size:
-        0.75rem;
-
-    font-weight:
-        600;
-
-    letter-spacing:
-        0.22em;
-
-    text-transform:
-        uppercase;
-
-    margin-bottom:
-        20px;
-}
-
-
-.aurelia-details-container h1 {
-
-    font-family:
-        "Playfair Display",
-        serif;
-
-    font-size:
-        clamp(3rem, 8vw, 7rem);
-
-    font-weight:
-        500;
-
-    line-height:
-        1;
-
-    color:
-        #fff;
-
-    margin-bottom:
-        30px;
-}
-
-
-.aurelia-details-description {
-
-    max-width:
-        750px;
-
-    color:
-        #aaa39a;
-
-    font-size:
-        1.05rem;
-
-    line-height:
-        1.9;
-
-    margin-bottom:
-        55px;
-}
-
-
-/* EVENT INFO HORIZONTAL */
-
-.aurelia-details-info {
-
-    display:
-        flex;
-
-    flex-direction:
-        row;
-
-    gap:
-        18px;
-
-    overflow-x:
-        auto;
-
-    padding-bottom:
-        10px;
-}
-
-
-.aurelia-detail-box {
-
-    flex:
-        1 0 220px;
-
-    padding:
-        28px;
-
-    background:
-        #151310;
-
-    border:
-        1px solid
-        rgba(201,169,110,0.22);
-
-    border-radius:
-        16px;
-}
-
-
-.aurelia-detail-box span {
-
-    display:
-        block;
-
-    color:
-        #c9a96e;
-
-    font-size:
-        0.7rem;
-
-    letter-spacing:
-        0.16em;
-
-    margin-bottom:
-        12px;
-}
-
-
-.aurelia-detail-box strong {
-
-    color:
-        #fff;
-
-    font-size:
-        1rem;
-
-    font-weight:
-        500;
-}
-
-
-/* =========================
-   TICKET PRICES
-========================= */
+/* Ticket heading */
 
 .aurelia-ticket-heading {
+    margin: 55px 0 20px;
 
-    font-family:
-        "Playfair Display",
-        serif;
+    font-family: "Playfair Display", serif;
 
-    color:
-        #fff;
+    font-size: 2rem;
 
-    font-size:
-        2.2rem;
-
-    margin:
-        55px 0 25px;
+    color: #fff;
 }
 
 
-.aurelia-ticket-prices {
+/* Actual JS uses aurelia-price-box */
 
-    display:
-        flex;
+.aurelia-event-prices {
+    display: flex;
 
-    flex-direction:
-        row;
+    gap: 16px;
 
-    gap:
-        18px;
+    overflow-x: auto;
+}
 
-    overflow-x:
-        auto;
+.aurelia-price-box {
+    flex: 1 0 210px;
 
-    padding-bottom:
-        10px;
+    padding: 28px;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+.aurelia-price-box span {
+    display: block;
+
+    color: #8f8981;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.15em;
+}
+
+.aurelia-price-box strong {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #e5c98e;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 2rem;
 }
 
 
-.aurelia-ticket-box {
+/* Actual JS button */
 
-    flex:
-        1 0 220px;
+.aurelia-book-button {
+    margin-top: 40px;
 
-    padding:
-        30px;
+    min-height: 54px;
 
-    background:
-        #151310;
+    padding: 0 35px;
 
-    border:
-        1px solid
-        rgba(201,169,110,0.22);
+    border: 1px solid #c9a96e;
 
-    border-radius:
-        16px;
+    border-radius: 30px;
 
-    text-align:
-        center;
+    background: #c9a96e;
+
+    color: #090807;
+
+    font-family: inherit;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.aurelia-book-button:hover {
+    background: #e5c98e;
+
+    transform: translateY(-2px);
 }
 
 
-.aurelia-ticket-box span {
+/* =========================================================
+   9. BOOKING MODAL
+========================================================= */
 
-    display:
-        block;
+#bookingModal .modal-box {
+    width: min(700px, 94vw);
+}
 
-    color:
-        #aaa39a;
+.booking-form {
+    width: 100%;
+}
 
-    font-size:
-        0.7rem;
+.booking-row {
+    display: grid;
 
-    letter-spacing:
-        0.16em;
+    grid-template-columns: 1fr 1fr;
 
-    margin-bottom:
-        12px;
+    gap: 15px;
+}
+
+.booking-total {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #151310;
+
+    border: 1px solid rgba(201,169,110,0.20);
+
+    border-radius: 12px;
+}
+
+.booking-total span {
+    color: #9b958c;
+}
+
+.booking-total strong {
+    color: #e5c98e;
+
+    font-size: 1.4rem;
 }
 
 
-.aurelia-ticket-box strong {
+/* =========================================================
+   10. CONFIRMATION
+========================================================= */
 
-    color:
-        #e5c98e;
+.confirmation-details {
+    display: grid;
 
-    font-size:
-        1.7rem;
+    grid-template-columns: repeat(2, 1fr);
 
-    font-weight:
-        600;
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.confirmation-details > div {
+    padding: 20px;
+
+    background: #100f0d;
+
+    border: 1px solid rgba(201,169,110,0.18);
+
+    border-radius: 12px;
+}
+
+.confirmation-details span {
+    display: block;
+
+    color: #817a71;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 0.12em;
+
+    margin-bottom: 7px;
+}
+
+.confirmation-details strong {
+    color: #fff;
+
+    font-size: 0.9rem;
 }
 
 
-/* =========================
-   EVENT BUTTONS
-========================= */
+/* =========================================================
+   11. FOOTER
+========================================================= */
 
-.aurelia-details-buttons {
+footer {
+    width: 100%;
 
-    display:
-        flex;
+    padding: 75px 5% 30px;
 
-    flex-direction:
-        row;
+    border-top: 1px solid rgba(201,169,110,0.15);
 
-    gap:
-        15px;
+    overflow: hidden;
+}
 
-    margin-top:
-        50px;
+.footer-content {
+    width: min(1400px, 100%);
 
-    flex-wrap:
-        wrap;
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+
+    gap: 45px;
+}
+
+.footer-column h4 {
+    margin-bottom: 18px;
+
+    color: #e5c98e;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.25rem;
+}
+
+.footer-column p {
+    max-width: 320px;
+
+    color: #918b83;
+
+    line-height: 1.7;
+}
+
+.footer-column ul {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+.footer-column a {
+    color: #918b83;
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+
+    transition: 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #c9a96e;
+}
+
+.footer-bottom {
+    width: min(1400px, 100%);
+
+    margin: 50px auto 0;
+
+    padding-top: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top: 1px solid rgba(201,169,110,0.12);
+
+    color: #6f6a63;
+
+    font-size: 0.75rem;
 }
 
 
-.aurelia-book-btn,
-.aurelia-back-btn {
+/* =========================================================
+   12. MOBILE — ABOUT
+========================================================= */
 
-    padding:
-        14px 30px;
+@media (max-width: 800px) {
 
-    border-radius:
-        30px;
+    .about-content {
+        width: 90%;
 
-    font-size:
-        0.8rem;
+        grid-template-columns: 1fr;
 
-    font-weight:
-        600;
+        gap: 35px;
+    }
 
-    letter-spacing:
-        0.08em;
+    .about-features {
+        grid-template-columns: 1fr;
 
-    text-transform:
-        uppercase;
+        gap: 12px;
+    }
 
-    cursor:
-        pointer;
+    .about-feature,
+    .about-box {
+        min-height: auto;
 
-    transition:
-        0.3s ease;
-}
+        padding: 23px;
+    }
 
-
-.aurelia-book-btn {
-
-    border:
-        1px solid #c9a96e;
-
-    background:
-        #c9a96e;
-
-    color:
-        #090807;
-}
-
-
-.aurelia-book-btn:hover {
-
-    background:
-        #e5c98e;
-
-    transform:
-        translateY(-2px);
-}
-
-
-.aurelia-back-btn {
-
-    border:
-        1px solid #c9a96e;
-
-    background:
-        transparent;
-
-    color:
-        #c9a96e;
-}
-
-
-.aurelia-back-btn:hover {
-
-    background:
-        #c9a96e;
-
-    color:
-        #090807;
-}
-
-
-/* =========================
-   EVENT DETAILS MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .aurelia-details-container {
-
-        width:
-            88%;
-
-        padding-top:
-            90px;
+    .about-feature h3,
+    .about-box h3 {
+        margin-top: 25px;
     }
 
 
-    .aurelia-details-container h1 {
+    /* CONTACT */
 
-        font-size:
-            3.2rem;
+    .contact-content {
+        width: 90%;
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .contact-details {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .contact-form {
+        padding: 24px 20px;
     }
 
 
-    .aurelia-details-description {
+    /* EVENT DETAILS */
 
-        font-size:
-            0.95rem;
+    .aurelia-event-screen {
+        padding: 80px 20px 50px;
+    }
+
+    .aurelia-event-information {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 
-    .aurelia-detail-box {
+    /* FOOTER */
 
-        flex-basis:
-            200px;
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 35px 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+}
+
+
+/* =========================================================
+   13. MOBILE — MODALS + EVENT PAGE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-box,
+    .event-modal-box {
+        width: 100%;
+
+        max-height: 92vh;
+
+        padding: 28px 20px;
+
+        border-radius: 16px;
+    }
+
+    .modal-box h2 {
+        font-size: 2.5rem;
+    }
+
+    .event-modal-box #eventTitle {
+        font-size: 2.6rem;
+    }
+
+    .event-modal-box .event-info,
+    .event-modal-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .confirmation-details {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-row {
+        grid-template-columns: 1fr;
     }
 
 
-    .aurelia-ticket-box {
+    /* FULL EVENT PAGE */
 
-        flex-basis:
-            200px;
+    .aurelia-event-title {
+        font-size: 3.2rem;
+    }
+
+    .aurelia-event-description {
+        font-size: 0.9rem;
+    }
+
+    .aurelia-event-information {
+        grid-template-columns: 1fr;
+    }
+
+    .aurelia-event-info-box {
+        padding: 20px;
+    }
+
+    .aurelia-event-prices {
+        gap: 12px;
+    }
+
+    .aurelia-price-box {
+        flex-basis: 180px;
+    }
+
+    .aurelia-book-button {
+        width: 100%;
     }
 
 
-    .aurelia-details-buttons {
+    /* TICKETS */
 
-        flex-direction:
-            column;
+    .ticket-card {
+        flex-direction: column;
+
+        padding: 22px;
     }
 
 
-    .aurelia-book-btn,
-    .aurelia-back-btn {
+    /* FOOTER */
 
-        width:
-            100%;
+    footer {
+        padding: 60px 20px 25px;
     }
-   }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   14. VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .about-content,
+    .contact-content {
+        width: 92%;
+    }
+
+    .about-content h2,
+    .contact-content h2 {
+        font-size: 2.7rem;
+    }
+
+    .modal-box h2 {
+        font-size: 2.2rem;
+    }
+   .event-modal-box .event-info,
+    .event-modal-info {
+        grid-template-columns: 1fr;
+    }
+
+    .aurelia-event-title {
+        font-size: 2.8rem;
+    }
+}
