@@ -2648,3 +2648,377 @@ textarea:focus {
     margin-top: 26px;
     flex-wrap: wrap;
 }
+/* =========================================================
+   AURELIA EVENT DETAILS - CLEAN PREMIUM LAYOUT
+========================================================= */
+
+#aurelia-event-details-page {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    overflow-y: auto;
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(201,169,110,0.10),
+            transparent 32%
+        ),
+        #090807;
+}
+
+/* Main content */
+#aurelia-event-details-page .aurelia-details-container {
+    width: min(1100px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 45px 0 80px;
+}
+
+/* Close button */
+#aurelia-event-details-page .aurelia-details-close {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(201,169,110,0.35);
+    border-radius: 50%;
+
+    background: rgba(201,169,110,0.04);
+    color: #c9a96e;
+
+    font-size: 25px;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+#aurelia-event-details-page .aurelia-details-close:hover {
+    background: #c9a96e;
+    color: #090807;
+}
+
+/* Back button */
+#aurelia-event-details-page .aurelia-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0 0 42px;
+    padding: 11px 19px;
+
+    border: 1px solid rgba(201,169,110,0.38);
+    border-radius: 8px;
+
+    background: rgba(201,169,110,0.05);
+    color: #d9c18e;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#aurelia-event-details-page .aurelia-back-btn::before {
+    content: "←";
+    font-size: 1rem;
+}
+
+#aurelia-event-details-page .aurelia-back-btn:hover {
+    background: rgba(201,169,110,0.14);
+    border-color: #c9a96e;
+    transform: translateX(-3px);
+}
+
+/* Category */
+#aurelia-event-details-page .aurelia-details-label {
+    margin-bottom: 14px;
+
+    color: #c9a96e;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+}
+
+/* Event title */
+#aurelia-event-details-page .aurelia-details-container h1 {
+    margin: 0 0 42px;
+
+    max-width: 850px;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(3rem, 7vw, 6.2rem);
+    font-weight: 500;
+    line-height: 0.98;
+
+    color: #f4efe6;
+}
+
+/* REMOVE DESCRIPTION */
+#aurelia-event-details-page .aurelia-details-description {
+    display: none !important;
+}
+
+/* Event information */
+#aurelia-event-details-page .aurelia-details-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+
+    margin-bottom: 58px;
+    padding: 0;
+
+    overflow: visible;
+}
+
+/* Individual information box */
+#aurelia-event-details-page .aurelia-detail-box {
+    min-width: 0;
+    padding: 23px 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(201,169,110,0.07),
+            rgba(255,255,255,0.015)
+        );
+
+    border: 1px solid rgba(201,169,110,0.22);
+    border-radius: 14px;
+
+    transition: 0.3s ease;
+}
+
+#aurelia-event-details-page .aurelia-detail-box:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,169,110,0.5);
+    background: rgba(201,169,110,0.09);
+}
+
+#aurelia-event-details-page .aurelia-detail-box span {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #9e9589;
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+#aurelia-event-details-page .aurelia-detail-box strong {
+    display: block;
+
+    color: #f1eadf;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+/* Ticket heading */
+#aurelia-event-details-page .aurelia-ticket-heading {
+    margin: 0 0 22px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 500;
+
+    color: #f4efe6;
+}
+
+/* Ticket cards */
+#aurelia-event-details-page .aurelia-ticket-prices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: visible;
+}
+
+#aurelia-event-details-page .aurelia-ticket-box {
+    min-width: 0;
+    padding: 28px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(201,169,110,0.08),
+            rgba(255,255,255,0.015)
+        );
+
+    border: 1px solid rgba(201,169,110,0.23);
+    border-radius: 15px;
+
+    text-align: left;
+
+    transition: 0.3s ease;
+}
+
+#aurelia-event-details-page .aurelia-ticket-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,169,110,0.55);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+#aurelia-event-details-page .aurelia-ticket-box span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #a59c90;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+}
+
+#aurelia-event-details-page .aurelia-ticket-box strong {
+    color: #e5c98e;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* Buttons */
+#aurelia-event-details-page .aurelia-details-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 38px;
+}
+
+/* Book button */
+#aurelia-event-details-page .aurelia-book-btn {
+    padding: 14px 28px;
+
+    border: 1px solid #c9a96e;
+    border-radius: 8px;
+
+    background: #c9a96e;
+    color: #090807;
+
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#aurelia-event-details-page .aurelia-book-btn:hover {
+    background: #e5c98e;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(201,169,110,0.15);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    #aurelia-event-details-page .aurelia-details-container {
+        width: calc(100% - 30px);
+        padding: 28px 0 60px;
+    }
+
+    #aurelia-event-details-page .aurelia-details-close {
+        top: 18px;
+        right: 18px;
+
+        width: 40px;
+        height: 40px;
+    }
+
+    #aurelia-event-details-page .aurelia-back-btn {
+        margin-bottom: 34px;
+    }
+
+    #aurelia-event-details-page .aurelia-details-label {
+        margin-bottom: 12px;
+    }
+
+    #aurelia-event-details-page .aurelia-details-container h1 {
+        margin-bottom: 34px;
+        font-size: clamp(2.7rem, 12vw, 4rem);
+        line-height: 1;
+    }
+
+    /* 2 x 2 information layout */
+    #aurelia-event-details-page .aurelia-details-info {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 11px;
+
+        margin-bottom: 42px;
+    }
+
+    #aurelia-event-details-page .aurelia-detail-box {
+        padding: 18px 15px;
+    }
+
+    #aurelia-event-details-page .aurelia-detail-box strong {
+        font-size: 0.78rem;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-heading {
+        margin-bottom: 17px;
+        font-size: 1.7rem;
+    }
+
+    /* 3 ticket cards fit neatly */
+    #aurelia-event-details-page .aurelia-ticket-prices {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-box {
+        padding: 19px 10px;
+        border-radius: 12px;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-box span {
+        font-size: 0.52rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 9px;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-box strong {
+        font-size: 1.25rem;
+    }
+
+    #aurelia-event-details-page .aurelia-details-buttons {
+        margin-top: 30px;
+    }
+
+    #aurelia-event-details-page .aurelia-book-btn {
+        width: 100%;
+        padding: 15px 20px;
+    }
+}
+
+
+/* VERY SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    #aurelia-event-details-page .aurelia-details-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-box {
+        padding: 17px 8px;
+    }
+
+    #aurelia-event-details-page .aurelia-ticket-box strong {
+        font-size: 1.1rem;
+    }
+   }
