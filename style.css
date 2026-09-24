@@ -2535,3 +2535,116 @@ textarea:focus {
     }
 
 }
+/* =========================================
+   BOOKING MODAL - CLEAN SPACING
+========================================= */
+
+.booking-modal .modal-content,
+#bookingModal .modal-content {
+    padding: 42px 34px;
+}
+
+#bookingModal .booking-event {
+    display: none;
+}
+
+#bookingModal .booking-form,
+#bookingModal form {
+    margin-top: 28px;
+}
+
+#bookingModal .form-group {
+    margin-bottom: 22px;
+}
+
+#bookingModal label {
+    display: block;
+    margin-bottom: 9px;
+}
+
+#bookingModal input,
+#bookingModal select {
+    min-height: 58px;
+}
+
+#bookingModal .booking-summary {
+    margin-top: 26px;
+    margin-bottom: 14px;
+}
+
+#bookingModal .btn {
+    margin-top: 4px;
+}
+/* =========================================
+   EVENT DETAILS - PREMIUM SPACING
+========================================= */
+
+.event-details-page {
+    padding-top: 32px;
+    padding-bottom: 70px;
+}
+
+.event-details-page .back-btn {
+    margin-bottom: 32px;
+}
+
+.event-details-page .event-category {
+    margin-bottom: 12px;
+}
+
+.event-details-page h1 {
+    margin-bottom: 18px;
+}
+
+.event-details-page .event-description {
+    margin-bottom: 26px;
+    max-width: 760px;
+    line-height: 1.75;
+}
+
+.event-details-page .event-meta {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+    margin-bottom: 36px;
+}
+
+.event-details-page .pricing-section,
+.event-details-page .ticket-prices {
+    margin-top: 34px;
+}
+
+.event-details-page .price-card {
+    padding: 26px 22px;
+}
+/* =========================================
+   CONFIRMATION MODAL - BETTER SPACING
+========================================= */
+
+#confirmationModal .modal-content {
+    padding: 42px 34px;
+}
+
+#confirmationModal .confirmation-message {
+    margin-bottom: 26px;
+    line-height: 1.6;
+}
+
+#confirmationModal .confirmation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 24px;
+    margin-bottom: 28px;
+}
+
+#confirmationModal .confirmation-detail {
+    line-height: 1.55;
+}
+
+#confirmationModal .confirmation-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
