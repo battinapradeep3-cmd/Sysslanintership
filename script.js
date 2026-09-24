@@ -550,53 +550,59 @@ function updateAuthUI() {
 
 function startBooking(eventName) {
 
-    const actualName =
-        EVENT_ALIASES[eventName] || eventName;
-
-    const event =
-        EVENTS[actualName];
-
-    if (!event) {
-        alert("Event not found.");
-        return;
-    }
-
     const user = getUser();
 
     if (!user) {
-        alert("Please sign in before booking tickets.");
+        alert("Please Sign In before booking a ticket.");
         openLogin();
         return;
     }
 
-    selectedEventName = actualName;
-    selectedEvent = event;
+    // If eventName is passed, select that event
+    if (eventName) {
+        const actualName =
+            EVENT_ALIASES[eventName] || eventName;
 
-    closeAllModals();
-
-    setTimeout(function() {
-
-        openModal("bookingModal");
-
-        const eventNameInput =
-            document.getElementById("bookingEventName");
-
-        if (eventNameInput) {
-            eventNameInput.value = actualName;
+        if (EVENTS[actualName]) {
+            selectedEventName = actualName;
+            selectedEvent = EVENTS[actualName];
         }
+    }
 
-        const bookingTitle =
-            document.getElementById("bookingEventTitle");
+    if (!selectedEvent || !selectedEventName) {
+        alert("Please select an event first.");
+        return;
+    }
 
-        if (bookingTitle) {
-            bookingTitle.textContent = actualName;
-        }
+    setValue(
+        "bookingEventName",
+        selectedEventName
+    );
 
-        updateBookingTotal();
+    setValue(
+        "bookingName",
+        user.name || ""
+    );
 
-    }, 50);
-}
+    setValue(
+        "bookingEmail",
+        user.email || ""
+    );
 
+    setValue(
+        "ticketType",
+        "general"
+    );
+
+    setValue(
+        "ticketQuantity",
+        "1"
+    );
+
+    updateBookingTotal();
+
+    openModal("bookingModal");
+       }
 
 /* ============================================================
    BOOKING TOTAL
@@ -648,101 +654,194 @@ function updateBookingTotal() {
 }
 
 
-/* ============================================================
+/* ============================================================*//
    HANDLE BOOKING
-   ============================================================ */
+   function handleBooking(event) {
 
-function handleBooking(event) {
-
-    event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
 
     const user = getUser();
 
     if (!user) {
-        alert("Please sign in first.");
+        closeModal("bookingModal");
         openLogin();
         return false;
     }
 
     if (!selectedEvent || !selectedEventName) {
-        alert("Please select an event first.");
+        alert("Please select an event.");
         return false;
     }
 
-    const type =
-        document.getElementById("ticketType")?.value || "standard";
+    const name =
+        getValue("bookingName");
+
+    const email =
+        getValue("bookingEmail");
+
+    const phone =
+        getValue("bookingPhone");
+
+    const ticketType =
+        getValue("ticketType") || "general";
 
     let quantity =
         parseInt(
-            document.getElementById("ticketQuantity")?.value,
+            getValue("ticketQuantity"),
             10
         );
 
-    if (!quantity || quantity < 1) {
-        quantity = 1;
+    if (!name || !email || !phone) {
+        alert("Please fill all booking details.");
+        return false;
+    }
+
+    if (isNaN(quantity) || quantity < 1) {
+        alert("Please enter a valid ticket quantity.");
+        return false;
     }
 
     let price = selectedEvent.price;
 
-    if (type === "vip") {
+    if (ticketType === "vip") {
         price = selectedEvent.vip;
     }
 
-    if (type === "vvip") {
+    if (ticketType === "vvip") {
         price = selectedEvent.vvip;
     }
 
-    const total =
-        price * quantity;
+    const total = price * quantity;
 
     const booking = {
+
         id:
             "AUR-" +
-            Date.now().toString().slice(-8),
+            Date.now()
+                .toString()
+                .slice(-8),
 
-        userEmail: user.email,
+        event:
+            selectedEventName,
 
-        userName: user.name,
+        description:
+            selectedEvent.description,
 
-        event: selectedEventName,
+        category:
+            selectedEvent.category,
 
-        category: selectedEvent.category,
+        date:
+            selectedEvent.date,
 
-        date: selectedEvent.date,
+        time:
+            selectedEvent.time,
 
-        time: selectedEvent.time,
+        location:
+            selectedEvent.location,
 
-        location: selectedEvent.location,
+        venue:
+            selectedEvent.venue,
 
-        venue: selectedEvent.venue,
+        name:
+            name,
 
-        ticketType: type,
+        email:
+            email,
 
-        quantity: quantity,
+        userEmail:
+            user.email,
 
-        price: price,
+        phone:
+            phone,
 
-        total: total,
+        ticketType:
+            ticketType,
 
-        createdAt:
+        quantity:
+            quantity,
+
+        price:
+            price,
+
+        total:
+            total,
+
+        bookedAt:
             new Date().toISOString()
     };
 
-    const bookings = getBookings();
+
+    let bookings =
+        getBookings();
 
     bookings.push(booking);
 
     saveBookings(bookings);
 
+
+    /* CLOSE BOOKING */
     closeModal("bookingModal");
 
-    showConfirmation(booking);
+
+    /* ============================
+       CONFIRMATION DETAILS
+       ============================ */
+
+    setText(
+        "confirmationId",
+        booking.id
+    );
+
+    setText(
+        "confirmationEvent",
+        booking.event
+    );
+
+    setText(
+        "confirmationDate",
+        booking.date +
+        " · " +
+        booking.time
+    );
+
+    setText(
+        "confirmationTickets",
+        booking.quantity +
+        " × " +
+        formatTicketType(
+            booking.ticketType
+        )
+    );
+
+    setText(
+        "confirmationTotal",
+        "₹" +
+        booking.total
+    );
+
+
+    /* SHOW CONFIRMATION */
+
+    openModal(
+        "confirmationModal"
+    );
+
+
+    /* ADD QR */
+
+    addConfirmationQR(
+        booking
+    );
+
+
+    /* REFRESH MY TICKETS */
 
     loadTickets();
 
     return false;
 }
-
 
 /* ============================================================
    CONFIRMATION
@@ -815,7 +914,6 @@ function formatTicketType(type) {
 /* ============================================================
    QR CODE
    ============================================================ */
-
 function createQRCodeData(booking) {
 
     const data =
@@ -857,18 +955,15 @@ function addConfirmationQR(booking) {
         >
     `;
 }
-
-
-/* ============================================================
-   MY TICKETS
-   ============================================================ */
-
-function loadTickets() {
+    function loadTickets() {
 
     const container =
+        document.getElementById("ticketList") ||
         document.getElementById("ticketsContainer");
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     const user = getUser();
 
@@ -876,10 +971,12 @@ function loadTickets() {
 
         container.innerHTML = `
             <div class="empty-tickets">
+
                 <h3>Sign In To View Tickets</h3>
+
                 <p>
-                    Sign in and book an event to see
-                    your digital tickets here.
+                    Sign in and book an event
+                    to see your tickets here.
                 </p>
 
                 <button
@@ -888,25 +985,51 @@ function loadTickets() {
                     onclick="openLogin()">
                     Sign In
                 </button>
+
             </div>
         `;
 
         return;
     }
 
+
     const allBookings =
         getBookings();
+
+
+    /*
+       Supports both:
+       userEmail
+       and old email
+    */
 
     const bookings =
         allBookings.filter(function(booking) {
 
+            const bookingEmail =
+                (
+                    booking.userEmail ||
+                    booking.email ||
+                    ""
+                )
+                .toLowerCase()
+                .trim();
+
+            const currentEmail =
+                (
+                    user.email ||
+                    ""
+                )
+                .toLowerCase()
+                .trim();
+
             return (
-                !booking.userEmail ||
-                booking.userEmail.toLowerCase() ===
-                user.email.toLowerCase()
+                bookingEmail ===
+                currentEmail
             );
 
         });
+
 
     if (bookings.length === 0) {
 
@@ -932,7 +1055,9 @@ function loadTickets() {
         return;
     }
 
+
     container.innerHTML = "";
+
 
     bookings.forEach(function(booking) {
 
@@ -942,6 +1067,7 @@ function loadTickets() {
         card.className =
             "ticket-card";
 
+
         card.innerHTML = `
 
             <div class="ticket-info">
@@ -950,48 +1076,140 @@ function loadTickets() {
                     AURELIA DIGITAL TICKET
                 </small>
 
+
                 <h3>
-                    ${escapeHTML(booking.event)}
+                    ${escapeHTML(
+                        booking.event ||
+                        "AURELIA Event"
+                    )}
                 </h3>
 
-                <p>
-                    ${escapeHTML(booking.date)}
-                    ·
-                    ${escapeHTML(booking.time)}
-                </p>
 
-                <p>
-                    ${escapeHTML(booking.location)}
-                </p>
+                ${
+                    booking.description
+                    ?
+                    `
+                    <p class="ticket-description">
+                        ${escapeHTML(
+                            booking.description
+                        )}
+                    </p>
+                    `
+                    :
+                    ""
+                }
 
-                <p>
-                    ${escapeHTML(booking.venue)}
-                </p>
 
-                <p>
-                    ${booking.quantity}
-                    ×
-                    ${escapeHTML(
-                        formatTicketType(
-                            booking.ticketType
-                        )
-                    )}
-                </p>
+                <div class="ticket-detail">
 
-                <strong>
-                    ₹${booking.total}
-                </strong>
+                    <span>DATE</span>
+
+                    <strong>
+                        ${escapeHTML(
+                            booking.date ||
+                            "Date unavailable"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="ticket-detail">
+
+                    <span>TIME</span>
+
+                    <strong>
+                        ${escapeHTML(
+                            booking.time ||
+                            "Time unavailable"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="ticket-detail">
+
+                    <span>LOCATION</span>
+
+                    <strong>
+                        ${escapeHTML(
+                            booking.location ||
+                            "Location unavailable"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="ticket-detail">
+
+                    <span>VENUE</span>
+
+                    <strong>
+                        ${escapeHTML(
+                            booking.venue ||
+                            "Venue unavailable"
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="ticket-detail">
+
+                    <span>TICKETS</span>
+
+                    <strong>
+                        ${escapeHTML(
+                            String(
+                                booking.quantity ||
+                                1
+                            )
+                        )}
+                        ×
+                        ${escapeHTML(
+                            formatTicketType(
+                                booking.ticketType ||
+                                "general"
+                            )
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="ticket-detail">
+
+                    <span>TOTAL</span>
+
+                    <strong>
+                        ₹${escapeHTML(
+                            String(
+                                booking.total ||
+                                0
+                            )
+                        )}
+                    </strong>
+
+                </div>
+
 
                 <p class="ticket-id">
+
                     Booking ID:
-                    ${escapeHTML(booking.id)}
+                    ${escapeHTML(
+                        booking.id
+                    )}
+
                 </p>
+
 
                 <div
                     style="
                         margin-top:18px;
                         text-align:center;
-                        padding:12px;
+                        padding:15px;
                         border-top:
                         1px solid
                         rgba(255,255,255,.10);
@@ -999,20 +1217,23 @@ function loadTickets() {
                 >
 
                     <img
-                        src="${createQRCodeData(booking)}"
+                        src="${createQRCodeData(
+                            booking
+                        )}"
                         alt="QR code"
                         style="
                             width:140px;
                             height:140px;
                             background:#fff;
                             padding:5px;
+                            margin:auto;
                         "
                     >
 
                     <small
                         style="
                             display:block;
-                            margin-top:7px;
+                            margin-top:8px;
                         "
                     >
                         SCAN TO VERIFY
@@ -1020,10 +1241,13 @@ function loadTickets() {
 
                 </div>
 
+
                 <button
                     type="button"
                     class="btn btn-outline"
-                    data-cancel-ticket="${escapeHTML(booking.id)}"
+                    data-cancel-ticket="${escapeHTML(
+                        booking.id
+                    )}"
                 >
                     Cancel Ticket
                 </button>
@@ -1031,26 +1255,33 @@ function loadTickets() {
             </div>
         `;
 
+
         container.appendChild(card);
+
     });
 
+
+    /* CANCEL BUTTONS */
+
     container
-        .querySelectorAll("[data-cancel-ticket]")
+        .querySelectorAll(
+            "[data-cancel-ticket]"
+        )
         .forEach(function(button) {
 
-            button.onclick = function() {
+            button.onclick =
+                function() {
 
-                cancelTicket(
-                    button.getAttribute(
-                        "data-cancel-ticket"
-                    )
-                );
+                    cancelTicket(
+                        button.getAttribute(
+                            "data-cancel-ticket"
+                        )
+                    );
 
-            };
+                };
 
         });
-}
-
+    }  
 
 /* ============================================================
    CANCEL TICKET
