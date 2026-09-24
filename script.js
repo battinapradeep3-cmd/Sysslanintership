@@ -15,8 +15,7 @@ const EVENTS = {
         venue: "The Grand Arena",
         price: 799,
         vip: 1499,
-        vvip: 2499,
-        description: "An elegant evening of classical music, live performances and unforgettable moments. Experience premium sound, beautiful ambience and an extraordinary night at The Grand Arena."
+        vvip: 2499 ,
     },
 
     "Midnight Noir": {
@@ -28,7 +27,7 @@ const EVENTS = {
         price: 649,
         vip: 1299,
         vvip: 2199,
-        description: "Step into an atmospheric night filled with music, lights and premium entertainment. Midnight Noir brings a sophisticated nightlife experience to Visakhapatnam."
+      
     },
 
     "Aurum Jazz": {
@@ -40,7 +39,7 @@ const EVENTS = {
         price: 899,
         vip: 1699,
         vvip: 2799,
-        description: "A premium live jazz evening featuring extraordinary performances, elegant ambience and unforgettable musical moments."
+      
     },
 
     "Grand Vintner": {
@@ -52,7 +51,6 @@ const EVENTS = {
         price: 749,
         vip: 1499,
         vvip: 2399,
-        description: "A sophisticated luxury evening created for people who appreciate music, atmosphere and memorable experiences."
     },
 
     "Celestial Rooftop": {
@@ -64,7 +62,7 @@ const EVENTS = {
         price: 999,
         vip: 1899,
         vvip: 2999,
-        description: "Enjoy an unforgettable rooftop experience under the stars with premium entertainment, music and a spectacular atmosphere."
+   
     },
 
     "Imperial Opera": {
@@ -76,7 +74,7 @@ const EVENTS = {
         price: 1099,
         vip: 1999,
         vvip: 3299,
-        description: "An elegant opera experience combining art, music, stage performance and luxury in the beautiful surroundings of Goa."
+        
     },
 
     "Elysian Nights": {
@@ -746,52 +744,59 @@ function handleBooking(event) {
 /* ============================================================
    CONFIRMATION
    ============================================================ */
+function formatTicketType(type) {
+    const types = {
+        general: "Standard",
+        standard: "Standard",
+        vip: "VIP",
+        vvip: "VVIP"
+    };
+
+    return types[String(type).toLowerCase()] || "Standard";
+}
+
 
 function showConfirmation(booking) {
+    const confirmationId = document.getElementById("confirmationId");
+    const confirmationEvent = document.getElementById("confirmationEvent");
+    const confirmationDate = document.getElementById("confirmationDate");
+    const confirmationTickets = document.getElementById("confirmationTickets");
+    const confirmationTotal = document.getElementById("confirmationTotal");
 
-    const confirmation =
-        document.getElementById("confirmationModal");
-
-    if (!confirmation) {
-
-        alert(
-            "Booking confirmed!\n\n" +
-            "Booking ID: " +
-            booking.id
-        );
-
-        return;
+    if (confirmationId) {
+        confirmationId.textContent = booking.id || "AURELIA-" + Date.now();
     }
 
-    const eventElement =
-        document.getElementById("confirmationEvent");
-
-    const idElement =
-        document.getElementById("confirmationId");
-
-    const totalElement =
-        document.getElementById("confirmationTotal");
-
-    if (eventElement) {
-        eventElement.textContent =
-            booking.event;
+    if (confirmationEvent) {
+        confirmationEvent.textContent = booking.event || "Event";
     }
 
-    if (idElement) {
-        idElement.textContent =
-            booking.id;
+    if (confirmationDate) {
+        confirmationDate.textContent =
+            `${booking.date || ""} • ${booking.time || ""}`;
     }
 
-    if (totalElement) {
-        totalElement.textContent =
-            "₹" + booking.total;
+    if (confirmationTickets) {
+        confirmationTickets.textContent =
+            `${booking.quantity || 1} × ${formatTicketType(booking.ticketType || "general")}`;
+    }
+
+    if (confirmationTotal) {
+        confirmationTotal.textContent =
+            `₹${Number(booking.total || 0).toLocaleString("en-IN")}`;
+    }
+
+    // Location
+    const confirmationLocation =
+        document.getElementById("confirmationLocation");
+
+    if (confirmationLocation) {
+        confirmationLocation.textContent =
+            `${booking.venue || ""}, ${booking.location || ""}`;
     }
 
     openModal("confirmationModal");
-
-    addConfirmationQR(booking);
 }
-
 
 /* ============================================================
    TICKET TYPE
