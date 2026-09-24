@@ -88,7 +88,7 @@ const EVENTS = {
         price: 899,
         vip: 1699,
         vvip: 2799,
-        description: "A signature AURELIA experience featuring music, entertainment and an elegant atmosphere designed for an unforgettable evening."
+        
     },
 
     "Veloura": {
@@ -100,7 +100,7 @@ const EVENTS = {
         price: 1199,
         vip: 2199,
         vvip: 3499,
-        description: "Veloura is a premium luxury experience bringing together music, entertainment and an elegant atmosphere."
+        
     },
 
     "Noir Élan": {
@@ -112,7 +112,7 @@ const EVENTS = {
         price: 1299,
         vip: 2399,
         vvip: 3699,
-        description: "A stylish midnight affair featuring premium entertainment, dramatic lighting and an unforgettable nightlife atmosphere."
+         
     },
 
     "Astral Reverie": {
@@ -124,8 +124,7 @@ const EVENTS = {
         price: 1099,
         vip: 2099,
         vvip: 3299,
-        description: "Step into a cosmic experience where music, atmosphere and entertainment come together for an extraordinary night."
-    }
+    },
 };
 
 const EVENT_ALIASES = {
@@ -867,7 +866,7 @@ function addConfirmationQR(booking) {
 function loadTickets() {
 
     const container =
-        document.getElementById("ticketsContainer");
+        document.getElementById("ticketList");
 
     if (!container) return;
 
@@ -875,22 +874,25 @@ function loadTickets() {
 
     if (!user) {
 
-        container.innerHTML ='
-            <div class="empty-tickets">
-                <h3>Sign In To View Tickets</h3>
-                <p>
-                    Sign in and book an event to see
-                    your digital tickets here.
-                </p>
+        container.innerHTML = `
+    <div class="empty-tickets">
 
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    onclick="openLogin()">
-                    Sign In
-                </button>
-            </div>
-        ';
+        <h3>Sign In To View Tickets</h3>
+
+        <p>
+            Sign in and book an event to see
+            your digital tickets here.
+        </p>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            onclick="openLogin()">
+            Sign In
+        </button>
+
+    </div>
+`;
 
         return;
     }
