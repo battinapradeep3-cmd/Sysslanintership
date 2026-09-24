@@ -1530,8 +1530,8 @@ textarea:focus {
     color: var(--muted);
 
     line-height: 1.7;
-
-    font-size: 0.85rem;
+     gap: 12px;
+    font-size: 0.55rem;
 }
 
 .ticket-prices {
