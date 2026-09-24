@@ -279,9 +279,6 @@ function showEvent(eventName) {
                     ${escapeHTML(actualName)}
                 </h1>
 
-                <p class="aurelia-event-description">
-                    ${escapeHTML(event.description)}
-                </p>
 
                 <div class="aurelia-event-meta">
 
